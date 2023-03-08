@@ -1,0 +1,105 @@
+<svg id="visChart" width="730" height="425" viewBox="0 0 730 425"
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+    <g id="chartContent" font-family="Droid Sans, sans-serif">
+        <g>
+            <text id="mark4001" class=" mark Title title" data-datum="{}" font-size="20" font-weight="bold" fill="#727075" x="300" y="50">T Scores
+            </text>
+        </g>
+        <g transform="translate(0,50)">
+            <g transform="translate(40,20)">
+                <g fill="none" font-size="10" font-family="sans-serif" text-anchor="end">
+                    <g transform="translate(0,285.5)">
+                        <line id="mark1" class=" mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" stroke="#E0E0E0" stroke-width="1" x2="670"></line>
+                    </g>
+                    <g transform="translate(0,238)">
+                        <line id="mark2" class=" mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" stroke="#E0E0E0" stroke-width="1" x2="670"></line>
+                    </g>
+                    <g transform="translate(0,190.5)">
+                        <line id="mark3" class=" mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" stroke="#E0E0E0" stroke-width="1" x2="670"></line>
+                    </g>
+                    <g transform="translate(0,143)">
+                        <line id="mark4" class=" mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" stroke="#E0E0E0" stroke-width="1" x2="670"></line>
+                    </g>
+                    <g transform="translate(0,95.5)">
+                        <line id="mark5" class=" mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" stroke="#E0E0E0" stroke-width="1" x2="670"></line>
+                    </g>
+                    <g transform="translate(0,48)">
+                        <line id="mark6" class=" mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" stroke="#E0E0E0" stroke-width="1" x2="670"></line>
+                    </g>
+                    <g transform="translate(0,0.5)">
+                        <line id="mark7" class=" mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" stroke="#E0E0E0" stroke-width="1" x2="670"></line>
+                    </g>
+                </g>
+                <g class="axis" data-datum="{&quot;position&quot;:&quot;Module&quot;}" transform="translate(30,305)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle">
+                    <g transform="translate(0.5,0)">
+                        <text id="mark1001" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" y="9" dy="0.71em">Module 0
+                        </text>
+                    </g>
+                    <g transform="translate(102.16666666666666,0)">
+                        <text id="mark1002" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" y="9" dy="0.71em">Module 1
+                        </text>
+                    </g>
+                    <g transform="translate(203.83333333333331,0)">
+                        <text id="mark1003" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" y="9" dy="0.71em">Module 2
+                        </text>
+                    </g>
+                    <g transform="translate(305.5,0)">
+                        <text id="mark1004" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" y="9" dy="0.71em">Module 3
+                        </text>
+                    </g>
+                    <g transform="translate(407.16666666666663,0)">
+                        <text id="mark1005" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" y="9" dy="0.71em">Module 4
+                        </text>
+                    </g>
+                    <g transform="translate(508.83333333333337,0)">
+                        <text id="mark1006" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" y="9" dy="0.71em">Module 5
+                        </text>
+                    </g>
+                    <g transform="translate(610.5,0)">
+                        <text id="mark1007" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" y="9" dy="0.71em">Module 6
+                        </text>
+                    </g>
+                </g>
+                <g fill="none" font-size="10" font-family="sans-serif" text-anchor="end">
+                    <g transform="translate(0,285.5)">
+                        <text id="mark1008" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" x="-9" dy="0.32em">60</text>
+                    </g>
+                    <g transform="translate(0,238)">
+                        <text id="mark1009" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" x="-9" dy="0.32em">65</text>
+                    </g>
+                    <g transform="translate(0,190.5)">
+                        <text id="mark1010" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" x="-9" dy="0.32em">70</text>
+                    </g>
+                    <g transform="translate(0,143)">
+                        <text id="mark1011" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" x="-9" dy="0.32em">75</text>
+                    </g>
+                    <g transform="translate(0,95.5)">
+                        <text id="mark1012" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" x="-9" dy="0.32em">80</text>
+                    </g>
+                    <g transform="translate(0,48)">
+                        <text id="mark1013" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" x="-9" dy="0.32em">85</text>
+                    </g>
+                    <g transform="translate(0,0.5)">
+                        <text id="mark1014" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" font-size="14" font-weight="bold" fill="#727075" x="-9" dy="0.32em">90</text>
+                    </g>
+                </g>
+                <g class="line-and-dots" transform="translate(30,0)">
+                    <line id="mark2001" class=" mark Shape1" data-datum="[{&quot;Module&quot;:&quot;Module0&quot;,&quot;Value&quot;:83},{&quot;Module&quot;:&quot;Module1&quot;,&quot;Value&quot;:79}]" x1="0" y1="66.5" x2="101.7" y2="104.5" stroke="#3C92BA" stroke-width="4"></line>
+                    <line id="mark2002" class=" mark Shape1" data-datum="[{&quot;Module&quot;:&quot;Module1&quot;,&quot;Value&quot;:79},{&quot;Module&quot;:&quot;Module2&quot;,&quot;Value&quot;:78}]" x1="101.7" y1="104.5" x2="203.3" y2="114" stroke="#3C92BA" stroke-width="4"></line>
+                    <line id="mark2003" class=" mark Shape1" data-datum="[{&quot;Module&quot;:&quot;Module2&quot;,&quot;Value&quot;:78},{&quot;Module&quot;:&quot;Module3&quot;,&quot;Value&quot;:73}]" x1="203.3" y1="114" x2="305" y2="161.5" stroke="#3C92BA" stroke-width="4"></line>
+                    <line id="mark2004" class=" mark Shape1" data-datum="[{&quot;Module&quot;:&quot;Module3&quot;,&quot;Value&quot;:73},{&quot;Module&quot;:&quot;Module4&quot;,&quot;Value&quot;:71}]" x1="305" y1="161.5" x2="406.7" y2="180.5" stroke="#3C92BA" stroke-width="4"></line>
+                    <line id="mark2005" class=" mark Shape1" data-datum="[{&quot;Module&quot;:&quot;Module4&quot;,&quot;Value&quot;:71},{&quot;Module&quot;:&quot;Module5&quot;,&quot;Value&quot;:67}]" x1="406.7" y1="180.5" x2="508.3" y2="218.5" stroke="#3C92BA" stroke-width="4"></line>
+                    <line id="mark2006" class=" mark Shape1" data-datum="[{&quot;Module&quot;:&quot;Module5&quot;,&quot;Value&quot;:67},{&quot;Module&quot;:&quot;Module6&quot;,&quot;Value&quot;:65}]" x1="508.3" y1="218.5" x2="610" y2="237.5" stroke="#3C92BA" stroke-width="4"></line>
+                    <circle id="mark3001" class="mark Shape2" data-datum="{&quot;Module&quot;:&quot;Module0&quot;,&quot;Value&quot;:83}" fill="#3C92BA" r="5" cx="0" cy="66.49999999999997"></circle>
+                    <circle id="mark3002" class=" mark Shape2" data-datum="{&quot;Module&quot;:&quot;Module1&quot;,&quot;Value&quot;:79}" fill="#3C92BA" r="5" cx="101.66666666666666" cy="104.5"></circle>
+                    <circle id="mark3003" class=" mark Shape2" data-datum="{&quot;Module&quot;:&quot;Module2&quot;,&quot;Value&quot;:78}" fill="#3C92BA" r="5" cx="203.33333333333331" cy="114"></circle>
+                    <circle id="mark3004" class=" mark Shape2" data-datum="{&quot;Module&quot;:&quot;Module3&quot;,&quot;Value&quot;:73}" fill="#3C92BA" r="5" cx="305" cy="161.5"></circle>
+                    <circle id="mark3005" class=" mark Shape2" data-datum="{&quot;Module&quot;:&quot;Module4&quot;,&quot;Value&quot;:71}" fill="#3C92BA" r="5" cx="406.66666666666663" cy="180.5"></circle>
+                    <circle id="mark3006" class=" mark Shape2" data-datum="{&quot;Module&quot;:&quot;Module5&quot;,&quot;Value&quot;:67}" fill="#3C92BA" r="5" cx="508.33333333333337" cy="218.5"></circle>
+                    <circle id="mark3007" class=" mark Shape2" data-datum="{&quot;Module&quot;:&quot;Module6&quot;,&quot;Value&quot;:65}" fill="#3C92BA" r="5" cx="610" cy="237.5"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

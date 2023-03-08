@@ -1,0 +1,33 @@
+.slider-container {
+	float: left;
+	.track-passed {
+		stroke: var(--gray12);
+		transition: all 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	}
+	.slider {
+		fill: var(--gray12);
+		stroke: var(--gray15);
+		// stroke: var(--highlight-blue);
+		stroke-width: 0;
+		transition: fill 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95),
+			stroke-width 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+	}
+	.hidden-slider {
+		opacity: 0;
+	}
+	&:hover {
+		.track-passed {
+			stroke: var(--gray15);
+		}
+		.slider {
+			fill: var(--gray15);
+			stroke-width: 2;
+			&:hover {
+				cursor: pointer;
+			}
+		}
+		.hidden-slider {
+			opacity: 1;
+		}
+	}
+}

@@ -1,0 +1,24 @@
+.chart {
+  margin: 0 auto;
+  width: 960px;
+  min-height: 8px;
+  height: 100%;
+  box-shadow: 0 0 3px 1px #eee;
+}
+.tooltip {
+  position: absolute;
+}
+.timeline-bg{
+    fill: #efefef;
+}
+.axis {
+  height: 20px;
+}
+.zoom {
+  cursor: move;
+  position: absolute;
+  top: 0;
+  left: 0;
+  fill: none;
+  pointer-events: all;
+}

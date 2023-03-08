@@ -1,0 +1,151 @@
+<svg id="visChart" viewBox="0 0 1400 820" width="1400" height="820" style="width: 100%; height: auto; font: 10px sans-serif;" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+    <g id="chartContent" transform="translate(700.000000,420.000000)">
+        <g text-anchor="end" transform="translate(-400.000000,-552.000000)" class="axis" data-datum="{&quot;_TYPE&quot;:&quot;axis&quot;,&quot;type&quot;:&quot;x&quot;,&quot;position&quot;:&quot;State&quot;}">
+            <g fill="none">
+                <circle id="mark3001" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" stroke="#eee" stroke-width="1" cx="400" cy="552" r="184.9"/>
+            </g>
+            <g fill="none">
+                <circle id="mark3002" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" stroke="#eee" stroke-width="1" cx="400" cy="552" r="271.7"/>
+            </g>
+            <g fill="none">
+                <circle id="mark3003" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" stroke="#eee" stroke-width="1" cx="400" cy="552" r="336.8"/>
+            </g>
+            <g fill="none">
+                <circle id="mark3004" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" stroke="#eee" stroke-width="1" cx="400" cy="552" r="391.2"/>
+            </g>
+        </g>
+        <g text-anchor="end">
+            <g fill="none">
+                <text id="mark4001" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="-6" y="-184.94845567377837" dy="0.35em" stroke="none" fill="#000">5M</text>
+            </g>
+            <g fill="none">
+                <text id="mark4002" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="-6" y="-271.69430205351506" dy="0.35em" stroke="none" fill="#000">15M</text>
+            </g>
+            <g fill="none">
+                <text id="mark4003" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="-6" y="-336.7931951221369" dy="0.35em" stroke="none" fill="#000">25M</text>
+            </g>
+            <g fill="none">
+                <text id="mark4004" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="-6" y="-391.20521314625773" dy="0.35em" stroke="none" fill="#000">35M</text>
+            </g>
+        </g>
+        <g>
+            <g fill="#98abc5">
+                <path id="mark1" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;a_CA&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:9364530}" d="M1.7999325007594018,-226.9171825317754A226.9243210525623,226.9243210525623,0,0,1,111.8998039951328,-197.4160108780877L58.43446285580668,-104.81132358077227A120,120,0,0,0,1.7999325007593665,-119.9865002531231Z"></path>
+                <path id="mark2" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;b_TX&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:6725771}" d="M102.84895443552438,-174.53974958614597A202.58833039954476,202.58833039954476,0,0,1,174.53974958614597,-102.8489544355244L103.0113910800129,-61.55203739731643A120,120,0,0,0,61.55203739731639,-103.01139108001291Z"></path>
+                <path id="mark3" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;c_NY&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:4408016}" d="M155.4745419833351,-87.68488563853911A178.4964211808503,178.4964211808503,0,0,1,178.48734581858798,-1.799932500759371L119.9865002531231,-1.7999325007593707A120,120,0,0,0,104.81132358077227,-58.434462855806686Z"></path>
+                <path id="mark4" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;d_FL&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:4004271}" d="M173.94948540988594,1.7999325007593705A173.95879751070774,173.95879751070774,0,0,1,151.5446395905715,85.41595543418808L104.81132358077228,58.434462855806665A120,120,0,0,0,119.9865002531231,1.7999325007593707Z"></path>
+                <path id="mark5" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;e_IL&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:3179260}" d="M141.37723126574457,83.7025655562347A164.29741629454674,164.29741629454674,0,0,1,83.7025655562348,141.3772312657445L61.55203739731645,103.01139108001288A120,120,0,0,0,103.01139108001291,61.552037397316404Z"></path>
+                <path id="mark6" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;f_PA&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:2762004}" d="M78.03011351574924,138.75198613116328A159.18797778294453,159.18797778294453,0,0,1,1.7999325007594633,159.17780157300814L1.7999325007594198,119.9865002531231A120,120,0,0,0,58.43446285580673,104.81132358077224Z"></path>
+                <path id="mark7" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;g_OH&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:2730377}" d="M-1.7999325007593632,158.78379034412964A158.793991804022,158.793991804022,0,0,1,-77.83310790130992,138.41076239757822L-58.43446285580665,104.81132358077228A120,120,0,0,0,-1.7999325007593518,119.9865002531231Z"></path>
+                <path id="mark8" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;h_MI&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:2390198}" d="M-78.79993514268529,132.88562629874448A154.49278124009865,154.49278124009865,0,0,1,-132.88562629874443,78.79993514268537L-103.01139108001287,61.552037397316475A120,120,0,0,0,-61.552037397316404,103.01139108001291Z"></path>
+                <path id="mark9" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;i_GA&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:2548841}" d="M-136.43555429484812,76.69272097149326A156.51336660411394,156.51336660411394,0,0,1,-156.50301648449616,1.7999325007593963L-119.9865002531231,1.7999325007594005A120,120,0,0,0,-104.81132358077225,58.43446285580671Z"></path>
+                <path id="mark10" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;j_NC&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:2243677}" d="M-152.59221057307687,-1.7999325007593352A152.602825939055,152.602825939055,0,0,1,-133.04869702628864,-74.7373180157836L-104.81132358077227,-58.434462855806686A120,120,0,0,0,-119.9865002531231,-1.7999325007593712Z"></path>
+                <path id="mark11" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;k_NJ&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:2047582}" d="M-129.0258219220747,-76.5714760467956A150.03617452685177,150.03617452685177,0,0,1,-76.57147604679574,-129.0258219220746L-61.55203739731643,-103.0113910800129A120,120,0,0,0,-103.01139108001293,-61.552037397316354Z"></path>
+                <path id="mark12" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;l_VA&quot;,&quot;Age&quot;:&quot;0-17&quot;,&quot;Population&quot;:1823201}" d="M-71.95787576798925,-128.2345618364053A147.04434274876485,147.04434274876485,0,0,1,-1.7999325007593878,-147.0333260774881L-1.7999325007593545,-119.9865002531231A120,120,0,0,0,-58.434462855806764,-104.81132358077221Z"></path>
+            </g>
+            <g fill="#7b6888">
+                <path id="mark13" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;a_CA&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:14458298}" d="M1.7999325007593991,-329.79299413699755A329.79790590428706,329.79790590428706,0,0,1,163.33770979774386,-286.509077163152L111.8998039951328,-197.4160108780877A226.9243210525623,226.9243210525623,0,0,0,1.7999325007594018,-226.9171825317754Z"></path>
+                <path id="mark14" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;b_TX&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:9472452}" d="M141.70240867825837,-241.83590638411374A280.2930221069479,280.2930221069479,0,0,1,241.83590638411374,-141.70240867825837L174.53974958614597,-102.8489544355244A202.58833039954476,202.58833039954476,0,0,0,102.84895443552438,-174.53974958614597Z"></path>
+                <path id="mark15" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;c_NY&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:7354355}" d="M214.7744081490872,-121.92167933224489A246.9674923689056,246.9674923689056,0,0,1,246.9609332059995,-1.7999325007593707L178.48734581858798,-1.799932500759371A178.4964211808503,178.4964211808503,0,0,0,155.4745419833351,-87.68488563853911Z"></path>
+                <path id="mark16" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;d_FL&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:6389416}" d="M235.7288490764529,1.799932500759371A235.73572076356265,235.73572076356265,0,0,1,205.0471379554558,116.30563726747152L151.5446395905715,85.41595543418808A173.95879751070774,173.95879751070774,0,0,0,173.94948540988594,1.7999325007593705Z"></path>
+                <path id="mark17" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;e_IL&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:4907822}" d="M185.71031938637174,109.29828591668623A215.48651473100097,215.48651473100097,0,0,1,109.29828591668631,185.7103193863717L83.7025655562348,141.3772312657445A164.29741629454674,164.29741629454674,0,0,0,141.37723126574457,83.7025655562347Z"></path>
+                <path id="mark18" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;f_PA&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:4361703}" d="M101.65832670402959,179.67725186533386A206.44207474771667,206.44207474771667,0,0,1,1.7999325007594908,206.43422794956882L1.7999325007594633,159.17780157300814A159.18797778294453,159.18797778294453,0,0,0,78.03011351574924,138.75198613116328Z"></path>
+                <path id="mark19" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;g_OH&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:4100881}" d="M-1.7999325007593658,203.60905066118892A203.61700633335587,203.61700633335587,0,0,1,-100.2457380598396,177.23057656340205L-77.83310790130992,138.41076239757822A158.793991804022,158.793991804022,0,0,0,-1.7999325007593632,158.78379034412964Z"></path>
+                <path id="mark20" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;h_MI&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:3602802}" d="M-99.20118257957135,168.22162339721564A195.29308539623236,195.29308539623236,0,0,1,-168.22162339721558,99.20118257957147L-132.88562629874443,78.79993514268537A154.49278124009865,154.49278124009865,0,0,0,-78.79993514268529,132.88562629874448Z"></path>
+                <path id="mark21" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;i_GA&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:3766861}" d="M-172.83258133303713,97.7065543296938A198.53884236899918,198.53884236899918,0,0,1,-198.53068320089722,1.7999325007594063L-156.50301648449616,1.7999325007593963A156.51336660411394,156.51336660411394,0,0,0,-136.43555429484812,76.69272097149326Z"></path>
+                <path id="mark22" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;j_NC&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:3459000}" d="M-192.31777341306488,-1.7999325007593756A192.32619615529825,192.32619615529825,0,0,1,-167.45204362535338,-94.60009943577758L-133.04869702628864,-74.7373180157836A152.602825939055,152.602825939055,0,0,0,-152.59221057307687,-1.7999325007593352Z"></path>
+                <path id="mark23" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;k_NJ&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:3148970}" d="M-161.07519522312842,-95.07519034951777A187.04146688947338,187.04146688947338,0,0,1,-95.07519034951795,-161.0751952231283L-76.57147604679574,-129.0258219220746A150.03617452685177,150.03617452685177,0,0,0,-129.0258219220747,-76.5714760467956Z"></path>
+                <path id="mark24" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;l_VA&quot;,&quot;Age&quot;:&quot;18-44&quot;,&quot;Population&quot;:2971761}" d="M-89.80654777559911,-159.14936860121784A182.73953471960377,182.73953471960377,0,0,1,-1.7999325007593314,-182.7306700927077L-1.7999325007593878,-147.0333260774881A147.04434274876485,147.04434274876485,0,0,0,-71.95787576798925,-128.2345618364053Z"></path>
+            </g>
+            <g fill="#a05d56">
+                <path id="mark25" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;a_CA&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:8819342}" d="M1.7999325007593887,-379.07581729395537A379.0800905007905,379.0800905007905,0,0,1,187.97912137622276,-329.18925398729345L163.33770979774386,-286.509077163152A329.79790590428706,329.79790590428706,0,0,0,1.7999325007593991,-329.79299413699755Z"></path>
+                <path id="mark26" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;b_TX&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:5656528}" d="M160.43570459049738,-274.2829266973342A317.7589325024625,317.7589325024625,0,0,1,274.2829266973342,-160.43570459049744L241.83590638411374,-141.70240867825837A280.2930221069479,280.2930221069479,0,0,0,141.70240867825837,-241.83590638411374Z"></path>
+                <path id="mark27" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;c_NY&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:5120254}" d="M247.7885781954453,-140.98241929558185A285.0880952171724,285.0880952171724,0,0,1,285.08241313267337,-1.799932500759371L246.9609332059995,-1.7999325007593707A246.9674923689056,246.9674923689056,0,0,0,214.7744081490872,-121.92167933224489Z"></path>
+                <path id="mark28" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;d_FL&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:4746856}" d="M272.7109660623222,1.7999325007593707A272.71690590730225,272.71690590730225,0,0,1,237.07459075094664,134.79669576040618L205.0471379554558,116.30563726747152A235.73572076356265,235.73572076356265,0,0,0,235.7288490764529,1.799932500759371Z"></path>
+                <path id="mark29" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;e_IL&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:3239173}" d="M209.9237145118388,123.2778961103694A243.44487175507933,243.44487175507933,0,0,1,123.2778961103695,209.9237145118387L109.29828591668631,185.7103193863717A215.48651473100097,215.48651473100097,0,0,0,185.71031938637174,109.29828591668623Z"></path>
+                <path id="mark30" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;f_PA&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:3414001}" d="M116.90912430448621,206.0924081652742A236.9426598335635,236.9426598335635,0,0,1,1.7999325007595117,236.93582315048204L1.7999325007594908,206.43422794956882A206.44207474771667,206.44207474771667,0,0,0,101.65832670402959,179.67725186533386Z"></path>
+                <path id="mark31" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;g_OH&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:3083815}" d="M-1.7999325007593359,231.6726377681797A231.67962976376126,231.67962976376126,0,0,1,-114.27753161333492,201.53435591937352L-100.2457380598396,177.23057656340205A203.61700633335587,203.61700633335587,0,0,0,-1.7999325007593658,203.60905066118892Z"></path>
+                <path id="mark32" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;h_MI&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:2706100}" d="M-112.07520636878712,190.52008669798772A221.04016675259493,221.04016675259493,0,0,1,-190.52008669798764,112.0752063687872L-168.22162339721558,99.20118257957147A195.29308539623236,195.29308539623236,0,0,0,-99.20118257957135,168.22162339721564Z"></path>
+                <path id="mark33" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;i_GA&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:2389018}" d="M-192.36362617258177,108.98280832535954A221.09051807969252,221.09051807969252,0,0,1,-221.0831911922287,1.7999325007594178L-198.53068320089722,1.7999325007594063A198.53884236899918,198.53884236899918,0,0,0,-172.83258133303713,97.7065543296938Z"></path>
+                <path id="mark34" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;j_NC&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:2380685}" d="M-215.44480188914298,-1.7999325007593314A215.45232052140761,215.45232052140761,0,0,1,-187.4806377996831,-106.16361367381667L-167.45204362535338,-94.60009943577758A192.32619615529825,192.32619615529825,0,0,0,-192.31777341306488,-1.7999325007593756Z"></path>
+                <path id="mark35" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;k_NJ&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:2335168}" d="M-181.23591562436556,-106.71498770022878A210.32010296703007,210.32010296703007,0,0,1,-106.71498770022899,-181.23591562436542L-95.07519034951795,-161.0751952231283A187.04146688947338,187.04146688947338,0,0,0,-161.07519522312842,-95.07519034951777Z"></path>
+                <path id="mark36" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;l_VA&quot;,&quot;Age&quot;:&quot;45-64&quot;,&quot;Population&quot;:2033550}" d="M-100.23238141998276,-177.2074421845514A203.5902940975135,203.5902940975135,0,0,1,-1.799932500759416,-203.5823373814751L-1.7999325007593314,-182.7306700927077A182.73953471960377,182.73953471960377,0,0,0,-89.80654777559911,-159.14936860121784Z"></path>
+            </g>
+            <g fill="#ff8c00">
+                <path id="mark37" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;a_CA&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:4114496}" d="M1.7999325007594011,-399.99595028324063A400,400,0,0,1,198.4391878708654,-347.3066206065634L187.97912137622276,-329.18925398729345A379.0800905007905,379.0800905007905,0,0,0,1.7999325007593887,-379.07581729395537Z"></path>
+                <path id="mark38" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;b_TX&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:2472223}" d="M167.962239147252,-287.319266954556A332.81177103982077,332.81177103982077,0,0,1,287.319266954556,-167.962239147252L274.2829266973342,-160.43570459049744A317.7589325024625,317.7589325024625,0,0,0,160.43570459049738,-274.2829266973342Z"></path>
+                <path id="mark39" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;c_NY&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:2607672}" d="M263.0088988790405,-149.76987553940793A302.662677759672,302.662677759672,0,0,1,302.6573256203256,-1.7999325007593707L285.08241313267337,-1.799932500759371A285.0880952171724,285.0880952171724,0,0,0,247.7885781954453,-140.98241929558185Z"></path>
+                <path id="mark40" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;d_FL&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:3187797}" d="M294.95546894189863,1.7999325007593707A294.96096083336624,294.96096083336624,0,0,1,256.3388953392159,145.9189472001944L237.07459075094664,134.79669576040618A272.71690590730225,272.71690590730225,0,0,0,272.7109660623222,1.7999325007593707Z"></path>
+                <path id="mark41" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;e_IL&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:1575308}" d="M220.7454502675604,129.52582816203423A255.94041098444927,255.94041098444927,0,0,1,129.52582816203437,220.7454502675603L123.2778961103695,209.9237145118387A243.44487175507933,243.44487175507933,0,0,0,209.9237145118388,123.2778961103694Z"></path>
+                <path id="mark42" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;f_PA&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:1910571}" d="M124.64215554385146,219.48641116837214A252.40830340182825,252.40830340182825,0,0,1,1.7999325007595175,252.40188562921253L1.7999325007595117,236.93582315048204A236.9426598335635,236.9426598335635,0,0,0,116.90912430448621,206.0924081652742Z"></path>
+                <path id="mark43" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;g_OH&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:1570837}" d="M-1.7999325007593674,244.7337104237558A244.7403292773507,244.7403292773507,0,0,1,-120.80806794112297,212.8455766397767L-114.27753161333492,201.53435591937352A231.67962976376126,231.67962976376126,0,0,0,-1.7999325007593359,231.6726377681797Z"></path>
+                <path id="mark44" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;h_MI&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:1304322}" d="M-117.77214486635948,200.38747362337807A232.43368450287664,232.43368450287664,0,0,1,-200.38747362337799,117.77214486635961L-190.52008669798764,112.0752063687872A221.04016675259493,221.04016675259493,0,0,0,-112.07520636878712,190.52008669798772Z"></path>
+                <path id="mark45" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;i_GA&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:981024}" d="M-199.82921788646908,113.29306971103226A229.71076588977442,229.71076588977442,0,0,1,-229.70371396357407,1.7999325007593918L-221.0831911922287,1.7999325007594178A221.09051807969252,221.09051807969252,0,0,0,-192.36362617258177,108.98280832535954Z"></path>
+                <path id="mark46" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;j_NC&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:1139052}" d="M-225.6733475244258,-1.7999325007593179A225.68052538907193,225.68052538907193,0,0,1,-196.33881816360642,-111.27788649145808L-187.4806377996831,-106.16361367381667A215.45232052140761,215.45232052140761,0,0,0,-215.44480188914298,-1.7999325007593314Z"></path>
+                <path id="mark47" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;k_NJ&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:1150941}" d="M-190.39247535453032,-112.00152992529021A220.89281875432508,220.89281875432508,0,0,1,-112.00152992529044,-190.39247535453015L-106.71498770022899,-181.23591562436542A210.32010296703007,210.32010296703007,0,0,0,-181.23591562436556,-106.71498770022878Z"></path>
+                <path id="mark48" class="mark Shape1 shape" data-datum="{&quot;State&quot;:&quot;l_VA&quot;,&quot;Age&quot;:&quot;65+&quot;,&quot;Population&quot;:940577}" d="M-104.70923328849136,-184.9615770787679A212.54366264682818,212.54366264682818,0,0,1,-1.7999325007593727,-212.53604111849222L-1.799932500759416,-203.5823373814751A203.5902940975135,203.5902940975135,0,0,0,-100.23238141998276,-177.2074421845514Z"></path>
+            </g>
+        </g>
+        <g text-anchor="middle">
+            <g>
+                <text id="mark2001" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="28" y="-100">CA</text>
+            </g>
+            <g >
+                <text id="mark2002" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="70" y="-76">TX</text>
+            </g>
+            <g >
+                <text id="mark2003" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="106" y="-26">NY</text>
+            </g>
+            <g>
+                <text id="mark2004" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="106" y="36">FL</text>
+            </g>
+            <g >
+                <text id="mark2005" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="70" y="86">IL</text>
+            </g>
+            <g >
+                <text id="mark2006" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="28" y="110">PA</text>
+            </g>
+            <g>
+                <text id="mark2007" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="-28" y="110">OH</text>
+            </g>
+            <g>
+                <text id="mark2008" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="-70" y="86">MI</text>
+            </g>
+            <g>
+                <text id="mark2009" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="-106" y="36">GA</text>
+            </g>
+            <g >
+                <text id="mark2010" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="-106" y="-26">NC</text>
+            </g>
+            <g >
+                <text id="mark2011" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="-70" y="-76">NJ</text>
+            </g>
+            <g>
+                <text id="mark2012" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="-28" y="-100">VA</text>
+            </g>
+        </g>
+
+        <g>
+            <g class="legend" data-datum="{&quot;_TYPE&quot;:&quot;legend&quot;,&quot;type&quot;:&quot;x&quot;,&quot;color&quot;:&quot;Age&quot;}">
+                <g transform="translate(-40,-40)">
+                    <rect id="mark5001" class="mark legend-symbol" data-datum="{&quot;_TYPE&quot;:&quot;legend-symbol&quot;}" width="18" height="18" fill="#ff8c00"></rect>
+                    <text id="mark6001" class="mark legend-label" data-datum="{&quot;_TYPE&quot;:&quot;legend-label&quot;}" x="24" y="9" dy="0.35em">65+</text>
+                </g>
+                <g transform="translate(-40,-20)">
+                    <rect id="mark5002" class="mark legend-symbol" data-datum="{&quot;_TYPE&quot;:&quot;legend-symbol&quot;}" width="18" height="18" fill="#a05d56"></rect>
+                    <text id="mark6002" class="mark legend-label" data-datum="{&quot;_TYPE&quot;:&quot;legend-label&quot;}" x="24" y="9" dy="0.35em">45-64</text>
+                </g>
+                <g transform="translate(-40,0)">
+                    <rect id="mark5003" class="mark legend-symbol" data-datum="{&quot;_TYPE&quot;:&quot;legend-symbol&quot;}" width="18" height="18" fill="#7b6888"></rect>
+                    <text id="mark6003" class="mark legend-label" data-datum="{&quot;_TYPE&quot;:&quot;legend-label&quot;}" x="24" y="9" dy="0.35em">18-44</text>
+                </g>
+                <g transform="translate(-40,20)">
+                    <rect id="mark5004" class="mark legend-symbol" data-datum="{&quot;_TYPE&quot;:&quot;legend-symbol&quot;}" width="18" height="18" fill="#98abc5"></rect>
+                    <text id="mark6004" class="mark legend-label" data-datum="{&quot;_TYPE&quot;:&quot;legend-label&quot;}" x="24" y="9" dy="0.35em">0-17</text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

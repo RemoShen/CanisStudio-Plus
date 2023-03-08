@@ -1,0 +1,126 @@
+<svg id="visChart" viewBox="0 0 932 932" font-size="10" font-family="sans-serif" text-anchor="middle" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+    <g id="chartContent">
+        <g transform="translate(447.66021507024175,461.38720489372037)" class="legend" data-datum="{&quot;color&quot;:&quot;Group&quot;}">
+            <circle id="mark1" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;analytics&quot;,&quot;Value&quot;:6714,&quot;Name&quot;:&quot;Hierarchical&quot;}" cx="0" cy="0" r="45.526489671396824" fill="#6ea1c9"></circle>
+            <text id="mark1001" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;analytics&quot;,&quot;Value&quot;:6714,&quot;Name&quot;:&quot;Hierarchical&quot;}" font-size="12pt" x="0" y="6">Hierarchical</text>
+        </g>
+        <g transform="translate(538.1761248115605,461.38720489372037)">
+            <circle id="mark2" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;analytics&quot;,&quot;Value&quot;:5731,&quot;Name&quot;:&quot;Link&quot;}" cx="0" cy="0" r="42.06188203199752" fill="#6ea1c9"></circle>
+            <text id="mark1002" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;analytics&quot;,&quot;Value&quot;:5731,&quot;Name&quot;:&quot;Link&quot;}" font-size="12pt" x="0" y="6">Link</text>
+        </g>
+        <g transform="translate(496.5895461766491,545.8945232713386)">
+            <circle id="mark3" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;analytics&quot;,&quot;Value&quot;:7840,&quot;Name&quot;:&quot;Max&quot;}" cx="0" cy="0" r="49.19619657048554" fill="#6ea1c9"></circle>
+            <text id="mark1003" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;analytics&quot;,&quot;Value&quot;:7840,&quot;Name&quot;:&quot;Max&quot;}" font-size="12pt" x="0" y="6">Max</text>
+        </g>
+        <g transform="translate(496.34197400193426,384.28806685337554)">
+            <circle id="mark4" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;analytics&quot;,&quot;Value&quot;:5914,&quot;Name&quot;:&quot;Shortest&quot;}" cx="0" cy="0" r="42.72815662099388" fill="#6ea1c9"></circle>
+            <text id="mark1004" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;analytics&quot;,&quot;Value&quot;:5914,&quot;Name&quot;:&quot;Shortest&quot;}" font-size="12pt" x="0" y="6">Shortest</text>
+        </g>
+        <g transform="translate(404.2700424084626,376.66706635254735)">
+            <circle id="mark5" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;analytics&quot;,&quot;Value&quot;:7074,&quot;Name&quot;:&quot;Aspect&quot;}" cx="0" cy="0" r="46.73110221155744" fill="#6ea1c9"></circle>
+            <text id="mark1005" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;analytics&quot;,&quot;Value&quot;:7074,&quot;Name&quot;:&quot;Aspect&quot;}" font-size="12pt" x="0" y="6">Aspect</text>
+        </g>
+        <g transform="translate(372.41516796779115,556.0417742498887)">
+            <circle id="mark6" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;animate&quot;,&quot;Value&quot;:17010,&quot;Name&quot;:&quot;Easing&quot;}" cx="0" cy="0" r="72.464559006914" fill="#faa064"></circle>
+            <text id="mark1006" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;animate&quot;,&quot;Value&quot;:17010,&quot;Name&quot;:&quot;Easing&quot;}" font-size="12pt" x="0" y="6">Easing</text>
+        </g>
+        <g transform="translate(593.9336565169276,382.07454128664625)">
+            <circle id="mark7" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;animate&quot;,&quot;Value&quot;:8746,&quot;Name&quot;:&quot;Interpolator&quot;}" cx="0" cy="0" r="51.961087666365394" fill="#faa064"></circle>
+            <text id="mark1007" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;animate&quot;,&quot;Value&quot;:8746,&quot;Name&quot;:&quot;Interpolator&quot;}" font-size="12pt" x="0" y="6">Interpolator</text>
+        </g>
+        <g transform="translate(601.5876083487246,536.4799517779215)">
+            <circle id="mark8" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;animate&quot;,&quot;Value&quot;:9201,&quot;Name&quot;:&quot;Transition&quot;}" cx="0" cy="0" r="53.295557820896924" fill="#faa064"></circle>
+            <text id="mark1008" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;animate&quot;,&quot;Value&quot;:9201,&quot;Name&quot;:&quot;Transition&quot;}" font-size="12pt" x="0" y="6">Transition</text>
+        </g>
+        <g transform="translate(286.8538262037707,428.09558446308455)">
+            <circle id="mark9" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;animate&quot;,&quot;Value&quot;:19975,&quot;Name&quot;:&quot;Transitioner&quot;}" cx="0" cy="0" r="78.52661749442878" fill="#faa064"></circle>
+            <text id="mark1009" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;animate&quot;,&quot;Value&quot;:19975,&quot;Name&quot;:&quot;Transitioner&quot;}" font-size="12pt" x="0" y="6">Transitioner</text>
+        </g>
+        <g transform="translate(670.2249408001446,454.7686336332601)">
+            <circle id="mark10" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:8258,&quot;Name&quot;:&quot;Arrays&quot;}" cx="0" cy="0" r="50.49064701895811" fill="#76bd71"></circle>
+            <text id="mark1010" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:8258,&quot;Name&quot;:&quot;Arrays&quot;}" font-size="12pt" x="0" y="6">Arrays</text>
+        </g>
+        <g transform="translate(462.37052910379293,288.9391719960454)">
+            <circle id="mark11" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:10001,&quot;Name&quot;:&quot;Colors&quot;}" cx="0" cy="0" r="55.564218495468694" fill="#76bd71"></circle>
+            <text id="mark1011" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:10001,&quot;Name&quot;:&quot;Colors&quot;}" font-size="12pt" x="0" y="6">Colors</text>
+        </g>
+        <g transform="translate(570.8080271362753,279.39268907130463)">
+            <circle id="mark12" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:8217,&quot;Name&quot;:&quot;Dates&quot;}" cx="0" cy="0" r="50.365150991012406" fill="#76bd71"></circle>
+            <text id="mark1012" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:8217,&quot;Name&quot;:&quot;Dates&quot;}" font-size="12pt" x="0" y="6">Dates</text>
+        </g>
+        <g transform="translate(553.8434337889577,644.9133956660384)">
+            <circle id="mark13" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:12555,&quot;Name&quot;:&quot;Displays&quot;}" cx="0" cy="0" r="62.25609200905221" fill="#76bd71"></circle>
+            <text id="mark1013" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:12555,&quot;Name&quot;:&quot;Displays&quot;}" font-size="12pt" x="0" y="6">Displays</text>
+        </g>
+        <g transform="translate(434.036571971205,674.6347415814287)">
+            <circle id="mark14" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:10993,&quot;Name&quot;:&quot;Geometry&quot;}" cx="0" cy="0" r="58.254785941079476" fill="#76bd71"></circle>
+            <text id="mark1014" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:10993,&quot;Name&quot;:&quot;Geometry&quot;}" font-size="12pt" x="0" y="6">Geometry</text>
+        </g>
+        <g transform="translate(350.14252816435794,288.57144241688627)">
+            <circle id="mark15" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:9354,&quot;Name&quot;:&quot;Fibonacci&quot;}" cx="0" cy="0" r="53.73684686121935" fill="#76bd71"></circle>
+            <text id="mark1015" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:9354,&quot;Name&quot;:&quot;Fibonacci&quot;}" font-size="12pt" x="0" y="6">Fibonacci</text>
+        </g>
+        <g transform="translate(219.5490782284233,288.04435565145445)">
+            <circle id="mark16" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:17705,&quot;Name&quot;:&quot;Maths&quot;}" cx="0" cy="0" r="73.93012871696399" fill="#76bd71"></circle>
+            <text id="mark1016" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:17705,&quot;Name&quot;:&quot;Maths&quot;}" font-size="12pt" x="0" y="6">Maths</text>
+        </g>
+        <g transform="translate(716.1133296794668,332.8785946480299)">
+            <circle id="mark17" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:19118,&quot;Name&quot;:&quot;Shapes&quot;}" cx="0" cy="0" r="76.82361252653857" fill="#76bd71"></circle>
+            <text id="mark1017" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:19118,&quot;Name&quot;:&quot;Shapes&quot;}" font-size="12pt" x="0" y="6">Shapes</text>
+        </g>
+        <g transform="translate(735.0453301676662,574.1884572045403)">
+            <circle id="mark18" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:22026,&quot;Name&quot;:&quot;Strings&quot;}" cx="0" cy="0" r="82.45961717568524" fill="#76bd71"></circle>
+            <text id="mark1018" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;util&quot;,&quot;Value&quot;:22026,&quot;Name&quot;:&quot;Strings&quot;}" font-size="12pt" x="0" y="6">Strings</text>
+        </g>
+        <g transform="translate(675.7696087624574,736.2049883749934)">
+            <circle id="mark19" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:24593,&quot;Name&quot;:&quot;Axis&quot;}" cx="0" cy="0" r="87.13231476185223" fill="#dd4d6b"></circle>
+            <text id="mark1019" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:24593,&quot;Name&quot;:&quot;Axis&quot;}" font-size="12pt" x="0" y="6">Axis</text>
+        </g>
+        <g transform="translate(662.2165756385886,182.8793038282932)">
+            <circle id="mark20" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:20544,&quot;Name&quot;:&quot;Data&quot;}" cx="0" cy="0" r="79.63720328413814" fill="#dd4d6b"></circle>
+            <text id="mark1020" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:20544,&quot;Name&quot;:&quot;Data&quot;}" font-size="12pt" x="0" y="6">Data</text>
+        </g>
+        <g transform="translate(219.79740605191714,572.9387228415984)">
+            <circle id="mark21" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:19788,&quot;Name&quot;:&quot;DataList&quot;}" cx="0" cy="0" r="78.15818176937053" fill="#dd4d6b"></circle>
+            <text id="mark1021" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:19788,&quot;Name&quot;:&quot;DataList&quot;}" font-size="12pt" x="0" y="6">DataList</text>
+        </g>
+        <g transform="translate(513.3215216935076,185.82605299784063)">
+            <circle id="mark22" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:10349,&quot;Name&quot;:&quot;DataSprite&quot;}" cx="0" cy="0" r="56.52267280229978" fill="#dd4d6b"></circle>
+            <text id="mark1022" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:10349,&quot;Name&quot;:&quot;DataSprite&quot;}" font-size="12pt" x="0" y="6">DataSprite</text>
+        </g>
+        <g transform="translate(299.98373052438683,709.5869377771819)">
+            <circle id="mark23" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:19382,&quot;Name&quot;:&quot;NodeSprite&quot;}" cx="0" cy="0" r="77.35222160032876" fill="#dd4d6b"></circle>
+            <text id="mark1023" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:19382,&quot;Name&quot;:&quot;NodeSprite&quot;}" font-size="12pt" x="0" y="6">NodeSprite</text>
+        </g>
+        <g transform="translate(394.937935833912,181.9366200228252)">
+            <circle id="mark24" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:11275,&quot;Name&quot;:&quot;ScaleBinding&quot;}" cx="0" cy="0" r="58.9972504658055" fill="#dd4d6b"></circle>
+            <text id="mark1024" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:11275,&quot;Name&quot;:&quot;ScaleBinding&quot;}" font-size="12pt" x="0" y="6">ScaleBinding</text>
+        </g>
+        <g transform="translate(514.5004330469728,790.9419770010004)">
+            <circle id="mark25" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:20859,&quot;Name&quot;:&quot;Legend&quot;}" cx="0" cy="0" r="80.2454171122125" fill="#dd4d6b"></circle>
+            <text id="mark1025" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:20859,&quot;Name&quot;:&quot;Legend&quot;}" font-size="12pt" x="0" y="6">Legend</text>
+        </g>
+        <g transform="translate(794.6379762051305,444.85541319831077)">
+            <circle id="mark26" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:10530,&quot;Name&quot;:&quot;LegendRange&quot;}" cx="0" cy="0" r="57.014810129793624" fill="#dd4d6b"></circle>
+            <text id="mark1026" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:10530,&quot;Name&quot;:&quot;LegendRange&quot;}" font-size="12pt" x="0" y="6">LegendRange</text>
+        </g>
+        <g transform="translate(565.1763804456933,77.25102825319772)">
+            <circle id="mark27" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:12003,&quot;Name&quot;:&quot;CirclePacking&quot;}" cx="0" cy="0" r="60.872116159003035" fill="#dd4d6b"></circle>
+            <text id="mark1027" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:12003,&quot;Name&quot;:&quot;CirclePacking&quot;}" font-size="12pt" x="0" y="6">CirclePacking</text>
+        </g>
+        <g transform="translate(144.08542082937652,450.31049259957956)">
+            <circle id="mark28" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:12870,&quot;Name&quot;:&quot;NodeLinkTree&quot;}" cx="0" cy="0" r="63.032244231293234" fill="#dd4d6b"></circle>
+            <text id="mark1028" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:12870,&quot;Name&quot;:&quot;NodeLinkTree&quot;}" font-size="12pt" x="0" y="6">NodeLinkTree</text>
+        </g>
+        <g transform="translate(273.1893817284297,160.24672156353614)">
+            <circle id="mark29" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:12348,&quot;Name&quot;:&quot;RadialLayout&quot;}" cx="0" cy="0" r="61.74073669205704" fill="#dd4d6b"></circle>
+            <text id="mark1029" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:12348,&quot;Name&quot;:&quot;RadialLayout&quot;}" font-size="12pt" x="0" y="6">RadialLayout</text>
+        </g>
+        <g transform="translate(369.4400501715629,844.4931557194955)">
+            <circle id="mark30" class="mark Shape1" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:16540,&quot;Name&quot;:&quot;Visualization&quot;}" cx="0" cy="0" r="71.45641923293663" fill="#dd4d6b"></circle>
+            <text id="mark1030" class="mark Shape2" data-datum="{&quot;Group&quot;:&quot;vis&quot;,&quot;Value&quot;:16540,&quot;Name&quot;:&quot;Visualization&quot;}" font-size="12pt" x="0" y="6">Visualization</text>
+        </g>
+    </g>
+</svg>

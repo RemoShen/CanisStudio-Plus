@@ -1,0 +1,14 @@
+.menu-btn:hover {
+    cursor: pointer;
+}
+
+.title-btn {
+    circle {
+        fill: var(--gray13);
+    }
+    &:hover {
+        circle {
+            fill: var(--gray15);
+        }
+    }
+}

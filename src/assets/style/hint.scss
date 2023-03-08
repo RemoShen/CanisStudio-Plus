@@ -1,0 +1,12 @@
+.hint-input {
+    position: absolute;
+    top: 4px;
+    box-sizing: border-box;
+    margin: -2px 2px;
+    width: calc(100% - 4px);
+    height: 12px;
+    border: none;
+    line-height: 10px;
+    background: var(--gray1);
+    color: var(--gray15);
+}

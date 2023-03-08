@@ -1,0 +1,160 @@
+<svg id="visChart" viewBox="0 0 1000 550" width="1000" height="550" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+    <g id="chartContent">
+        <g transform="translate(0,50)">
+            <g>
+                <text id="mark5001" class=" mark Title title" data-datum="{}" font-size="20" font-family="sans-serif" text-anchor="middle" x="460" y="0">Population of Three States</text>
+            </g>
+            <g>
+                <g transform="translate(41,0)">
+                    <rect id="mark1" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;1_CA&quot;,&quot;Population&quot;:9364530,&quot;Age&quot;:&quot;0-18&quot;}" x="4" y="80" width="52" height="400" fill="#aacfe2"></rect>
+                    <rect id="mark2" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;1_CA&quot;,&quot;Population&quot;:3853788,&quot;Age&quot;:&quot;19-24&quot;}" x="59" y="315" width="52" height="165" fill="#317bb2"></rect>
+                    <rect id="mark3" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;1_CA&quot;,&quot;Population&quot;:10604510,&quot;Age&quot;:&quot;25-44&quot;}" x="114" y="27" width="52" height="453" fill="#b5df8e"></rect>
+                    <rect id="mark4" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;1_CA&quot;,&quot;Population&quot;:8819342,&quot;Age&quot;:&quot;45-64&quot;}" x="169" y="103" width="52" height="377" fill="#41a134"></rect>
+                    <rect id="mark5" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;1_CA&quot;,&quot;Population&quot;:4114496,&quot;Age&quot;:&quot;65+&quot;}" x="224" y="304" width="52" height="176" fill="#f5969a"></rect>
+                </g>
+                <g transform="translate(352,0)">
+                    <rect id="mark6" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;2_TX&quot;,&quot;Population&quot;:6725771,&quot;Age&quot;:&quot;0-18&quot;}" x="4" y="193" width="52" height="287" fill="#aacfe2"></rect>
+                    <rect id="mark7" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;2_TX&quot;,&quot;Population&quot;:2454721,&quot;Age&quot;:&quot;19-24&quot;}" x="59" y="375" width="52" height="105" fill="#317bb2"></rect>
+                    <rect id="mark8" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;2_TX&quot;,&quot;Population&quot;:7017731,&quot;Age&quot;:&quot;25-44&quot;}" x="114" y="180" width="52" height="300" fill="#b5df8e"></rect>
+                    <rect id="mark9" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;2_TX&quot;,&quot;Population&quot;:5656528,&quot;Age&quot;:&quot;45-64&quot;}" x="169" y="238" width="52" height="242" fill="#41a134"></rect>
+                    <rect id="mark10" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;2_TX&quot;,&quot;Population&quot;:2472223,&quot;Age&quot;:&quot;65+&quot;}" x="224" y="374" width="52" height="106" fill="#f5969a"></rect>
+                </g>
+                <g transform="translate(663,0)">
+                    <rect id="mark11" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;3_NY&quot;,&quot;Population&quot;:4408016,&quot;Age&quot;:&quot;0-18&quot;}" x="4" y="292" width="52" height="188" fill="#aacfe2"></rect>
+                    <rect id="mark12" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;3_NY&quot;,&quot;Population&quot;:1999120,&quot;Age&quot;:&quot;19-24&quot;}" x="59" y="395" width="52" height="85" fill="#317bb2"></rect>
+                    <rect id="mark13" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;3_NY&quot;,&quot;Population&quot;:5355235,&quot;Age&quot;:&quot;25-44&quot;}" x="114" y="251" width="52" height="229" fill="#b5df8e"></rect>
+                    <rect id="mark14" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;3_NY&quot;,&quot;Population&quot;:5120254,&quot;Age&quot;:&quot;45-64&quot;}" x="169" y="261" width="52" height="219" fill="#41a134"></rect>
+                    <rect id="mark15" class=" mark Shape1 rectangle" data-datum="{&quot;State&quot;:&quot;3_NY&quot;,&quot;Population&quot;:2607672,&quot;Age&quot;:&quot;65+&quot;}" x="224" y="369" width="52" height="111" fill="#f5969a"></rect>
+                </g>
+            </g>
+            <g class="axis" data-datum="{&quot;position&quot;:&quot;State&quot;}" transform="translate(0,480)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle">
+                <g transform="translate(181.5,0)">
+                    <line id="mark1001" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" y2="6"></line>
+                </g>
+                <g transform="translate(492.5,0)">
+                    <line id="mark1002" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" y2="6"></line>
+                </g>
+                <g transform="translate(803.5,0)">
+                    <line id="mark1003" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" y2="6"></line>
+                </g>
+                <g transform="translate(181.5,0)">
+                    <text id="mark2001" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" y="9" dy="0.71em">CA</text>
+                </g>
+                <g transform="translate(492.5,0)">
+                    <text id="mark2002" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" y="9" dy="0.71em">TX</text>
+                </g>
+                <g transform="translate(803.5,0)">
+                    <text id="mark2003" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" y="9" dy="0.71em">NY</text>
+                </g>
+            </g>
+            <g transform="translate(40,0)" fill="none" font-size="10" font-family="sans-serif" text-anchor="end">
+                <g transform="translate(0,480.5)">
+                    <line id="mark1004" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" x2="-6"></line>
+                </g>
+                <g transform="translate(0,437.5)">
+                    <line id="mark1005" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" x2="-6"></line>
+                </g>
+                <g transform="translate(0,395.5)">
+                    <line id="mark1006" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" x2="-6"></line>
+                </g>
+                <g transform="translate(0,352.5)">
+                    <line id="mark1007" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" x2="-6"></line>
+                </g>
+                <g transform="translate(0,309.5)">
+                    <line id="mark1008" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1"  x2="-6"></line>
+                </g>
+                <g transform="translate(0,266.5)">
+                    <line id="mark1009" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" x2="-6"></line>
+                </g>
+                <g transform="translate(0,224.5)">
+                    <line id="mark1010" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" x2="-6"></line>
+                </g>
+                <g transform="translate(0,181.5)">
+                    <line id="mark1011" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" x2="-6"></line>
+                </g>
+                <g transform="translate(0,138.5)">
+                    <line id="mark1012" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" x2="-6"></line>
+                </g>
+                <g transform="translate(0,95.5)">
+                    <line id="mark1013" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" x2="-6"></line>
+                </g>
+                <g transform="translate(0,53.5)">
+                    <line id="mark1014" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" x2="-6"></line>
+                </g>
+                <g transform="translate(0,10.5)">
+                    <line id="mark1015" class=" mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="currentColor" stroke-width="1" x2="-6"></line>
+                </g>
+                <g transform="translate(0,480.5)">
+                    <text id="mark2004" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">0M</text>
+                </g>
+                <g transform="translate(0,437.5)">
+                    <text id="mark2005" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">1M</text>
+                </g>
+                <g transform="translate(0,395.5)">
+                    <text id="mark2006" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">2M</text>
+                </g>
+                <g transform="translate(0,352.5)">
+                    <text id="mark2007" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">3M</text>
+                </g>
+                <g transform="translate(0,309.5)">
+                    <text id="mark2008" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">4M</text>
+                </g>
+                <g transform="translate(0,266.5)">
+                    <text id="mark2009" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">5M</text>
+                </g>
+                <g transform="translate(0,224.5)">
+                    <text id="mark2010" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">6M</text>
+                </g>
+                <g transform="translate(0,181.5)">
+                    <text id="mark2011" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">7M</text>
+                </g>
+                <g transform="translate(0,138.5)">
+                    <text id="mark2012" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">8M</text>
+                </g>
+                <g transform="translate(0,95.5)">
+                    <text id="mark2013" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">9M</text>
+                </g>
+                <g transform="translate(0,53.5)">
+                    <text id="mark2014" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">10M</text>
+                </g>
+                <g transform="translate(0,10.5)">
+                    <text id="mark2015" class=" mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="currentColor" x="-9" dy="0.32em">11M</text>
+                </g>
+            </g>
+            <g class="legend" data-datum="{&quot;color&quot;:&quot;Age&quot;}" transform="translate(954,0)" text-anchor="end" font-family="sans-serif" font-size="10">
+                <g transform="translate(0,0)">
+                    <rect id="mark3001" class=" mark legend-symbol" data-datum="{&quot;_TYPE&quot;:&quot;legend-symbol&quot;}" x="-19" width="19" height="19" fill="#f5969a"></rect>
+                </g>
+                <g transform="translate(0,20)">
+                    <rect id="mark3002" class=" mark legend-symbol" data-datum="{&quot;_TYPE&quot;:&quot;legend-symbol&quot;}" x="-19" width="19" height="19" fill="#41a134"></rect>
+                </g>
+                <g transform="translate(0,40)">
+                    <rect id="mark3003" class=" mark legend-symbol" data-datum="{&quot;_TYPE&quot;:&quot;legend-symbol&quot;}" x="-19" width="19" height="19" fill="#b5df8e"></rect>
+                </g>
+                <g transform="translate(0,60)">
+                    <rect id="mark3004" class=" mark legend-symbol" data-datum="{&quot;_TYPE&quot;:&quot;legend-symbol&quot;}" x="-19" width="19" height="19" fill="#317bb2"></rect>
+                </g>
+                <g transform="translate(0,80)">
+                    <rect id="mark3005" class=" mark legend-symbol" data-datum="{&quot;_TYPE&quot;:&quot;legend-symbol&quot;}" x="-19" width="19" height="19" fill="#aacfe2"></rect>
+                </g>
+                <g transform="translate(0,0)">
+                    <text id="mark4001" class=" mark legend-label" data-datum="{&quot;_TYPE&quot;:&quot;legend-label&quot;}" x="-24" y="9.5" dy="0.35em">65+</text>
+                </g>
+                <g transform="translate(0,20)">
+                    <text id="mark4002" class=" mark legend-label" data-datum="{&quot;_TYPE&quot;:&quot;legend-label&quot;}" x="-24" y="9.5" dy="0.35em">45-64</text>
+                </g>
+                <g transform="translate(0,40)">
+                    <text id="mark4003" class=" mark legend-label" data-datum="{&quot;_TYPE&quot;:&quot;legend-label&quot;}" x="-24" y="9.5" dy="0.35em">25-44</text>
+                </g>
+                <g transform="translate(0,60)">
+                    <text id="mark4004" class=" mark legend-label" data-datum="{&quot;_TYPE&quot;:&quot;legend-label&quot;}" x="-24" y="9.5" dy="0.35em">18-24</text>
+                </g>
+                <g transform="translate(0,80)">
+                    <text id="mark4005" class=" mark legend-label" data-datum="{&quot;_TYPE&quot;:&quot;legend-label&quot;}" x="-24" y="9.5" dy="0.35em">0-18</text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

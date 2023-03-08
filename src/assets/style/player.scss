@@ -1,0 +1,44 @@
+.play-btn-wrapper {
+	float: left;
+	width: 22px;
+	label {
+		display: block;
+		box-sizing: border-box;
+		width: 0;
+		height: 16px;
+		margin: 5px;
+		border-color: transparent transparent transparent var(--gray12);
+		transition: 100ms all ease;
+		cursor: pointer;
+		border-style: double;
+		border-width: 0 0 0 14px; //play icon
+		outline: none;
+	}
+	input[type="checkbox"] {
+		position: absolute;
+		left: -9999px;
+		&:checked + label {
+			border-style: solid;
+			border-width: 8px 0 8px 12px; //pause icon
+		}
+	}
+	&:hover {
+        cursor: pointer;
+		label {
+			border-color: transparent transparent transparent var(--gray15);
+		}
+	}
+}
+
+.time-span-wrapper {
+	float: left;
+	width: 115px;
+	height: 26px;
+	line-height: 26px;
+	margin-left: 5px;
+	span {
+		font-size: 10pt;
+		line-height: 16px;
+		color: var(--gray13);
+	}
+}

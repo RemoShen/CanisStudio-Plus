@@ -1,0 +1,36 @@
+.kf-widget-container {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.kf-tracks-container {
+    float: left;
+    width: 100%;
+    height: 100%;
+}
+
+.kf-tracks-inner-container{
+    // transition: transform 0.16s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.kf-slider-container {
+    box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+    transition: margin 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+.kf-x-slider-container {
+    @extend .kf-slider-container;
+    float: left;
+    width: 100%;
+}
+
+.kf-y-slider-container {
+    @extend .kf-slider-container;
+    float: right;
+    height: 100%;
+}
+
+.kf-slider {
+    cursor: pointer;
+}

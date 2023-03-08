@@ -1,0 +1,24 @@
+.transparent-mark {
+    opacity: 0;
+}
+
+.translucent-mark {
+    opacity: 0.1;
+}
+
+.dragover-kf {
+    stroke: #e2640e;
+    stroke-dasharray: 4 3;
+}
+
+.highlight-kf {
+    stroke: #358bcb;
+    stroke-dasharray: 4 3;
+}
+
+.drag-bar {
+    fill: rgb(180, 180, 180);
+    &:hover {
+        fill: rgb(210, 210, 210);
+    }
+}
