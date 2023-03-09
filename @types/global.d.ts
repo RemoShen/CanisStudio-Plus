@@ -1,0 +1,4 @@
+interface Navigator {
+  msSaveOrOpenBlob: Function;
+}
+

@@ -274,7 +274,7 @@ export class State implements IState {
 
     public static runRevertHistory(actionAndValues: IInteractionRecord[], i: number) {
         if (i >= 0) {
-            new Promise((resolve, reject) => {
+            new Promise<void>((resolve, reject) => {
                 Reducer.triger(actionAndValues[i].historyAction.actionType, actionAndValues[i].historyAction.actionVal);
                 setTimeout(() => {
                     resolve();
@@ -302,7 +302,7 @@ export class State implements IState {
 
     public static runRedoHistory(actionAndValues: IInteractionRecord[], i: number) {
         if (i < actionAndValues.length) {
-            new Promise((resolve, reject) => {
+            new Promise<void>((resolve, reject) => {
                 Reducer.triger(actionAndValues[i].currentAction.actionType, actionAndValues[i].currentAction.actionVal);
                 setTimeout(() => {
                     resolve();
