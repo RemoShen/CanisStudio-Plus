@@ -1,5 +1,4 @@
 import KfGroup from "./kfGroup";
-import { Animation, ChartSpec } from 'canis_toolkit';
 import Tool from "../../util/tool";
 import KfItem from "./kfItem";
 import { state, State } from "../../app/state";
@@ -9,6 +8,7 @@ import KfTrack from "./kfTrack";
 import { ICoord, ISize } from "../../util/ds";
 import { suggestBox } from "./suggestBox";
 import KfOmit from "./kfOmit";
+import { ChartSpec, Animation } from "../../canis/moduleIdx";
 
 export default class PlusBtn {
     static BTN_SIZE: number = 16;

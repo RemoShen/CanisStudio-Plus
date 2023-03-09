@@ -2,9 +2,9 @@ import { KfContainer, kfContainer } from "../kfContainer";
 import KfItem from "./kfItem";
 import { ICoord } from "../../util/ds";
 import { IKeyframe } from "../../app/core/ds";
-import { TimingSpec } from "canis_toolkit";
 import KfGroup from "./kfGroup";
 import { state } from "../../app/state";
+import { TimingSpec } from "../../canis/moduleIdx";
 
 export default class IntelliRefLine {
     static HIGHLIGHT_STROKE_COLOR: string = '#0e89e5';

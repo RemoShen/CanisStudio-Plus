@@ -1,7 +1,6 @@
 import '../../assets/style/selectableTable.scss'
 import { state, State } from '../../app/state'
 import { IDataItem, ISortDataAttr } from '../../app/core/ds';
-import { Animation } from 'canis_toolkit';
 import Reducer from '../../app/reducer';
 import * as action from '../../app/action'
 import AttrSort from './attrSort';
@@ -9,6 +8,7 @@ import Util from '../../app/core/util';
 import PlusBtn from './plusBtn';
 import KfItem from './kfItem';
 import Tool from '../../util/tool';
+import {Animation} from '../../canis/moduleIdx';
 
 export default class SelectableTable {
     startRowIdx: string;

@@ -1,6 +1,5 @@
 import { state, IState, State } from './state'
 import { IDataItem, ISortDataAttr, IKeyframeGroup, IKeyframe, IKfGroupSize, IPath, IOmitPattern } from './core/ds'
-import { ChartSpec, Animation, TimingSpec } from 'canis_toolkit'
 import CanisGenerator, { canis, ICanisSpec } from './core/canisGenerator'
 import ViewWindow, { ViewToolBtn, ViewContent } from '../components/viewWindow'
 import AttrSort from '../components/widgets/attrSort'
@@ -18,6 +17,7 @@ import KfOmit from '../components/widgets/kfOmit'
 import PlusBtn from '../components/widgets/plusBtn'
 import { suggestBox } from '../components/widgets/suggestBox'
 import { Loading } from '../components/widgets/loading'
+import { ChartSpec, Animation } from '../canis/moduleIdx'
 
 /**
  * render html according to the state

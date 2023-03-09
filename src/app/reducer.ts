@@ -4,13 +4,13 @@ import * as action from './action'
 import Util from './core/util'
 import { AnimationItem } from '../../node_modules/lottie-web/build/player/lottie'
 import KfItem from '../components/widgets/kfItem'
-import { Animation, TimingSpec } from 'canis_toolkit'
 import KfGroup from '../components/widgets/kfGroup'
 import CanisGenerator, { IChartSpec, ICanisSpec, IAnimationSpec, IGrouping } from './core/canisGenerator'
 import PlusBtn from '../components/widgets/plusBtn'
 import Renderer from './renderer'
 import { KfContainer } from '../components/kfContainer'
 import { suggestBox } from '../components/widgets/suggestBox'
+import { TimingSpec, Animation } from '../canis/moduleIdx'
 
 export default class Reducer {
     static list: any = {};

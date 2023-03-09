@@ -9,13 +9,13 @@ import IntelliRefLine from './intelliRefLine';
 import { KfContainer, kfContainer } from '../kfContainer';
 import * as action from '../../app/action';
 import Reducer from '../../app/reducer';
-import { Animation, TimingSpec } from 'canis_toolkit';
 import { state, State } from '../../app/state';
 import KfTrack from './kfTrack';
 import { hintTag } from './hint';
 import { player } from '../player';
 import ViewWindow from '../viewWindow';
 import { ValueKeyIteratee } from 'lodash';
+import { TimingSpec, Animation } from '../../canis/moduleIdx';
 
 export default class KfItem extends KfTimingIllus {
     static KF_HEIGHT: number = 178;

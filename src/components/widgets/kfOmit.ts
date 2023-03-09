@@ -3,11 +3,11 @@ import KfItem from "./kfItem";
 import { ICoord } from "../../util/ds";
 import Tool from "../../util/tool";
 import { state } from "../../app/state";
-import { Animation, TimingSpec } from 'canis_toolkit'
 import { IOmitPattern } from "../../app/core/ds";
 import IntelliRefLine from "./intelliRefLine";
 import { KfContainer } from "../kfContainer";
 import KfTrack from "./kfTrack";
+import { TimingSpec, Animation } from "../../canis/moduleIdx";
 
 export default class KfOmit {
     static OMIT_WIDTH: number = 36;

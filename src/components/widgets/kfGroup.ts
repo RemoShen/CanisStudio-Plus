@@ -11,12 +11,12 @@ import '../../assets/style/keyframeGroup.scss'
 import { KfContainer } from "../kfContainer";
 import * as action from "../../app/action";
 import Reducer from "../../app/reducer";
-import { TimingSpec, Animation } from 'canis_toolkit';
 import PlusBtn from "./plusBtn";
 import { hintTag } from "./hint";
 import { state, State } from "../../app/state";
 import Util from "../../app/core/util";
 import { sortableSvgTable } from "./sortableSvgTable";
+import { TimingSpec, Animation } from "../../canis/moduleIdx";
 
 export default class KfGroup extends KfTimingIllus {
     static groupIdx: number = 0;

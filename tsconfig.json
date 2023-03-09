@@ -11,6 +11,7 @@
         "downlevelIteration": true,
         "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "suppressImplicitAnyIndexErrors": true
     }
 }

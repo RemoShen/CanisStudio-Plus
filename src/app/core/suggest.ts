@@ -1,8 +1,8 @@
-import { ChartSpec } from 'canis_toolkit';
 import Tool from '../../util/tool';
 import Util from './util';
 import { IDataItem, IPath, IKeyframe } from './ds';
 import KfGroup from '../../components/widgets/kfGroup';
+import { ChartSpec } from '../../canis/moduleIdx';
 
 export default class Suggest {
     static NUMERIC_CAT_ATTRS: string[] = ['Year', 'year', 'Month', 'month', 'Day', 'day'];

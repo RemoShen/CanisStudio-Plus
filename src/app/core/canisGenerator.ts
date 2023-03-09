@@ -1,6 +1,5 @@
+import Canis, { ActionSpec, ChartSpec, TimingSpec, Animation} from '../../canis/moduleIdx';
 import { state } from '../state'
-import Canis, { TimingSpec, ChartSpec } from 'canis_toolkit';
-import { ActionSpec, Animation } from 'canis_toolkit';
 
 export let canis = new Canis();
 

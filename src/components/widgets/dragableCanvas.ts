@@ -3,10 +3,10 @@ import { ICoord } from '../../util/ds';
 import KfItem from './kfItem';
 import PlusBtn from './plusBtn';
 import { state, State } from '../../app/state';
-import { Animation } from 'canis_toolkit';
 import Tool from '../../util/tool';
 import Reducer from '../../app/reducer';
 import * as action from '../../app/action';
+import { ChartSpec, Animation } from '../../canis/moduleIdx'
 
 export default class DragableCanvas {
     /**
