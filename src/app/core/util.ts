@@ -15,7 +15,7 @@ export default class Util {
     static NO_SUGGESTION: string = 'noSuggestion';
     static NUMERIC_CATEGORICAL_ATTR: string[] = ['Year', 'year', 'YEAR', 'Month', 'month', 'MONTH', 'Day', 'day', 'DAY', 'date', 'Date', 'DATE'];
     static EFFECTIVENESS_RANKING: string[] = ['position', 'color', 'shape'];
-    static EXCLUDED_DATA_ATTR: string[] = ['_TYPE', 'text', '_x', '_y', '_id', '_MARKID'];
+    static EXCLUDED_DATA_ATTR: string[] = ['_TYPE', 'text', '_x', '_y', '_id', '_MARKID', "_ROW", "_COL"];
     static TIME_ATTR_VALUE: string[] = ['mon', 'monday', 'tue', 'tuesday', 'wed', 'wednesday', 'thr', 'thursday', 'fri', 'friday', 'sat', 'saturday', 'sun', 'sunday', 'jan', 'feb', 'mar', 'apr', 'may', 'jun', 'jul', 'aug', 'sep', 'oct', 'nov', 'dec', 'january', 'february', 'march', 'april', 'may', 'june', 'july', 'august', 'september', 'october', 'november', 'december'];
 
     static filteredDataTable: Map<string, IDataItem> = new Map();//markId, dataItem

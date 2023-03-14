@@ -426,7 +426,7 @@ class ChartSpec {
             Array.from(t.classList).forEach((c) => {
                 c = c.toLowerCase();
                 if (c.includes('axis') || c.includes('legend') || c.includes('title')) {
-                    isNonDataMark = true;
+                    // isNonDataMark = true;
                 }
             })
             const tmpId = t.getAttribute('id');
