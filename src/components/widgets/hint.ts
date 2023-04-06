@@ -2,9 +2,9 @@ import '../../assets/style/hint.scss'
 import { ICoord } from "../../util/ds";
 import { KfContainer } from "../kfContainer";
 import Tool from "../../util/tool";
-import Reducer from '../../app/reducer';
-import * as action from '../../app/action';
-import { State, state } from '../../app/state';
+import Reducer from '../../app_backup/reducer';
+import * as action from '../../app_backup/action';
+import { State, state } from '../../app_backup/state';
 
 export class Hint {
     static CHAR_LEN: number = 9;

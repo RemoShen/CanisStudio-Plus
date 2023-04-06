@@ -217,7 +217,7 @@ class TimingSpec {
     }
 }
 
-TimingSpec.FRAME_RATE = 20;
+TimingSpec.FRAME_RATE = 50;
 TimingSpec.timingRef = {
     previousStart: 'start with previous',
     previousEnd: 'start after previous',

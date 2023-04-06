@@ -1,15 +1,15 @@
-import '../../assets/style/keyframeItem.scss'
+// import '../../assets/style/keyframeItem.scss'
 import Tool from '../../util/tool'
-import { IKeyframe, IOmitPattern } from '../../app/core/ds';
+import { IKeyframe, IOmitPattern } from '../../app_backup/core/ds';
 import KfGroup from './kfGroup';
 import KfTimingIllus from './kfTimingIllus';
 import KfOmit from './kfOmit';
 import { ICoord, ISize } from '../../util/ds';
 import IntelliRefLine from './intelliRefLine';
 import { KfContainer, kfContainer } from '../kfContainer';
-import * as action from '../../app/action';
-import Reducer from '../../app/reducer';
-import { state, State } from '../../app/state';
+import * as action from '../../app_backup/action';
+import Reducer from '../../app_backup/reducer';
+import { state, State } from '../../app_backup/state';
 import KfTrack from './kfTrack';
 import { hintTag } from './hint';
 import { player } from '../player';

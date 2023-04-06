@@ -1,10 +1,10 @@
 import '../assets/style/keyframeContainer.scss'
 import Tool from '../util/tool';
-import { IKfGroupSize } from '../app/core/ds';
+import { IKfGroupSize } from '../app_backup/core/ds';
 import { ICoord, ISize } from '../util/ds';
-import Reducer from '../app/reducer';
-import * as action from '../app/action';
-import { state } from '../app/state';
+import Reducer from '../app_backup/reducer';
+import * as action from '../app_backup/action';
+import { state } from '../app_backup/state';
 import KfTrack from './widgets/kfTrack';
 
 export class KfContainer {

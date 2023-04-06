@@ -1,0 +1,51 @@
+.kf-item-menu {
+    transition-timing-function: ease;
+    transition: opacity 0.2s;
+    opacity: 0;
+}
+
+.kf-item-container:hover .kf-item-menu {
+    // display: inline;
+    opacity: 1;
+}
+
+.kf-drag-bar-right {
+    opacity: 0;
+    fill: #5c7db3;
+}
+
+.kf-drag-bar-right:hover {
+    opacity: 1;
+    cursor: col-resize;
+}
+
+.kf-drag-bar-left {
+    opacity: 0;
+    fill: #b78966;
+}
+
+.kf-drag-bar-left:hover {
+    opacity: 1;
+    cursor: col-resize;
+}
+
+.kf-length-guide-bg {
+    fill: grey;
+    height: 20px;
+    opacity: 0.8;
+    rx: 3px;
+}
+
+.kf-length-guide {
+    font-size: 12px;
+    fill: white;
+    text-anchor: end;
+}
+
+.kf-button {
+    fill: rgb(163, 163, 163);
+}
+
+.kf-button:hover {
+    fill: #CCC;
+}

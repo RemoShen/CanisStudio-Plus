@@ -1,0 +1,56 @@
+<svg id="visChart" class="marks" width="285" height="290" viewBox="0 0 285 290" style="background-color: white;" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+    <g id="chartContent" fill="none" stroke-miterlimit="10" transform="translate(44,5)">
+        <path id="mark6001" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" d="M0.5,0.5h80v200h-80Z" fill="#fff" stroke="#ddd" stroke-width="1"></path>
+        <g>
+            <g transform="translate(0.5,205.5)" class="axis" data-datum="{&quot;_TYPE&quot;:&quot;axis&quot;,&quot;type&quot;:&quot;x&quot;,&quot;position&quot;:&quot;Question&quot;}" >
+                <text id="mark5008" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="2" y="5" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">Q1</text>
+                <text id="mark5009" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="22" y="5" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">Q2</text>
+                <text id="mark5010" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="42" y="5" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">Q3</text>
+                <text id="mark5011" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="62" y="5" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">Q4</text>
+            </g>
+            <g>
+                <g>
+                    <line id="mark4001" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" x1="0" y1="186" x2="-5" y2="186" stroke="#ddd" stroke-width="1" opacity="1"></line>
+                    <line id="mark4002" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" x1="0" y1="157" x2="-5" y2="157" stroke="#ddd" stroke-width="1" opacity="1"></line>
+                    <line id="mark4003" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" x1="0" y1="129" x2="-5" y2="129" stroke="#ddd" stroke-width="1" opacity="1"></line>
+                    <line id="mark4004" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" x1="0" y1="100" x2="-5" y2="100" stroke="#ddd" stroke-width="1" opacity="1"></line>
+                    <line id="mark4005" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" x1="0" y1="71" x2="-5" y2="71" stroke="#ddd" stroke-width="1" opacity="1"></line>
+                    <line id="mark4006" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" x1="0" y1="43" x2="-5" y2="43" stroke="#ddd" stroke-width="1" opacity="1"></line>
+                    <line id="mark4007" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" x1="0" y1="14" x2="-5" y2="14" stroke="#ddd" stroke-width="1" opacity="1"></line>
+                </g>
+                <g>
+                    <text id="mark5001" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" text-anchor="end" transform="translate(-7,17.285714285714278)" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">80</text>
+                    <text id="mark5002" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" text-anchor="end" transform="translate(-7,45.85714285714286)" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">60</text>
+                    <text id="mark5003" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" text-anchor="end" transform="translate(-7,74.42857142857142)" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">40</text>
+                    <text id="mark5004" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" text-anchor="end" transform="translate(-7,103)" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">20</text>
+                    <text id="mark5005" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" text-anchor="end" transform="translate(-7,131.57142857142856)" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">0</text>
+                    <text id="mark5006" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" text-anchor="end" transform="translate(-7,160.14285714285714)" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">-20</text>
+                    <text id="mark5007" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" text-anchor="end" transform="translate(-7,188.71428571428572)" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">-40</text>
+                </g>
+            </g>
+            <g>
+                <path id="mark1" class="mark Shape1 rectangle" data-datum="{&quot;Question&quot;:&quot;Q1&quot;,&quot;Agree&quot;:71.6,&quot;Disagree&quot;:28.3}" d="M1,26.285714285714292h18v102.28571428571426h-18Z" fill="#94c6da"></path>
+                <path id="mark2" class="mark Shape1 rectangle" data-datum="{&quot;Question&quot;:&quot;Q2&quot;,&quot;Agree&quot;:63.6,&quot;Disagree&quot;:36.4}" d="M21,37.71428571428572h18v90.85714285714283h-18Z" fill="#94c6da"></path>
+                <path id="mark3" class="mark Shape1 rectangle" data-datum="{&quot;Question&quot;:&quot;Q3&quot;,&quot;Agree&quot;:60,&quot;Disagree&quot;:40}" d="M41,42.85714285714286h18v85.7142857142857h-18Z" fill="#94c6da"></path>
+                <path id="mark4" class="mark Shape1 rectangle" data-datum="{&quot;Question&quot;:&quot;Q4&quot;,&quot;Agree&quot;:81.3,&quot;Disagree&quot;:18.8}" d="M61,12.428571428571411h18v116.14285714285714h-18Z" fill="#94c6da"></path>
+
+                <path id="mark1001" class="mark Shape2 rectangle" data-datum="{&quot;Question&quot;:&quot;Q1&quot;,&quot;Agree&quot;:71.6,&quot;Disagree&quot;:28.3}" d="M1,128.57142857142856h18v40.428571428571445h-18Z" fill="#f3a583"></path>
+                <path id="mark1002" class="mark Shape2 rectangle" data-datum="{&quot;Question&quot;:&quot;Q2&quot;,&quot;Agree&quot;:63.6,&quot;Disagree&quot;:36.4}" d="M21,128.57142857142856h18v52h-18Z" fill="#f3a583"></path>
+                <path id="mark1003" class="mark Shape2 rectangle" data-datum="{&quot;Question&quot;:&quot;Q3&quot;,&quot;Agree&quot;:60,&quot;Disagree&quot;:40}" d="M41,128.57142857142856h18v57.14285714285717h-18Z" fill="#f3a583"></path>
+                <path id="mark1004" class="mark Shape2 rectangle" data-datum="{&quot;Question&quot;:&quot;Q4&quot;,&quot;Agree&quot;:81.3,&quot;Disagree&quot;:18.8}" d="M61,128.57142857142856h18v26.85714285714286h-18Z" fill="#f3a583"></path>
+            </g>
+            <g transform="translate(90,0)">
+                <g transform="translate(6,6)">
+                    <path id="mark2001" class="mark legend-symbol" data-datum="{&quot;_TYPE&quot;:&quot;legend-symbol&quot;}" d="M-5,-5h10v10h-10Z" fill="#f3a583" stroke-width="1.5" opacity="1"></path>
+                    <text id="mark3001" class="mark legend-label" data-datum="{&quot;_TYPE&quot;:&quot;legend-label&quot;}" text-anchor="start" x="10" y="3" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">Disagree</text>
+                </g>
+                <g transform="translate(6,19)">
+                    <path id="mark2002" class="mark legend-symbol" data-datum="{&quot;_TYPE&quot;:&quot;legend-symbol&quot;}" d="M-5,-5h10v10h-10Z" fill="#94c6da" stroke-width="1.5" opacity="1"></path>
+                    <text id="mark3002" class="mark legend-label" data-datum="{&quot;_TYPE&quot;:&quot;legend-label&quot;}" text-anchor="start" x="10" y="4" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">Agree</text>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

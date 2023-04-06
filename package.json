@@ -9,6 +9,7 @@
         "@types/domurl": "0.0.7",
         "@types/robust-point-in-polygon": "^1.0.2",
         "d3": "^7.8.2",
+        "gifshot": "^0.4.5",
         "jsmovin": "^0.7.4",
         "lodash": "^4.17.21",
         "lottie-web": "^5.10.2",
@@ -16,6 +17,7 @@
         "sass": "^1.58.3"
     },
     "devDependencies": {
+        "@types/gif.js": "^0.2.2",
         "@types/lodash": "^4.14.191",
         "clean-webpack-plugin": "^4.0.0",
         "css-loader": "^6.7.3",

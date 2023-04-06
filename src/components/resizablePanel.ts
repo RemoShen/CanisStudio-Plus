@@ -1,7 +1,7 @@
 import '../assets/style/resizablePanel.scss'
 import Tool from '../util/tool';
-import Reducer from '../app/reducer';
-import * as action from '../app/action'
+import Reducer from '../app_backup/reducer';
+import * as action from '../app_backup/action'
 
 export interface IRPanel {
     wrapper: HTMLDivElement,

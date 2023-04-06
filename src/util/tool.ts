@@ -1,15 +1,15 @@
 import { ICoord } from './ds'
-import { state, State } from '../app/state'
+import { state, State } from '../app_backup/state'
 import { player } from '../components/player'
 import Rectangular from './rectangular'
 import Lasso from './lasso'
-import Reducer from '../app/reducer'
+import Reducer from '../app_backup/reducer'
 import { dragableCanvas } from '../components/widgets/dragableCanvas'
-import * as action from '../app/action'
+import * as action from '../app_backup/action'
 import PlusBtn from '../components/widgets/plusBtn'
 import KfItem from '../components/widgets/kfItem'
 import { GroupMenu } from '../components/widgets/kfGroup'
-import Util from '../app/core/util'
+import Util from '../app_backup/core/util'
 import ViewWindow from '../components/viewWindow'
 
 export default class Tool {
@@ -124,11 +124,11 @@ export default class Tool {
         document.getElementById(containerId).onmousedown = (downEvt) => {
             Reducer.triger(action.UPDATE_MOUSE_MOVING, true);
             const lassoSelection = new Lasso();
-            const evtTarget: HTMLElement = <HTMLElement>downEvt.target;
-            if (evtTarget.classList.contains('highlight-selection-frame') ||
-                (evtTarget.classList.contains('mark') && state.selection.includes(evtTarget.id) && state.selection.length > 0)) {//clicked within the selection frame
-                dragableCanvas.createCanvas(document.querySelector('#' + containerId + ' > svg:first-of-type'), { x: downEvt.pageX, y: downEvt.pageY });
-            } else {//doing selection
+            // const evtTarget: HTMLElement = <HTMLElement>downEvt.target;
+            // if (evtTarget.classList.contains('highlight-selection-frame') ||
+            //     (evtTarget.classList.contains('mark') && state.selection.includes(evtTarget.id) && state.selection.length > 0)) {//clicked within the selection frame
+            //     dragableCanvas.createCanvas(document.querySelector('#' + containerId + ' > svg:first-of-type'), { x: downEvt.pageX, y: downEvt.pageY });
+            // } else {//doing selection
                 const svg: HTMLElement = document.getElementById('visChart');
                 if (svg) {
                     const svgBBox = svg.getBoundingClientRect();
@@ -175,7 +175,7 @@ export default class Tool {
                         document.onmouseup = null;
                     }
                 }
-            }
+            // }
         }
     }
     public static initRectangularSelection(containerId: string): void {
@@ -191,11 +191,11 @@ export default class Tool {
             //     scaleH = parseFloat(svg.getAttribute('height')) / document.getElementById('chartContainer').offsetHeight;
             // }
 
-            const evtTarget: HTMLElement = <HTMLElement>downEvt.target;
-            if (evtTarget.classList.contains('highlight-selection-frame') ||
-                (evtTarget.classList.contains('mark') && state.selection.includes(evtTarget.id) && state.selection.length > 0)) {//clicked within the selection frame
-                dragableCanvas.createCanvas(document.querySelector('#' + containerId + ' > svg:first-of-type'), { x: downEvt.pageX, y: downEvt.pageY });
-            } else {//doing selection
+            // const evtTarget: HTMLElement = <HTMLElement>downEvt.target;
+            // if (evtTarget.classList.contains('highlight-selection-frame') ||
+            //     (evtTarget.classList.contains('mark') && state.selection.includes(evtTarget.id) && state.selection.length > 0)) {//clicked within the selection frame
+            //     dragableCanvas.createCanvas(document.querySelector('#' + containerId + ' > svg:first-of-type'), { x: downEvt.pageX, y: downEvt.pageY });
+            // } else {//doing selection
                 if (svg) {
                     const svgBBox = svg.getBoundingClientRect();
                     const rectPosi1: ICoord = this.screenToSvgCoords(svg, downEvt.pageX, downEvt.pageY);
@@ -272,7 +272,7 @@ export default class Tool {
                         document.onmouseup = null;
                     }
                 }
-            }
+            // }
         }
     }
 

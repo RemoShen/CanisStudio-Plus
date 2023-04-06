@@ -1,5 +1,5 @@
 import Canis, { ActionSpec, ChartSpec, TimingSpec, Animation} from '../../canis/moduleIdx';
-// import { state } from '../state'
+import { state } from '../state'
 
 export let canis = new Canis();
 
@@ -400,24 +400,24 @@ export default class CanisGenerator {
         ani.align.merge = merge;
     }
 
-    // /**
-    //  * 
-    //  * @param id : aniId used in align
-    //  */
-    // public static findMergedAlignAnis(id: string): [string, string[]] {
-    //     let alignWithAni: string, alignToAnis: string[] = [];
-    //     state.spec.animations.forEach((a: IAnimationSpec) => {
-    //         if (a.id === id) {
-    //             alignWithAni = a.selector;
-    //         }
-    //         if (typeof a.align !== 'undefined') {
-    //             if (a.align.type === Animation.alignTarget.withEle && a.align.merge && a.align.target === id) {
-    //                 alignToAnis.push(a.selector);
-    //             }
-    //         }
-    //     })
-    //     return [alignWithAni, alignToAnis];
-    // }
+    /**
+     * 
+     * @param id : aniId used in align
+     */
+    public static findMergedAlignAnis(id: string): [string, string[]] {
+        let alignWithAni: string, alignToAnis: string[] = [];
+        state.spec.animations.forEach((a: IAnimationSpec) => {
+            if (a.id === id) {
+                alignWithAni = a.selector;
+            }
+            if (typeof a.align !== 'undefined') {
+                if (a.align.type === Animation.alignTarget.withEle && a.align.merge && a.align.target === id) {
+                    alignToAnis.push(a.selector);
+                }
+            }
+        })
+        return [alignWithAni, alignToAnis];
+    }
 
     public static updateGroupingSort(a: IAnimationSpec, groupRef: string, order: string[]): boolean {
         let flag: boolean = true;
@@ -441,26 +441,26 @@ export default class CanisGenerator {
         return updated;
     }
 
-    // public static fetchGroupingSort(aniId: string, groupRef: string): string[] {
-    //     const animations: IAnimationSpec[] = state.spec.animations;
-    //     for (let i = 0, len = animations.length; i < len; i++) {
-    //         const a: IAnimationSpec = animations[i];
-    //         if (`${a.chartIdx}_${a.selector}` === aniId) {
-    //             let flag: boolean = true;
-    //             let tmpGrouping: IGrouping = a.grouping;
-    //             while (flag) {
-    //                 if (typeof tmpGrouping !== 'undefined') {
-    //                     if (tmpGrouping.groupBy === groupRef) {
-    //                         return <string[]>tmpGrouping.sort.order;
-    //                     } else if (typeof tmpGrouping.grouping !== 'undefined') {
-    //                         tmpGrouping = tmpGrouping.grouping;
-    //                     } else {
-    //                         flag = false;
-    //                     }
-    //                 }
-    //             }
-    //         }
-    //     }
-    //     return [];
-    // }
+    public static fetchGroupingSort(aniId: string, groupRef: string): string[] {
+        const animations: IAnimationSpec[] = state.spec.animations;
+        for (let i = 0, len = animations.length; i < len; i++) {
+            const a: IAnimationSpec = animations[i];
+            if (`${a.chartIdx}_${a.selector}` === aniId) {
+                let flag: boolean = true;
+                let tmpGrouping: IGrouping = a.grouping;
+                while (flag) {
+                    if (typeof tmpGrouping !== 'undefined') {
+                        if (tmpGrouping.groupBy === groupRef) {
+                            return <string[]>tmpGrouping.sort.order;
+                        } else if (typeof tmpGrouping.grouping !== 'undefined') {
+                            tmpGrouping = tmpGrouping.grouping;
+                        } else {
+                            flag = false;
+                        }
+                    }
+                }
+            }
+        }
+        return [];
+    }
 }

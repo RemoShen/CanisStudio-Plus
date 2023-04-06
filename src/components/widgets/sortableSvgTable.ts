@@ -1,13 +1,13 @@
 import '../../assets/style/sortableSvgTable.scss'
 import { ICoord } from "../../util/ds";
 import { KfContainer } from "../kfContainer";
-import { state, State } from "../../app/state";
+import { state, State } from "../../app_backup/state";
 import KfGroup from "./kfGroup";
-import * as action from "../../app/action";
+import * as action from "../../app_backup/action";
 import Tool from '../../util/tool';
-import Reducer from '../../app/reducer';
+import Reducer from '../../app_backup/reducer';
 import KfItem from './kfItem';
-import CanisGenerator from '../../app/core/canisGenerator';
+import CanisGenerator from '../../app_backup/core/canisGenerator';
 
 export default class SortableSvgTable {
     static TABLE_WIDTH: number = 200;

@@ -20,7 +20,7 @@
                                                     <g transform="translate(0,0)" opacity="1">
                                                         <g transform="translate(0,0)" opacity="1">
                                                             <g transform="translate(0,0)" opacity="1">
-                                                                <g transform="translate(0,0)" opacity="1">
+                                                                <g transform="translate(0,0)" opacity="1" id="g1">
                                                                     <g transform="translate(0,0)" opacity="1">
                                                                         <path id="mark1001" class=" mark Symbol1 symbol" d="M 10.32071537,41.09821428 A 4.37019372,4.37019372,0,1,0,19.06110281,41.09821428 A 4.37019372,4.37019372,0,1,0,10.32071537,41.09821428 Z" data-datum="{&quot;_TYPE&quot;:&quot;symbol&quot;,&quot;_MARKID&quot;:&quot;Symbol1&quot;,&quot;_x&quot;:14.690909089346569,&quot;_y&quot;:-41.098214281075855,&quot;_id&quot;:&quot;0&quot;,&quot;Year&quot;:&quot;1950&quot;,&quot;State&quot;:&quot;Alabama&quot;,&quot;MapX&quot;:&quot;A06&quot;,&quot;MapY&quot;:&quot;B01&quot;,&quot;Cases&quot;:9.13}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(51,137,189)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
                                                                     </g>
@@ -206,7 +206,7 @@
                                                         <g transform="translate(0,0)" opacity="1">
                                                             <g transform="translate(0,0)" opacity="1">
                                                                 <g transform="translate(0,0)" opacity="1"></g>
-                                                                <g transform="translate(0,0)" opacity="1">
+                                                                <g transform="translate(0,0)" opacity="1" id="g2">
                                                                     <g transform="translate(0,0)" opacity="1">
                                                                         <path id="mark1052" class=" mark Symbol1 symbol" d="M 10.32071537,41.09821428 A 4.37019372,4.37019372,0,1,0,19.06110281,41.09821428 A 4.37019372,4.37019372,0,1,0,10.32071537,41.09821428 Z" data-datum="{&quot;_TYPE&quot;:&quot;symbol&quot;,&quot;_MARKID&quot;:&quot;Symbol1&quot;,&quot;_x&quot;:14.690909089346569,&quot;_y&quot;:-41.098214281075855,&quot;_id&quot;:&quot;51&quot;,&quot;Year&quot;:&quot;1951&quot;,&quot;State&quot;:&quot;Alabama&quot;,&quot;MapX&quot;:&quot;A06&quot;,&quot;MapY&quot;:&quot;B01&quot;,&quot;Cases&quot;:22.15}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(136,206,165)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
                                                                     </g>
@@ -391,7 +391,7 @@
                                                     <g transform="translate(0,0)" opacity="1">
                                                         <g transform="translate(0,0)" opacity="1">
                                                             <g transform="translate(0,0)" opacity="1">
-                                                                <g transform="translate(0,0)" opacity="1">
+                                                                <g transform="translate(0,0)" opacity="1" id="g3">
                                                                     <g transform="translate(0,0)" opacity="1">
                                                                         <path id="mark1103" class=" mark Symbol1 symbol" d="M 10.32071537,41.09821428 A 4.37019372,4.37019372,0,1,0,19.06110281,41.09821428 A 4.37019372,4.37019372,0,1,0,10.32071537,41.09821428 Z" data-datum="{&quot;_TYPE&quot;:&quot;symbol&quot;,&quot;_MARKID&quot;:&quot;Symbol1&quot;,&quot;_x&quot;:14.690909089346569,&quot;_y&quot;:-41.098214281075855,&quot;_id&quot;:&quot;102&quot;,&quot;Year&quot;:&quot;1952&quot;,&quot;State&quot;:&quot;Alabama&quot;,&quot;MapX&quot;:&quot;A06&quot;,&quot;MapY&quot;:&quot;B01&quot;,&quot;Cases&quot;:13.56}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(83,165,178)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
                                                                     </g>
@@ -577,7 +577,7 @@
                                                         <g transform="translate(0,0)" opacity="1">
                                                             <g transform="translate(0,0)" opacity="1">
                                                                 <g transform="translate(0,0)" opacity="1"></g>
-                                                                <g transform="translate(0,0)" opacity="1">
+                                                                <g transform="translate(0,0)" opacity="1" id="g4">
                                                                     <g transform="translate(0,0)" opacity="1">
                                                                         <path id="mark1154" class=" mark Symbol1 symbol" d="M 10.32071537,41.09821428 A 4.37019372,4.37019372,0,1,0,19.06110281,41.09821428 A 4.37019372,4.37019372,0,1,0,10.32071537,41.09821428 Z" data-datum="{&quot;_TYPE&quot;:&quot;symbol&quot;,&quot;_MARKID&quot;:&quot;Symbol1&quot;,&quot;_x&quot;:14.690909089346569,&quot;_y&quot;:-41.098214281075855,&quot;_id&quot;:&quot;153&quot;,&quot;Year&quot;:&quot;1953&quot;,&quot;State&quot;:&quot;Alabama&quot;,&quot;MapX&quot;:&quot;A06&quot;,&quot;MapY&quot;:&quot;B01&quot;,&quot;Cases&quot;:14.93}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(90,174,174)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
                                                                     </g>
@@ -763,7 +763,7 @@
                                                         <g transform="translate(0,0)" opacity="1">
                                                             <g transform="translate(0,0)" opacity="1">
                                                                 <g transform="translate(0,0)" opacity="1"></g>
-                                                                <g transform="translate(0,0)" opacity="1">
+                                                                <g transform="translate(0,0)" opacity="1" id="g5">
                                                                     <g transform="translate(0,0)" opacity="1">
                                                                         <path id="mark1205" class=" mark Symbol1 symbol" d="M 10.32071537,41.09821428 A 4.37019372,4.37019372,0,1,0,19.06110281,41.09821428 A 4.37019372,4.37019372,0,1,0,10.32071537,41.09821428 Z" data-datum="{&quot;_TYPE&quot;:&quot;symbol&quot;,&quot;_MARKID&quot;:&quot;Symbol1&quot;,&quot;_x&quot;:14.690909089346569,&quot;_y&quot;:-41.098214281075855,&quot;_id&quot;:&quot;204&quot;,&quot;Year&quot;:&quot;1954&quot;,&quot;State&quot;:&quot;Alabama&quot;,&quot;MapX&quot;:&quot;A06&quot;,&quot;MapY&quot;:&quot;B01&quot;,&quot;Cases&quot;:12.47}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(77,158,180)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
                                                                     </g>
@@ -949,7 +949,7 @@
                                                         <g transform="translate(0,0)" opacity="1">
                                                             <g transform="translate(0,0)" opacity="1">
                                                                 <g transform="translate(0,0)" opacity="1"></g>
-                                                                <g transform="translate(0,0)" opacity="1">
+                                                                <g transform="translate(0,0)" opacity="1" id="g6">
                                                                     <g transform="translate(0,0)" opacity="1">
                                                                         <path id="mark1256" class=" mark Symbol1 symbol" d="M 10.32071537,41.09821428 A 4.37019372,4.37019372,0,1,0,19.06110281,41.09821428 A 4.37019372,4.37019372,0,1,0,10.32071537,41.09821428 Z" data-datum="{&quot;_TYPE&quot;:&quot;symbol&quot;,&quot;_MARKID&quot;:&quot;Symbol1&quot;,&quot;_x&quot;:14.690909089346569,&quot;_y&quot;:-41.098214281075855,&quot;_id&quot;:&quot;255&quot;,&quot;Year&quot;:&quot;1955&quot;,&quot;State&quot;:&quot;Alabama&quot;,&quot;MapX&quot;:&quot;A06&quot;,&quot;MapY&quot;:&quot;B01&quot;,&quot;Cases&quot;:5.49}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(75,114,178)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
                                                                     </g>
@@ -1135,7 +1135,7 @@
                                                         <g transform="translate(0,0)" opacity="1">
                                                             <g transform="translate(0,0)" opacity="1">
                                                                 <g transform="translate(0,0)" opacity="1"></g>
-                                                                <g transform="translate(0,0)" opacity="1">
+                                                                <g transform="translate(0,0)" opacity="1" id="g7">
                                                                     <g transform="translate(0,0)" opacity="1">
                                                                         <path id="mark1307" class=" mark Symbol1 symbol" d="M 10.32071537,41.09821428 A 4.37019372,4.37019372,0,1,0,19.06110281,41.09821428 A 4.37019372,4.37019372,0,1,0,10.32071537,41.09821428 Z" data-datum="{&quot;_TYPE&quot;:&quot;symbol&quot;,&quot;_MARKID&quot;:&quot;Symbol1&quot;,&quot;_x&quot;:14.690909089346569,&quot;_y&quot;:-41.098214281075855,&quot;_id&quot;:&quot;306&quot;,&quot;Year&quot;:&quot;1956&quot;,&quot;State&quot;:&quot;Alabama&quot;,&quot;MapX&quot;:&quot;A06&quot;,&quot;MapY&quot;:&quot;B01&quot;,&quot;Cases&quot;:3.46}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(84,102,172)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
                                                                     </g>
@@ -1321,7 +1321,7 @@
                                                         <g transform="translate(0,0)" opacity="1">
                                                             <g transform="translate(0,0)" opacity="1">
                                                                 <g transform="translate(0,0)" opacity="1"></g>
-                                                                <g transform="translate(0,0)" opacity="1">
+                                                                <g transform="translate(0,0)" opacity="1" id="g8">
                                                                     <g transform="translate(0,0)" opacity="1">
                                                                         <path id="mark1358" class=" mark Symbol1 symbol" d="M 10.32071537,41.09821428 A 4.37019372,4.37019372,0,1,0,19.06110281,41.09821428 A 4.37019372,4.37019372,0,1,0,10.32071537,41.09821428 Z" data-datum="{&quot;_TYPE&quot;:&quot;symbol&quot;,&quot;_MARKID&quot;:&quot;Symbol1&quot;,&quot;_x&quot;:14.690909089346569,&quot;_y&quot;:-41.098214281075855,&quot;_id&quot;:&quot;357&quot;,&quot;Year&quot;:&quot;1957&quot;,&quot;State&quot;:&quot;Alabama&quot;,&quot;MapX&quot;:&quot;A06&quot;,&quot;MapY&quot;:&quot;B01&quot;,&quot;Cases&quot;:1.85}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(89,91,168)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
                                                                     </g>
@@ -1507,7 +1507,7 @@
                                                         <g transform="translate(0,0)" opacity="1">
                                                             <g transform="translate(0,0)" opacity="1">
                                                                 <g transform="translate(0,0)" opacity="1"></g>
-                                                                <g transform="translate(0,0)" opacity="1">
+                                                                <g transform="translate(0,0)" opacity="1" id="g9">
                                                                     <g transform="translate(0,0)" opacity="1">
                                                                         <path id="mark1409" class=" mark Symbol1 symbol" d="M 10.32071537,41.09821428 A 4.37019372,4.37019372,0,1,0,19.06110281,41.09821428 A 4.37019372,4.37019372,0,1,0,10.32071537,41.09821428 Z" data-datum="{&quot;_TYPE&quot;:&quot;symbol&quot;,&quot;_MARKID&quot;:&quot;Symbol1&quot;,&quot;_x&quot;:14.690909089346569,&quot;_y&quot;:-41.098214281075855,&quot;_id&quot;:&quot;408&quot;,&quot;Year&quot;:&quot;1958&quot;,&quot;State&quot;:&quot;Alabama&quot;,&quot;MapX&quot;:&quot;A06&quot;,&quot;MapY&quot;:&quot;B01&quot;,&quot;Cases&quot;:1.92}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(89,92,168)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
                                                                     </g>
@@ -1693,7 +1693,7 @@
                                                         <g transform="translate(0,0)" opacity="1">
                                                             <g transform="translate(0,0)" opacity="1">
                                                                 <g transform="translate(0,0)" opacity="1"></g>
-                                                                <g transform="translate(0,0)" opacity="1">
+                                                                <g transform="translate(0,0)" opacity="1" id="g10">
                                                                     <g transform="translate(0,0)" opacity="1">
                                                                         <path id="mark1460" class=" mark Symbol1 symbol" d="M 10.32071537,41.09821428 A 4.37019372,4.37019372,0,1,0,19.06110281,41.09821428 A 4.37019372,4.37019372,0,1,0,10.32071537,41.09821428 Z" data-datum="{&quot;_TYPE&quot;:&quot;symbol&quot;,&quot;_MARKID&quot;:&quot;Symbol1&quot;,&quot;_x&quot;:14.690909089346569,&quot;_y&quot;:-41.098214281075855,&quot;_id&quot;:&quot;459&quot;,&quot;Year&quot;:&quot;1959&quot;,&quot;State&quot;:&quot;Alabama&quot;,&quot;MapX&quot;:&quot;A06&quot;,&quot;MapY&quot;:&quot;B01&quot;,&quot;Cases&quot;:4.79}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(79,110,176)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
                                                                     </g>

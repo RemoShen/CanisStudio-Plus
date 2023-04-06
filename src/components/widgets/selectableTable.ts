@@ -1,10 +1,10 @@
 import '../../assets/style/selectableTable.scss'
-import { state, State } from '../../app/state'
-import { IDataItem, ISortDataAttr } from '../../app/core/ds';
-import Reducer from '../../app/reducer';
-import * as action from '../../app/action'
+import { state, State } from '../../app_backup/state'
+import { IDataItem, ISortDataAttr } from '../../app_backup/core/ds';
+import Reducer from '../../app_backup/reducer';
+import * as action from '../../app_backup/action'
 import AttrSort from './attrSort';
-import Util from '../../app/core/util';
+import Util from '../../app_backup/core/util';
 import PlusBtn from './plusBtn';
 import KfItem from './kfItem';
 import Tool from '../../util/tool';

@@ -1,6 +1,6 @@
 import '../assets/style/floating-window.scss'
 import MushroomImg from '../assets/img/examples/mushroom.png'
-import MushroomChart from '../assets/charts/mushrooms_s.svg'
+import MushroomChart from '../assets/charts/mushrooms.svg'
 import OsImg from '../assets/img/examples/os.png'
 import OsChart from '../assets/charts/os.svg'
 import PurchasesImg from '../assets/img/examples/purchases.png'
@@ -23,12 +23,15 @@ import FlareImg from '../assets/img/examples/flare.png'
 import FlareChart from '../assets/charts/flare.svg'
 import UsPopulationImg from '../assets/img/examples/usPopulation.png'
 import UsPopulationChart from '../assets/charts/usPopulation.svg'
-
-import Reducer from '../app/reducer'
-import * as action from '../app/action'
-import { State, state } from '../app/state'
+import ChinaPmImg from '../assets/img/examples/chinapm.png'
+import ChinaPmChart from '../assets/charts/chinapm.svg'
+import HiringImg from '../assets/img/examples/hiring.png'
+import HiringChart from '../assets/charts/hiring.svg'
+import TScoreImg from '../assets/img/examples/tscore.png'
+import TScoreChart from '../assets/charts/tScore.svg'
 import { ViewContent } from './viewWindow'
 import { Loading } from './widgets/loading'
+import { chartManager } from '../app/chartManager'
 
 export default class FloatingWindow {
     static TYPE_EXAMPLE: string = 'exampleContainer';//type of the floating window is example
@@ -50,6 +53,8 @@ export default class FloatingWindow {
     static DRIVING_CHART: string = 'driving';
     static FLARE_CHART: string = 'flare';
     static USPOPULATION_CHART: string = 'uspopulation';
+    static HIRING_CHART: string = 'hiring';
+    static TSCORE_CHART: string ='tscore';
 
     floatingWindow: HTMLDivElement;
 
@@ -135,23 +140,27 @@ export default class FloatingWindow {
         //add chart examples
         const exampleItemContainer1: HTMLDivElement = document.createElement('div');
         exampleItemContainer1.className = 'list-item-container';
-        exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.MUSHROOM_CHART, 'Mushroom'));
+        // exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.MUSHROOM_CHART, 'Mushroom'));
         exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.NIGHTINGALE_CHART, 'Nightingale'));
         exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.OS_CHART, 'Mobile OS'));
         exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.PURCHASE_CHART, 'Doughnut Purchases'));
+        exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.CO2_CHART, 'CO2 Emissions'));
         exampleList.appendChild(exampleItemContainer1);
         const exampleItemContainer2: HTMLDivElement = document.createElement('div');
         exampleItemContainer2.className = 'list-item-container';
-        exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.CO2_CHART, 'CO2 Emissions'));
-        exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.BOSTON_CHART, 'Boston Weather'));
+        // exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.BOSTON_CHART, 'Boston Weather'));
         exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.WORLDPOPULATION_CHART, 'World Population Pyramid'));
         exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.POLIO_CHART, 'Polio Incidence Rates'));
+        exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.DRIVING_CHART, 'Driving'));
+        exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.FLARE_CHART, 'Flare'));
         exampleList.appendChild(exampleItemContainer2);
         const exampleItemContainer3: HTMLDivElement = document.createElement('div');
         exampleItemContainer3.className = 'list-item-container';
-        exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.DRIVING_CHART, 'Driving'));
-        exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.FLARE_CHART, 'Flare'));
         exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.USPOPULATION_CHART, 'usPopulation'));
+        exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.CHINAPM_CHART,'chinaPm'));
+        exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.HIRING_CHART, 'hiring'));
+        exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.TSCORE_CHART, 'tScore'));
+
         exampleList.appendChild(exampleItemContainer3);
         return exampleList;
     }
@@ -173,98 +182,102 @@ export default class FloatingWindow {
             case FloatingWindow.CLICKABLE_AREA_CHART:
                 clickableArea.innerHTML = 'Drop or Open File (.dsvg)';
                 clickableArea.ondrop = (dropEvt) => {
-                    const that = this;
-                    dropEvt.preventDefault();
-                    let projectFile = dropEvt.dataTransfer.files[0];
-                    const fr = new FileReader();
-                    fr.readAsText(projectFile);
-                    fr.onload = function () {
-                        const chart: string = <string>fr.result;
-                        Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING });
-                        setTimeout(() => {
-                            //reset state history
-                            State.stateHistoryIdx = -1;
-                            State.stateHistory = [];
-                            State.tmpStateBusket = [];
-                            State.tmpStateBusket.push({
-                                historyAction: { actionType: action.LOAD_CHARTS, actionVal: state.charts },
-                                currentAction: { actionType: action.LOAD_CHARTS, actionVal: [chart] }
-                            })
-                            State.saveHistory();
-                            Reducer.triger(action.LOAD_CHARTS, [chart]);
-                        }, 1);
-                        that.floatingWindow.remove();
-                    }
+                    // TODO:
+                    // const that = this;
+                    // dropEvt.preventDefault();
+                    // let projectFile = dropEvt.dataTransfer.files[0];
+                    // const fr = new FileReader();
+                    // fr.readAsText(projectFile);
+                    // fr.onload = function () {
+                    //     const chart: string = <string>fr.result;
+                    //     Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING });
+                    //     setTimeout(() => {
+                    //         //reset state history
+                    //         State.stateHistoryIdx = -1;
+                    //         State.stateHistory = [];
+                    //         State.tmpStateBusket = [];
+                    //         State.tmpStateBusket.push({
+                    //             historyAction: { actionType: action.LOAD_CHARTS, actionVal: state.charts },
+                    //             currentAction: { actionType: action.LOAD_CHARTS, actionVal: [chart] }
+                    //         })
+                    //         State.saveHistory();
+                    //         Reducer.triger(action.LOAD_CHARTS, [chart]);
+                    //     }, 1);
+                    //     that.floatingWindow.remove();
+                    // }
                 }
                 clickableArea.onclick = (clickEvt) => {
-                    const that = this;
-                    const input: HTMLInputElement = document.createElement("input");
-                    input.setAttribute('type', 'file');
-                    input.setAttribute('multiple', 'multiple');
-                    input.onchange = (changeEvt) => {
-                        let charts: string[] = [];
-                        for (let i = 0, len = input.files.length; i < len; i++) {
-                            const chartFile: File = input.files[i];
-                            const fr = new FileReader();
-                            fr.readAsText(chartFile);
-                            fr.onload = function () {
-                                const chart: string = <string>fr.result;
-                                charts.push(chart);
-                                if (i === input.files.length - 1) {//reach the last input file
-                                    Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING });
-                                    setTimeout(() => {
-                                        //reset state history
-                                        State.stateHistoryIdx = -1;
-                                        State.stateHistory = [];
-                                        State.tmpStateBusket = [];
-                                        State.tmpStateBusket.push({
-                                            historyAction: { actionType: action.LOAD_CHARTS, actionVal: state.charts },
-                                            currentAction: { actionType: action.LOAD_CHARTS, actionVal: charts }
-                                        })
-                                        State.saveHistory();
-                                        Reducer.triger(action.LOAD_CHARTS, charts);
-                                    }, 1);
-                                    that.floatingWindow.remove();
-                                }
-                            }
-                        }
+                    // TODO:
+                    // const that = this;
+                    // const input: HTMLInputElement = document.createElement("input");
+                    // input.setAttribute('type', 'file');
+                    // input.setAttribute('multiple', 'multiple');
+                    // input.onchange = (changeEvt) => {
+                    //     let charts: string[] = [];
+                    //     for (let i = 0, len = input.files.length; i < len; i++) {
+                    //         const chartFile: File = input.files[i];
+                    //         const fr = new FileReader();
+                    //         fr.readAsText(chartFile);
+                    //         fr.onload = function () {
+                    //             const chart: string = <string>fr.result;
+                    //             charts.push(chart);
+                    //             if (i === input.files.length - 1) {//reach the last input file
+                    //                 Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING });
+                    //                 setTimeout(() => {
+                    //                     //reset state history
+                    //                     State.stateHistoryIdx = -1;
+                    //                     State.stateHistory = [];
+                    //                     State.tmpStateBusket = [];
+                    //                     State.tmpStateBusket.push({
+                    //                         historyAction: { actionType: action.LOAD_CHARTS, actionVal: state.charts },
+                    //                         currentAction: { actionType: action.LOAD_CHARTS, actionVal: charts }
+                    //                     })
+                    //                     State.saveHistory();
+                    //                     Reducer.triger(action.LOAD_CHARTS, charts);
+                    //                 }, 1);
+                    //                 that.floatingWindow.remove();
+                    //             }
+                    //         }
+                    //     }
 
 
-                    }
-                    input.click();
-                    return false;
+                    // }
+                    // input.click();
+                    // return false;
                 }
                 break;
             case FloatingWindow.CLICKABLE_AREA_PROJECT:
                 clickableArea.innerHTML = 'Drop or Open File (.cpro)';
                 clickableArea.ondrop = (dropEvt) => {
-                    const that = this;
-                    dropEvt.preventDefault();
-                    let projectFile = dropEvt.dataTransfer.files[0];
-                    const fr = new FileReader();
-                    fr.readAsText(projectFile);
-                    fr.onload = function () {
-                        const spec: string = <string>fr.result;
-                        Reducer.triger(action.LOAD_CANIS_SPEC, JSON.parse(spec).spec);
-                        that.floatingWindow.remove();
-                    }
+                    // TODO:
+                    // const that = this;
+                    // dropEvt.preventDefault();
+                    // let projectFile = dropEvt.dataTransfer.files[0];
+                    // const fr = new FileReader();
+                    // fr.readAsText(projectFile);
+                    // fr.onload = function () {
+                    //     const spec: string = <string>fr.result;
+                    //     Reducer.triger(action.LOAD_CANIS_SPEC, JSON.parse(spec).spec);
+                    //     that.floatingWindow.remove();
+                    // }
                 }
                 clickableArea.onclick = (clickEvt) => {
-                    const that = this;
-                    const input: HTMLInputElement = document.createElement("input");
-                    input.setAttribute('type', 'file');
-                    input.onchange = (changeEvt) => {
-                        let projectFile = input.files[0];
-                        const fr = new FileReader();
-                        fr.readAsText(projectFile);
-                        fr.onload = function () {
-                            const spec: string = <string>fr.result;
-                            Reducer.triger(action.LOAD_CANIS_SPEC, JSON.parse(spec).spec);
-                            that.floatingWindow.remove();
-                        }
-                    }
-                    input.click();
-                    return false;
+                    // TODO:
+                    // const that = this;
+                    // const input: HTMLInputElement = document.createElement("input");
+                    // input.setAttribute('type', 'file');
+                    // input.onchange = (changeEvt) => {
+                    //     let projectFile = input.files[0];
+                    //     const fr = new FileReader();
+                    //     fr.readAsText(projectFile);
+                    //     fr.onload = function () {
+                    //         const spec: string = <string>fr.result;
+                    //         Reducer.triger(action.LOAD_CANIS_SPEC, JSON.parse(spec).spec);
+                    //         that.floatingWindow.remove();
+                    //     }
+                    // }
+                    // input.click();
+                    // return false;
                 }
                 break;
         }
@@ -329,6 +342,17 @@ export default class FloatingWindow {
                 img.src = UsPopulationImg;
                 item.onclick = () => this.loadExampleChart(UsPopulationChart);
                 break;
+            case FloatingWindow.CHINAPM_CHART:
+                img.src = ChinaPmImg;
+                item.onclick = () => this.loadExampleChart(ChinaPmChart);
+                break;
+            case FloatingWindow.HIRING_CHART:
+                img.src = HiringImg;
+                item.onclick = () => this.loadExampleChart(HiringChart);
+                break;
+            case FloatingWindow.TSCORE_CHART:
+                img.src = TScoreImg;
+                item.onclick = () => this.loadExampleChart(TScoreChart);
         }
         imgWrapper.appendChild(img);
         item.appendChild(imgWrapper);
@@ -339,21 +363,24 @@ export default class FloatingWindow {
     }
 
     public loadExampleChart(chart: any) {
+        // TODO:
         //triger loading
-        Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING });
-        setTimeout(() => {
-            //reset state history
-            State.stateHistoryIdx = -1;
-            State.stateHistory = [];
-            State.tmpStateBusket = [];
-            State.tmpStateBusket.push({
-                historyAction: { actionType: action.LOAD_CHARTS, actionVal: state.charts },
-                currentAction: { actionType: action.LOAD_CHARTS, actionVal: [chart] }
-            })
-            State.saveHistory();
-            Reducer.triger(action.LOAD_CHARTS, [chart]);
-            this.floatingWindow.remove();
-        }, 1);
+        // Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING });
+        // setTimeout(() => {
+        //     //reset state history
+        //     State.stateHistoryIdx = -1;
+        //     State.stateHistory = [];
+        //     State.tmpStateBusket = [];
+        //     State.tmpStateBusket.push({
+        //         historyAction: { actionType: action.LOAD_CHARTS, actionVal: state.charts },
+        //         currentAction: { actionType: action.LOAD_CHARTS, actionVal: [chart] }
+        //     })
+        //     State.saveHistory();
+        //     Reducer.triger(action.LOAD_CHARTS, [chart]);
+        //     this.floatingWindow.remove();
+        // }, 1);
+        chartManager.loadChart(chart);
+        this.floatingWindow.remove();
     }
 
     /**

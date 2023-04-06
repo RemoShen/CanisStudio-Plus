@@ -8,7 +8,7 @@
                 <g transform="translate(0,0)" opacity="1">
                     <g transform="translate(2.0392562,-0.63429752)" opacity="1">
                         <g transform="translate(0,0)" opacity="1"></g>
-                        <g transform="translate(0,0)" opacity="0">
+                        <g transform="translate(0,0)" opacity="1">
                             <g transform="translate(0,0)" opacity="1">
                                 <g transform="translate(0.2027062,-235.51030147) rotate(0.04931507)" class="axis" data-datum="{&quot;_TYPE&quot;:&quot;axis&quot;,&quot;type&quot;:&quot;y&quot;,&quot;position&quot;:&quot;DATE&quot;}">
                                     <path id="mark1001" class=" mark axis-domain" d="M 0,0 L 0.00437272,171.86985676" data-datum="{&quot;_TYPE&quot;:&quot;axis-domain&quot;}" stroke="rgb(189,189,189)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1"></path>
@@ -2236,7 +2236,7 @@
                 </g>
             </g>
             <g transform="translate(0,0)" opacity="1">
-                <g transform="translate(2.0392562,-286.40495868)" opacity="0">
+                <g transform="translate(2.0392562,-286.40495868)" opacity="1">
                     <text id="mark6001" class=" mark Title title" x="-88.43645080061984" y="325.1950622602367" data-datum="{&quot;_TYPE&quot;:&quot;title&quot;,&quot;_MARKID&quot;:&quot;Title&quot;,&quot;_x&quot;:0,&quot;_y&quot;:0}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="impact" font-size="24px">Boston Weather</text>
                 </g>
             </g>

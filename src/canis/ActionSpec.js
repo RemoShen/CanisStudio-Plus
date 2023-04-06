@@ -579,6 +579,8 @@ class ActionSpec extends TimingSpec {
                 return EasingFactory.easeOutCubic();
             case ActionSpec.easingType.easeInOutCubic:
                 return EasingFactory.easeInOutCubic();
+            // case ActionSpec.easingType.easeOutBounce:
+            //     return EasingFactory.easeOutB;
         }
     }
 }

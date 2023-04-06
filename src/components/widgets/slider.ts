@@ -1,6 +1,6 @@
 import '../../assets/style/slider.scss'
-import Reducer from '../../app/reducer';
-import * as action from '../../app/action';
+import Reducer from '../../app_backup/reducer';
+import * as action from '../../app_backup/action';
 
 export default class Slider {
     static SLIDER_HEIGHT = 26;

@@ -2,10 +2,8 @@ import '../assets/style/view-window.scss'
 import { player } from './player'
 import Slider from './widgets/slider'
 import Tool from '../util/tool'
-import { state, State } from '../app/state'
-import * as action from '../app/action'
-import Reducer from '../app/reducer'
 import { kfContainer } from './kfContainer'
+import { MarkSelector } from '../app/markSelector'
 
 interface IViewBtnProp {
     title?: string,
@@ -38,7 +36,7 @@ export default class ViewWindow {
         if (this.viewTitle !== '') {
             const viewTitleText: HTMLSpanElement = document.createElement('span');
             viewTitleText.className = 'view-title-text';
-            let titleText:string = this.viewTitle;
+            let titleText: string = this.viewTitle;
             switch (titleText) {
                 case ViewWindow.KF_VIEW_TITLE:
                     titleText = "Animation Specification";
@@ -59,6 +57,11 @@ export default class ViewWindow {
         viewContent.createViewContent(this.viewTitle);
         this.view.appendChild(viewContent.container);
 
+        //create confirm button
+        if (this.viewTitle == ViewWindow.CHART_VIEW_TITLE) {
+            this.view.appendChild(this.createConfirmButton());
+        }
+
         //create tools on the title
         switch (this.viewTitle) {
             case ViewWindow.CHART_VIEW_TITLE:
@@ -74,20 +77,28 @@ export default class ViewWindow {
         }
     }
 
+    public createConfirmButton() {
+        const button = document.createElement("div");
+        button.innerHTML = "Confirm selection";
+        button.classList.add("confirm-button");
+        button.id = "confirmButton";
+        return button;
+    }
+
     public createSelectionTools(): HTMLDivElement {
         const toolContainer: HTMLDivElement = document.createElement('div');
         toolContainer.className = 'view-tool-container';
-        toolContainer.appendChild(this.createSeparator());
-        toolContainer.appendChild(this.createBtn({
-            title: 'Selection',
-            clickEvtType: ViewToolBtn.SINGLE,
-            iconClass: 'arrow-icon'
-        }));
-        toolContainer.appendChild(this.createBtn({
-            title: 'Lasso Selection',
-            clickEvtType: ViewToolBtn.LASSO,
-            iconClass: 'lasso-icon'
-        }));
+        // toolContainer.appendChild(this.createSeparator());
+        // toolContainer.appendChild(this.createBtn({
+        //     title: 'Selection',
+        //     clickEvtType: ViewToolBtn.SINGLE,
+        //     iconClass: 'arrow-icon'
+        // }));
+        // toolContainer.appendChild(this.createBtn({
+        //     title: 'Lasso Selection',
+        //     clickEvtType: ViewToolBtn.LASSO,
+        //     iconClass: 'lasso-icon'
+        // }));
         toolContainer.appendChild(this.createSeparator());
         toolContainer.appendChild(this.createBtn({
             title: 'Selection Suggestion',
@@ -110,17 +121,18 @@ export default class ViewWindow {
         const slider: Slider = new Slider([ViewWindow.MIN_ZOOM_LEVEL, ViewWindow.MAX_ZOOM_LEVEL], ViewWindow.MAX_ZOOM_LEVEL);
         slider.createSlider()
         slider.callbackFunc = (zl: number) => {
-            Reducer.triger(action.KEYFRAME_ZOOM_LEVEL, zl);
+            // Reducer.triger(action.KEYFRAME_ZOOM_LEVEL, zl);
         };
         toolContainer.appendChild(this.createBtn({
             title: 'Zoom Out',
             clickEvtType: ViewToolBtn.CUSTOM,
             clickEvt: () => {
-                if (state.zoomLevel - ViewWindow.ZOOM_STEP >= ViewWindow.MIN_ZOOM_LEVEL) {
-                    slider.moveSlider(state.zoomLevel - ViewWindow.ZOOM_STEP);
-                } else {
-                    slider.moveSlider(ViewWindow.MIN_ZOOM_LEVEL);
-                }
+                // TODO:
+                // if (state.zoomLevel - ViewWindow.ZOOM_STEP >= ViewWindow.MIN_ZOOM_LEVEL) {
+                //     slider.moveSlider(state.zoomLevel - ViewWindow.ZOOM_STEP);
+                // } else {
+                //     slider.moveSlider(ViewWindow.MIN_ZOOM_LEVEL);
+                // }
             },
             iconClass: 'zoom-out-icon'
         }));
@@ -129,11 +141,12 @@ export default class ViewWindow {
             title: 'Zoom In',
             clickEvtType: ViewToolBtn.CUSTOM,
             clickEvt: () => {
-                if (state.zoomLevel + ViewWindow.ZOOM_STEP <= ViewWindow.MAX_ZOOM_LEVEL) {
-                    slider.moveSlider(state.zoomLevel + ViewWindow.ZOOM_STEP);
-                } else {
-                    slider.moveSlider(ViewWindow.MAX_ZOOM_LEVEL);
-                }
+                // TODO:
+                // if (state.zoomLevel + ViewWindow.ZOOM_STEP <= ViewWindow.MAX_ZOOM_LEVEL) {
+                //     slider.moveSlider(state.zoomLevel + ViewWindow.ZOOM_STEP);
+                // } else {
+                //     slider.moveSlider(ViewWindow.MAX_ZOOM_LEVEL);
+                // }
             },
             iconClass: 'zoom-in-icon'
         }));
@@ -183,10 +196,10 @@ export class ViewToolBtn {
 
         switch (props.clickEvtType) {
             case ViewToolBtn.SINGLE:
-                btn.onclick = () => this.singleSelect();
+                btn.onclick = MarkSelector.setSingleSelect;
                 break;
             case ViewToolBtn.LASSO:
-                btn.onclick = () => this.lassoSelect();
+                btn.onclick = MarkSelector.setLassoSelect;
                 break;
             case ViewToolBtn.SUGGEST:
                 btnIcon.classList.add('no-hover-icon');
@@ -214,55 +227,58 @@ export class ViewToolBtn {
 
     // btn listeners
     public suggestSelection(btnIcon: HTMLSpanElement): void {
-        if (state.suggestion) {
-            btnIcon.classList.add('selection-non-suggestion-icon');
-            btnIcon.classList.remove('selection-suggestion-icon');
-            State.tmpStateBusket.push({
-                historyAction: { actionType: action.TOGGLE_SUGGESTION, actionVal: true },
-                currentAction: { actionType: action.TOGGLE_SUGGESTION, actionVal: false }
-            })
-            State.saveHistory();
-            Reducer.triger(action.TOGGLE_SUGGESTION, false);
-        } else {
-            btnIcon.classList.remove('selection-non-suggestion-icon');
-            btnIcon.classList.add('selection-suggestion-icon');
-            State.tmpStateBusket.push({
-                historyAction: { actionType: action.TOGGLE_SUGGESTION, actionVal: false },
-                currentAction: { actionType: action.TOGGLE_SUGGESTION, actionVal: true }
-            })
-            State.saveHistory();
-            Reducer.triger(action.TOGGLE_SUGGESTION, true);
-        }
+        // TODO:
+        // if (state.suggestion) {
+        //     btnIcon.classList.add('selection-non-suggestion-icon');
+        //     btnIcon.classList.remove('selection-suggestion-icon');
+        //     State.tmpStateBusket.push({
+        //         historyAction: { actionType: action.TOGGLE_SUGGESTION, actionVal: true },
+        //         currentAction: { actionType: action.TOGGLE_SUGGESTION, actionVal: false }
+        //     })
+        //     State.saveHistory();
+        //     Reducer.triger(action.TOGGLE_SUGGESTION, false);
+        // } else {
+        //     btnIcon.classList.remove('selection-non-suggestion-icon');
+        //     btnIcon.classList.add('selection-suggestion-icon');
+        //     State.tmpStateBusket.push({
+        //         historyAction: { actionType: action.TOGGLE_SUGGESTION, actionVal: false },
+        //         currentAction: { actionType: action.TOGGLE_SUGGESTION, actionVal: true }
+        //     })
+        //     State.saveHistory();
+        //     Reducer.triger(action.TOGGLE_SUGGESTION, true);
+        // }
     }
 
     public singleSelect(): void {
-        if (!document.getElementById('chartContainer').classList.contains('single-select')) {
-            //change cursor
-            document.getElementById('chartContainer').classList.add('single-select');
-            document.getElementById('chartContainer').classList.remove('lasso-select');
-            //change button status
-            if (document.getElementsByClassName('selected-tool').length > 0) {
-                document.getElementsByClassName('selected-tool')[0].classList.remove('selected-tool');
-            }
-            document.getElementsByClassName('arrow-icon')[0].classList.add('selected-tool');
-            //init rectangular selection
-            Tool.initRectangularSelection('chartContainer');
-        }
+        // markSelector.setMode(markSelectorMode.SINGLE_SELECT);
+        // if (!document.getElementById('chartContainer').classList.contains('single-select')) {
+        //     //change cursor2
+        //     document.getElementById('chartContainer').classList.add('single-select');
+        //     document.getElementById('chartContainer').classList.remove('lasso-select');
+        //     //change button status
+        //     if (document.getElementsByClassName('selected-tool').length > 0) {
+        //         document.getElementsByClassName('selected-tool')[0].classList.remove('selected-tool');
+        //     }
+        //     document.getElementsByClassName('arrow-icon')[0].classList.add('selected-tool');
+        //     //init rectangular selection
+        //     Tool.initRectangularSelection('chartContainer');
+        // }
     }
 
     public lassoSelect(): void {
-        if (!document.getElementById('chartContainer').classList.contains('lasso-select')) {
-            //change cursor
-            document.getElementById('chartContainer').classList.remove('single-select');
-            document.getElementById('chartContainer').classList.add('lasso-select');
-            //change button status
-            if (document.getElementsByClassName('selected-tool').length > 0) {
-                document.getElementsByClassName('selected-tool')[0].classList.remove('selected-tool');
-            }
-            document.getElementsByClassName('lasso-icon')[0].classList.add('selected-tool');
-            //init lasso selection
-            Tool.initLassoSelection('chartContainer');
-        }
+        // markSelector.setMode(markSelectorMode.LASSO_SELECT);
+        // if (!document.getElementById('chartContainer').classList.contains('lasso-select')) {
+        //     //change cursor
+        //     document.getElementById('chartContainer').classList.remove('single-select');
+        //     document.getElementById('chartContainer').classList.add('lasso-select');
+        //     //change button status
+        //     if (document.getElementsByClassName('selected-tool').length > 0) {
+        //         document.getElementsByClassName('selected-tool')[0].classList.remove('selected-tool');
+        //     }
+        //     document.getElementsByClassName('lasso-icon')[0].classList.add('selected-tool');
+        //     //init lasso selection
+        //     Tool.initLassoSelection('chartContainer');
+        // }
     }
 
     public zoomIn(): void { }

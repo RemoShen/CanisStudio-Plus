@@ -2,10 +2,10 @@ import '../../assets/style/dragableCanvas.scss'
 import { ICoord } from '../../util/ds';
 import KfItem from './kfItem';
 import PlusBtn from './plusBtn';
-import { state, State } from '../../app/state';
+import { state, State } from '../../app_backup/state';
 import Tool from '../../util/tool';
-import Reducer from '../../app/reducer';
-import * as action from '../../app/action';
+import Reducer from '../../app_backup/reducer';
+import * as action from '../../app_backup/action';
 import { ChartSpec, Animation } from '../../canis/moduleIdx'
 
 export default class DragableCanvas {

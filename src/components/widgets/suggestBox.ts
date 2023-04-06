@@ -1,16 +1,16 @@
 import '../../assets/style/suggestBox.scss'
 import KfItem from "./kfItem";
 import { KfContainer } from "../kfContainer";
-import { state, State } from "../../app/state";
-import { IPath, IKeyframe, IActivatePlusBtn } from "../../app/core/ds";
+import { state, State } from "../../app_backup/state";
+import { IPath, IKeyframe, IActivatePlusBtn } from "../../app_backup/core/ds";
 import KfGroup from "./kfGroup";
 import Tool from "../../util/tool";
 import { ICoord } from "../../util/ds";
-import Reducer from "../../app/reducer";
-import * as action from "../../app/action";
+import Reducer from "../../app_backup/reducer";
+import * as action from "../../app_backup/action";
 import { Loading } from './loading';
-import Util from '../../app/core/util';
-import Suggest from '../../app/core/suggest';
+import Util from '../../app_backup/core/util';
+import Suggest from '../../app_backup/core/suggest';
 import PlusBtn from './plusBtn';
 import KfOmit from './kfOmit';
 

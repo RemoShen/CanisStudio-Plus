@@ -1,0 +1,162 @@
+<svg id="visChart" viewBox="0 0 953 720" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+    <g id="chartContent">
+        <g transform="translate(0,690)" fill="none" font-size="10" font-family="sans-serif" text-anchor="middle" class="axis" data-datum="{&quot;_TYPE&quot;:&quot;axis&quot;,&quot;type&quot;:&quot;x&quot;,&quot;position&quot;:&quot;year&quot;}">
+            <g>
+                <text id="mark4001" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="40.5" y="9" dy="0.71em">5,000</text>
+                <text id="mark4002" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="120.77272727272727" y="9" dy="0.71em">5,500</text>
+                <text id="mark4003" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="201.04545454545453" y="9" dy="0.71em">6,000</text>
+                <text id="mark4004" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="281.3181818181818" y="9" dy="0.71em">6,500</text>
+                <text id="mark4005" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="361.59090909090907" y="9" dy="0.71em">7,000</text>
+                <text id="mark4006" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="441.8636363636363" y="9" dy="0.71em">7,500</text>
+                <text id="mark4007" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="522.1363636363636" y="9" dy="0.71em">8,000</text>
+                <text id="mark4008" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="602.4090909090909" y="9" dy="0.71em">8,500</text>
+                <text id="mark4009" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="682.6818181818181" y="9" dy="0.71em">9,000</text>
+                <text id="mark4010" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="762.9545454545455" y="9" dy="0.71em">9,500</text>
+                <text id="mark4011" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="843.2272727272726" y="9" dy="0.71em">10,000</text>
+                <text id="mark4012" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="923.5" y="9" dy="0.71em">10,500</text>
+            </g>
+            <g>
+                <line id="mark5001" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="40.5" x2="40.5" y1="0" y2="6"></line>
+                <line id="mark5002" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="120.77272727272727" x2="120.77272727272727" y1="0" y2="6"></line>
+                <line id="mark5003" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="201.04545454545453" x2="201.04545454545453" y1="0" y2="6"></line>
+                <line id="mark5004" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="281.3181818181818" x2="281.3181818181818" y1="0" y2="6"></line>
+                <line id="mark5005" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="361.59090909090907" x2="361.59090909090907" y1="0" y2="6"></line>
+                <line id="mark5006" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="441.8636363636363" x2="441.8636363636363" y1="0" y2="6"></line>
+                <line id="mark5007" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="522.1363636363636" x2="522.1363636363636" y1="0" y2="6"></line>
+                <line id="mark5008" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="602.4090909090909" x2="602.4090909090909" y1="0" y2="6"></line>
+                <line id="mark5009" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="682.6818181818181" x2="682.6818181818181" y1="0" y2="6"></line>
+                <line id="mark5010" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="762.9545454545455" x2="762.9545454545455" y1="0" y2="6"></line>
+                <line id="mark5011" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="843.2272727272726" x2="843.2272727272726" y1="0" y2="6"></line>
+                <line id="mark5012" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="923.5" x2="923.5" y1="0" y2="6"></line>
+            </g>
+            <g>
+                <line id="mark6001" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="40.5" x2="40.5" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6002" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="120.77272727272727" x2="120.77272727272727" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6003" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="201.04545454545453" x2="201.04545454545453" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6004" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="281.3181818181818" x2="281.3181818181818" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6005" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="361.59090909090907" x2="361.59090909090907" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6006" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="441.8636363636363" x2="441.8636363636363" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6007" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="522.1363636363636" x2="522.1363636363636" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6008" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="602.4090909090909" x2="602.4090909090909" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6009" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="682.6818181818181" x2="682.6818181818181" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6010" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="762.9545454545455" x2="762.9545454545455" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6011" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="843.2272727272726" x2="843.2272727272726" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6012" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="923.5" x2="923.5" y1="0" y2="-720" stroke="#eee" stroke-width="1"></line>
+            </g>
+        </g>
+        <g transform="translate(40,0)" fill="none" font-size="10" font-family="sans-serif" text-anchor="end">
+            <g>
+                <line id="mark5013" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="690.5" y2="690.5" x2="-6"></line>
+                <line id="mark5014" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="629.5909090909092" y2="629.5909090909092" x2="-6"></line>
+                <line id="mark5015" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="568.6818181818181" y2="568.6818181818181" x2="-6"></line>
+                <line id="mark5016" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="507.77272727272725" y2="507.77272727272725" x2="-6"></line>
+                <line id="mark5017" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="446.8636363636363" y2="446.8636363636363" x2="-6"></line>
+                <line id="mark5018" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="385.9545454545454" y2="385.9545454545454" x2="-6"></line>
+                <line id="mark5019" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="325.0454545454546" y2="325.0454545454546" x2="-6"></line>
+                <line id="mark5020" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="264.1363636363636" y2="264.1363636363636" x2="-6"></line>
+                <line id="mark5021" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="203.22727272727278" y2="203.22727272727278" x2="-6"></line>
+                <line id="mark5022" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="142.31818181818187" y2="142.31818181818187" x2="-6"></line>
+                <line id="mark5023" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="81.40909090909093" y2="81.40909090909093" x2="-6"></line>
+                <line id="mark5024" class="mark axis-tick" data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" x1="0" y1="20.5" y2="20.5" x2="-6"></line>
+            </g>
+            <g>
+                <text id="mark4013" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="690.5" dy="0.32em">$1.20</text>
+                <text id="mark4014" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="629.5909090909092" dy="0.32em">$1.40</text>
+                <text id="mark4015" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="568.6818181818181" dy="0.32em">$1.60</text>
+                <text id="mark4016" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="507.77272727272725" dy="0.32em">$1.80</text>
+                <text id="mark4017" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="446.8636363636363" dy="0.32em">$2.00</text>
+                <text id="mark4018" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="385.9545454545454" dy="0.32em">$2.20</text>
+                <text id="mark4019" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="325.0454545454546" dy="0.32em">$2.40</text>
+                <text id="mark4020" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="264.1363636363636" dy="0.32em">$2.60</text>
+                <text id="mark4021" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="203.22727272727278" dy="0.32em">$2.80</text>
+                <text id="mark4022" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="142.31818181818187" dy="0.32em">$3.00</text>
+                <text id="mark4023" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="81.40909090909093" dy="0.32em">$3.20</text>
+                <text id="mark4024" class="mark axis-label" data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" fill="#000" x="-9" y="20.5" dy="0.32em">$3.40</text>
+            </g>
+            <g>
+                <line id="mark6013" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="690.5" y2="690.5" x2="953" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6014" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="629.5909090909092" y2="629.5909090909092" x2="953" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6015" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="568.6818181818181" y2="568.6818181818181" x2="953" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6016" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="446.8636363636363" y2="446.8636363636363" x2="953" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6017" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="507.77272727272725" y2="507.77272727272725" x2="953" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6018" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="385.9545454545454" y2="385.9545454545454" x2="953" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6019" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="325.0454545454546" y2="325.0454545454546" x2="953" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6020" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="264.1363636363636" y2="264.1363636363636" x2="953" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6021" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="203.22727272727278" y2="203.22727272727278" x2="953" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6022" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="142.31818181818187" y2="142.31818181818187" x2="953" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6023" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="81.40909090909093" y2="81.40909090909093" x2="953" stroke="#eee" stroke-width="1"></line>
+                <line id="mark6024" class="mark axis-grid" data-datum="{&quot;_TYPE&quot;:&quot;axis-grid&quot;}" x1="0" y1="20.5" y2="20.5" x2="953" stroke="#eee" stroke-width="1"></line>
+            </g>
+        </g>
+        <g>
+            <path id="mark1" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1970&quot;,&quot;miles&quot;:5384.6732,&quot;gas&quot;:2.0118}]" fill="none" stroke="black" stroke-width="2.5" d="M101.8,442.8c0,0,79,53.3,95.5,42.1"/>
+            <path id="mark2" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1972&quot;,&quot;miles&quot;:5979.7145,&quot;gas&quot;:1.8737}]" fill="none" stroke="black" stroke-width="2.5" d="M197.3,484.8c19.3,-13.1,-24.4,-125.3,-5.3,-143.4"/>
+            <path id="mark3" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1974&quot;,&quot;miles&quot;:5946.6566,&quot;gas&quot;:2.3447}]" fill="none" stroke="black" stroke-width="2.5" d="M192,341.4c13.6,-13,48.5,0.9,72.9,6.4"/>
+            <path id="mark4" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1976&quot;,&quot;miles&quot;:6400.4508,&quot;gas&quot;:2.3237}]" fill="none" stroke="black" stroke-width="2.5" d="M264.8,347.8c26.1,5.8,63.2,40.9,78.6,28.9"/>
+            <path id="mark5" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1978&quot;,&quot;miles&quot;:6890.308,&quot;gas&quot;:2.2288}]" fill="none" stroke="black" stroke-width="2.5" d="M343.5,376.7c30.5,-23.8,-40,-324.6,-35.2,-325.4"/>
+            <path id="mark6" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1980&quot;,&quot;miles&quot;:6670.9241,&quot;gas&quot;:3.2974}]" fill="none" stroke="black" stroke-width="2.5" d="M308.3,51.2c2.9,-0.5,15.2,75.4,26.5,115"/>
+            <path id="mark7" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1982&quot;,&quot;miles&quot;:6836.2134,&quot;gas&quot;:2.9197}]" fill="none" stroke="black" stroke-width="2.5" d="M334.8,166.3c12.5,43.6,30.1,84.8,46.8,135.4"/>
+            <path id="mark8" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1984&quot;,&quot;miles&quot;:7127.7235,&quot;gas&quot;:2.475}]" fill="none" stroke="black" stroke-width="2.5" d="M381.6,301.7c21.1,63.8,31.5,182.1,68.5,217.6"/>
+            <path id="mark9" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1986&quot;,&quot;miles&quot;:7554.4703,&quot;gas&quot;:1.7605}]" fill="none" stroke="black" stroke-width="2.5" d="M450.1,519.3c23.1,22.2,59.8,28.8,85.9,23.2"/>
+            <path id="mark10" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1988&quot;,&quot;miles&quot;:8089.4064,&quot;gas&quot;:1.6842}]" fill="none" stroke="black" stroke-width="2.5" d="M536,542.5c26.6,-5.7,56.1,-62.7,71.9,-58.5"/>
+            <path id="mark11" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1990&quot;,&quot;miles&quot;:8537.1901,&quot;gas&quot;:1.8763}]" fill="none" stroke="black" stroke-width="2.5" d="M607.9,484c12.9,3.5,11.3,42.8,22.2,58.1"/>
+            <path id="mark12" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1992&quot;,&quot;miles&quot;:8675.432,&quot;gas&quot;:1.6855}]" fill="none" stroke="black" stroke-width="2.5" d="M630.1,542.1c9.6,13.5,23.9,29.9,37.2,30.9"/>
+            <path id="mark13" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1994&quot;,&quot;miles&quot;:8906.837,&quot;gas&quot;:1.5842}]" fill="none" stroke="black" stroke-width="2.5" d="M667.2,573c13.8,1,29.6,-30.2,44.4,-27.3"/>
+            <path id="mark14" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1996&quot;,&quot;miles&quot;:9183.3208,&quot;gas&quot;:1.6737}]" fill="none" stroke="black" stroke-width="2.5" d="M711.6,545.7c21.2,4.2,49.1,90.5,63.2,87"/>
+            <path id="mark15" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;1998&quot;,&quot;miles&quot;:9577.0098,&quot;gas&quot;:1.3881}]" fill="none" stroke="black" stroke-width="2.5" d="M774.8,632.7c17,-4.3,13.7,-154.1,20.7,-154.3"/>
+            <path id="mark16" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;2000&quot;,&quot;miles&quot;:9706.2359,&quot;gas&quot;:1.8947}]" fill="none" stroke="black" stroke-width="2.5" d="M795.6,478.4c5.1,-0.2,9.4,78.1,15.4,78.1"/>
+            <path id="mark17" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;2002&quot;,&quot;miles&quot;:9802.4042,&quot;gas&quot;:1.6381}]" fill="none" stroke="black" stroke-width="2.5" d="M811,556.6c8.4,0,24.2,-98.8,30.4,-153.5"/>
+            <path id="mark18" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;2004&quot;,&quot;miles&quot;:9991.7355,&quot;gas&quot;:2.1421}]" fill="none" stroke="black" stroke-width="2.5" d="M841.4,403.1c7,-61.6,10.3,-136.4,6.3,-198.4"/>
+            <path id="mark19" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;2006&quot;,&quot;miles&quot;:10030.8039,&quot;gas&quot;:2.7934}]" fill="none" stroke="black" stroke-width="2.5" d="M847.7,204.7c-3.6,-55.4,-15.1,-156.1,-25.6,-156.3"/>
+            <path id="mark20" class="mark Link1 link" data-datum="[{&quot;year&quot;:&quot;2008&quot;,&quot;miles&quot;:9871.5252,&quot;gas&quot;:3.3066}]" fill="none" stroke="black" stroke-width="2.5" d="M822.1,48.4c-12.3,-0.3,-44.9,213.2,-44.9,213.2"/>
+        </g>
+        <g>
+            <circle id="mark1001" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1970&quot;,&quot;miles&quot;:5384.6732,&quot;gas&quot;:2.0118}" fill="white" stroke="black" stroke-width="2" cx="101.7575337454546" cy="442.77" r="3"></circle>
+            <circle id="mark1002" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1972&quot;,&quot;miles&quot;:5979.7145,&quot;gas&quot;:1.8737}" fill="white" stroke="black" stroke-width="2" cx="197.2887097272727" cy="484.8277272727273" r="3"></circle>
+            <circle id="mark1003" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1974&quot;,&quot;miles&quot;:5946.6566,&quot;gas&quot;:2.3447}" fill="white" stroke="black" stroke-width="2" cx="191.9814141454546" cy="341.38681818181817" r="3"></circle>
+            <circle id="mark1004" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1976&quot;,&quot;miles&quot;:6400.4508,&quot;gas&quot;:2.3237}" fill="white" stroke="black" stroke-width="2" cx="264.8360102545454" cy="347.7822727272727" r="3"></circle>
+            <circle id="mark1005" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1978&quot;,&quot;miles&quot;:6890.308,&quot;gas&quot;:2.2288}" fill="white" stroke="black" stroke-width="2" cx="343.4803570909091" cy="376.68363636363637" r="3"></circle>
+            <circle id="mark1006" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1980&quot;,&quot;miles&quot;:6670.9241,&quot;gas&quot;:3.2974}" fill="white" stroke="black" stroke-width="2" cx="308.2592691454546" cy="51.246363636363604" r="3"></circle>
+            <circle id="mark1007" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1982&quot;,&quot;miles&quot;:6836.2134,&quot;gas&quot;:2.9197}" fill="white" stroke="black" stroke-width="2" cx="334.79571494545445" cy="166.27318181818177" r="3"></circle>
+            <circle id="mark1008" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1984&quot;,&quot;miles&quot;:7127.7235,&quot;gas&quot;:2.475}" fill="white" stroke="black" stroke-width="2" cx="381.59633645454545" cy="301.7045454545454" r="3"></circle>
+            <circle id="mark1009" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1986&quot;,&quot;miles&quot;:7554.4703,&quot;gas&quot;:1.7605}" fill="white" stroke="black" stroke-width="2" cx="450.1085954363636" cy="519.3022727272728" r="3"></circle>
+            <circle id="mark1010" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1988&quot;,&quot;miles&quot;:8089.4064,&quot;gas&quot;:1.6842}" fill="white" stroke="black" stroke-width="2" cx="535.9901547636364" cy="542.5390909090909" r="3"></circle>
+            <circle id="mark1011" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1990&quot;,&quot;miles&quot;:8537.1901,&quot;gas&quot;:1.8763}" fill="white" stroke="black" stroke-width="2" cx="607.8797924181819" cy="484.03590909090906" r="3"></circle>
+            <circle id="mark1012" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1992&quot;,&quot;miles&quot;:8675.432,&quot;gas&quot;:1.6855}" fill="white" stroke="black" stroke-width="2" cx="630.0739010909092" cy="542.1431818181818" r="3"></circle>
+            <circle id="mark1013" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1994&quot;,&quot;miles&quot;:8906.837,&quot;gas&quot;:1.5842}" fill="white" stroke="black" stroke-width="2" cx="667.2249219999999" cy="572.9936363636364" r="3"></circle>
+            <circle id="mark1014" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1996&quot;,&quot;miles&quot;:9183.3208,&quot;gas&quot;:1.6737}" fill="white" stroke="black" stroke-width="2" cx="711.6131393454546" cy="545.7368181818182" r="3"></circle>
+            <circle id="mark1015" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;1998&quot;,&quot;miles&quot;:9577.0098,&quot;gas&quot;:1.3881}" fill="white" stroke="black" stroke-width="2" cx="774.8181188" cy="632.7150000000001" r="3"></circle>
+            <circle id="mark1016" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;2000&quot;,&quot;miles&quot;:9706.2359,&quot;gas&quot;:1.8947}" fill="white" stroke="black" stroke-width="2" cx="795.5647817636362" cy="478.4322727272727" r="3"></circle>
+            <circle id="mark1017" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;2002&quot;,&quot;miles&quot;:9802.4042,&quot;gas&quot;:1.6381}" fill="white" stroke="black" stroke-width="2" cx="811.0041652000002" cy="556.5786363636364" r="3"></circle>
+            <circle id="mark1018" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;2004&quot;,&quot;miles&quot;:9991.7355,&quot;gas&quot;:2.1421}" fill="white" stroke="black" stroke-width="2" cx="841.4004448181819" cy="403.08772727272725" r="3"></circle>
+            <circle id="mark1019" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;2006&quot;,&quot;miles&quot;:10030.8039,&quot;gas&quot;:2.7934}" fill="white" stroke="black" stroke-width="2" cx="847.6726988545456" cy="204.73727272727274" r="3"></circle>
+            <circle id="mark1020" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;2008&quot;,&quot;miles&quot;:9871.5252,&quot;gas&quot;:3.3066}" fill="white" stroke="black" stroke-width="2" cx="822.1012275636364" cy="48.44454545454543" r="3"></circle>
+            <circle id="mark1021" class="mark Symbol1 symbol" data-datum="{&quot;year&quot;:&quot;2010&quot;,&quot;miles&quot;:9592.0361,&quot;gas&quot;:2.6066}" fill="white" stroke="black" stroke-width="2" cx="777.2305229636363" cy="261.62636363636375" r="3"></circle>
+        </g>
+        <g >
+            <text id="mark2001" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1970&quot;,&quot;miles&quot;:5384.6732,&quot;gas&quot;:2.0118}" font-family="sans-serif" font-size="14" font-weight="bold" x="105" y="445" text-anchor="start">1970</text>
+            <text id="mark2002" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1972&quot;,&quot;miles&quot;:5979.7145,&quot;gas&quot;:1.8737}" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" x="197" y="500">1972</text>
+            <text id="mark2003" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1974&quot;,&quot;miles&quot;:5946.6566,&quot;gas&quot;:2.3447}" font-family="sans-serif" font-size="14" font-weight="bold" x="187" y="341" text-anchor="end">1974</text>
+            <text id="mark2004" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1976&quot;,&quot;miles&quot;:6400.4508,&quot;gas&quot;:2.3237}" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" x="266" y="342">1976</text>
+            <text id="mark2005" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1978&quot;,&quot;miles&quot;:6890.308,&quot;gas&quot;:2.2288}" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" x="343" y="390">1978</text>
+            <text id="mark2006" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1980&quot;,&quot;miles&quot;:6670.9241,&quot;gas&quot;:3.2974}" font-family="sans-serif" font-size="14" font-weight="bold" x="316" y="45" text-anchor="end">1980</text>
+            <text id="mark2007" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1982&quot;,&quot;miles&quot;:6836.2134,&quot;gas&quot;:2.9197}" font-family="sans-serif" font-size="14" font-weight="bold" x="340" y="170" text-anchor="start">1982</text>
+            <text id="mark2008" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1984&quot;,&quot;miles&quot;:7127.7235,&quot;gas&quot;:2.475}" font-family="sans-serif" font-size="14" font-weight="bold" x="386" y="306" text-anchor="start">1984</text>
+            <text id="mark2009" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1986&quot;,&quot;miles&quot;:7554.4703,&quot;gas&quot;:1.7605}" font-family="sans-serif" font-size="14" font-weight="bold" x="446" y="524" text-anchor="end">1986</text>
+            <text id="mark2010" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1988&quot;,&quot;miles&quot;:8089.4064,&quot;gas&quot;:1.6842}" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" x="536" y="556">1988</text>
+            <text id="mark2011" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1990&quot;,&quot;miles&quot;:8537.1901,&quot;gas&quot;:1.8763}" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" x="607" y="478">1990</text>
+            <text id="mark2012" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1992&quot;,&quot;miles&quot;:8675.432,&quot;gas&quot;:1.6855}" font-family="sans-serif" font-size="14" font-weight="bold" x="634" y="546" text-anchor="start">1992</text>
+            <text id="mark2013" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1994&quot;,&quot;miles&quot;:8906.837,&quot;gas&quot;:1.5842}" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" x="667" y="586">1994</text>
+            <text id="mark2014" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1996&quot;,&quot;miles&quot;:9183.3208,&quot;gas&quot;:1.6737}" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" x="711" y="540">1996</text>
+            <text id="mark2015" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;1998&quot;,&quot;miles&quot;:9577.0098,&quot;gas&quot;:1.3881}" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" x="774" y="646">1998</text>
+            <text id="mark2016" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;2000&quot;,&quot;miles&quot;:9706.2359,&quot;gas&quot;:1.8947}" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" x="795" y="474">2000</text>
+            <text id="mark2017" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;2002&quot;,&quot;miles&quot;:9802.4042,&quot;gas&quot;:1.6381}" font-family="sans-serif" font-size="14" font-weight="bold" text-anchor="middle" x="811" y="570">2002</text>
+            <text id="mark2018" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;2004&quot;,&quot;miles&quot;:9991.7355,&quot;gas&quot;:2.1421}" font-family="sans-serif" font-size="14" font-weight="bold" x="836" y="406" text-anchor="end">2004</text>
+            <text id="mark2019" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;2006&quot;,&quot;miles&quot;:10030.8039,&quot;gas&quot;:2.7934}" font-family="sans-serif" font-size="14" font-weight="bold" x="854" y="208" text-anchor="start">2006</text>
+            <text id="mark2020" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;2008&quot;,&quot;miles&quot;:9871.5252,&quot;gas&quot;:3.3066}" font-family="sans-serif" font-size="14" font-weight="bold" x="834" y="42" text-anchor="end">2008</text>
+            <text id="mark2021" class="mark Symbol2 symbol" data-datum="{&quot;year&quot;:&quot;2010&quot;,&quot;miles&quot;:9592.0361,&quot;gas&quot;:2.6066}" font-family="sans-serif" font-size="14" font-weight="bold" x="770" y="266" text-anchor="end">2010</text>
+        </g>
+    </g>
+</svg>

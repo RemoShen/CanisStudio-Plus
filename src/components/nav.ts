@@ -1,14 +1,13 @@
 import '../assets/style/nav.scss'
 import LogoImg from '../assets/img/logo.png'
 import FloatingWindow from './floatingWindow'
-import Reducer from '../app/reducer';
-import * as action from '../app/action';
-import { State, state } from '../app/state';
 import { ViewContent } from './viewWindow';
 import { Loading } from './widgets/loading';
 import Tool from '../util/tool';
 import { player } from './player';
-
+import { clearKfTrees, redo, revert } from '../app/kfTree';
+import { chartManager } from '../app/chartManager';
+import Renderer from '../app_backup/renderer';
 export default class Nav {
     navContainer: HTMLDivElement;
 
@@ -23,7 +22,8 @@ export default class Nav {
         logo.src = LogoImg;
         logoContainer.appendChild(logo);
         const logoText: HTMLSpanElement = document.createElement('span');
-        logoText.textContent = 'CAST';
+        // logoText.textContent = 'Canis Studio<tspan dy="-3">2</tspan>';
+        logoText.innerHTML = 'Canis Studio<sup>2</sup>'
         logoText.className = 'title-text';
         logoContainer.appendChild(logoText);
         this.navContainer.appendChild(logoContainer);
@@ -212,9 +212,8 @@ class NavBtn {
 
     public saveProject() {
         const outputObj = {
-            spec: state.spec
+            spec: chartManager.lottieSpec
         }
-
         const file = new Blob([JSON.stringify(outputObj, null, 2)], { type: 'application/json' });
         const fileName = 'cast_project.cpro';
         if (window.navigator.msSaveOrOpenBlob) // IE10+
@@ -234,7 +233,7 @@ class NavBtn {
     }
 
     public exportLottie() {
-        const file = new Blob([JSON.stringify(state.lottieSpec, null, 2)], { type: 'application/json' });
+        const file = new Blob([JSON.stringify(chartManager.lottieSpec, null, 2)], { type: 'application/json' });
         const fileName = 'animatedChart.json';
         if (window.navigator.msSaveOrOpenBlob) // IE10+
             window.navigator.msSaveOrOpenBlob(file, fileName);
@@ -255,7 +254,7 @@ class NavBtn {
     public exportVideo() {
         const targetSVG: any = document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID).querySelector('svg');
         if (typeof targetSVG !== 'undefined' && targetSVG) {
-            Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.body, content: Loading.EXPORTING });
+            Renderer.renderLoading(document.body, Loading.EXPORTING);
             setTimeout(() => {
                 const canvas: any = document.createElement('canvas');
                 const cWidth: number = canvas.width = parseFloat(targetSVG.getAttribute('width'));
@@ -283,15 +282,15 @@ class NavBtn {
                     setTimeout(function () {
                         document.body.removeChild(a);
                         window.URL.revokeObjectURL(url);
-                        Reducer.triger(action.UPDATE_LOADING_STATUS, { il: false });
+                        Renderer.removeLoading()
                     }, 0);
                 };
 
                 recorder.start();
-                for (let i = 0, p = Promise.resolve(), len = state.lottieAni.getDuration() * 1000; i < len; i += 60) {
+                for (let i = 0, p = Promise.resolve(), len = chartManager.lottieAnimation.getDuration() * 1000; i < len; i += 60) {
                     p = p.then(() => new Promise(resolve =>
                         setTimeout(function () {
-                            state.lottieAni.goToAndStop(Math.ceil(i / (1000 / player.frameRate)), true)
+                            chartManager.lottieAnimation.goToAndStop(Math.ceil(i / (1000 / player.frameRate)), true)
                             const img = new Image(),
                                 serialized = new XMLSerializer().serializeToString(targetSVG),
                                 url = URL.createObjectURL(new Blob([serialized], { type: "image/svg+xml" }));
@@ -311,23 +310,29 @@ class NavBtn {
     }
 
     public revert(): void {
-        Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING })
-        setTimeout(() => {
-            State.revertHistory();
-            Loading.removeLoading();
-        }, 1);
+        revert();
+        // TODO:
+        // Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING })
+        // setTimeout(() => {
+        //     State.revertHistory();
+        //     Loading.removeLoading();
+        // }, 1);
     }
 
     public redo(): void {
-        Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING })
-        setTimeout(() => {
-            State.redoHistory();
-            Loading.removeLoading();
-        }, 1);
+        redo();
+        // TODO:
+        // Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING })
+        // setTimeout(() => {
+        //     State.redoHistory();
+        //     Loading.removeLoading();
+        // }, 1);
     }
 
     public reset(): void {
-        Reducer.triger(action.RESET_STATE, {});
+        clearKfTrees();
+        // TODO:
+        // Reducer.triger(action.RESET_STATE, {});
     }
 
     // public static testSpec(): void {
@@ -337,13 +342,15 @@ class NavBtn {
     // }
 
     public static async testGif() {
-        console.log(state.lottieSpec);
-        // // const gif = new LottieRenderer();
+        // TODO:
+        // console.log(state.lottieSpec);
+        // const gif = new LottieRenderer();
         // await LottieRenderer({
         //     animationData: state.lottieSpec,
         //     // path: 'fixtures/bodymovin.json',
         //     output: 'example.gif',
         //     width: 640
         // })
+
     }
 }

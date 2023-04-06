@@ -2,10 +2,10 @@ import './assets/style/app.scss'
 import Nav from './components/nav'
 import ResizablePanel, { IRPanel } from './components/resizablePanel'
 import ViewWindow from './components/viewWindow'
-import { state } from './app/state'
 import Tool from './util/tool'
 import { Hint, hintTag } from './components/widgets/hint'
 import { player } from './components/player'
+import { MarkSelector } from './app/markSelector'
 
 function app(): HTMLDivElement {
     const outerWrapper: HTMLDivElement = document.createElement('div');
@@ -59,7 +59,8 @@ document.onkeyup = (e) => {
     var key = event.which || event.keyCode || event.charCode;
     if (key == 13) {
         if (typeof document.getElementById(Hint.TIMING_HINT_ID) !== 'undefined') {
-            hintTag.contentInput.blur();
+            // hintTag.contentInput.blur();
+            MarkSelector.emitSelection();
         }
     } else if (key == 32) {
         if (player.playing) {
@@ -75,7 +76,9 @@ document.onkeyup = (e) => {
 document.body.appendChild(app());
 //init styles
 Tool.resizeWidgets();
-state.reset();
+
+MarkSelector.init();
+
 //load examples
 // (<HTMLElement>document.getElementsByClassName('open-eg-icon')[0]).click();
 //thisis to test timeline

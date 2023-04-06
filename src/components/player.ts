@@ -1,7 +1,7 @@
 import '../assets/style/player.scss'
 
 import Slider from './widgets/slider'
-import { state } from '../app/state';
+import { chartManager } from '../app/chartManager'
 
 interface IPlayerProps {
     frameRate: number
@@ -135,21 +135,21 @@ export class Player {
 
     public renderFrame(time: number) {
         player.currentTime = time;
-        state.lottieAni.goToAndStop(Math.ceil(time / (1000 / player.frameRate)), true);
+        chartManager.lottieAnimation.goToAndStop(Math.ceil(time / (1000 / player.frameRate)), true);
     }
 
     public playAnimation() {
         if (this.currentTime === this.totalTime) {
             this.currentTime = 0;
-            if (state.lottieAni) {
-                state.lottieAni.stop();
+            if (chartManager.lottieAnimation) {
+                chartManager.lottieAnimation.stop();
             }
         } else {
             this.currentTime = Math.floor(this.currentTime / (1000 / this.frameRate)) * (1000 / this.frameRate);
         }
         this.playing = true;
-        if (state.lottieAni) {
-            state.lottieAni.play();
+        if (chartManager.lottieAnimation) {
+            chartManager.lottieAnimation.play();
         }
         if (document.getElementById('playBtnWrapper')) {
             document.getElementById('playBtnWrapper').title = 'Stop';
@@ -168,8 +168,8 @@ export class Player {
 
     public pauseAnimation() {
         this.playing = false;
-        if (state.lottieAni) {
-            state.lottieAni.pause();
+        if (chartManager.lottieAnimation) {
+            chartManager.lottieAnimation.pause();
         }
         if (document.getElementById('playBtnWrapper')) {
             document.getElementById('playBtnWrapper').title = 'Play';

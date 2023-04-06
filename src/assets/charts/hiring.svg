@@ -1,0 +1,76 @@
+<svg id="visChart" version="1.1" 
+    xmlns="http://www.w3.org/2000/svg" 
+    xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 480 460" style="enable-background:new 0 0 480 460;" xml:space="preserve">
+    <g id="chartContent" transform="translate(30,0)">
+        <g transform="translate(0,370)" class="axis" data-datum="{&quot;_TYPE&quot;:&quot;axis&quot;,&quot;position&quot;:&quot;Year&quot;}">
+            <path id="mark10001" class='mark axis-domain' data-datum="{&quot;_TYPE&quot;:&quot;axis-domain&quot;}" fill="none" stroke="#000" stroke-width="0" d="M91.5,14.7L91.5,10"/>
+            <text id="mark4001" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="76" y="26" textx-anchor="middle" style="font-family:'ArialMT'; font-size:12px;">2010</text>
+            <text id="mark4002" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="145" y="26" textx-anchor="middle" style="font-family:'ArialMT'; font-size:12px;">2011</text>
+            <text id="mark4003" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="214" y="26" textx-anchor="middle" style="font-family:'ArialMT'; font-size:12px;">2012</text>
+            <text id="mark4004" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="283" y="26" textx-anchor="middle" style="font-family:'ArialMT'; font-size:12px;">2013</text>
+            <text id="mark4005" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="352" y="26" textx-anchor="middle" style="font-family:'ArialMT'; font-size:12px;">2014</text>
+            <line id="mark7001" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="91.5" y1="14.7" x2="91.5" y2="10"/>
+            <line id="mark7002" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="160.5" y1="14.7" x2="160.5" y2="10"/>
+            <line id="mark7003" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="226.8" y1="14.7" x2="226.8" y2="10"/>
+            <line id="mark7004" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="296.8" y1="14.7" x2="296.8" y2="10"/>
+            <line id="mark7005" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="367.5" y1="14.7" x2="367.5" y2="10"/>
+        </g>
+        <g>
+            <text id="mark4006" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="40" y="382" text-anchor="end" style="font-family:'ArialMT'; font-size:12px;">0</text>
+            <text id="mark4007" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="40" y="261" text-anchor="end" style="font-family:'ArialMT'; font-size:12px;">10,000</text>
+            <text id="mark4008" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="40" y="140" text-anchor="end" style="font-family:'ArialMT'; font-size:12px;">20,000</text>
+            <text id="mark4009" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="40" y="24" text-anchor="end" style="font-family:'ArialMT'; font-size:12px;">30,000</text>
+            <!-- <text id="mark5001" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="40" y="356" text-anchor="end" style="font-family:'ArialMT'; font-size:12px;">15,000</text>
+            <text id="mark5002" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="40" y="245" text-anchor="end" style="font-family:'ArialMT'; font-size:12px;">20,000</text>
+            <text id="mark5003" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="40" y="134" text-anchor="end" style="font-family:'ArialMT'; font-size:12px;">25,000</text>
+            <text id="mark5004" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="40" y="24" text-anchor="end" style="font-family:'ArialMT'; font-size:12px;">30,000</text> -->
+            <line id="mark8001" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="43.4" y1="19.3" x2="50.1" y2="19.3"/>
+            <line id="mark8002" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="43.4" y1="136.6" x2="50.1" y2="136.6"/>
+            <line id="mark8003" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="43.4" y1="257.2" x2="50.1" y2="257.2"/>
+            <line id="mark8004" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="43.4" y1="380" x2="50.1" y2="380"/>
+            <path id="mark11001" class='mark axis-domain' data-datum="{&quot;_TYPE&quot;:&quot;axis-domain&quot;}" fill="none" stroke="#000" stroke-width="1" d="M43.4,380L50.1,380L50.1,8.5L43.4,8.5"/>
+        </g>
+        <g transform="translate(360,0)">
+            <text id="mark4010" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="60" y="380" style="font-family:'ArialMT'; font-size:12px;">0%</text>
+            <text id="mark4011" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="60" y="285" style="font-family:'ArialMT'; font-size:12px;">5%</text>
+            <text id="mark4012" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="60" y="190" style="font-family:'ArialMT'; font-size:12px;">10%</text>
+            <text id="mark4013" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="60" y="94" style="font-family:'ArialMT'; font-size:12px;">15%</text>
+            <!-- <text id="mark6001" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="60" y="365" style="font-family:'ArialMT'; font-size:12px;">0%</text>
+            <text id="mark6002" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="60" y="270" style="font-family:'ArialMT'; font-size:12px;">5%</text>
+            <text id="mark6003" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="60" y="175" style="font-family:'ArialMT'; font-size:12px;">10%</text>
+            <text id="mark6004" class='mark axis-label' data-datum="{&quot;_TYPE&quot;:&quot;axis-label&quot;}" x="60" y="79" style="font-family:'ArialMT'; font-size:12px;">15%</text> -->
+            <line id="mark9001" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="56.3" y1="90.3" x2="49.7" y2="90.3"/>
+            <line id="mark9002" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="56.3" y1="185.6" x2="49.7" y2="185.6"/>
+            <line id="mark9003" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="56.3" y1="280.8" x2="49.7" y2="280.8"/>
+            <line id="mark9004" class='mark axis-tick' data-datum="{&quot;_TYPE&quot;:&quot;axis-tick&quot;}" stroke="#000" stroke-width="1" x1="56.3" y1="380" x2="49.7" y2="380"/>
+            <path id="mark12002" class='mark axis-domain' data-datum="{&quot;_TYPE&quot;:&quot;axis-domain&quot;}" fill="none" stroke="#000" stroke-width="1" d="M56.3,380L49.7,380L49.7,8.5L56.3,8.5"/>
+        </g>
+        <g>
+            <rect id="mark1001" class="mark Symbol2 symbol" data-datum="{&quot;Year&quot;:2010,&quot;Change&quot;:0.048,&quot;Employment&quot;:18423}" x="64" y="224" fill="#7FACCF" width="55" height="156"/>
+            <rect id="mark1002" class="mark Symbol2 symbol" data-datum="{&quot;Year&quot;:2011,&quot;Change&quot;:0.154,&quot;Employment&quot;:21252}" x="133" y="177" fill="#7FACCF" width="55" height="203"/>
+            <rect id="mark1003" class="mark Symbol2 symbol" data-datum="{&quot;Year&quot;:2012,&quot;Change&quot;:0.129,&quot;Employment&quot;:23988}" x="202" y="132" fill="#7FACCF" width="55" height="248"/>
+            <rect id="mark1004" class="mark Symbol2 symbol" data-datum="{&quot;Year&quot;:2013,&quot;Change&quot;:0.084,&quot;Employment&quot;:25998}" x="271" y="98" fill="#7FACCF" width="55" height="282"/>
+            <rect id="mark1005" class="mark Symbol2 symbol" data-datum="{&quot;Year&quot;:2014,&quot;Change&quot;:0.072,&quot;Employment&quot;:27869}" x="340" y="67.2" fill="#7FACCF" width="55" height="312.8"/>
+        </g>
+        <g transform="translate(0,15)"> 
+            <circle id="mark2001" class="mark Symbol3 symbol" data-datum="{&quot;Year&quot;:2010,&quot;Change&quot;:0.048,&quot;Employment&quot;:18423}" fill="#E76D2D" cx="91.5" cy="274.9" r="6.5"/>
+            <circle id="mark2002" class="mark Symbol3 symbol" data-datum="{&quot;Year&quot;:2011,&quot;Change&quot;:0.154,&quot;Employment&quot;:21252}" fill="#E76D2D" cx="160.5" cy="73.6" r="6.5"/>
+            <circle id="mark2003" class="mark Symbol3 symbol" data-datum="{&quot;Year&quot;:2012,&quot;Change&quot;:0.129,&quot;Employment&quot;:23988}" fill="#E76D2D" cx="229.5" cy="121.2" r="6.5"/>
+            <circle id="mark2004" class="mark Symbol3 symbol" data-datum="{&quot;Year&quot;:2013,&quot;Change&quot;:0.084,&quot;Employment&quot;:25998}" fill="#E76D2D" cx="298.5" cy="207.4" r="6.5"/>
+            <circle id="mark2005" class="mark Symbol3 symbol" data-datum="{&quot;Year&quot;:2014,&quot;Change&quot;:0.072,&quot;Employment&quot;:27869}" fill="#E76D2D" cx="367.5" cy="230.9" r="6.5"/>
+        </g>
+        <g transform="translate(0,15)">
+            <path id="mark3001" class="mark Link1 link" data-datum="[{&quot;Year&quot;:2010,&quot;Change&quot;:0.048,&quot;Employment&quot;:18423}]" fill="none" stroke="#E76D2D" stroke-width="2" d="M91.5,274.9c4,-10.4,7,-18.6,8.5,-22.9c27.1,-76.7,26.9,-113.7,56,-170.3c2.3,-4.5,4.2,-7.9,5,-9.4"/>
+            <path id="mark3002" class="mark Link1 link" data-datum="[{&quot;Year&quot;:2011,&quot;Change&quot;:0.154,&quot;Employment&quot;:21252}]" fill="none" stroke="#E76D2D" stroke-width="2" d="M229.5,121.2c-7.5,-11.6,-15.4,-19.8,-21.2,-25c-7.3,-6.6,-19.9,-17.7,-39.2,-22.9c-3.2,-0.8,-5.8,-1.4,-7.6,-1.7"/>
+            <path id="mark3003" class="mark Link1 link" data-datum="[{&quot;Year&quot;:2012,&quot;Change&quot;:0.129,&quot;Employment&quot;:23988}]" fill="none" stroke="#E76D2D" stroke-width="2" d="M229.5,121.2c7.5,11.3,14.2,21.1,19.7,29.1c20,28.9,29.9,41.1,44.3,53.1c2.1,1.7,3.8,3.1,5,4"/>
+            <path id="mark3004" class="mark Link1 link" data-datum="[{&quot;Year&quot;:2013,&quot;Change&quot;:0.084,&quot;Employment&quot;:25998}]" fill="none" stroke="#E76D2D" stroke-width="2" d="M298.5,207.4c4,2.9,8.4,5.7,13.3,8.3c20.5,11.2,40.5,14.9,55.3,16.1"/>
+        </g>
+        <g transform="translate(0,15)">
+            <text id="mark1" class="mark Symbol1 symbol" data-datum="{&quot;Year&quot;:2010,&quot;Change&quot;:0.048,&quot;Employment&quot;:18423}" x="92" y="266" text-anchor="middle" style="font-family:'ArialMT'; font-size:12px;">4.8%</text>
+            <text id="mark2" class="mark Symbol1 symbol" data-datum="{&quot;Year&quot;:2011,&quot;Change&quot;:0.154,&quot;Employment&quot;:21252}" x="161" y="65" text-anchor="middle" style="font-family:'ArialMT'; font-size:12px;">15.4%</text>
+            <text id="mark3" class="mark Symbol1 symbol" data-datum="{&quot;Year&quot;:2012,&quot;Change&quot;:0.129,&quot;Employment&quot;:23988}" x="230" y="112" text-anchor="middle" style="font-family:'ArialMT'; font-size:12px;">12.9%</text>
+            <text id="mark4" class="mark Symbol1 symbol" data-datum="{&quot;Year&quot;:2013,&quot;Change&quot;:0.084,&quot;Employment&quot;:25998}" x="298" y="198" text-anchor="middle" style="font-family:'ArialMT'; font-size:12px;">8.4%</text>
+            <text id="mark5" class="mark Symbol1 symbol" data-datum="{&quot;Year&quot;:2014,&quot;Change&quot;:0.072,&quot;Employment&quot;:27869}" x="367" y="222" text-anchor="middle" style="font-family:'ArialMT'; font-size:12px;">7.2%</text>
+        </g>
+    </g>
+</svg>

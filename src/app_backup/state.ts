@@ -5,7 +5,7 @@ import { ISortDataAttr, IDataItem, IKeyframeGroup, IKfGroupSize, IPath, IInterac
 import Util from './core/util'
 import Reducer from './reducer'
 import * as action from './action'
-import { AnimationItem } from '../../node_modules/lottie-web/build/player/lottie';
+import { AnimationItem } from 'lottie-web/build/player/lottie';
 import CanisGenerator, { ICanisSpec } from './core/canisGenerator'
 
 

@@ -1,5 +1,5 @@
 import KfTrack from "./kfTrack";
-import { IKeyframeGroup, IKeyframe } from "../../app/core/ds";
+import { IKeyframeGroup, IKeyframe } from "../../app_backup/core/ds";
 import KfOmit from "./kfOmit";
 import KfTimingIllus from "./kfTimingIllus";
 import KfItem from "./kfItem";
@@ -7,14 +7,14 @@ import Tool from "../../util/tool";
 import { ICoord } from "../../util/ds";
 import IntelliRefLine, { hintDrop } from "./intelliRefLine";
 
-import '../../assets/style/keyframeGroup.scss'
+// import '../../assets/style/keyframeGroup.scss'
 import { KfContainer } from "../kfContainer";
-import * as action from "../../app/action";
-import Reducer from "../../app/reducer";
+import * as action from "../../app_backup/action";
+import Reducer from "../../app_backup/reducer";
 import PlusBtn from "./plusBtn";
 import { hintTag } from "./hint";
-import { state, State } from "../../app/state";
-import Util from "../../app/core/util";
+import { state, State } from "../../app_backup/state";
+import Util from "../../app_backup/core/util";
 import { sortableSvgTable } from "./sortableSvgTable";
 import { TimingSpec, Animation } from "../../canis/moduleIdx";
 

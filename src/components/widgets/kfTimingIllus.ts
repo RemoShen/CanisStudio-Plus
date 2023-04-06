@@ -1,11 +1,11 @@
-import '../../assets/style/kfTimingIllus.scss'
+// import '../../assets/style/kfTimingIllus.scss'
 import { hintTag } from "./hint";
 import { ICoord } from "../../util/ds";
-import Reducer from "../../app/reducer";
-import * as action from "../../app/action";
+import Reducer from "../../app_backup/reducer";
+import * as action from "../../app_backup/action";
 import KfTrack from "./kfTrack";
 import Tool from "../../util/tool";
-import { state, State } from "../../app/state";
+import { state, State } from "../../app_backup/state";
 import KfItem from './kfItem';
 import KfOmit from './kfOmit';
 
