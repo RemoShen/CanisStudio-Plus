@@ -12,7 +12,7 @@
         "gifshot": "^0.4.5",
         "jsmovin": "^0.7.4",
         "lodash": "^4.17.21",
-        "lottie-web": "^5.10.2",
+        "lottie-web": "5.9",
         "robust-point-in-polygon": "^1.0.3",
         "sass": "^1.58.3"
     },

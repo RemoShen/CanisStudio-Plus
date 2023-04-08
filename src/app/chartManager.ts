@@ -50,6 +50,7 @@ class MarkTable {
 class ChartManager {
     canisSpec: ICanisSpec;
     marks: Map<string, Map<string, string>> = new Map();
+    isText: Map<string, boolean> = new Map();
     markTables: MarkTable[];
     lottieSpec: any;
     lottieAnimation: any;
@@ -61,12 +62,13 @@ class ChartManager {
         this.canisSpec = spec;
         const lottieSpec = await canis.renderSpec(this.canisSpec, () => { });
         // console.log('lottiespec', lottieSpec);
-        
+
         this.updateAnimation(lottieSpec);
 
         const marks = document.getElementsByClassName("mark");
         for (let i = 0, l = marks.length; i < l; i++) {
             const mark = marks[i];
+            this.isText.set(mark.id, mark.tagName == "text");
             const markAttributes = JSON.parse(mark.getAttribute("data-datum"));
             const attributeMap = new Map<string, string>();
             attributeMap.set(MARKID, markAttributes[MARKID]);
@@ -77,7 +79,11 @@ class ChartManager {
                 if (parseFloat(markAttributes[name]) == Number(markAttributes[name])) {
                     continue;
                 }
-                attributeMap.set(name, markAttributes[name]);
+                let value: string = markAttributes[name];
+                if (value[0] == "_") {
+                    value = value.slice(1);
+                }
+                attributeMap.set(name, value);
             }
             this.marks.set(mark.id, attributeMap);
         }
@@ -107,6 +113,9 @@ class ChartManager {
     }
 
     async updateCanisSpec(animations: any[]) {
+        if (!this.canisSpec) {
+            return;
+        }
         this.canisSpec.animations = animations;
         // console.log(JSON.stringify(this.canisSpec));
         const lottieSpec = await canis.renderSpec(this.canisSpec, () => { });

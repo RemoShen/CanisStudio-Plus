@@ -570,14 +570,26 @@ const generateCanisSpecOfGroup = (group: KfTreeGroup, marks: Set<string>, animat
             if (filteredMarks.length == 0) {
                 continue;
             }
-            animations.push(generateCanisFrame(
-                filteredMarks.map(i => `#${i}`).join(","),
-                child.property.effectType,
-                child.property.easing,
-                time,
-                child.property.duration
-            ));
+            for (let i of filteredMarks) {
+                let effectType = ["grow", "wheel"].includes(child.property.effectType) && chartManager.isText.get(i) ? "wipe left" : child.property.effectType;
+                if (child.property.effectType == "wheel") {
+                    const element = document.getElementById(i);
+                    if (element.tagName == "line" || element.getAttribute("fill") == "none") {
+                        effectType = "grow";
+                    }
+                }
+                // const effectType = child.property.effectType;
+                animations.push(generateCanisFrame(
+                    `#${i}`,
+                    effectType,
+                    child.property.easing,
+                    time,
+                    child.property.duration
+                ));
+                time = 0;
+            }
             time = child.property.duration;
+
         } else {
             const groupBy = child.grouping.groupBy;
             const partition: Map<string, Set<string>> = new Map();
@@ -772,7 +784,8 @@ const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: s
                 }
                 const omit = new KfOmit(keys.length - 3, result);
                 omit.levelFromLeaves = result.children[result.children.length - 1].levelFromLeaves;
-                result.children.push(omit);
+                // result.children.push(omit);
+                addNewChild(omit, child.grouping.child);
 
                 result.children.push(generateKfTrackOfGroup(
                     child.grouping.child, partition.get(keys[keys.length - 1]), keys[keys.length - 1], svg, result

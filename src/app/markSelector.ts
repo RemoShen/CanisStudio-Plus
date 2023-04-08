@@ -293,11 +293,15 @@ export class MarkSelector {
         MarkSelector.scale = 1;
         MarkSelector.panning = { x: 0, y: 0 };
         const svg = document.getElementById("visChart");
+        if (!svg) {
+            return;
+        }
         MarkSelector.svg = svg;
 
         const selectionMask = document.createElementNS("http://www.w3.org/2000/svg", "g");
         MarkSelector.selectionMask = selectionMask;
         selectionMask.id = SELECTION_MASK;
+
         document.getElementById("chartContent").appendChild(selectionMask);
 
         MarkSelector.chartDimension = {

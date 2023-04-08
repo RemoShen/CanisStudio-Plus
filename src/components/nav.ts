@@ -25,8 +25,9 @@ export default class Nav {
         // logoText.textContent = 'Canis Studio<tspan dy="-3">2</tspan>';
         logoText.innerHTML = 'Canis Studio<sup>2</sup>'
         logoText.className = 'title-text';
-        logoContainer.appendChild(logoText);
+        // logoContainer.appendChild(logoText);
         this.navContainer.appendChild(logoContainer);
+        this.navContainer.appendChild(logoText)
 
         this.navContainer.appendChild(this.createSeparator());
 

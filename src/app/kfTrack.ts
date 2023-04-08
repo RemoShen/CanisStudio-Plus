@@ -342,6 +342,8 @@ export class KfOmit extends KfItem {
         text.setAttribute("font-weight", "600");
         container.appendChild(text);
 
+        this.renderLeftBar();
+
         return { element: container, length };
     }
 }
