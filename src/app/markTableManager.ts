@@ -8,6 +8,7 @@ class MarkTableManager {
         const dataTabelContainer = document.getElementById("dataTabelContainer");
         dataTabelContainer.innerHTML = "";
         dataTabelContainer.appendChild(dataTable);
+        
     }
 }
 

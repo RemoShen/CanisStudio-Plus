@@ -108,7 +108,7 @@ class ChartManager {
             }
             markTables.push(new MarkTable(mark, id));
         }
-        console.log(markTables);
+        console.log('markTables',markTables);
         this.markTables = markTables;
     }
 

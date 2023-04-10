@@ -140,7 +140,7 @@ export default class FloatingWindow {
         //add chart examples
         const exampleItemContainer1: HTMLDivElement = document.createElement('div');
         exampleItemContainer1.className = 'list-item-container';
-        // exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.MUSHROOM_CHART, 'Mushroom'));
+        exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.MUSHROOM_CHART, 'Mushroom'));
         exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.NIGHTINGALE_CHART, 'Nightingale'));
         exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.OS_CHART, 'Mobile OS'));
         exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.PURCHASE_CHART, 'Doughnut Purchases'));
