@@ -1,3 +1,6 @@
+import { flatGroup } from "d3";
+import "../assets/style/selection.scss";
+import { ICoord } from "../util/ds";
 import Tool from "../util/tool";
 import { chartManager, MARKID } from "./chartManager";
 import { addSelection, extractAttributeConstrains, meetAttributeConstrains, meetMarkTypeConstrains } from "./kfTree";
@@ -30,18 +33,29 @@ export class MarkSelector {
     static svg: Element = null;
     static selectionMask: Element = null;
     static confirmButton: HTMLElement = null;
+
+    static selectStartPoint: ICoord;
+    static selectionRect: Element;
     // static selectStartPoint: ICoord;
     // static currentSelection: string[];
 
     // TODO: for test, remove it later
     static updateSelection(elements: string[]) {
         elements = elements.filter(i => MarkSelector.selectableMarks.has(i));
+        let flag = 0;
         for (let id of elements) {
             const element = document.getElementById(id);
-            if (MarkSelector.selection.has(id)) {
+            const selectionSize = this.selection.size;
+            if (flag != 1 && MarkSelector.selection.has(id)) {
                 MarkSelector.unselectMark(id);
-            } else {
+                if (!flag && this.selection.size != selectionSize) {
+                    flag = 2;
+                }
+            } else if (flag != 2) {
                 MarkSelector.selectMark(id);
+                if (!flag && this.selection.size != selectionSize) {
+                    flag = 1;
+                }
             }
 
         }
@@ -387,18 +401,16 @@ export class MarkSelector {
         //     document.onmousemove = MarkSelector.updateLassoSelection;
         //     document.onmouseup = MarkSelector.finishLassoSelection;
         // } else {
-        //     document.onmousemove = MarkSelector.updateRectSelection;
-        //     document.onmouseup = MarkSelector.finishRectSelection;
+        document.onmousemove = MarkSelector.updateRectSelection;
+        document.onmouseup = MarkSelector.finishRectSelection;
         // }
 
-        const elementsUnderMouse = Array.from(document.elementsFromPoint(downEvent.pageX, downEvent.pageY));
-        for (let element of elementsUnderMouse) {
-            if (!element.classList.contains("mark")) {
-                continue;
-            }
-            MarkSelector.updateSelection([element.id]);
-            return;
-        }
+        MarkSelector.selectStartPoint = Tool.screenToSvgCoords(MarkSelector.svg, downEvent.clientX, downEvent.clientY);
+        const selectionRect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        selectionRect.classList.add("selection-rect");
+        // selectionRect.setAttribute("x")
+        MarkSelector.selectionRect = selectionRect;
+        MarkSelector.selectionMask.appendChild(selectionRect);
     }
 
     static updateLassoSelection(moveEvent: MouseEvent) {
@@ -407,7 +419,16 @@ export class MarkSelector {
 
     static updateRectSelection(moveEvent: MouseEvent) {
         // console.log("u rect", moveEvent);
-
+        const startPoint = MarkSelector.selectStartPoint;
+        const endPoint = Tool.screenToSvgCoords(MarkSelector.svg, moveEvent.clientX, moveEvent.clientY);
+        const selectionRect = MarkSelector.selectionRect;
+        const scale = MarkSelector.scale;
+        const panningX = MarkSelector.panning.x;
+        const panningY = MarkSelector.panning.y;
+        selectionRect.setAttribute("x", String((Math.min(endPoint.x, startPoint.x) - panningX) / scale));
+        selectionRect.setAttribute("y", String((Math.min(endPoint.y, startPoint.y) - panningY) / scale));
+        selectionRect.setAttribute("width", String(Math.abs(endPoint.x - startPoint.x) / scale));
+        selectionRect.setAttribute("height", String(Math.abs(endPoint.y - startPoint.y) / scale));
     }
 
     static finishLassoSelection(upEvent: MouseEvent) {
@@ -417,9 +438,84 @@ export class MarkSelector {
     }
 
     static finishRectSelection(upEvent: MouseEvent) {
-        // console.log("f rect", upEvent);
+        MarkSelector.selectionMask.removeChild(MarkSelector.selectionRect);
         document.onmousemove = null;
         document.onmouseup = null;
+        const startPoint = MarkSelector.selectStartPoint;
+        const endPoint = Tool.screenToSvgCoords(MarkSelector.svg, upEvent.clientX, upEvent.clientY);
+        if (endPoint.x == startPoint.x && endPoint.y == startPoint.y) {
+            const elementsUnderMouse = Array.from(document.elementsFromPoint(upEvent.pageX, upEvent.pageY));
+            for (let element of elementsUnderMouse) {
+                if (!MarkSelector.selectableMarks.has(element.id)) {
+                    continue;
+                }
+                MarkSelector.updateSelection([element.id]);
+                return;
+            }
+            return;
+        }
+
+        const selection: string[] = [];
+        const yBegin = Math.min(startPoint.y, endPoint.y);
+        const yEnd = Math.max(startPoint.y, endPoint.y);
+        const xBegin = Math.min(startPoint.x, endPoint.x);
+        const xEnd = Math.max(startPoint.x, endPoint.x);
+        const numberSteps = 50;
+        const yStep = (yEnd - yBegin) / (numberSteps - 1);
+        for (let id of MarkSelector.selectableMarks) {
+            // const rect = document.getElementById(id).getBoundingClientRect();
+            const polygon = new Polygon();
+            polygon.fromElement(document.getElementById(id));
+            if (xBegin <= polygon.xMin && xEnd >= polygon.xMax && yBegin <= polygon.yMin && yEnd >= polygon.yMax) {
+                selection.push(id);
+            }
+
+            // let y = yBegin;
+            // let flag = false;
+
+            // if (polygon.closed) {
+            //     for (let i = 0; i < numberSteps; i++) {
+            //         const intersections = polygon.lineIntersect(y).map(i => [i, 0]).concat([[xBegin, 1], [xEnd, 1]]);
+            //         intersections.sort();
+            //         let inPolygon = false;
+            //         let inRect = false;
+            //         for (let [x, f] of intersections) {
+            //             if (f == 0) {
+            //                 inPolygon = !inPolygon;
+            //             } else {
+            //                 inRect = !inRect;
+            //             }
+            //             if (inPolygon && inRect) {
+            //                 flag = true;
+            //                 break;
+            //             }
+            //         }
+            //         if (flag) {
+            //             break;
+            //         }
+
+            //         y += yStep;
+            //     }
+            // } else {
+            //     for (let i = 0; i < numberSteps; i++) {
+            //         const intersections = polygon.lineIntersect(y);
+            //         for (let j of intersections) {
+            //             if (j >= xBegin && j <= xEnd) {
+            //                 flag = true;
+            //                 break;
+            //             }
+            //         }
+            //         y += yStep;
+            //     }
+            // }
+
+            // if (flag) {
+            //     selection.push(id);
+            // }
+
+            // MarkSelector.svg.appendChild(polygon.display());
+        }
+        MarkSelector.updateSelection(selection);
     }
 
     static removeSelectedTool() {

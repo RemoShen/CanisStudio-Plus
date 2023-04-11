@@ -765,7 +765,7 @@ export class KfNode extends KfItem {
         container.setAttribute("transform", `translate(${(this.length - itemWidth) / 2 + cx},${y})scale(${1 / kfTrack.scale})`);
 
         const background1 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        background1.setAttribute("opacity", "0");
+        // background1.setAttribute("opacity", "0");
         background1.setAttribute("y", "-25");
         background1.setAttribute("x", String(itemWidth / 2 + x));
         background1.setAttribute("width", "25");
