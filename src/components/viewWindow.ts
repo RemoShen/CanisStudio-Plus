@@ -4,6 +4,7 @@ import Slider from './widgets/slider'
 import Tool from '../util/tool'
 import { kfContainer } from './kfContainer'
 import { MarkSelector } from '../app/markSelector'
+import { kfTrack } from '../app/kfTrack'
 
 interface IViewBtnProp {
     title?: string,
@@ -18,7 +19,7 @@ export default class ViewWindow {
     static VIDEO_VIEW_TITLE: string = 'animation';
     static HIDDEN_LOTTIE_ID: string = 'hiddenLottie';
     static KF_VIEW_TITLE: string = 'keyframe';
-    static MIN_ZOOM_LEVEL: number = 0.6
+    static MIN_ZOOM_LEVEL: number = 0.5
     static MAX_ZOOM_LEVEL: number = 1
     static ZOOM_STEP: number = 0.05;
 
@@ -121,13 +122,18 @@ export default class ViewWindow {
         const slider: Slider = new Slider([ViewWindow.MIN_ZOOM_LEVEL, ViewWindow.MAX_ZOOM_LEVEL], ViewWindow.MAX_ZOOM_LEVEL);
         slider.createSlider()
         slider.callbackFunc = (zl: number) => {
+            kfTrack.updateScale(zl);
             // Reducer.triger(action.KEYFRAME_ZOOM_LEVEL, zl);
         };
         toolContainer.appendChild(this.createBtn({
             title: 'Zoom Out',
             clickEvtType: ViewToolBtn.CUSTOM,
             clickEvt: () => {
-                // TODO:
+                let scale = kfTrack.scale - ViewWindow.ZOOM_STEP;
+                if (scale < ViewWindow.MIN_ZOOM_LEVEL) {
+                    scale = ViewWindow.MIN_ZOOM_LEVEL;
+                }
+                slider.moveSlider(scale);
                 // if (state.zoomLevel - ViewWindow.ZOOM_STEP >= ViewWindow.MIN_ZOOM_LEVEL) {
                 //     slider.moveSlider(state.zoomLevel - ViewWindow.ZOOM_STEP);
                 // } else {
@@ -141,7 +147,11 @@ export default class ViewWindow {
             title: 'Zoom In',
             clickEvtType: ViewToolBtn.CUSTOM,
             clickEvt: () => {
-                // TODO:
+                let scale = kfTrack.scale + ViewWindow.ZOOM_STEP;
+                if (scale > ViewWindow.MAX_ZOOM_LEVEL) {
+                    scale = ViewWindow.MAX_ZOOM_LEVEL;
+                }
+                slider.moveSlider(scale);
                 // if (state.zoomLevel + ViewWindow.ZOOM_STEP <= ViewWindow.MAX_ZOOM_LEVEL) {
                 //     slider.moveSlider(state.zoomLevel + ViewWindow.ZOOM_STEP);
                 // } else {

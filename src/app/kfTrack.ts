@@ -481,9 +481,9 @@ export class KfDelay extends KfItem {
             this.lengthGuide.innerHTML = `${delay} ms delay`;
         }
         const textWidth = this.lengthGuide.getBoundingClientRect().width;
-        this.lengthGuideBackground.setAttribute("width", String(textWidth + ITEM_GAP * 2));
-        this.lengthGuideBackground.setAttribute("x", String(position - ITEM_GAP * 6 - textWidth));
-        this.lengthGuide.setAttribute("x", String(position - ITEM_GAP * 5));
+        this.lengthGuideBackground.setAttribute("width", String((textWidth + ITEM_GAP * 2) / kfTrack.scale));
+        this.lengthGuideBackground.setAttribute("x", String(position - (ITEM_GAP * 6 + textWidth) / kfTrack.scale));
+        this.lengthGuide.setAttribute("x", String(position - ITEM_GAP * 5 / kfTrack.scale));
     }
 
     lengthToTime(length: number) {
@@ -549,13 +549,15 @@ export class KfDelay extends KfItem {
             this.container.appendChild(lengthGuideBackground);
             this.lengthGuideBackground = lengthGuideBackground;
             lengthGuideBackground.classList.add("kf-length-guide-bg");
-            lengthGuideBackground.setAttribute("y", String(6 - ITEM_GAP));
+            lengthGuideBackground.setAttribute("y", String((6 - ITEM_GAP) / kfTrack.scale));
+            lengthGuideBackground.setAttribute("height", String((20) / kfTrack.scale));
 
             const lengthGuide = document.createElementNS("http://www.w3.org/2000/svg", "text");
             this.container.appendChild(lengthGuide);
             this.lengthGuide = lengthGuide;
             lengthGuide.setAttribute("x", String(this.length));
-            lengthGuide.setAttribute("y", "18");
+            lengthGuide.setAttribute("y", String(18 / kfTrack.scale));
+            lengthGuide.setAttribute("font-size", String(12 / kfTrack.scale) + "px");
             lengthGuide.classList.add("kf-length-guide");
 
             this.updateLengthGuide(Math.max(0, this.virtualLength), this.lengthToTime(this.virtualLength));
@@ -648,9 +650,9 @@ export class KfNode extends KfItem {
         const duration = lengthToDuration(this.length);
         this.lengthGuide.innerHTML = `${duration} ms`;
         const textWidth = this.lengthGuide.getBoundingClientRect().width;
-        this.lengthGuideBackground.setAttribute("width", String(textWidth + ITEM_GAP * 2));
-        this.lengthGuideBackground.setAttribute("x", String(this.length - ITEM_GAP * 4 - textWidth));
-        this.lengthGuide.setAttribute("x", String(this.length - ITEM_GAP * 3));
+        this.lengthGuideBackground.setAttribute("width", String((textWidth + ITEM_GAP * 2) / kfTrack.scale));
+        this.lengthGuideBackground.setAttribute("x", String(this.length - (ITEM_GAP * 4 + textWidth) / kfTrack.scale));
+        this.lengthGuide.setAttribute("x", String(this.length - ITEM_GAP * 3 / kfTrack.scale));
     }
 
     updateWidth(moveEvent: MouseEvent) {
@@ -760,7 +762,7 @@ export class KfNode extends KfItem {
 
         const container = document.createElementNS("http://www.w3.org/2000/svg", "g");
         kfTrack.innerContainer.appendChild(container);
-        container.setAttribute("transform", `translate(${(this.length - itemWidth) / 2 + cx},${y})`);
+        container.setAttribute("transform", `translate(${(this.length - itemWidth) / 2 + cx},${y})scale(${1 / kfTrack.scale})`);
 
         const background1 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         background1.setAttribute("opacity", "0");
@@ -947,13 +949,15 @@ export class KfNode extends KfItem {
             this.container.appendChild(lengthGuideBackground);
             this.lengthGuideBackground = lengthGuideBackground;
             lengthGuideBackground.classList.add("kf-length-guide-bg");
-            lengthGuideBackground.setAttribute("y", String(6 - ITEM_GAP));
+            lengthGuideBackground.setAttribute("y", String((6 - ITEM_GAP) / kfTrack.scale));
+            lengthGuideBackground.setAttribute("height", String(20 / kfTrack.scale));
 
             const lengthGuide = document.createElementNS("http://www.w3.org/2000/svg", "text");
             this.container.appendChild(lengthGuide);
             this.lengthGuide = lengthGuide;
             lengthGuide.setAttribute("x", String(this.length));
-            lengthGuide.setAttribute("y", "18");
+            lengthGuide.setAttribute("y", String(18 / kfTrack.scale));
+            lengthGuide.setAttribute("font-size", String(12 / kfTrack.scale));
             lengthGuide.classList.add("kf-length-guide");
 
             this.updateLengthGuide();
@@ -973,6 +977,8 @@ class KfTrack {
     length: number;
     panningX: number;
     panningY: number;
+    scale: number = 1;
+
     container: Element;
     innerContainer: Element;
     panningLock: boolean = false;
@@ -1013,13 +1019,6 @@ class KfTrack {
         this.container = container;
         container.innerHTML = "";
 
-        const trackBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        container.appendChild(trackBackground);
-        // trackBackground.setAttribute("fill", "#dfdfdf");
-        trackBackground.setAttribute("fill", "#f7f7f7");
-        trackBackground.setAttribute("y", "20");
-        trackBackground.setAttribute("width", "10000");
-
         let maxHeight = 0;
         let maxLevel = 0;
         for (let i of this.groups) {
@@ -1027,12 +1026,19 @@ class KfTrack {
             maxLevel = Math.max(maxLevel, i.levelFromLeaves);
         }
 
-        trackBackground.setAttribute("height", String(maxHeight));
-
         const innerContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
         this.innerContainer = innerContainer;
         innerContainer.id = "kfTracksInnerContainer";
         container.appendChild(innerContainer);
+
+        const trackBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        innerContainer.appendChild(trackBackground);
+        // trackBackground.setAttribute("fill", "#dfdfdf");
+        trackBackground.setAttribute("fill", "#f7f7f7");
+        trackBackground.setAttribute("y", "20");
+        trackBackground.setAttribute("width", "10000");
+        trackBackground.setAttribute("height", String(maxHeight));
+
         let x = 0;
         for (let i of this.groups) {
             let { element, length } = i.render(maxHeight);
@@ -1051,14 +1057,24 @@ class KfTrack {
             this.updatePanning(this.activeNode.getX() - this.activeNodeX, 0)
         }
         container.addEventListener("wheel", (event: WheelEvent) => {
-            const factorX = 0.1;
+            const factorX = 0.06;
             const factorY = 0.02;
-            if (event.altKey) {
+            if (event.shiftKey) {
+                // this.updateScale(this.scale * Math.pow(1.0001, -event.deltaY));
+            } else if (event.altKey) {
                 this.updatePanning(this.panningX, this.panningY + event.deltaY * factorY);
             } else {
-                this.updatePanning(this.panningX + (event.deltaY + event.deltaY) * factorX, this.panningY);
+                this.updatePanning(this.panningX + event.deltaY * factorX, this.panningY);
             }
         })
+    }
+
+    updateScale(scale: number) {
+        scale = Math.max(0.5, Math.min(1, scale));
+        let scaleFactor = scale / this.scale
+        this.scale = scale;
+
+        this.updatePanning(this.panningX, this.panningY);
     }
 
     updatePanning(x: number, y: number) {
@@ -1066,15 +1082,15 @@ class KfTrack {
             return;
         }
         const rect = this.container.getBoundingClientRect();
-        if (this.length - x < rect.width) {
-            x = this.length - rect.width;
+        if (this.length * this.scale - x * this.scale < rect.width) {
+            x = this.length - rect.width / this.scale;
         }
         if (x < 0) {
             x = 0;
         }
         this.panningX = x;
         this.panningY = y;
-        this.innerContainer.setAttribute("transform", `translate(${-x},${-y})`);
+        this.innerContainer.setAttribute("transform", `scale(${this.scale})translate(${-this.panningX},${this.panningY})`);
     }
 }
 

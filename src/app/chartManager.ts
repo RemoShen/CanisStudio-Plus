@@ -6,6 +6,7 @@ import CanisGenerator, { canis, ICanisSpec } from "./core/canisGenerator";
 import { clearKfTrees } from "./kfTree";
 import { MarkSelector, MarkSelectorMode } from "./markSelector";
 import { fromPairs } from "lodash";
+import { markTableManager } from "./markTableManager";
 
 export const MARKID = "_MARKID";
 
@@ -110,6 +111,7 @@ class ChartManager {
         }
         console.log('markTables',markTables);
         this.markTables = markTables;
+        markTableManager.render();
     }
 
     async updateCanisSpec(animations: any[]) {
