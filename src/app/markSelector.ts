@@ -1,10 +1,10 @@
-import { flatGroup } from "d3";
 import "../assets/style/selection.scss";
 import { dragableCanvas } from "../components/widgets/dragableCanvas";
 import { ICoord } from "../util/ds";
 import Tool from "../util/tool";
 import { chartManager, MARKID } from "./chartManager";
 import { addSelection, extractAttributeConstrains, meetAttributeConstrains, meetMarkTypeConstrains } from "./kfTree";
+import { MarkTableManager, markTableManager } from "./markTableManager";
 import { Polygon } from "./polygon";
 
 const SELECTION_MASK = "selectionMask";
@@ -140,6 +140,8 @@ export class MarkSelector {
         }
         MarkSelector.selection.add(id);
         MarkSelector.addHighlight(document.getElementById(id));
+        MarkTableManager.selection.add(id);
+        markTableManager.addHighLightRow(id);
     }
 
     static removeSelect(id: string) {
@@ -148,6 +150,9 @@ export class MarkSelector {
         }
         MarkSelector.selection.delete(id);
         MarkSelector.removeHighlight(document.getElementById(id));
+        MarkTableManager.selection.delete(id);
+        markTableManager.removeHighLightRow(id);
+
     }
 
     static selectBySelectors(markTypeSelectors: Set<string>, attributeSelectors: Map<string, string>) {
@@ -427,7 +432,6 @@ export class MarkSelector {
                 document.onmousemove = null;
                 document.onmouseup = null;
             }
-
 
         } else {
             document.onmousemove = MarkSelector.updateRectSelection;

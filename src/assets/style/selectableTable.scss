@@ -73,7 +73,7 @@
         }
 
         td {
-            background: var(--gray3);
+            // background: var(--gray3);
             color: var(--gray13);
 
             &:hover {
@@ -85,7 +85,7 @@
         &:hover {
             td {
                 color: var(--gray16);
-                background: none;
+                // background: none;
             }
         }
     }

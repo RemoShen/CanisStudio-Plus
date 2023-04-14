@@ -2,7 +2,8 @@ import '../assets/style/selectableTable.scss'
 import AttrSort from '../components/widgets/attrSort';
 import { chartManager } from "./chartManager"
 
-class MarkTableManager {
+export class MarkTableManager {
+    static selection: Set<string> = new Set();
     render() {
         const dataTableMarks = chartManager.markTables;
         const dataTabelContainer = document.getElementById("dataTabelContainer");
