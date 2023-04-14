@@ -325,7 +325,7 @@
             </g>
             <g transform="translate(0,0)" opacity="1">
                 <g transform="translate(0,-300)" opacity="1">
-                    <text id="mark6001" class=" mark Title title" x="-400.08127259814046" y="64.17026887180697" data-datum="{&quot;_MARKID&quot;:&quot;mark2&quot;,&quot;_x&quot;:0,&quot;_y&quot;:0}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Arial" font-size="24px">World Population Pyramid of 2017</text>
+                    <text id="mark6001" class=" mark Title title" x="-400.08127259814046" y="64.17026887180697" data-datum="{&quot;_MARKID&quot;:&quot;title&quot;,&quot;_x&quot;:0,&quot;_y&quot;:0}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Arial" font-size="24px">World Population Pyramid of 2017</text>
                 </g>
             </g>
         </g>

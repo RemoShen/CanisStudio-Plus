@@ -1,5 +1,6 @@
 import { flatGroup } from "d3";
 import "../assets/style/selection.scss";
+import { dragableCanvas } from "../components/widgets/dragableCanvas";
 import { ICoord } from "../util/ds";
 import Tool from "../util/tool";
 import { chartManager, MARKID } from "./chartManager";
@@ -32,7 +33,7 @@ export class MarkSelector {
     static chartDimension: { width: number, height: number };
     static svg: Element = null;
     static selectionMask: Element = null;
-    static confirmButton: HTMLElement = null;
+    // static confirmButton: HTMLElement = null;
 
     static selectStartPoint: ICoord;
     static selectionRect: Element;
@@ -64,7 +65,7 @@ export class MarkSelector {
 
     static selectMark(id: string) {
         if (MarkSelector.selection.size == 0) {
-            this.confirmButton.removeAttribute("style");
+            // this.confirmButton.removeAttribute("style");
             for (let i = 0; i < MarkSelector.expandOptions.length; i++) {
                 const set = MarkSelector.expandOptions[i];
                 if (set.has(id)) {
@@ -129,7 +130,7 @@ export class MarkSelector {
             }
         }
         if (this.selection.size == 0) {
-            this.confirmButton.setAttribute("style", "display:none");
+            // this.confirmButton.setAttribute("style", "display:none");
         }
     }
 
@@ -203,7 +204,7 @@ export class MarkSelector {
             }
         }
         MarkSelector.selectOption = -1;
-        this.confirmButton.setAttribute("style", "display:none");
+        // this.confirmButton.setAttribute("style", "display:none");
     }
 
     static addHide(element: HTMLElement) {
@@ -297,9 +298,9 @@ export class MarkSelector {
         const chartContainter = document.getElementById("chartContainer");
         chartContainter.onmousedown = MarkSelector.onMouseDown;
         chartContainter.addEventListener("wheel", MarkSelector.onMouseWheel);
-        MarkSelector.confirmButton = document.getElementById("confirmButton");
-        MarkSelector.confirmButton.onclick = MarkSelector.emitSelection;
-        this.confirmButton.setAttribute("style", "display:none");
+        // MarkSelector.confirmButton = document.getElementById("confirmButton");
+        // MarkSelector.confirmButton.onclick = MarkSelector.emitSelection;
+        // this.confirmButton.setAttribute("style", "display:none");
     }
 
     static reset(disabledMarks: Set<string>, attributeSelectors: Map<string, string>, expandOptions: Set<string>[]) {
@@ -383,6 +384,7 @@ export class MarkSelector {
     }
 
     static onMouseDown(downEvent: MouseEvent) {
+
         if (downEvent.button == 1) {
             MarkSelector.emitSelection();
             return;
@@ -401,8 +403,37 @@ export class MarkSelector {
         //     document.onmousemove = MarkSelector.updateLassoSelection;
         //     document.onmouseup = MarkSelector.finishLassoSelection;
         // } else {
-        document.onmousemove = MarkSelector.updateRectSelection;
-        document.onmouseup = MarkSelector.finishRectSelection;
+
+
+        const downEvtTarget: HTMLElement = <HTMLElement>downEvent.target;
+        const targetId: string = downEvtTarget.id.replace('__', '')
+
+        if ([...MarkSelector.selection].includes(targetId)) {
+            // document.onmouseup = MarkSelector.finishRectSelection;
+            // if mouse move over 3px, then start drag
+
+            let lastMouseX = downEvent.pageX, lastMouseY = downEvent.pageY;
+            const mouseMoveThsh: number = 3;
+
+            document.onmousemove = (moveEvt) => {
+                if (Tool.pointDist(lastMouseX, moveEvt.pageX, lastMouseY, moveEvt.pageY) > mouseMoveThsh) {
+                    dragableCanvas.createCanvas(document.querySelector('#chartContainer > svg:first-of-type'), { x: downEvent.pageX, y: downEvent.pageY });
+                }
+            }
+            document.onmouseup = (upEvt) => {
+                if (Tool.pointDist(lastMouseX, upEvt.pageX, lastMouseY, upEvt.pageY) < mouseMoveThsh) {
+                    MarkSelector.finishRectSelection(upEvt);
+                }
+                document.onmousemove = null;
+                document.onmouseup = null;
+            }
+
+
+        } else {
+            document.onmousemove = MarkSelector.updateRectSelection;
+            document.onmouseup = MarkSelector.finishRectSelection;
+        }
+
         // }
 
         MarkSelector.selectStartPoint = Tool.screenToSvgCoords(MarkSelector.svg, downEvent.clientX, downEvent.clientY);

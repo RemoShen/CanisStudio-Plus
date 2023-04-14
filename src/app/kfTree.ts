@@ -1,3 +1,5 @@
+import { sort } from "d3";
+import { AnimationTreeGroup } from "./animationTree";
 import { chartManager, MARKID } from "./chartManager";
 import { KfItem, KfGroup, KfNode, KfOmit, kfTrack, KfDelay } from "./kfTrack";
 import { MarkSelector } from "./markSelector";
@@ -525,18 +527,32 @@ const renderKfTree = () => {
 const generateCanisSpec = () => {
     let animations: any[] = [];
     let time = 0;
+    let lastDuration = 0;
+
     let isFirst = true;
     for (let group of kfTrees) {
-        time = generateCanisSpecOfGroup(
+        const animationTreeGroup = new AnimationTreeGroup();
+        lastDuration = animationTreeGroup.fromKfTreeGroup(
             group,
-            new Set(Array.from(chartManager.marks.keys()).filter(i => meetAttributeConstrains(i, group.attributeSelectors))),
-            animations,
-            time,
-            isFirst
+            Array.from(chartManager.marks.keys()).filter(i => meetAttributeConstrains(i, group.attributeSelectors)),
+            isFirst,
+            lastDuration
         );
         isFirst = false;
+        time = animationTreeGroup.render(animations, time);
     }
-    // console.log(JSON.stringify(animations));
+
+    // for (let group of kfTrees) {
+    //     time = generateCanisSpecOfGroup(
+    //         group,
+    //         new Set(Array.from(chartManager.marks.keys()).filter(i => meetAttributeConstrains(i, group.attributeSelectors))),
+    //         animations,
+    //         time,
+    //         isFirst
+    //     );
+    //     isFirst = false;
+    // }
+    // // console.log(JSON.stringify(animations));
     return animations;
 }
 
@@ -667,8 +683,8 @@ const generateKfTrack = () => {
     return result;
 }
 
-const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: string, svg: Document, parent: KfGroup) => {
-    const result = new KfGroup(label, parent);
+const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: string, svg: Document, parent: KfGroup, sortable = false, sortAttributes: string[] = []) => {
+    const result = new KfGroup(label, parent, sortable, sortAttributes);
     let isFirst = true;
     const addNewChild = (nextNode: KfItem, originalNode: KfTreeGroup | KfTreeNode) => {
         const previousNode = isFirst ? null : result.children[result.children.length - 1];
@@ -746,6 +762,16 @@ const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: s
                 partition.get(value).add(id);
             }
 
+            const sortAttributes: string[] = [];
+            sortAttributes.push(groupBy);
+            for (let id of subset) {
+                for (let attributeName of chartManager.numericAttrs.get(id).keys()) {
+                    if (!sortAttributes.includes(attributeName)) {
+                        sortAttributes.push(attributeName);
+                    }
+                }
+            }
+
             if (partition.size <= 3) {
                 let isFirstChild = true;
                 for (let attributeName of child.grouping.sequence) {
@@ -757,16 +783,20 @@ const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: s
                     addNewChild(generateKfTrackOfGroup(
                         child.grouping.child, partition.get(attributeName), attributeName,
                         svg,
-                        result
+                        result,
+                        true,
+                        sortAttributes,
                     ), originalNode)
                 }
             } else {
                 let keys = child.grouping.sequence.filter(i => partition.has(i));
                 addNewChild(generateKfTrackOfGroup(
-                    child.grouping.child, partition.get(keys[0]), keys[0], svg, result
+                    child.grouping.child, partition.get(keys[0]), keys[0], svg, result, true,
+                    sortAttributes,
                 ), child);
                 addNewChild(generateKfTrackOfGroup(
-                    child.grouping.child, partition.get(keys[1]), keys[1], svg, result
+                    child.grouping.child, partition.get(keys[1]), keys[1], svg, result, true,
+                    sortAttributes,
                 ), child.grouping.child);
 
                 for (let i = 2; i < keys.length - 1; i++) {
@@ -788,7 +818,8 @@ const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: s
                 addNewChild(omit, child.grouping.child);
 
                 result.children.push(generateKfTrackOfGroup(
-                    child.grouping.child, partition.get(keys[keys.length - 1]), keys[keys.length - 1], svg, result
+                    child.grouping.child, partition.get(keys[keys.length - 1]), keys[keys.length - 1], svg, result, true,
+                    sortAttributes,
                 ));
             }
         }

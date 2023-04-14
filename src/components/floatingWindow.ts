@@ -150,7 +150,8 @@ export default class FloatingWindow {
         exampleItemContainer2.className = 'list-item-container';
         // exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.BOSTON_CHART, 'Boston Weather'));
         exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.WORLDPOPULATION_CHART, 'World Population Pyramid'));
-        exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.POLIO_CHART, 'Polio Incidence Rates'));
+        // exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.POLIO_CHART, 'Polio Incidence Rates'));
+        exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.DESSERT_CHART, 'Dessert'))
         exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.DRIVING_CHART, 'Driving'));
         exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.FLARE_CHART, 'Flare'));
         exampleList.appendChild(exampleItemContainer2);

@@ -47,3 +47,28 @@
 .kf-button:hover {
     fill: #CCC;
 }
+
+.kf-sort-btn-container {
+    transition-timing-function: ease;
+    transition: opacity 0.2s;
+    opacity: 0;
+    // display: none;
+}
+
+.kf-label-container:hover .kf-sort-btn-container {
+    // display: inline;
+    opacity: 1;
+}
+
+.kf-sort-btn-background {
+    x: 5px;
+    y: 2px;
+    height: 16px;
+    width: 25px;
+    rx: 5px;
+    fill: #676767;
+}
+
+.kf-sort-btn-container:hover .kf-button {
+    fill: #CCC;
+}

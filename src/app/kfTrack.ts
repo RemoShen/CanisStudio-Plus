@@ -210,13 +210,18 @@ export class KfItem {
 export class KfGroup extends KfItem {
     children: KfItem[] = [];
     label: string;
+    sortable: boolean;
+    sortAttributes: string[];
 
+    labelContainer: Element;
     labelBackground: Element;
     labelText: Element;
 
-    constructor(label: string, parent: KfGroup) {
+    constructor(label: string, parent: KfGroup, sortable = false, sortAttrtibutes: string[] = []) {
         super(parent);
         this.label = label;
+        this.sortable = sortable;
+        this.sortAttributes = sortAttrtibutes;
     }
 
     findRightMostLength() {
@@ -255,17 +260,87 @@ export class KfGroup extends KfItem {
         }
     }
 
+    createSortList() {
+        const sortListContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        kfTrack.innerContainer.appendChild(sortListContainer);
+        sortListContainer.setAttribute("transform", `translate(${this.getX() + 30},${this.getY()})`);
+        const itemWidth = 120;
+        const itemHeight = 20;
+        let index = 0;
+        console.log(this.sortAttributes);
+        for (let attributeName of this.sortAttributes) {
+            const itemBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            itemBackground.setAttribute("width", String(itemWidth));
+            itemBackground.setAttribute("height", String(itemHeight));
+            itemBackground.setAttribute("fill", "#676767");
+            itemBackground.setAttribute("stroke", "#AAA");
+            itemBackground.setAttribute("y", String(index * (itemHeight)))
+            sortListContainer.appendChild(itemBackground);
+
+            const itemContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            itemContainer.classList.add("kf-button")
+            itemContainer.setAttribute("transform", `translate(${0},${index * (itemHeight)})`);
+            sortListContainer.appendChild(itemContainer);
+            itemContainer.onclick = () => {
+
+            }
+
+            const itemMask = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            itemMask.setAttribute("width", String(itemWidth));
+            itemMask.setAttribute("height", String(itemHeight));
+            itemMask.setAttribute("opacity", "0");
+            itemContainer.appendChild(itemMask);
+
+
+            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            text.innerHTML = attributeName;
+            text.setAttribute("font-size", "12");
+            text.setAttribute("x", "25");
+            text.setAttribute("y", String(itemHeight / 2 + 4));
+            itemContainer.appendChild(text);
+
+            index++
+        }
+
+    }
+
     render(height: number) {
         this.height = height;
         const container = this.container;
         // let length = ITEM_GAP;
         let length = 0;
+
+        const labelContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        this.labelContainer = labelContainer;
+        labelContainer.classList.add("kf-label-container");
+        container.appendChild(labelContainer);
+
         const labelBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        container.appendChild(labelBackground);
+        labelContainer.appendChild(labelBackground);
         this.labelBackground = labelBackground;
         const labelText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        container.appendChild(labelText);
+        labelContainer.appendChild(labelText);
         this.labelText = labelText;
+
+        if (this.sortable) {
+            const sortBtnContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            labelContainer.appendChild(sortBtnContainer);
+            sortBtnContainer.classList.add("kf-sort-btn-container")
+
+            const sortBtnBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            sortBtnContainer.appendChild(sortBtnBackground);
+            sortBtnBackground.classList.add("kf-sort-btn-background");
+
+            const sortBtnIcon = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            sortBtnContainer.appendChild(sortBtnIcon);
+            sortBtnIcon.setAttribute("d", "M 3 13 H 9 V 12 H 3 Z M 3 4 V 4 H 21 V 3 H 3 Z M 3 10 H 13 V 9 H 3 Z M 3 6 L 17 6 L 17 7 L 3 7 Z");
+            sortBtnIcon.setAttribute("transform", `translate(5, 2)`);
+            sortBtnIcon.classList.add("kf-button");
+
+            sortBtnContainer.onclick = () => {
+                this.createSortList();
+            }
+        }
 
         // const childrenOffsetY = this.label.length != 0 ? 0 : ITEM_GAP - LABEL_HEIGHT;
         const childrenOffsetY = this.label.length != 0 ? LABEL_HEIGHT : 0;
@@ -281,6 +356,7 @@ export class KfGroup extends KfItem {
         // length -= ITEM_GAP;
         length -= (this.levelFromLeaves - 2) * 2;
         this.length = length;
+
 
         // labelBackground.setAttribute("d", createLabelBackgroundShape(length, this.levelFromLeaves * (LABEL_HEIGHT + ITEM_SPACE) + THUMBNAIL_HEIGHT, LABEL_CORNER_RADIUS));
         labelBackground.setAttribute("width", String(length));
@@ -765,11 +841,11 @@ export class KfNode extends KfItem {
         container.setAttribute("transform", `translate(${(this.length - itemWidth) / 2 + cx},${y})scale(${1 / kfTrack.scale})`);
 
         const background1 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        // background1.setAttribute("opacity", "0");
-        background1.setAttribute("y", "-25");
-        background1.setAttribute("x", String(itemWidth / 2 + x));
-        background1.setAttribute("width", "25");
-        background1.setAttribute("height", "25");
+        background1.setAttribute("opacity", "0");
+        background1.setAttribute("y", String(-25 * kfTrack.scale));
+        background1.setAttribute("x", String((itemWidth / 2 + x) * kfTrack.scale));
+        background1.setAttribute("width", String(25 * kfTrack.scale));
+        background1.setAttribute("height", String(25 * kfTrack.scale));
         container.appendChild(background1);
 
         // const background2 = document.createElementNS("http://www.w3.org/2000/svg", "rect");

@@ -199,7 +199,7 @@
             </g>
             <g transform="translate(0,0)">
                 <g transform="translate(-17.92929293,-300)">
-                    <text id="mark5001" class=" mark title" data-datum="{&quot;_TYPE&quot;:&quot;title&quot;,&quot;text&quot;:&quot;Causes of Mortality over Time&quot;}" x="-158.935546875" y="51.254979615608626" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" text-anchor="start" font-family="Arial" font-size="24px">Causes of Mortality over Time</text>
+                    <text id="mark5001" class=" mark title" data-datum="{&quot;_MARKID&quot;:&quot;title&quot;,&quot;text&quot;:&quot;Causes of Mortality over Time&quot;}" x="-158.935546875" y="51.254979615608626" stroke="none" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" text-anchor="start" font-family="Arial" font-size="24px">Causes of Mortality over Time</text>
                 </g>
             </g>
             <g transform="translate(0,0)">

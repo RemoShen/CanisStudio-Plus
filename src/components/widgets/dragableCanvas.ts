@@ -7,6 +7,8 @@ import Tool from '../../util/tool';
 import Reducer from '../../app_backup/reducer';
 import * as action from '../../app_backup/action';
 import { ChartSpec, Animation } from '../../canis/moduleIdx'
+import { chartManager } from '../../app/chartManager';
+import { MarkSelector } from '../../app/markSelector';
 
 export default class DragableCanvas {
     /**
@@ -16,8 +18,12 @@ export default class DragableCanvas {
      */
     public createCanvas(targetSVG: HTMLElement, downCoord: ICoord) {
         targetSVG.classList.toggle('chart-when-dragging');
-        document.getElementById('highlightSelectionFrame').style.display = 'none';
-        Array.from(document.getElementsByClassName('non-framed-mark')).forEach((m: HTMLElement) => m.style.display = 'none');
+        document.getElementById('selectionMask').style.display = 'none';
+        chartManager.marks.forEach((mark: Map<string, string>, id: string) => {
+            if (!MarkSelector.selection.has(id)) {
+                document.getElementById(id).style.display = 'none';
+            }
+        });
         const canvas: HTMLCanvasElement = document.createElement('canvas');
         canvas.className = 'drag-drop-canvas grab-selection';
         canvas.id = 'dragDropCanvas';
@@ -45,49 +51,27 @@ export default class DragableCanvas {
             ctx.drawImage(img, dx, dy, scaleWidth, scaleHeight);
         };
         img.src = 'data:image/svg+xml;base64,' + btoa((new XMLSerializer()).serializeToString(targetSVG));
+        document.getElementById('selectionMask').style.display = 'block';
+        chartManager.marks.forEach((mark: Map<string, string>, id: string) => {
+            if (!MarkSelector.selection.has(id)) {
+                document.getElementById(id).style.display = 'block';
+            }
+        });
 
-        document.getElementById('highlightSelectionFrame').style.display = 'block';
-        Array.from(document.getElementsByClassName('non-framed-mark')).forEach((m: HTMLElement) => m.style.display = 'block');
-
-        const selectedCls: string[] = state.selection.map((mId: string) => Animation.markClass.get(mId));//find the classes of selected marks
-        PlusBtn.highlightPlusBtns([...new Set(selectedCls)]);//highlight kfs which can be dropped on
         document.onmousemove = (moveEvt) => {
             canvas.style.left = `${moveEvt.pageX - canvas.width / 2}px`;
             canvas.style.top = `${moveEvt.pageY - canvas.height / 2}px`;
-            const dragOverItem: PlusBtn | KfItem = Tool.judgeDragOver({ x: moveEvt.pageX, y: moveEvt.pageY });
-            if (typeof dragOverItem !== 'undefined') {
-                dragOverItem.dragSelOver();
-            } else {
-                if (typeof PlusBtn.dragoverBtn !== 'undefined') {
-                    PlusBtn.dragoverBtn.dragSelOut();
-                } else if (typeof KfItem.dragoverKf !== 'undefined') {
-                    KfItem.dragoverKf.dragSelOut();
-                }
-            }
         }
         document.onmouseup = (upEvt) => {
-            Reducer.triger(action.UPDATE_MOUSE_MOVING, false);
             canvas.remove();
-            //update kf if drop on plus button or kf
-            if (typeof PlusBtn.dragoverBtn !== 'undefined') {
-                const selectedMarks: string[] = state.selection;
-                Reducer.triger(action.UPDATE_SELECTION, []);//reset state selection
-
-                State.tmpStateBusket.push({
-                    historyAction: { actionType: action.ACTIVATE_PLUS_BTN, actionVal: { aniId: '', selection: [], renderedUniqueIdx: -10 } },
-                    currentAction: { actionType: action.ACTIVATE_PLUS_BTN, actionVal: { aniId: PlusBtn.dragoverBtn.aniId, selection: selectedMarks, renderedUniqueIdx: -1 } }
-                })
-                State.saveHistory();
-                Reducer.triger(action.ACTIVATE_PLUS_BTN, { aniId: PlusBtn.dragoverBtn.aniId, selection: selectedMarks, renderedUniqueIdx: -1 });
-
-            } else if (typeof KfItem.dragoverKf !== 'undefined') {
-                // KfItem.dragoverKf.dropSelOn();
+            const kfContainer: HTMLElement = document.getElementById('kfContainer');
+            const kfContainerRect: ClientRect = kfContainer.getBoundingClientRect();
+            if (upEvt.pageX >= kfContainerRect.left && upEvt.pageX <= kfContainerRect.right && upEvt.pageY >= kfContainerRect.top && upEvt.pageY <= kfContainerRect.bottom) {
+                MarkSelector.emitSelection();
             }
 
-            PlusBtn.cancelHighlightPlusBtns();
-            // KfItem.cancelHighlightKfs();
-            PlusBtn.dragoverBtn = undefined;
-            KfItem.dragoverKf = undefined;
+
+            // MarkSelector.emitSelection();
             targetSVG.classList.toggle('chart-when-dragging');
             document.onmouseup = null;
             document.onmousemove = null;

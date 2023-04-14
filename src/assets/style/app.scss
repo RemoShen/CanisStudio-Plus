@@ -61,7 +61,7 @@ body {
     @extend .cover-size;
     background: var(--gray3);
     font-family: "Lato", "Lucida Grande", "Segoe UI", sans-serif;
-    overflow: hidden;
+    // overflow: auto;
 }
 
 .outer-wrapper {

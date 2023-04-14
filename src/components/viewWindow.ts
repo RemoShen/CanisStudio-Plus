@@ -59,9 +59,10 @@ export default class ViewWindow {
         this.view.appendChild(viewContent.container);
 
         //create confirm button
-        if (this.viewTitle == ViewWindow.CHART_VIEW_TITLE) {
-            this.view.appendChild(this.createConfirmButton());
-        }
+        // if (this.viewTitle == ViewWindow.CHART_VIEW_TITLE) {
+        //     // TODO: add Draggable Btn
+        //     this.view.appendChild(this.createConfirmButton());
+        // }
 
         //create tools on the title
         switch (this.viewTitle) {
