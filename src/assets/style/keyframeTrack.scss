@@ -72,3 +72,26 @@
 .kf-sort-btn-container:hover .kf-button {
     fill: #CCC;
 }
+
+.kf-order-button {
+    rect {
+        opacity: 0;
+    }
+
+    path,
+    text {
+        fill: rgb(163, 163, 163);
+    }
+}
+
+.kf-order-button:hover, .kf-active-order-button {
+    rect {
+        opacity: 1;
+        fill: #CCC;
+    }
+
+    path,
+    text {
+        fill: #676767;
+    }
+}

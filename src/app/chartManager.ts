@@ -9,7 +9,7 @@ import { markTableManager } from "./markTableManager";
 
 export const MARKID = "_MARKID";
 export const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-export const NONDATATYPE = ["axis-domain", "axis-tick", "axis-label", "legend-text", "legend-symbol", "x-axis-domain", "x-axis-tick", "x-axis-label", "y-axis-domain", "y-axis-tick", "y-axis-label", "title", "Title", "axis-grid", "y-axis-grid", "x-axis-grid", "y-axis-domain1", "y-axis-tick1", "y-axis-label1", "y-axis-domain2", "y-axis-tick2", "y-axis-label2", "legend-label", "year-title"];
+export const NONDATATYPE = ["axis-domain", "axis-tick", "axis-label", "legend-text", "legend-symbol", "x-axis-domain", "x-axis-tick", "x-axis-label", "y-axis-domain", "y-axis-tick", "y-axis-label", "title", "Title", "axis-grid", "y-axis-grid", "x-axis-grid", "y-axis-domain1", "y-axis-tick1", "y-axis-label1", "y-axis-domain2", "y-axis-tick2", "y-axis-label2", "legend-label", "year-title", "title1", "title2"];
 class MarkTable {
     markType: Set<string> = new Set();
     fieldNames: string[] = [];
@@ -17,7 +17,6 @@ class MarkTable {
     sortAttribute: string[] = [];
     sortId: string = ''
     items: { id: string, attributes: string[] }[] = [];
-
     constructor(firstMark: Map<string, string>, id: string) {
         this.sortId = 'none';
         this.fieldNames.push(MARKID);

@@ -1,5 +1,6 @@
 import { chartManager } from "./chartManager";
 import { KfTreeGroup, KfTreeNode, meetAttributeConstrains, meetMarkTypeConstrains } from "./kfTree";
+import { sortStrings } from "./sortUtil";
 
 class AnimationTreeItem {
     delay: number;
@@ -15,7 +16,7 @@ export class AnimationTreeGroup extends AnimationTreeItem {
         const delay = isFirst ? 0 : kfGroup.delay;
         this.delay = Math.max(-lastDuration, delay);
         let isFirstNode = true;
-        for (let child of kfGroup.children) {
+        for (let child of kfGroup.children.flatMap(val => val)) {
             if (child.grouping == null) {
                 const childNode = new AnimationTreeNode();
                 lastDuration = childNode.fromKfTreeNode(child, marks, isFirstNode, lastDuration);
@@ -45,8 +46,34 @@ export class AnimationTreeGroup extends AnimationTreeItem {
             }
             partition.get(value).add(id);
         }
+        const sequence: string[] = kfNode.grouping.sequence.filter(i => partition.has(i));
+        if (kfNode.grouping.sort.channel) {
+            const channel = kfNode.grouping.sort.channel;
+            const order = kfNode.grouping.sort.order;
+            if (channel == groupBy) {
+                sortStrings(sequence);
+            } else if (channel) {
+                const count = new Map<string, number>();
+                for (let [k, v] of partition) {
+                    let sum = 0;
+                    for (let id of v) {
+                        const value = chartManager.numericAttrs.get(id).get(channel);
+                        if (value) {
+                            sum += Number(value);
+                        }
+                    }
+                    count.set(k, sum);
+                }
+                sequence.sort((a: string, b: string) => {
+                    return count.get(a) - count.get(b);
+                });
+            }
+            if (order == "dsc") {
+                sequence.reverse();
+            }
+        }
         let isFirstChild = true;
-        for (let attributeName of kfNode.grouping.sequence) {
+        for (let attributeName of sequence) {
             if (!partition.has(attributeName)) {
                 continue;
             }

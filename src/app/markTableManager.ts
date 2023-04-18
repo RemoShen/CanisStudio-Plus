@@ -1,13 +1,20 @@
 import '../assets/style/selectableTable.scss'
 import AttrSort from '../components/widgets/attrSort';
+import { dragableCanvas } from '../components/widgets/dragableCanvas';
+import Tool from '../util/tool';
 import { chartManager } from "./chartManager"
+import { MarkSelector } from './markSelector';
 
 export class MarkTableManager {
     static selection: Set<string> = new Set();
+    static disabledMarks: Set<string> = new Set();
     render() {
         const dataTableMarks = chartManager.markTables;
         const dataTabelContainer = document.getElementById("dataTabelContainer");
         dataTabelContainer.innerHTML = '';
+        if(!dataTableMarks){
+            return;
+        }
         dataTableMarks.forEach((dataTableMark) => {
             const dataTable = document.createElement('table');
             dataTable.className = 'selectable-table';
@@ -69,8 +76,6 @@ export class MarkTableManager {
                         }
                     }
                 });
-
-
                 this.render();
             }
             thContainer.appendChild(sortBtn);
@@ -198,7 +203,6 @@ export class MarkTableManager {
                 tr.setAttribute('dataItem', item.id);
                 //markId
                 const td: HTMLTableDataCellElement = document.createElement('td');
-                // td.setAttribute('draggable', 'true');
                 td.innerText = item.id;
                 tr.appendChild(td);
                 //attributes
@@ -207,34 +211,65 @@ export class MarkTableManager {
                     td.innerText = value;
                     tr.appendChild(td);
                 })
-                // tr.setAttribute('draggable', 'true');
+                tr.onmousedown = (downEvent) => {
+                    let lastMouseX = downEvent.pageX, lastMouseY = downEvent.pageY;
+                    const mouseMoveThsh: number = 3;
 
-                tr.onmousedown = (downEvt) => {
-                    //TODO: add selection and add drag
-
+                    document.onmousemove = (moveEvt) => {
+                        if (Tool.pointDist(lastMouseX, moveEvt.pageX, lastMouseY, moveEvt.pageY) > mouseMoveThsh) {
+                            if (MarkTableManager.selection.size > 0) {
+                                dragableCanvas.createCanvas(document.querySelector('#chartContainer > svg:first-of-type'), { x: downEvent.pageX, y: downEvent.pageY });
+                            }
+                        }
+                    }
+                    document.onmouseup = (upEvt) => {
+                        if (Tool.pointDist(lastMouseX, upEvt.pageX, lastMouseY, upEvt.pageY) < mouseMoveThsh) {
+                            MarkSelector.updateSelection([item.id]);
+                        }
+                        document.onmousemove = null;
+                        document.onmouseup = null;
+                    }
                 }
                 dataTable.appendChild(tr);
             })
-            // dataTabelContainer.innerHTML = "";
             dataTabelContainer.appendChild(dataTable);
-
         })
-    }
+        MarkTableManager.disabledMarks.forEach((id) => {
+            this.notOptional(id);
+        })
+        MarkTableManager.selection.forEach((id) => {
+            this.addHighLightRow(id);
+        })
 
+    }
     notOptional(id: string) {
         const tr: HTMLTableRowElement = document.querySelector(`tr[dataItem="${id}"]`);
-        tr.setAttribute('style', 'opacity: 0.5');
-        tr.style.pointerEvents = 'none';
+        if (tr) {
+            tr.setAttribute('style', 'opacity: 0.5');
+        }
+    }
+    removeNotOptional(id: string) {
+        const tr: HTMLTableRowElement = document.querySelector(`tr[dataItem="${id}"]`);
+        if (tr) {
+            tr.setAttribute('style', 'opacity: 1');
+        }
     }
     addHighLightRow(id: string) {
         const tr: HTMLTableRowElement = document.querySelector(`tr[dataItem="${id}"]`);
-        tr.setAttribute('draggable', 'true');
-        tr.classList.add('selected-td');
+        if (tr) {
+            tr.classList.add('selected-td');
+            tr.setAttribute('style', 'opacity: 1')
+        }
     }
     removeHighLightRow(id: string) {
         const tr: HTMLTableRowElement = document.querySelector(`tr[dataItem="${id}"]`);
-        tr.setAttribute('draggable', 'false');
-        tr.classList.remove('selected-td');
+        if (tr) {
+            tr.classList.remove('selected-td');
+        }
+    }
+    reset() {
+        MarkTableManager.selection.clear();
+        MarkTableManager.disabledMarks.clear();
     }
 }
 export const markTableManager = new MarkTableManager()

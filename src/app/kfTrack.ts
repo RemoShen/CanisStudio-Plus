@@ -202,6 +202,10 @@ export class KfItem {
 
     }
 
+    calcLevelFromLeaves() {
+        this.levelFromLeaves = 0;
+    }
+
     render(height: number) {
         return { element: this.container, length: 0 };
     }
@@ -209,19 +213,57 @@ export class KfItem {
 
 export class KfGroup extends KfItem {
     children: KfItem[] = [];
+    resize(chiactiveChildld: KfItem, deltaL: number) { }
+}
+
+export class KfColume extends KfGroup {
+    constructor(parent: KfGroup) {
+        super(parent);
+    }
+
+    resize(activeChild: KfItem, deltaL: number) {
+        console.log("FUCK");
+    }
+
+    calcLevelFromLeaves() {
+        let levelFromLeaves = 0;
+        for (let i of this.children) {
+            i.calcLevelFromLeaves();
+            levelFromLeaves = Math.max(i.levelFromLeaves, levelFromLeaves);
+        }
+        this.levelFromLeaves = levelFromLeaves;
+    }
+
+    render(height: number) {
+        let length = 0;
+        let y = 0;
+        for (let child of this.children) {
+            let { element: childElement, length: childLength } = child.render(height);
+            this.container.appendChild(childElement);
+            child.translate(0, y);
+            y += height + 20;
+            length = Math.max(length, childLength);
+        }
+        return { element: this.container, length };
+    }
+}
+
+export class KfRow extends KfGroup {
     label: string;
     sortable: boolean;
     sortAttributes: string[];
+    originalParent: KfTreeNode;
 
     labelContainer: Element;
     labelBackground: Element;
     labelText: Element;
 
-    constructor(label: string, parent: KfGroup, sortable = false, sortAttrtibutes: string[] = []) {
+    constructor(label: string, parent: KfGroup, sortable = false, sortAttrtibutes: string[] = [], originalNode: KfTreeNode = null) {
         super(parent);
         this.label = label;
         this.sortable = sortable;
         this.sortAttributes = sortAttrtibutes;
+        this.originalParent = originalNode;
     }
 
     findRightMostLength() {
@@ -252,6 +294,18 @@ export class KfGroup extends KfItem {
         }
     }
 
+    calcLevelFromLeaves() {
+        let levelFromLeaves = 0;
+        for (let i of this.children) {
+            i.calcLevelFromLeaves();
+            levelFromLeaves = Math.max(i.levelFromLeaves, levelFromLeaves);
+        }
+        if (this.label.length > 0) {
+            levelFromLeaves++;
+        }
+        this.levelFromLeaves = levelFromLeaves;
+    }
+
     getOriginalHeight() {
         if (this.label.length == 0) {
             return (this.levelFromLeaves - 1) * LABEL_HEIGHT + THUMBNAIL_HEIGHT;
@@ -260,48 +314,159 @@ export class KfGroup extends KfItem {
         }
     }
 
-    createSortList() {
+    createOrderBtn(order: string) {
+        const g = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        g.classList.add("kf-order-button")
+
+        const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        g.appendChild(rect);
+        rect.setAttribute("height", "20");
+        rect.setAttribute("width", "20");
+        rect.setAttribute("rx", "3");
+
+        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+        g.appendChild(path);
+        if (order == "asc") {
+            path.setAttribute("d", "M 3.461 0.162 l -3.34 3.78 c -0.274 0.31 -0.054 0.799 0.36 0.799 h 1.961 v 11.932 c 0 0.265 0.215 0.481 0.481 0.481 h 1.798 c 0.265 0 0.481 -0.215 0.481 -0.481 V 4.742 h 1.961 c 0.414 0 0.634 -0.489 0.36 -0.799 L 4.182 0.162 C 3.99 -0.054 3.653 -0.054 3.461 0.162 z M 6.581 6.817 v 1.791 c 0 0.267 0.217 0.484 0.484 0.484 h 9.748 c 0.267 0 0.484 -0.217 0.484 -0.484 V 6.817 c 0 -0.267 -0.217 -0.484 -0.484 -0.484 H 7.065 C 6.797 6.333 6.581 6.549 6.581 6.817 z M 7.029 13.124 h 7.904 c 0.248 0 0.449 -0.201 0.449 -0.449 v -1.861 c 0 -0.248 -0.201 -0.449 -0.449 -0.449 H 7.029 c -0.248 0 -0.449 0.201 -0.449 0.449 v 1.861 C 6.581 12.923 6.782 13.124 7.029 13.124 z M 7.024 17.155 h 5.916 c 0.245 0 0.443 -0.198 0.443 -0.443 v -1.873 c 0 -0.245 -0.198 -0.443 -0.443 -0.443 H 7.024 c -0.245 0 -0.443 0.198 -0.443 0.443 v 1.873 C 6.581 16.956 6.779 17.155 7.024 17.155 z");
+        } else {
+            path.setAttribute("d", "M 3.461 16.988 l -3.34 -3.78 c -0.274 -0.31 -0.054 -0.799 0.36 -0.799 h 1.961 v -11.932 c 0 -0.265 0.215 -0.481 0.481 -0.481 h 1.798 c 0.265 0 0.481 0.215 0.481 0.481 v 11.931 h 1.961 c 0.414 0 0.634 0.489 0.36 0.799 l -3.341 3.781 c -0.192 0.216 -0.529 0.216 -0.721 0 z m 3.12 -6.655 v -1.791 c 0 -0.267 0.217 -0.484 0.484 -0.484 h 9.748 c 0.267 0 0.484 0.217 0.484 0.484 v 1.791 c 0 0.267 -0.217 0.484 -0.484 0.484 h -9.748 c -0.268 0 -0.484 -0.216 -0.484 -0.484 z m 0.448 -6.307 h 7.904 c 0.248 0 0.449 0.201 0.449 0.449 v 1.861 c 0 0.248 -0.201 0.449 -0.449 0.449 h -7.904 c -0.248 0 -0.449 -0.201 -0.449 -0.449 v -1.861 c 0.001 -0.248 0.202 -0.449 0.449 -0.449 z m -0.005 -4.031 h 5.916 c 0.245 0 0.443 0.198 0.443 0.443 v 1.873 c 0 0.245 -0.198 0.443 -0.443 0.443 h -5.916 c -0.245 0 -0.443 -0.198 -0.443 -0.443 v -1.873 c 0 -0.244 0.198 -0.443 0.443 -0.443 z");
+        }
+        path.setAttribute("transform", "scale(0.8)translate(4,4)");
+        // path.setAttribute("style", "fill: #676767");
+
+        return g;
+    }
+
+    createSortList(sortBtnContainer: Element) {
+
         const sortListContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
         kfTrack.innerContainer.appendChild(sortListContainer);
-        sortListContainer.setAttribute("transform", `translate(${this.getX() + 30},${this.getY()})`);
+        sortListContainer.setAttribute("transform", `translate(${this.getX() + 30},${this.getY() + 2}), scale(${1 / kfTrack.scale})`);
         const itemWidth = 120;
         const itemHeight = 20;
         let index = 0;
         console.log(this.sortAttributes);
+
+        const background = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        background.setAttribute("width", "25");
+        background.setAttribute("height", "16");
+        background.setAttribute("transform", `scale(${kfTrack.scale}), translate(${-25}, 0)`);
+        background.setAttribute("opacity", "0");
+        sortListContainer.appendChild(background);
+        const sortChannel = this.originalParent.grouping.sort.channel;
+        const sortOrder = this.originalParent.grouping.sort.order;
+
         for (let attributeName of this.sortAttributes) {
+            // for (let order of ["asc", "dsc"]) {
+
+
             const itemBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
             itemBackground.setAttribute("width", String(itemWidth));
             itemBackground.setAttribute("height", String(itemHeight));
             itemBackground.setAttribute("fill", "#676767");
             itemBackground.setAttribute("stroke", "#AAA");
-            itemBackground.setAttribute("y", String(index * (itemHeight)))
+            itemBackground.setAttribute("y", String(index * (itemHeight)));
             sortListContainer.appendChild(itemBackground);
 
             const itemContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
-            itemContainer.classList.add("kf-button")
+            // itemContainer.classList.add("kf-button");
             itemContainer.setAttribute("transform", `translate(${0},${index * (itemHeight)})`);
             sortListContainer.appendChild(itemContainer);
-            itemContainer.onclick = () => {
+            // itemContainer.onclick = () => {
 
+            // }
+
+            // const icon = this.createOrderIcon(order);
+            // icon.setAttribute("transform", "scale(0.8)translate(5,5)");
+            // itemContainer.appendChild(icon);
+
+            // const itemMask = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            // itemMask.setAttribute("width", String(itemWidth));
+            // itemMask.setAttribute("height", String(itemHeight));
+            // itemMask.setAttribute("opacity", "0");
+            // itemContainer.appendChild(itemMask);
+            const ascBtn = this.createOrderBtn("asc");
+            ascBtn.setAttribute("transform", "translate(5, 0)")
+            itemContainer.appendChild(ascBtn);
+            ascBtn.onclick = () => {
+                this.originalParent.updateSort(attributeName, "asc");
             }
 
-            const itemMask = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            itemMask.setAttribute("width", String(itemWidth));
-            itemMask.setAttribute("height", String(itemHeight));
-            itemMask.setAttribute("opacity", "0");
-            itemContainer.appendChild(itemMask);
+            const dscBtn = this.createOrderBtn("dsc");
+            dscBtn.setAttribute("transform", `translate(${itemWidth - 16 - 9}, 0)`)
+            itemContainer.appendChild(dscBtn);
+            dscBtn.onclick = () => {
+                this.originalParent.updateSort(attributeName, "dsc");
+            }
 
+            if (sortChannel == attributeName) {
+                if (sortOrder == "asc") {
+                    ascBtn.classList.add("kf-active-order-button");
+                } else {
+                    dscBtn.classList.add("kf-active-order-button");
+                }
+            }
 
             const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
             text.innerHTML = attributeName;
             text.setAttribute("font-size", "12");
-            text.setAttribute("x", "25");
+            text.setAttribute("x", String(itemWidth / 2));
             text.setAttribute("y", String(itemHeight / 2 + 4));
+            text.setAttribute("fill", "rgb(163, 163, 163)")
+            text.setAttribute("text-anchor", "middle")
+            text.setAttribute("font-weight", "600");
             itemContainer.appendChild(text);
 
             index++
+            // }
         }
+        {
+            const itemBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            itemBackground.setAttribute("width", String(itemWidth));
+            itemBackground.setAttribute("height", String(itemHeight));
+            itemBackground.setAttribute("fill", "#676767");
+            itemBackground.setAttribute("stroke", "#AAA");
+            itemBackground.setAttribute("y", String(index * (itemHeight)));
+            sortListContainer.appendChild(itemBackground);
 
+            const itemContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            // itemContainer.classList.add("kf-button");
+            itemContainer.setAttribute("transform", `translate(${0},${index * (itemHeight)})`);
+            sortListContainer.appendChild(itemContainer);
+
+            const buttonContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            itemContainer.appendChild(buttonContainer);
+            buttonContainer.setAttribute("transform", `translate(${itemWidth / 2},${2})`);
+            buttonContainer.classList.add("kf-order-button");
+
+            const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            buttonContainer.appendChild(rect);
+            rect.setAttribute("height", "16");
+            rect.setAttribute("width", "50");
+            rect.setAttribute("rx", "3");
+            rect.setAttribute("x", String(-50 / 2));
+
+            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            text.innerHTML = "Default";
+            text.setAttribute("text-anchor", "middle")
+            text.setAttribute("font-size", "12");
+            text.setAttribute("font-weight", "600");
+            text.setAttribute("y", "12");
+            buttonContainer.appendChild(text);
+
+            buttonContainer.onclick = () => {
+                this.originalParent.updateSort(null, null);
+            }
+
+            if (!sortChannel) {
+                buttonContainer.classList.add("kf-active-order-button");
+            }
+
+        }
+        sortListContainer.onmouseleave = () => {
+            sortBtnContainer.removeAttribute("style");
+            kfTrack.innerContainer.removeChild(sortListContainer);
+        }
     }
 
     render(height: number) {
@@ -338,7 +503,13 @@ export class KfGroup extends KfItem {
             sortBtnIcon.classList.add("kf-button");
 
             sortBtnContainer.onclick = () => {
-                this.createSortList();
+                sortBtnContainer.setAttribute("style", "opacity: 1");
+                this.createSortList(sortBtnContainer);
+            }
+        }
+        labelContainer.onclick = ()=>{
+            if(this.originalParent){
+                this.originalParent.moveForward();
             }
         }
 
@@ -390,7 +561,7 @@ export class KfGroup extends KfItem {
 
 export class KfOmit extends KfItem {
     numberOmitted: number;
-    constructor(numberOmitted: number, parent: KfGroup) {
+    constructor(numberOmitted: number, parent: KfRow) {
         super(parent);
         this.numberOmitted = numberOmitted;
     }
@@ -682,6 +853,9 @@ export class KfDelay extends KfItem {
         }
 
         this.length = Math.max(this.length, 0);
+
+        return { element: this.container, length: 0 };
+
         if (this.length == 0) {
             // this.controlOff();
             return { element: this.container, length: 0 };
@@ -889,6 +1063,7 @@ export class KfNode extends KfItem {
             text.setAttribute("font-size", "12");
             text.setAttribute("x", "25");
             text.setAttribute("y", String(itemHeight / 2 + 4));
+            text.setAttribute("font-weight", "600");
             itemContainer.appendChild(text);
 
             index++
@@ -1003,44 +1178,44 @@ export class KfNode extends KfItem {
         thumbnail.setAttribute("height", String(height));
         // thumbnail.setAttribute("y", String(LABEL_HEIGHT));
 
-        const rightDragBar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        container.appendChild(rightDragBar);
-        this.rightDragBar = rightDragBar;
-        rightDragBar.setAttribute("x", String(length - 2 * ITEM_GAP));
-        rightDragBar.setAttribute("y", String(this.height - this.parent.height));
-        rightDragBar.setAttribute("width", String(ITEM_GAP * 2));
-        rightDragBar.setAttribute("height", String(this.parent.height));
-        rightDragBar.classList.add("kf-drag-bar-right");
+        // const rightDragBar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        // container.appendChild(rightDragBar);
+        // this.rightDragBar = rightDragBar;
+        // rightDragBar.setAttribute("x", String(length - 2 * ITEM_GAP));
+        // rightDragBar.setAttribute("y", String(this.height - this.parent.height));
+        // rightDragBar.setAttribute("width", String(ITEM_GAP * 2));
+        // rightDragBar.setAttribute("height", String(this.parent.height));
+        // rightDragBar.classList.add("kf-drag-bar-right");
 
-        rightDragBar.onmousedown = (downEvent: MouseEvent) => {
-            if (downEvent.button != 0) {
-                return;
-            }
-            kfTrack.panningLock = true;
-            rightDragBar.setAttribute("style", "opacity:1");
+        // rightDragBar.onmousedown = (downEvent: MouseEvent) => {
+        //     if (downEvent.button != 0) {
+        //         return;
+        //     }
+        //     kfTrack.panningLock = true;
+        //     rightDragBar.setAttribute("style", "opacity:1");
 
-            kfTrack.setActiveNode(this);
+        //     kfTrack.setActiveNode(this);
 
-            const lengthGuideBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            this.container.appendChild(lengthGuideBackground);
-            this.lengthGuideBackground = lengthGuideBackground;
-            lengthGuideBackground.classList.add("kf-length-guide-bg");
-            lengthGuideBackground.setAttribute("y", String((6 - ITEM_GAP) / kfTrack.scale));
-            lengthGuideBackground.setAttribute("height", String(20 / kfTrack.scale));
+        //     const lengthGuideBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        //     this.container.appendChild(lengthGuideBackground);
+        //     this.lengthGuideBackground = lengthGuideBackground;
+        //     lengthGuideBackground.classList.add("kf-length-guide-bg");
+        //     lengthGuideBackground.setAttribute("y", String((6 - ITEM_GAP) / kfTrack.scale));
+        //     lengthGuideBackground.setAttribute("height", String(20 / kfTrack.scale));
 
-            const lengthGuide = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            this.container.appendChild(lengthGuide);
-            this.lengthGuide = lengthGuide;
-            lengthGuide.setAttribute("x", String(this.length));
-            lengthGuide.setAttribute("y", String(18 / kfTrack.scale));
-            lengthGuide.setAttribute("font-size", String(12 / kfTrack.scale));
-            lengthGuide.classList.add("kf-length-guide");
+        //     const lengthGuide = document.createElementNS("http://www.w3.org/2000/svg", "text");
+        //     this.container.appendChild(lengthGuide);
+        //     this.lengthGuide = lengthGuide;
+        //     lengthGuide.setAttribute("x", String(this.length));
+        //     lengthGuide.setAttribute("y", String(18 / kfTrack.scale));
+        //     lengthGuide.setAttribute("font-size", String(12 / kfTrack.scale));
+        //     lengthGuide.classList.add("kf-length-guide");
 
-            this.updateLengthGuide();
+        //     this.updateLengthGuide();
 
-            document.onmousemove = (event: MouseEvent) => { this.updateWidth(event) };
-            document.onmouseup = (event: MouseEvent) => { this.finishUpdateWidth(event) };
-        }
+        //     document.onmousemove = (event: MouseEvent) => { this.updateWidth(event) };
+        //     document.onmouseup = (event: MouseEvent) => { this.finishUpdateWidth(event) };
+        // }
 
         this.renderLeftBar();
         this.createMenu();
@@ -1098,8 +1273,10 @@ class KfTrack {
         let maxHeight = 0;
         let maxLevel = 0;
         for (let i of this.groups) {
+            i.calcLevelFromLeaves();
             maxHeight = Math.max(maxHeight, i.getOriginalHeight());
             maxLevel = Math.max(maxLevel, i.levelFromLeaves);
+            console.log(i);
         }
 
         const innerContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");

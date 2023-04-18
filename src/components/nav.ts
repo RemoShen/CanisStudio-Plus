@@ -8,6 +8,7 @@ import { player } from './player';
 import { clearKfTrees, redo, revert } from '../app/kfTree';
 import { chartManager } from '../app/chartManager';
 import Renderer from '../app_backup/renderer';
+import { markTableManager } from '../app/markTableManager';
 export default class Nav {
     navContainer: HTMLDivElement;
 
@@ -332,6 +333,8 @@ class NavBtn {
 
     public reset(): void {
         clearKfTrees();
+        markTableManager.reset();
+        markTableManager.render();
         // TODO:
         // Reducer.triger(action.RESET_STATE, {});
     }

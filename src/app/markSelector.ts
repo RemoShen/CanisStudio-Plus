@@ -75,7 +75,7 @@ export class MarkSelector {
                     }
                     for (let id of MarkSelector.selectableMarks) {
                         if (!set.has(id)) {
-                            MarkSelector.addHide(document.getElementById(id));
+                            MarkSelector.addHide(id);
                         }
                     }
                     return;
@@ -85,7 +85,7 @@ export class MarkSelector {
             MarkSelector.addSelect(id);
             for (let set of MarkSelector.expandOptions) {
                 for (let id of set) {
-                    MarkSelector.addHide(document.getElementById(id));
+                    MarkSelector.addHide(id);
                 }
             }
             return;
@@ -110,7 +110,7 @@ export class MarkSelector {
             const set = MarkSelector.expandOptions[MarkSelector.selectOption];
             for (let id of MarkSelector.selectableMarks) {
                 if (!set.has(id)) {
-                    MarkSelector.removeHide(document.getElementById(id));
+                    MarkSelector.removeHide(id);
                 }
             }
             MarkSelector.selectOption = -1;
@@ -124,7 +124,7 @@ export class MarkSelector {
             if (MarkSelector.selection.size == 0) {
                 for (let set of MarkSelector.expandOptions) {
                     for (let id of set) {
-                        MarkSelector.removeHide(document.getElementById(id));
+                        MarkSelector.removeHide(id);
                     }
                 }
             }
@@ -139,9 +139,8 @@ export class MarkSelector {
             return;
         }
         MarkSelector.selection.add(id);
-        MarkSelector.addHighlight(document.getElementById(id));
         MarkTableManager.selection.add(id);
-        markTableManager.addHighLightRow(id);
+        MarkSelector.addHighlight(id);
     }
 
     static removeSelect(id: string) {
@@ -149,9 +148,9 @@ export class MarkSelector {
             return;
         }
         MarkSelector.selection.delete(id);
-        MarkSelector.removeHighlight(document.getElementById(id));
         MarkTableManager.selection.delete(id);
-        markTableManager.removeHighLightRow(id);
+        MarkSelector.removeHighlight(id);
+
 
     }
 
@@ -198,21 +197,21 @@ export class MarkSelector {
                     }
                 }
                 if (disable) {
-                    const element = document.getElementById(id);
-                    MarkSelector.addHide(element);
+                    MarkSelector.addHide(id);
                 } else {
                     MarkSelector.selectableMarks.add(id);
                 }
             } else {
-                const element = document.getElementById(id);
-                MarkSelector.addDisable(element);
+                MarkSelector.addDisable(id);
             }
         }
         MarkSelector.selectOption = -1;
         // this.confirmButton.setAttribute("style", "display:none");
     }
 
-    static addHide(element: HTMLElement) {
+    static addHide(id: string) {
+        MarkTableManager.disabledMarks.add(id);
+        const element: HTMLElement = document.getElementById(id)
         // element.setAttribute("display", "none");
         let opacity = 1;
         const opacityAttr = element.getAttribute("opacity");
@@ -220,20 +219,26 @@ export class MarkSelector {
             opacity = Number(opacityAttr);
         }
         element.setAttribute("opacity", String(opacity * 0.1));
+        // dataTable
+        markTableManager.notOptional(id);
+
     }
 
-    static removeHide(element: HTMLElement) {
+    static removeHide(id: string) {
+        MarkTableManager.disabledMarks.delete(id);
+        const element: HTMLElement = document.getElementById(id);
         let opacity = 1;
         const opacityAttr = element.getAttribute("opacity");
         if (opacityAttr && opacityAttr.length != 0) {
             opacity = Number(opacityAttr);
         }
         element.setAttribute("opacity", String(opacity / 0.1));
+        markTableManager.removeNotOptional(id);
     }
 
-    static addHighlight(element: HTMLElement) {
-        MarkSelector.addDisable(element);
-
+    static addHighlight(id: string) {
+        const element: HTMLElement = document.getElementById(id);
+        MarkSelector.addDisable(id);
         let maskElement: Element;
         if (element.tagName == "text") {
             maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -273,29 +278,41 @@ export class MarkSelector {
         maskElement.appendChild(animation2);
 
         MarkSelector.selectionMask.appendChild(maskElement);
+        //update dataTableSelection
+        markTableManager.addHighLightRow(id);
     }
 
-    static removeHighlight(element: HTMLElement) {
-        MarkSelector.removeDisable(element);
+    static removeHighlight(id: string) {
+        const element: HTMLElement = document.getElementById(id);
+        MarkSelector.removeDisable(id);
         MarkSelector.selectionMask.removeChild(document.getElementById("__" + element.id));
+        markTableManager.removeHighLightRow(id);
     }
 
-    static addDisable(element: HTMLElement) {
+    static addDisable(id: string) {
+        MarkTableManager.disabledMarks.add(id);
+        const element: HTMLElement = document.getElementById(id)
         let opacity = 1;
         const opacityAttr = element.getAttribute("opacity");
         if (opacityAttr && opacityAttr.length != 0) {
             opacity = Number(opacityAttr);
         }
         element.setAttribute("opacity", String(opacity * 0.3));
+        markTableManager.removeHighLightRow(id);
+        markTableManager.notOptional(id);
+
     }
 
-    static removeDisable(element: HTMLElement) {
+    static removeDisable(id: string) {
+        MarkTableManager.disabledMarks.delete(id);
+        const element: HTMLElement = document.getElementById(id)
         let opacity = 1;
         const opacityAttr = element.getAttribute("opacity");
         if (opacityAttr && opacityAttr.length != 0) {
             opacity = Number(opacityAttr);
         }
         element.setAttribute("opacity", String(opacity / 0.3));
+        markTableManager.removeNotOptional(id);
     }
 
     static init() {
@@ -310,6 +327,9 @@ export class MarkSelector {
 
     static reset(disabledMarks: Set<string>, attributeSelectors: Map<string, string>, expandOptions: Set<string>[]) {
         MarkSelector.selection.clear();
+        // MarkTableManager.selection.clear();
+        markTableManager.reset();
+        markTableManager.render();
         MarkSelector.scale = 1;
         MarkSelector.panning = { x: 0, y: 0 };
         const svg = document.getElementById("visChart");
@@ -328,7 +348,7 @@ export class MarkSelector {
             width: Number(MarkSelector.svg.getAttribute("width")),
             height: Number(MarkSelector.svg.getAttribute("height")),
         }
-
+        //update dataTable
         MarkSelector.setCompleteData(disabledMarks, attributeSelectors, expandOptions);
     }
 
