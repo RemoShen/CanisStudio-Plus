@@ -1,5 +1,6 @@
 import '../assets/style/keyframeTrack.scss'
 import { KfTreeGroup, KfTreeNode } from './kfTree';
+import { suggestPanel } from './suggestPanel';
 
 const LABEL_HEIGHT = 20;
 const LABEL_CORNER_RADIUS = 3;
@@ -120,6 +121,7 @@ export class KfItem {
 
     levelFromLeaves: number = 0;
     container: Element;
+    mainContainer: Element;
     id: number;
     parent: KfGroup;
 
@@ -131,6 +133,29 @@ export class KfItem {
     leftDragBarCallback: Function = null;
     leftDragBar: Element;
     hideLeftDragBar: boolean = false;
+
+    delayLength: number = 0;
+    delayWidget: KfDelay;
+
+    updateDelayLength() {
+        const deltaL = this.delayWidget.length - this.delayLength;
+        this.delayLength = this.delayWidget.length;
+        this.mainContainer.setAttribute("transform", `translate(${this.delayLength},${0})`);
+        if (this.parent) {
+            this.parent.resize(this, deltaL);
+        } else {
+            kfTrack.resize(this, deltaL);
+        }
+    }
+
+    renderDelay(height: number) {
+        if (!this.delayWidget.originalNode || isNaN(this.delayWidget.delay)) {
+            return;
+        }
+        this.delayWidget.render(height);
+        this.delayLength = this.delayWidget.length;
+        this.mainContainer.setAttribute("transform", `translate(${this.delayLength},${0})`);
+    }
 
     translate(x: number, y: number) {
         this.x += x;
@@ -172,7 +197,7 @@ export class KfItem {
             this.leftDragBarCallback(downEvent);
         }
 
-        this.container.appendChild(leftDragBar);
+        this.mainContainer.appendChild(leftDragBar);
 
         if (this.hideLeftDragBar) {
             leftDragBar.setAttribute("display", "none");
@@ -183,7 +208,7 @@ export class KfItem {
         return this.length;
     }
 
-    constructor(parent: KfGroup) {
+    constructor(parent: KfGroup, delay: number, originalDelayNode: KfTreeGroup | KfTreeNode, previousNode: KfItem = null) {
         this.container = document.createElementNS("http://www.w3.org/2000/svg", "g");
         this.id = KfItem.idCounter++;
         this.container.id = `kfContainer${this.id}`;
@@ -192,6 +217,12 @@ export class KfItem {
         if (this.id == kfTrack.activeNodeId) {
             kfTrack.activeNode = this;
         }
+
+        this.delayWidget = new KfDelay(delay, this, originalDelayNode, previousNode);
+        this.container.appendChild(this.delayWidget.container);
+
+        this.mainContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        this.container.appendChild(this.mainContainer);
     }
 
     getOriginalHeight() {
@@ -207,7 +238,7 @@ export class KfItem {
     }
 
     render(height: number) {
-        return { element: this.container, length: 0 };
+        // return { element: this.container, length: 0 };
     }
 }
 
@@ -217,12 +248,20 @@ export class KfGroup extends KfItem {
 }
 
 export class KfColume extends KfGroup {
-    constructor(parent: KfGroup) {
-        super(parent);
+    right: number[] = [];
+
+    constructor(parent: KfGroup, delay: number, originalDelayNode: KfTreeNode | KfTreeGroup) {
+        super(parent, delay, originalDelayNode);
     }
 
     resize(activeChild: KfItem, deltaL: number) {
-        console.log("FUCK");
+        const index = this.children.indexOf(activeChild);
+        this.right[index] += deltaL;
+        const newLength = Math.max(...this.right);
+        if (newLength != this.length) {
+            this.parent.resize(this, newLength - this.length);
+            this.length = newLength;
+        }
     }
 
     calcLevelFromLeaves() {
@@ -235,15 +274,31 @@ export class KfColume extends KfGroup {
     }
 
     render(height: number) {
+        const container = this.mainContainer;
         let length = 0;
         let y = 0;
+
+        // const background = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        // this.container.appendChild(background);
+        // background.setAttribute("fill", "#f7f7f7")
+
         for (let child of this.children) {
-            let { element: childElement, length: childLength } = child.render(height);
-            this.container.appendChild(childElement);
+            child.render(height);
+            container.appendChild(child.container);
             child.translate(0, y);
-            y += height + 20;
-            length = Math.max(length, childLength);
+            y += child.height + 20;
+            length = Math.max(length, child.length + child.delayLength);
+            this.right.push(child.length + child.delayLength);
         }
+        y -= 20;
+        this.height = y;
+        this.length = length;
+
+        // background.setAttribute("width", String(length));
+        // background.setAttribute("height", String(y));
+        this.renderDelay(this.height);
+        this.renderLeftBar();
+
         return { element: this.container, length };
     }
 }
@@ -252,18 +307,21 @@ export class KfRow extends KfGroup {
     label: string;
     sortable: boolean;
     sortAttributes: string[];
-    originalParent: KfTreeNode;
+    originalGrouping: KfTreeNode;
+    originalNode: KfTreeNode | KfTreeGroup;
 
     labelContainer: Element;
     labelBackground: Element;
+    background: Element;
     labelText: Element;
 
-    constructor(label: string, parent: KfGroup, sortable = false, sortAttrtibutes: string[] = [], originalNode: KfTreeNode = null) {
-        super(parent);
+    constructor(label: string, parent: KfGroup, delay: number, originalNode: KfTreeNode | KfTreeGroup, sortable = false, sortAttrtibutes: string[] = [], originalGrouping: KfTreeNode = null) {
+        super(parent, delay, originalNode);
         this.label = label;
+        this.originalNode = originalNode;
         this.sortable = sortable;
         this.sortAttributes = sortAttrtibutes;
-        this.originalParent = originalNode;
+        this.originalGrouping = originalGrouping;
     }
 
     findRightMostLength() {
@@ -277,6 +335,7 @@ export class KfRow extends KfGroup {
     resize(activeChild: KfItem, deltaL: number) {
         this.length += deltaL;
         this.labelBackground.setAttribute("width", String(this.length));
+        this.background.setAttribute("width", String(this.length));
         if (this.parent) {
             this.parent.resize(this, deltaL);
         } else {
@@ -353,8 +412,8 @@ export class KfRow extends KfGroup {
         background.setAttribute("transform", `scale(${kfTrack.scale}), translate(${-25}, 0)`);
         background.setAttribute("opacity", "0");
         sortListContainer.appendChild(background);
-        const sortChannel = this.originalParent.grouping.sort.channel;
-        const sortOrder = this.originalParent.grouping.sort.order;
+        const sortChannel = this.originalGrouping.grouping.sort.channel;
+        const sortOrder = this.originalGrouping.grouping.sort.order;
 
         for (let attributeName of this.sortAttributes) {
             // for (let order of ["asc", "dsc"]) {
@@ -389,14 +448,14 @@ export class KfRow extends KfGroup {
             ascBtn.setAttribute("transform", "translate(5, 0)")
             itemContainer.appendChild(ascBtn);
             ascBtn.onclick = () => {
-                this.originalParent.updateSort(attributeName, "asc");
+                this.originalGrouping.updateSort(attributeName, "asc");
             }
 
             const dscBtn = this.createOrderBtn("dsc");
             dscBtn.setAttribute("transform", `translate(${itemWidth - 16 - 9}, 0)`)
             itemContainer.appendChild(dscBtn);
             dscBtn.onclick = () => {
-                this.originalParent.updateSort(attributeName, "dsc");
+                this.originalGrouping.updateSort(attributeName, "dsc");
             }
 
             if (sortChannel == attributeName) {
@@ -455,7 +514,7 @@ export class KfRow extends KfGroup {
             buttonContainer.appendChild(text);
 
             buttonContainer.onclick = () => {
-                this.originalParent.updateSort(null, null);
+                this.originalGrouping.updateSort(null, null);
             }
 
             if (!sortChannel) {
@@ -471,7 +530,7 @@ export class KfRow extends KfGroup {
 
     render(height: number) {
         this.height = height;
-        const container = this.container;
+        const container = this.mainContainer;
         // let length = ITEM_GAP;
         let length = 0;
 
@@ -507,25 +566,50 @@ export class KfRow extends KfGroup {
                 this.createSortList(sortBtnContainer);
             }
         }
-        labelContainer.onclick = ()=>{
-            if(this.originalParent){
-                this.originalParent.moveForward();
+        labelContainer.onmousedown = () => {
+            if (this.originalNode) {
+                let virtualMovement = 0;
+                let actualMovement = 0;
+                document.onmousemove = (event: MouseEvent) => {
+                    virtualMovement += event.movementX;
+                    const newActualMovement = Math.max(-100, Math.min(100, virtualMovement));
+                    this.translate(newActualMovement - actualMovement, 0);
+                    actualMovement = newActualMovement;
+                }
+                document.onmouseup = (event: MouseEvent) => {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                    if (actualMovement == -100) {
+                        this.originalNode.moveForward();
+                    } else if (actualMovement == 100) {
+                        this.originalNode.moveBackward();
+                    } else {
+                        this.translate(-actualMovement, 0);
+                    }
+                }
             }
         }
 
         // const childrenOffsetY = this.label.length != 0 ? 0 : ITEM_GAP - LABEL_HEIGHT;
         const childrenOffsetY = this.label.length != 0 ? LABEL_HEIGHT : 0;
 
+        const background = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        this.background = background;
+        container.appendChild(background);
+        background.setAttribute("fill", "#f7f7f7");
+        background.setAttribute("y", String(childrenOffsetY));
+
         for (let child of this.children) {
-            let { element: childElement, length: childLength } = child.render(height - childrenOffsetY);
+            child.render(height - childrenOffsetY);
 
             child.translate(length, childrenOffsetY);
-            container.appendChild(childElement);
-            length += childLength // + ITEM_GAP;
-            length += (this.levelFromLeaves - 2) * 2;
+            container.appendChild(child.container);
+            length += child.length + child.delayLength// + ITEM_GAP;
+            length += (this.levelFromLeaves - 1) * 2;
+            this.height = Math.max(this.height, child.height + childrenOffsetY);
         }
         // length -= ITEM_GAP;
-        length -= (this.levelFromLeaves - 2) * 2;
+        length -= (this.levelFromLeaves - 1) * 2;
         this.length = length;
 
 
@@ -545,6 +629,9 @@ export class KfRow extends KfGroup {
         // labelBackground.setAttribute("stroke-width", String(this.levelFromLeaves));
         labelBackground.setAttribute("stroke-opacity", LABEL_BORDER_OPACITY);
 
+        background.setAttribute("width", String(length));
+        background.setAttribute("height", String(this.height - childrenOffsetY));
+
         labelText.setAttribute("fill", TEXT_COLORS[this.levelFromLeaves % 5]);
         labelText.setAttribute("text-anchor", "middle");
         labelText.setAttribute("x", String(length / 2));
@@ -553,6 +640,7 @@ export class KfRow extends KfGroup {
         labelText.setAttribute("font-weight", "600");
         labelText.innerHTML = this.label;
 
+        this.renderDelay(this.height);
         this.renderLeftBar();
 
         return { element: container, length };
@@ -561,14 +649,18 @@ export class KfRow extends KfGroup {
 
 export class KfOmit extends KfItem {
     numberOmitted: number;
-    constructor(numberOmitted: number, parent: KfRow) {
-        super(parent);
+    lastNode: KfItem;
+    constructor(numberOmitted: number, parent: KfRow, delay: number, originalDelayNode: KfTreeGroup | KfTreeNode, lastNode: KfItem) {
+        super(parent, delay, originalDelayNode);
         this.numberOmitted = numberOmitted;
+        this.lastNode = lastNode;
     }
 
     render(height: number) {
+        height = this.lastNode.height;
+        this.renderDelay(height);
         this.height = height;
-        const container = this.container;
+        const container = this.mainContainer;
         const length = 50;
         this.length = length;
         for (let i = 0; i < 3; i++) {
@@ -595,7 +687,11 @@ export class KfOmit extends KfItem {
     }
 }
 
-export class KfDelay extends KfItem {
+export class KfDelay {
+    container: Element;
+    parent: KfItem;
+
+    length: number;
     delay: number;
 
     virtualLength: number;
@@ -611,22 +707,19 @@ export class KfDelay extends KfItem {
     originalNode: KfTreeNode | KfTreeGroup;
 
     previousNode: KfItem;
-    nextNode: KfItem;
 
     lastNodeLength: number;
 
-    constructor(delayTime: number, parent: KfGroup, originalNode: KfTreeGroup | KfTreeNode, previousNode: KfItem, nextNode: KfItem) {
-        super(parent);
+    constructor(delayTime: number, parent: KfItem, originalNode: KfTreeGroup | KfTreeNode, previousNode: KfItem) {
+        this.container = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        this.parent = parent;
+
         this.delay = delayTime;
         // this.length = delayToLength(delayTime);
 
         this.originalNode = originalNode;
 
         this.previousNode = previousNode;
-        this.nextNode = nextNode;
-
-        this.levelFromLeaves = Math.min(previousNode.levelFromLeaves, nextNode.levelFromLeaves);
-
     }
 
     controlOn() {
@@ -672,7 +765,11 @@ export class KfDelay extends KfItem {
     updateWidth(moveEvent: MouseEvent) {
         this.virtualLength += moveEvent.movementX;
         let deltaL = -this.length;
-        this.length = Math.min(Math.max(this.virtualLength, -this.lastNodeLength), MAX_DELAY_LENGTH);
+        // this.length = Math.min(Math.max(this.virtualLength, -this.lastNodeLength), MAX_DELAY_LENGTH);
+        this.length = Math.min(this.virtualLength, MAX_DELAY_LENGTH);
+
+        this.length = Math.max(0, this.length);
+
         this.length = this.timeToLength(snap(this.lengthToTime(this.length), 50, 10));
         // this.rightDragBar.setAttribute("x", String(this.length - ITEM_GAP));
 
@@ -683,10 +780,10 @@ export class KfDelay extends KfItem {
 
         if (this.length < 0) {
             this.dragBar.removeAttribute("display");
-            this.nextNode.leftDragBar.setAttribute("display", "none");
+            this.parent.leftDragBar.setAttribute("display", "none");
         } else {
             this.dragBar.setAttribute("display", "none");
-            this.nextNode.leftDragBar.removeAttribute("display");
+            this.parent.leftDragBar.removeAttribute("display");
         }
 
         this.updateElements();
@@ -698,15 +795,11 @@ export class KfDelay extends KfItem {
 
         deltaL += this.length;
 
-        if (this.parent) {
-            this.parent.resize(this, deltaL);
-        } else {
-            kfTrack.resize(this, deltaL);
-        }
+        this.parent.updateDelayLength();
     }
 
     getOriginalHeight() {
-        return Math.min(this.previousNode.getOriginalHeight(), this.nextNode.getOriginalHeight());;
+        return Math.min(this.previousNode.getOriginalHeight(), this.parent.getOriginalHeight());;
     }
 
     finishUpdateWidth(upEvent: MouseEvent) {
@@ -716,7 +809,9 @@ export class KfDelay extends KfItem {
         // this.container.removeChild(this.lengthGuideBackground);
         // this.container.removeChild(this.lengthGuide);
         kfTrack.panningLock = false;
-        this.originalNode.updateDelay(snap(this.lengthToTime(Math.max(-this.lastNodeLength, Math.min(MAX_DELAY_LENGTH, this.virtualLength))), 50, 10));
+
+        this.originalNode.updateDelay(snap(this.lengthToTime(Math.max(0, Math.min(MAX_DELAY_LENGTH, this.virtualLength))), 50, 10));
+        // this.originalNode.updateDelay(snap(this.lengthToTime(Math.max(-this.lastNodeLength, Math.min(MAX_DELAY_LENGTH, this.virtualLength))), 50, 10));
     }
 
     updateLengthGuide(position: number, delay: number) {
@@ -749,9 +844,9 @@ export class KfDelay extends KfItem {
 
     render(height: number) {
         this.height = height;
-        this.lastNodeLength = this.previousNode.findRightMostLength();
+        // this.lastNodeLength = this.previousNode.findRightMostLength();
         this.length = this.timeToLength(this.delay);
-        this.length = Math.max(-this.lastNodeLength, this.length);
+        // this.length = Math.max(-this.lastNodeLength, this.length);
         this.virtualLength = this.length;
 
 
@@ -780,17 +875,17 @@ export class KfDelay extends KfItem {
         dragBar.setAttribute("y", String(height));
         dragBar.setAttribute("width", String(2 * ITEM_GAP));
 
-        dragBar.onmousedown = this.nextNode.leftDragBarCallback = (downEvent: MouseEvent) => {
+        dragBar.onmousedown = this.parent.leftDragBarCallback = (downEvent: MouseEvent) => {
             if (downEvent.button != 0) {
                 return;
             }
-            this.previousNode.hideRightDragBar();
-            this.nextNode.leftDragBar.setAttribute("style", "opacity:1");
+            // this.previousNode.hideRightDragBar();
+            this.parent.leftDragBar.setAttribute("style", "opacity:1");
             this.dragBar.setAttribute("style", "opacity:1");
             kfTrack.panningLock = true;
             // rightDragBar.setAttribute("style", "opacity:1");
 
-            kfTrack.setActiveNode(this);
+            kfTrack.setActiveNode(this.parent);
 
             const lengthGuideBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
             this.container.appendChild(lengthGuideBackground);
@@ -847,14 +942,14 @@ export class KfDelay extends KfItem {
         this.updateElements();
 
         if (this.length < 0) {
-            this.nextNode.hideLeftDragBar = true;
+            this.parent.hideLeftDragBar = true;
         } else {
             this.dragBar.setAttribute("display", "none");
         }
 
         this.length = Math.max(this.length, 0);
 
-        return { element: this.container, length: 0 };
+        // return { element: this.container, length: 0 };
 
         if (this.length == 0) {
             // this.controlOff();
@@ -884,7 +979,7 @@ export class KfNode extends KfItem {
     originalNode: KfTreeNode;
 
     constructor(duration: number, effectType: string, easing: string, thumbnailUrl: string, parent: KfGroup, originalNode: KfTreeNode) {
-        super(parent);
+        super(parent, 0, null);
         this.effectType = effectType;
         this.easing = easing;
         this.length = durationToLength(duration);
@@ -1136,7 +1231,7 @@ export class KfNode extends KfItem {
 
     render(height: number) {
         this.height = height;
-        const container = this.container;
+        const container = this.mainContainer;
         const length = this.length;
         this.virtualLength = length;
         // const labelBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -1178,44 +1273,44 @@ export class KfNode extends KfItem {
         thumbnail.setAttribute("height", String(height));
         // thumbnail.setAttribute("y", String(LABEL_HEIGHT));
 
-        // const rightDragBar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        // container.appendChild(rightDragBar);
-        // this.rightDragBar = rightDragBar;
-        // rightDragBar.setAttribute("x", String(length - 2 * ITEM_GAP));
-        // rightDragBar.setAttribute("y", String(this.height - this.parent.height));
-        // rightDragBar.setAttribute("width", String(ITEM_GAP * 2));
-        // rightDragBar.setAttribute("height", String(this.parent.height));
-        // rightDragBar.classList.add("kf-drag-bar-right");
+        const rightDragBar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        container.appendChild(rightDragBar);
+        this.rightDragBar = rightDragBar;
+        rightDragBar.setAttribute("x", String(length - 2 * ITEM_GAP));
+        rightDragBar.setAttribute("y", String(0));
+        rightDragBar.setAttribute("width", String(ITEM_GAP * 2));
+        rightDragBar.setAttribute("height", String(height));
+        rightDragBar.classList.add("kf-drag-bar-right");
 
-        // rightDragBar.onmousedown = (downEvent: MouseEvent) => {
-        //     if (downEvent.button != 0) {
-        //         return;
-        //     }
-        //     kfTrack.panningLock = true;
-        //     rightDragBar.setAttribute("style", "opacity:1");
+        rightDragBar.onmousedown = (downEvent: MouseEvent) => {
+            if (downEvent.button != 0) {
+                return;
+            }
+            kfTrack.panningLock = true;
+            rightDragBar.setAttribute("style", "opacity:1");
 
-        //     kfTrack.setActiveNode(this);
+            kfTrack.setActiveNode(this);
 
-        //     const lengthGuideBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        //     this.container.appendChild(lengthGuideBackground);
-        //     this.lengthGuideBackground = lengthGuideBackground;
-        //     lengthGuideBackground.classList.add("kf-length-guide-bg");
-        //     lengthGuideBackground.setAttribute("y", String((6 - ITEM_GAP) / kfTrack.scale));
-        //     lengthGuideBackground.setAttribute("height", String(20 / kfTrack.scale));
+            const lengthGuideBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            this.container.appendChild(lengthGuideBackground);
+            this.lengthGuideBackground = lengthGuideBackground;
+            lengthGuideBackground.classList.add("kf-length-guide-bg");
+            lengthGuideBackground.setAttribute("y", String((6 - ITEM_GAP) / kfTrack.scale));
+            lengthGuideBackground.setAttribute("height", String(20 / kfTrack.scale));
 
-        //     const lengthGuide = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        //     this.container.appendChild(lengthGuide);
-        //     this.lengthGuide = lengthGuide;
-        //     lengthGuide.setAttribute("x", String(this.length));
-        //     lengthGuide.setAttribute("y", String(18 / kfTrack.scale));
-        //     lengthGuide.setAttribute("font-size", String(12 / kfTrack.scale));
-        //     lengthGuide.classList.add("kf-length-guide");
+            const lengthGuide = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            this.container.appendChild(lengthGuide);
+            this.lengthGuide = lengthGuide;
+            lengthGuide.setAttribute("x", String(this.length));
+            lengthGuide.setAttribute("y", String(18 / kfTrack.scale));
+            lengthGuide.setAttribute("font-size", String(12 / kfTrack.scale));
+            lengthGuide.classList.add("kf-length-guide");
 
-        //     this.updateLengthGuide();
+            this.updateLengthGuide();
 
-        //     document.onmousemove = (event: MouseEvent) => { this.updateWidth(event) };
-        //     document.onmouseup = (event: MouseEvent) => { this.finishUpdateWidth(event) };
-        // }
+            document.onmousemove = (event: MouseEvent) => { this.updateWidth(event) };
+            document.onmouseup = (event: MouseEvent) => { this.finishUpdateWidth(event) };
+        }
 
         this.renderLeftBar();
         this.createMenu();
@@ -1294,15 +1389,19 @@ class KfTrack {
 
         let x = 0;
         for (let i of this.groups) {
-            let { element, length } = i.render(maxHeight);
+            i.render(maxHeight);
             i.translate(x, 20);
-            x += length;
+            x += i.length + i.delayLength;
             x += (maxLevel - 2) * 2;
-            innerContainer.append(element);
+            innerContainer.append(i.container);
         }
         // x += 20;
         x -= (maxLevel - 2) * 2;
         // x -= ITEM_GAP;
+        suggestPanel.removeSuggestPanel();
+        const suggestpanel = suggestPanel.createSuggestPanel([['mark1'], ['mark1009'], ['mark1003']], maxHeight);
+        suggestpanel.setAttribute("transform", `translate(${x}, 20)`);
+        // innerContainer.appendChild(suggestpanel);
         this.length = x;
         if (this.activeNodeId == -1) {
             this.updatePanning(x, 0);

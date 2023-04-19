@@ -105,6 +105,7 @@ export class KfTreeNode {
             children[index].splice(children[index].indexOf(node), 1);
             children.splice(index, 0, [node]);
         }
+        saveHistory();
         renderKfTree();
     }
 
@@ -130,6 +131,7 @@ export class KfTreeNode {
             children[index].splice(children[index].indexOf(node), 1);
             children.splice(index + 1, 0, [node]);
         }
+        saveHistory();
         renderKfTree();
     }
 
@@ -191,6 +193,32 @@ export class KfTreeGroup {
         this.updateProperty().delay = delay;
         saveHistory();
         renderKfTree();
+    }
+
+    merge() {
+        const node = this.updateProperty();
+
+        const parent = node.parent;
+        console.assert(parent);
+        const pparent = parent.parent;
+        const index = pparent.children.findIndex(i => i.includes(parent));
+        if (pparent.children[index].length == 1) {
+            pparent.children.splice(index, 1, ...node.children);
+        } else {
+            pparent.children[index].splice(pparent.children[index].indexOf(parent), 1);
+            pparent.children.splice(index + 1, 0, ...node.children);
+        }
+
+        saveHistory();
+        renderKfTree();
+    }
+
+    moveForward() {
+        this.updateProperty().merge();
+    }
+
+    moveBackward() {
+        this.updateProperty().merge();
     }
 
     deepClone(parent: KfTreeNode) {
@@ -286,9 +314,9 @@ const needNewGroup = (attributeSelectors: Map<string, string>) => {
         return true;
     }
     const activeGroup = kfTrees[kfTrees.length - 1];
-    if (activeGroup.attributeSelectors.size == 0) {
-        return true;
-    }
+    // if (activeGroup.attributeSelectors.size == 0) {
+    //     return true;
+    // }
     if (attributeSelectors.size != activeGroup.attributeSelectors.size) {
         return true;
     }
@@ -457,6 +485,7 @@ export const addSelection = (selection: string[]) => {
                 order: null,
             }
         }
+        group.parent = node;
 
         attributeSelectors.delete(groupBy);
         placeNode(node, parentAttributeSelectors);
@@ -579,6 +608,7 @@ export const addSelection = (selection: string[]) => {
                 order: null,
             }
         }
+        lastGroup.parent = node;
 
         attributeSelectors.delete(groupBy);
         placeNode(node, attributeSelectors);
@@ -755,39 +785,50 @@ const generateKfTrack = () => {
             Array.from(group.attributeSelectors.values()).join(","),
             svg,
             null,
+            null,
         );
         if (isFirst) {
             isFirst = false;
         } else {
-            result.push(new KfDelay(group.delay, null, group, previousNode, nextNode));
+            // result.push(new KfDelay(group.delay, null, group, previousNode, nextNode));
         }
         result.push(nextNode);
     }
     return result;
 }
 
-const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: string, svg: Document, parent: KfGroup, sortable = false, sortAttributes: string[] = [], originalParent: KfTreeNode = null) => {
-    const result = new KfRow(label, parent, sortable, sortAttributes, originalParent);
+const generateKfTrackOfGroup = (
+    group: KfTreeGroup,
+    marks: Set<string>,
+    label: string,
+    svg: Document,
+    parent: KfGroup,
+    originalNode: KfTreeGroup | KfTreeNode,
+    sortable = false,
+    sortAttributes: string[] = [],
+    originalParent: KfTreeNode = null,
+    delay: number = NaN) => {
+    const result = new KfRow(label, parent, delay, originalNode, sortable, sortAttributes, originalParent);
     let isFirst = true;
     const addNewChild = (nextNode: KfItem, originalNode: KfTreeGroup | KfTreeNode) => {
         const previousNode = isFirst ? null : result.children[result.children.length - 1];
         if (isFirst) {
             isFirst = false;
         } else {
-            result.children.push(new KfDelay(originalNode.delay, result, originalNode, previousNode, nextNode));
+            // result.children.push(new KfDelay(originalNode.delay, result, originalNode, previousNode, nextNode));
         }
         result.children.push(nextNode);
     }
     const numberChildren = group.children.reduce((a, b) => a + b.length, 0);
     for (let arr of group.children) {
-        const colume = new KfColume(result);
+        const colume = new KfColume(result, arr[0].delay, isFirst ? null : arr[0]);
         let isFirstRow = true;
         const addNewRow = (nextNode: KfItem, originalNode: KfTreeGroup | KfTreeNode) => {
             const previousNode = isFirstRow ? null : colume.children[colume.children.length - 1];
             if (isFirstRow) {
                 isFirstRow = false;
             } else {
-                colume.children.push(new KfDelay(originalNode.delay, colume, originalNode, previousNode, nextNode));
+                // colume.children.push(new KfDelay(originalNode.delay, colume, originalNode, previousNode, nextNode));
             }
             colume.children.push(nextNode);
         }
@@ -812,7 +853,9 @@ const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: s
                 if (numberChildren > 1) {
                     const childGroup = new KfRow(
                         Array.from(child.markTypeSelectors).join(","),
-                        colume
+                        colume,
+                        isFirstRow ? NaN : child.delay,
+                        child
                     )
                     childGroup.levelFromLeaves = 1;
                     addNewRow(childGroup, child);
@@ -892,8 +935,7 @@ const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: s
                     }
                 }
 
-                const groupContainer = new KfRow("", colume);
-                addNewRow(groupContainer, child);
+                const groupContainer = new KfRow("", colume, 0, null);
                 let isFirstItem = true;
 
                 const addNewItem = (nextNode: KfItem, originalNode: KfTreeGroup | KfTreeNode) => {
@@ -901,7 +943,7 @@ const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: s
                     if (isFirstItem) {
                         isFirstItem = false;
                     } else {
-                        groupContainer.children.push(new KfDelay(originalNode.delay, groupContainer, originalNode, previousNode, nextNode));
+                        // groupContainer.children.push(new KfDelay(originalNode.delay, groupContainer, originalNode, previousNode, nextNode));
                     }
                     groupContainer.children.push(nextNode);
                 }
@@ -911,19 +953,21 @@ const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: s
                             child.grouping.child, partition.get(attributeName), attributeName,
                             svg,
                             groupContainer,
+                            isFirstItem ? child : child.grouping.child,
                             true,
                             sortAttributes,
-                            child
+                            child,
+                            isFirstItem ? isFirstRow ? NaN : child.delay : child.grouping.child.delay
                         ), child.grouping.child)
                     }
                 } else {
                     addNewItem(generateKfTrackOfGroup(
-                        child.grouping.child, partition.get(sequence[0]), sequence[0], svg, groupContainer, true,
-                        sortAttributes, child
+                        child.grouping.child, partition.get(sequence[0]), sequence[0], svg, groupContainer, child, true,
+                        sortAttributes, child, isFirstRow ? NaN : child.delay
                     ), child.grouping.child);
                     addNewItem(generateKfTrackOfGroup(
-                        child.grouping.child, partition.get(sequence[1]), sequence[1], svg, groupContainer, true,
-                        sortAttributes, child
+                        child.grouping.child, partition.get(sequence[1]), sequence[1], svg, groupContainer, child.grouping.child, true,
+                        sortAttributes, child, child.grouping.child.delay
                     ), child.grouping.child);
 
                     for (let i = 2; i < sequence.length - 1; i++) {
@@ -939,16 +983,17 @@ const generateKfTrackOfGroup = (group: KfTreeGroup, marks: Set<string>, label: s
                             }
                         }
                     }
-                    const omit = new KfOmit(sequence.length - 3, groupContainer);
+                    const omit = new KfOmit(sequence.length - 3, groupContainer, NaN, child.grouping.child, groupContainer.children[1]);
                     omit.levelFromLeaves = groupContainer.children[groupContainer.children.length - 1].levelFromLeaves;
                     // groupContainer.children.push(omit);
                     addNewItem(omit, child.grouping.child);
 
                     groupContainer.children.push(generateKfTrackOfGroup(
-                        child.grouping.child, partition.get(sequence[sequence.length - 1]), sequence[sequence.length - 1], svg, groupContainer, true,
-                        sortAttributes, child
+                        child.grouping.child, partition.get(sequence[sequence.length - 1]), sequence[sequence.length - 1], svg, groupContainer, child.grouping.child, true,
+                        sortAttributes, child, child.grouping.child.delay
                     ));
                 }
+                addNewRow(groupContainer, child);
             }
         }
         if (colume.children.length == 0) {
