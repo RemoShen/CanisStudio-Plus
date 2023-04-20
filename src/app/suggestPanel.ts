@@ -378,14 +378,14 @@ export class Itemimg {
         } else if (selectedMarks.includes(mark.id)) {
           mark.setAttributeNS(null, "opacity", "0.3");
         } else {
-          mark.setAttributeNS(null, "display", "none");
+          mark.setAttributeNS(null, "opacity", "0");
         }
       }
     );
     Array.from(svgClone.getElementsByTagName("*")).forEach(
       (element: SVGElement) => {
         if (element.id.startsWith("__mark")) {
-          element.setAttributeNS(null, "display", "none");
+          element.setAttributeNS(null, "opacity", "0");
         }
       }
     );
