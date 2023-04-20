@@ -53,6 +53,11 @@ export class SuggestPanel {
       "rect"
     );
     bg.setAttributeNS(null, "width", `${this.boxWidth}`);
+    // if (allNextKf.length === 1) {
+    //   bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 1}`);
+    // } else if (allNextKf.length > 1) {
+    //   bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 2}`);
+    // }
     bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 2}`);
     bg.setAttributeNS(null, "fill", "#c9caca");
     bg.setAttributeNS(null, "stroke", "#676767");
@@ -64,16 +69,25 @@ export class SuggestPanel {
       "g"
     );
     this.container.appendChild(this.itemcontainer);
-    for (let i = 0; i < this.numShown; i++) {
-      const item = this.createSuggestItem(allNextKf[i]);
+    if (allNextKf.length === 1) {
+      const item = this.createSuggestItem(allNextKf[0]);
       item.setAttributeNS(
         null,
         "transform",
-        `translate(0, ${i * (height + 2 * SuggestPanel.PADDING)})`
+        `translate(0, ${0 * (height + 2 * SuggestPanel.PADDING)})`
       );
       this.itemcontainer.appendChild(item);
+    } else if (allNextKf.length > 1) {
+      for (let i = 0; i < this.numShown; i++) {
+        const item = this.createSuggestItem(allNextKf[i]);
+        item.setAttributeNS(
+          null,
+          "transform",
+          `translate(0, ${i * (height + 2 * SuggestPanel.PADDING)})`
+        );
+        this.itemcontainer.appendChild(item);
+      }
     }
-
     const popupLayer: SVGElement = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "g"
@@ -152,7 +166,12 @@ export class SuggestMenu {
   ) {
     this.parentSuggestPanel = SuggestPanel;
     this.nextKf = nextKf;
-    this.numPages = Math.ceil(nextKf.length / 2);
+    if (nextKf.length === 1) {
+      this.numPages = 1;
+    } else if (nextKf.length > 1) {
+      this.numPages = Math.ceil(nextKf.length / 2);
+    }
+
     const menuHeight: number =
       (SuggestMenu.BTN_SIZE + 2 * SuggestMenu.PADDING) * 2 +
       this.numPages * (SuggestMenu.DOT_SIZE + 2 * SuggestMenu.PADDING);
@@ -337,12 +356,16 @@ export class Itemimg {
   }
   public drawItemContent(nextKf: string[], selectedMarks: string[], height: number) {
     const svg = document.getElementById("visChart");
-    //深度拷贝svg
     const svgClone = svg.cloneNode(true) as HTMLElement;
-    //将svg的宽高设置为canvas的宽高
     svgClone.setAttributeNS(null, "width", `${Itemimg.KF_WIDTH}`);
     svgClone.setAttributeNS(null, "height", `${height}`);
-    //将svg的所有mark的opacity设置为0
+    Array.from(svgClone.getElementsByTagName("g")).forEach(
+      (g: SVGElement) => {
+        if (g.id.startsWith("chartContent")) {
+          g.removeAttributeNS(null, "transform");
+        }
+      }
+    );
     Array.from(svgClone.getElementsByClassName("mark")).forEach(
       (mark: SVGElement) => {
         if (nextKf.includes(mark.id)) {

@@ -5,6 +5,7 @@ import { KfItem, KfRow, KfNode, KfOmit, kfTrack, KfDelay, KfColume, KfGroup } fr
 import { MarkSelector } from "./markSelector";
 import { sortStrings } from "./sortUtil";
 import Tool from "../util/tool";
+import { SuggestPanel } from "./suggestPanel";
 type MarkType = string;
 type AttributeName = string;
 type AttributeValue = string;
@@ -629,6 +630,10 @@ export const addSelection = (selection: string[]) => {
 
 const renderKfTree = () => {
     chartManager.updateCanisSpec(generateCanisSpec());
+    // if (!SuggestPanel.svgTable) {
+    //     const svg = document.getElementById("visChart");
+    //     SuggestPanel.svgTable = svg.cloneNode(true) as HTMLElement;
+    // }
     kfTrack.updateKfTrack(generateKfTrack());
 
     if (kfTrees.length == 0) {

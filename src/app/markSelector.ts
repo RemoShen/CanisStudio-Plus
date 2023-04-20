@@ -67,9 +67,17 @@ export class MarkSelector {
         const height: number = suggestPanel.kfHeight;
         recommendList.innerHTML = "";
         // suggestPanel.removeSuggestPanel();
-        console.log('nextframes_m',getSuggestFrames(), MarkSelector.selection);
+        const allNextKf: string[][] = getSuggestFrames();
+        const currentSelection: string[] = [...MarkSelector.selection];
+        let nextKf: string[][] = [];
+        allNextKf.forEach((kf, i) => {
+            if (currentSelection.every((id) => kf.includes(id))) {
+                nextKf.push(kf);
+            }
+        });
+        console.log('nextKf', nextKf);
         
-        const suggestpanel = suggestPanel.createSuggestPanel(getSuggestFrames() , height, [...calcSelectedMarks()]);
+        const suggestpanel = suggestPanel.createSuggestPanel(nextKf, height, [...calcSelectedMarks()]);
         recommendList.appendChild(suggestpanel);
     }
 
