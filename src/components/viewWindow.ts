@@ -60,7 +60,6 @@ export default class ViewWindow {
 
         //create confirm button
         // if (this.viewTitle == ViewWindow.CHART_VIEW_TITLE) {
-        //     // TODO: add Draggable Btn
         //     this.view.appendChild(this.createConfirmButton());
         // }
 
@@ -101,12 +100,12 @@ export default class ViewWindow {
         //     clickEvtType: ViewToolBtn.LASSO,
         //     iconClass: 'lasso-icon'
         // }));
-        toolContainer.appendChild(this.createSeparator());
-        toolContainer.appendChild(this.createBtn({
-            title: 'Selection Suggestion',
-            clickEvtType: ViewToolBtn.SUGGEST,
-            iconClass: 'selection-suggestion-icon'
-        }));
+        // toolContainer.appendChild(this.createSeparator());
+        // toolContainer.appendChild(this.createBtn({
+        //     title: 'Selection Suggestion',
+        //     clickEvtType: ViewToolBtn.SUGGEST,
+        //     iconClass: 'selection-suggestion-icon'
+        // }));
 
         return toolContainer;
     }

@@ -1,4 +1,5 @@
 import '../assets/style/keyframeTrack.scss'
+import { AddPanel } from './addPanel';
 import { KfTreeGroup, KfTreeNode, calcSelectedMarks, getSuggestFrames } from './kfTree';
 import { MarkSelector } from './markSelector';
 import { SuggestPanel, suggestPanel } from './suggestPanel';
@@ -568,6 +569,9 @@ export class KfRow extends KfGroup {
             }
         }
         labelContainer.onmousedown = () => {
+            if (kfTrack.timingLock) {
+                return;
+            }
             if (this.originalNode) {
                 let virtualMovement = 0;
                 let actualMovement = 0;
@@ -639,7 +643,8 @@ export class KfRow extends KfGroup {
         labelText.setAttribute("y", String(LABEL_HEIGHT - TEXT_OFFSET));
         labelText.setAttribute("font-size", String(FONT_SIZE));
         labelText.setAttribute("font-weight", "600");
-        labelText.innerHTML = this.label;
+        const maxStrLen = Math.floor(length / 8);
+        labelText.innerHTML = this.label.length <= maxStrLen ? this.label : this.label.substring(0, maxStrLen - 3) + "...";
 
         this.renderDelay(this.height);
         this.renderLeftBar();
@@ -1329,6 +1334,7 @@ class KfTrack {
     container: Element;
     innerContainer: Element;
     panningLock: boolean = false;
+    timingLock: boolean = false;
 
     activeNodeX: number;
     activeNodeId: number;
@@ -1366,7 +1372,7 @@ class KfTrack {
         this.container = container;
         container.innerHTML = "";
 
-        let maxHeight = 0;
+        let maxHeight = THUMBNAIL_HEIGHT;
         let maxLevel = 0;
         for (let i of this.groups) {
             i.calcLevelFromLeaves();
@@ -1399,16 +1405,27 @@ class KfTrack {
         // x += 20;
         x -= (maxLevel - 2) * 2;
         // x -= ITEM_GAP;
-        //TODO: recommend list, need all next kfs and previous marks
-
         const recommendList: SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "g");
         recommendList.setAttribute("transform", `translate(${x}, 20)`);
         recommendList.setAttribute("id", "recommendList");
         innerContainer.appendChild(recommendList);
-        suggestPanel.removeSuggestPanel();
-        console.log('nextframes_t',getSuggestFrames());
-        const suggestpanel = suggestPanel.createSuggestPanel(getSuggestFrames(), maxHeight, [...calcSelectedMarks()]);
-        recommendList.appendChild(suggestpanel);
+        // suggestPanel.removeSuggestPanel();
+        const suggestFrames = getSuggestFrames([]);
+        console.log(suggestFrames);
+        if (suggestFrames.length > 0) {
+            this.timingLock = true;
+        } else {
+            this.timingLock = false;
+        }
+        suggestPanel.createSuggestPanel(suggestFrames, maxHeight, [...calcSelectedMarks()]);
+        if (!document.getElementById("addPanel")) {
+            const highLightPanel = AddPanel.createAddPanel(maxHeight);
+            highLightPanel.setAttribute("transform", `translate(${x}, 20)`);
+            innerContainer.appendChild(highLightPanel);
+        } else {
+            const addPanel = document.getElementById("addPanel");
+            addPanel.setAttribute("transform", `translate(${x}, 20)`);
+        }
         x += 260;
         this.length = x;
         if (this.activeNodeId == -1) {
@@ -1452,6 +1469,20 @@ class KfTrack {
         this.panningY = y;
         this.innerContainer.setAttribute("transform", `scale(${this.scale})translate(${-this.panningX},${this.panningY})`);
     }
+    // createAddPanel(height: number) {
+    //     const dashBox = document.createElementNS(
+    //         "http://www.w3.org/2000/svg",
+    //         "rect"
+    //     );
+    //     dashBox.setAttribute("id", "dashBox");
+    //     dashBox.setAttribute("width", "240");
+    //     dashBox.setAttribute("height", height.toString());
+    //     dashBox.setAttribute("rx", "4");
+    //     dashBox.setAttribute("stroke", "#2196f3");
+    //     dashBox.setAttribute("stroke-width", "2");
+    //     dashBox.setAttribute("fill", "none");
+    //     return dashBox;
+    // }
 }
 
 export const kfTrack = new KfTrack();

@@ -1732,7 +1732,7 @@
                     </g>
                     <g transform="translate(0,0)" opacity="1">
                         <g transform="translate(0,0)" class="axis" data-datum="{&quot;_TYPE&quot;:&quot;axis&quot;,&quot;type&quot;:&quot;x&quot;,&quot;position&quot;:&quot;Station&quot;}" opacity="1">
-                            <path id="mark2001" class=" mark axis-domain" d="M -368.05165289,220.77066116 L 372.81066307,220.76682454" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-domain&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
+                            <path id="mark2001" class=" mark axis-domain" d="M -368.04711915,225.77458652 L -368.05165289,220.77066116 L 372.81066307,220.76682454 L 372.81144342,225.77464401" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-domain&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
                             </path>
                             <path id="mark3001" class=" mark axis-tick" d="M -320.42483766,220.77066116 L -320.42126202,225.77350123" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-tick&quot;,&quot;Station&quot;:&quot;Beijing&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
                             </path>
@@ -1748,10 +1748,10 @@
                             </path>
                             <path id="mark3007" class=" mark axis-tick" d="M 325.18310213,220.77066116 L 325.18646605,225.77413355" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-tick&quot;,&quot;Station&quot;:&quot;Suzhou&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
                             </path>
-                            <path id="mark2002" class=" mark axis-domain" d="M -368.05165289,220.77066116 L -368.04711915,225.77458652" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-domain&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
+                            <!-- <path id="mark2002" class=" mark axis-domain" d="M -368.05165289,220.77066116 L -368.04711915,225.77458652" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-domain&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
                             </path>
                             <path id="mark2003" class=" mark axis-domain" d="M 372.80991736,220.77066116 L 372.81144342,225.77464401" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-domain&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
-                            </path>
+                            </path> -->
                             <g transform="translate(-320.42483766,228.77066116)" opacity="1">
                                 <text id="mark4001" class=" mark axis-label" x="-18.01171875" y="10.396272568433318" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-label&quot;,&quot;Station&quot;:&quot;Beijing&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Arial" font-size="12px">Beijing
                                 </text>
@@ -1783,7 +1783,7 @@
                             </g>
                         </g>
                         <g transform="translate(0,0)" class="axis" data-datum="{&quot;_TYPE&quot;:&quot;axis&quot;,&quot;type&quot;:&quot;y&quot;,&quot;position&quot;:&quot;Month&quot;}" opacity="1">
-                            <path id="mark2004" class=" mark axis-domain" d="M -368.05165289,220.77066116 L -368.04902638,-220.00383762" data-datum="{&quot;_MARKID&quot;:&quot;y-axis-domain&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
+                            <path id="mark2004" class=" mark axis-domain" d="M -373.05034109,220.76674044 L -368.05165289,220.77066116 L -368.04902638,-220.00383762 L -373.05481555,-220.00237384" data-datum="{&quot;_MARKID&quot;:&quot;y-axis-domain&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
                             </path>
                             <path id="mark3008" class=" mark axis-tick" d="M -368.05165289,-208.57374663 L -373.05432611,-208.57783075" data-datum="{&quot;_MARKID&quot;:&quot;y-axis-tick&quot;,&quot;Month&quot;:&quot;Jan&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
                             </path>
@@ -1810,10 +1810,10 @@
                             </path>
                             <path id="mark3019" class=" mark axis-tick" d="M -368.05165289,209.34440779 L -373.05559709,209.34933899" data-datum="{&quot;_MARKID&quot;:&quot;y-axis-tick&quot;,&quot;Month&quot;:&quot;Dec&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
                             </path>
-                            <path id="mark2005" class=" mark axis-domain" d="M -368.05165289,220.77066116 L -373.05034109,220.76674044" data-datum="{&quot;_MARKID&quot;:&quot;y-axis-domain&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
+                            <!-- <path id="mark2005" class=" mark axis-domain" d="M -368.05165289,220.77066116 L -373.05034109,220.76674044" data-datum="{&quot;_MARKID&quot;:&quot;y-axis-domain&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
                             </path>
                             <path id="mark2006" class=" mark axis-domain" d="M -368.05165289,-220 L -373.05481555,-220.00237384" data-datum="{&quot;_MARKID&quot;:&quot;y-axis-domain&quot;}" stroke="rgb(0,0,0)" stroke-opacity="1" stroke-width="1" stroke-linecap="square" stroke-linejoin="round" fill="none" fill-opacity="1" text-anchor="start" opacity="1">
-                            </path>
+                            </path> -->
                             <g transform="translate(-376.05165289,-208.57374663)" opacity="1">
                                 <text id="mark4008" class=" mark axis-label" x="-19.34765625" y="3.929947582993595" data-datum="{&quot;_MARKID&quot;:&quot;y-axis-label&quot;,&quot;Month&quot;:&quot;Jan&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Arial" font-size="12px">Jan
                                 </text>

@@ -62,23 +62,10 @@ export class MarkSelector {
 
         }
         MarkSelector.complete();
-        // TODO: update recommendList
-        const recommendList = document.getElementById("recommendList");
+        //update recommendList
         const height: number = suggestPanel.kfHeight;
-        recommendList.innerHTML = "";
-        // suggestPanel.removeSuggestPanel();
-        const allNextKf: string[][] = getSuggestFrames();
-        const currentSelection: string[] = [...MarkSelector.selection];
-        let nextKf: string[][] = [];
-        allNextKf.forEach((kf, i) => {
-            if (currentSelection.every((id) => kf.includes(id))) {
-                nextKf.push(kf);
-            }
-        });
-        console.log('nextKf', nextKf);
-        
-        const suggestpanel = suggestPanel.createSuggestPanel(nextKf, height, [...calcSelectedMarks()]);
-        recommendList.appendChild(suggestpanel);
+        const allNextKf: string[][] = getSuggestFrames([...MarkSelector.selection]);
+        suggestPanel.createSuggestPanel(allNextKf, height, [...calcSelectedMarks()]);
     }
 
     static selectMark(id: string) {
@@ -258,15 +245,27 @@ export class MarkSelector {
         const element: HTMLElement = document.getElementById(id);
         MarkSelector.addDisable(id);
         let maskElement: Element;
-        if (element.tagName == "text") {
+
+        const boundingRect = element.getBoundingClientRect();
+        const p1 = Tool.screenToSvgCoords(MarkSelector.svg, boundingRect.left, boundingRect.top);
+        const p2 = Tool.screenToSvgCoords(MarkSelector.svg, boundingRect.right, boundingRect.bottom);
+        const width = (p2.x - p1.x) / MarkSelector.scale;
+        const height = (p2.y - p1.y) / MarkSelector.scale;
+
+        const sizeThreshold = 10
+
+        if (width < sizeThreshold && height < sizeThreshold) {
             maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            const boundingRect = element.getBoundingClientRect();
-            const p1 = Tool.screenToSvgCoords(MarkSelector.svg, boundingRect.left, boundingRect.top);
-            const p2 = Tool.screenToSvgCoords(MarkSelector.svg, boundingRect.right, boundingRect.bottom);
+            maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale - (sizeThreshold - width) / 2));
+            maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale - (sizeThreshold - height) / 2));
+            maskElement.setAttribute("width", String(sizeThreshold));
+            maskElement.setAttribute("height", String(sizeThreshold));
+        } else if (element.tagName == "text") {
+            maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
             maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale));
             maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale));
-            maskElement.setAttribute("width", String((p2.x - p1.x) / MarkSelector.scale));
-            maskElement.setAttribute("height", String((p2.y - p1.y) / MarkSelector.scale));
+            maskElement.setAttribute("width", String(width));
+            maskElement.setAttribute("height", String(height));
         } else {
             maskElement = element.cloneNode() as Element;
             maskElement.classList.remove("mark");

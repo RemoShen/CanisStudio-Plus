@@ -9,6 +9,7 @@ import * as action from '../../app_backup/action';
 import { ChartSpec, Animation } from '../../canis/moduleIdx'
 import { chartManager } from '../../app/chartManager';
 import { MarkSelector } from '../../app/markSelector';
+import { AddPanel } from '../../app/addPanel';
 
 export default class DragableCanvas {
     /**
@@ -61,17 +62,27 @@ export default class DragableCanvas {
         document.onmousemove = (moveEvt) => {
             canvas.style.left = `${moveEvt.pageX - canvas.width / 2}px`;
             canvas.style.top = `${moveEvt.pageY - canvas.height / 2}px`;
+            AddPanel.show()
+            const addPanel: HTMLElement = document.getElementById('addPanel');
+            const addPanelRect: ClientRect = addPanel.getBoundingClientRect();
+            if (moveEvt.pageX >= addPanelRect.left && moveEvt.pageX <= addPanelRect.right && moveEvt.pageY >= addPanelRect.top && moveEvt.pageY <= addPanelRect.bottom) {
+                AddPanel.addHighlight();
+            }
+            else {
+                AddPanel.removeHighlight();
+            }
         }
         document.onmouseup = (upEvt) => {
             canvas.remove();
-            const kfContainer: HTMLElement = document.getElementById('kfContainer');
-            const kfContainerRect: ClientRect = kfContainer.getBoundingClientRect();
-            if (upEvt.pageX >= kfContainerRect.left && upEvt.pageX <= kfContainerRect.right && upEvt.pageY >= kfContainerRect.top && upEvt.pageY <= kfContainerRect.bottom) {
+            // const kfContainer: HTMLElement = document.getElementById('kfContainer');
+            // const kfContainerRect: ClientRect = kfContainer.getBoundingClientRect();
+            const addPanel: HTMLElement = document.getElementById('addPanel');
+            const addPanelRect: ClientRect = addPanel.getBoundingClientRect();
+            if (upEvt.pageX >= addPanelRect.left && upEvt.pageX <= addPanelRect.right && upEvt.pageY >= addPanelRect.top && upEvt.pageY <= addPanelRect.bottom) {
                 MarkSelector.emitSelection();
             }
+            AddPanel.hide();
 
-
-            // MarkSelector.emitSelection();
             targetSVG.classList.toggle('chart-when-dragging');
             document.onmouseup = null;
             document.onmousemove = null;

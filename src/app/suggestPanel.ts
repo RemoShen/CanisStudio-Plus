@@ -22,6 +22,7 @@ export class SuggestPanel {
    * createSuggestPanel
    */
   public createSuggestPanel(allNextKf: string[][], height: number, selectedMarks: string[]) {
+    suggestPanel.removeSuggestPanel();
     this.kfHeight = height;
     this.selectedMarks = selectedMarks;
     if (typeof this.container === "undefined") {
@@ -96,10 +97,15 @@ export class SuggestPanel {
     if (allNextKf.length > 0) {
       popupLayer.appendChild(this.container);
     }
-
-    return popupLayer;
+    const recommendList = document.getElementById("recommendList");
+    recommendList.appendChild(popupLayer);
+    // return popupLayer;
   }
   public removeSuggestPanel() {
+    const recommendList = document.getElementById("recommendList");
+    if (recommendList) {
+      recommendList.innerHTML = "";
+    }
     if (typeof this.container !== "undefined") {
       this.container.innerHTML = "";
     }
@@ -114,7 +120,6 @@ export class SuggestPanel {
       "g"
     );
     container.classList.add("clickable-component");
-    //TODO: create kf item
     const itemImg = new Itemimg();
     const img = itemImg.createItemimg(nextKf, this.selectedMarks);
     const bg: SVGRectElement = document.createElementNS(

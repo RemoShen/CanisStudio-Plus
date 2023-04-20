@@ -1,4 +1,4 @@
-import { set } from "lodash";
+import { result, set } from "lodash";
 import { AnimationTreeGroup } from "./animationTree";
 import { chartManager, MARKID } from "./chartManager";
 import { KfItem, KfRow, KfNode, KfOmit, kfTrack, KfDelay, KfColume, KfGroup } from "./kfTrack";
@@ -574,13 +574,15 @@ export const addSelection = (selection: string[]) => {
                     }
                 }
                 console.assert(attributeSelectors.get(attributeName) != undefined);
-                const markSet: Set<string> = new Set();
-                for (let id of filteredMarks) {
-                    if (meetAttributeConstrains(id, attributeSelectors)) {
-                        markSet.add(id);
+                if (attributeSelectors.get(attributeName) != undefined) {
+                    const markSet: Set<string> = new Set();
+                    for (let id of filteredMarks) {
+                        if (meetAttributeConstrains(id, attributeSelectors)) {
+                            markSet.add(id);
+                        }
                     }
+                    expandOptions.push(markSet);
                 }
-                expandOptions.push(markSet);
             }
 
             break;
@@ -644,13 +646,25 @@ const renderKfTree = () => {
     MarkSelector.reset(disabledMarks, kfTrees[kfTrees.length - 1].attributeSelectors, expandOptions);
 }
 
-export const getSuggestFrames = (): string[][] => {
+export const getSuggestFrames = (selections: string[]): string[][] => {
     if (expandOptions.length == 0) {
         return [];
     }
     const results = expandOptions.map(i => [...i]);
-    const attributeSelectors = kfTrees[kfTrees.length - 1].attributeSelectors;
-    const allAvailableMarks = [...calcNonSelectedMarks()].filter(i => meetAttributeConstrains(i, attributeSelectors));
+    for (let i of results) {
+        if (Tool.identicalArrays(i, selections)) {
+            return [i];
+        }
+    }
+    if (selections.length > 0) {
+        results.length = 0;
+    }
+    const results2 = [...results];
+    if (selections.length > 0) {
+        results2.push([...selections]);
+    }
+    const attributeSelectors = new Map(kfTrees[kfTrees.length - 1].attributeSelectors);
+    let allAvailableMarks = [...calcNonSelectedMarks()].filter(i => meetAttributeConstrains(i, attributeSelectors));
     const allAttributes = new Map<string, string>();
     for (let mark of allAvailableMarks) {
         const attributes = chartManager.marks.get(mark);
@@ -667,14 +681,29 @@ export const getSuggestFrames = (): string[][] => {
             }
         }
     }
+    const constrains = extractAttributeConstrains(new Set(selections))
+    for (let [k, v] of constrains) {
+        // console.assert(allAttributes.has(k));
+        if (allAttributes.has(k)) {
+            allAttributes.set(k, v);
+        }
+    }
 
     const addFrame = (frameMarks: string[]) => {
-        for (let result of results) {
-            if (Tool.identicalArrays(result, frameMarks)) {
-                return;
-            }
+        if (results.some(i => Tool.identicalArrays(i, frameMarks))) {
+            return;
+        }
+        if (selections.some(i => !frameMarks.includes(i))) {
+            return;
         }
         results.push(frameMarks);
+        if (frameMarks.length != selections.length + 1) {
+            return;
+        }
+        if (results2.some(i => Tool.identicalArrays(i, frameMarks))) {
+            return;
+        }
+        results2.push(frameMarks);
     }
 
     const enumMarks = (selectedAttributes: Map<string, string>) => {
@@ -719,8 +748,12 @@ export const getSuggestFrames = (): string[][] => {
         }
         enumMarks(selectedAttributes);
     }
-    console.log(results);
-    return results;
+    // console.log(results);
+    if (results.length <= 8) {
+        return results;
+    } else {
+        return results2;
+    }
 }
 
 const generateCanisSpec = () => {
