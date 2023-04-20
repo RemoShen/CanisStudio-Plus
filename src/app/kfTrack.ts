@@ -1,5 +1,6 @@
 import '../assets/style/keyframeTrack.scss'
-import { KfTreeGroup, KfTreeNode } from './kfTree';
+import { KfTreeGroup, KfTreeNode, calcSelectedMarks, getSuggestFrames } from './kfTree';
+import { MarkSelector } from './markSelector';
 import { suggestPanel } from './suggestPanel';
 
 const LABEL_HEIGHT = 20;
@@ -1174,7 +1175,7 @@ export class KfNode extends KfItem {
     createMenu() {
         const menuContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
         this.menuContainer = menuContainer;
-        this.container.appendChild(menuContainer);
+        this.mainContainer.appendChild(menuContainer);
         menuContainer.classList.add("kf-item-menu");
 
         const menuWidth = 50;
@@ -1398,10 +1399,16 @@ class KfTrack {
         // x += 20;
         x -= (maxLevel - 2) * 2;
         // x -= ITEM_GAP;
+        //TODO: recommend list, need all next kfs and previous marks
+        const recommendList: SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        recommendList.setAttribute("transform", `translate(${x}, 20)`);
+        recommendList.setAttribute("id", "recommendList");
+        innerContainer.appendChild(recommendList);
         suggestPanel.removeSuggestPanel();
-        const suggestpanel = suggestPanel.createSuggestPanel([['mark1'], ['mark1009'], ['mark1003']], maxHeight);
-        suggestpanel.setAttribute("transform", `translate(${x}, 20)`);
-        // innerContainer.appendChild(suggestpanel);
+        console.log('nextframes_t',getSuggestFrames());
+        const suggestpanel = suggestPanel.createSuggestPanel(getSuggestFrames(), maxHeight, [...calcSelectedMarks()]);
+        recommendList.appendChild(suggestpanel);
+
         this.length = x;
         if (this.activeNodeId == -1) {
             this.updatePanning(x, 0);

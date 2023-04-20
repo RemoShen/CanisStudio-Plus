@@ -3,9 +3,10 @@ import { dragableCanvas } from "../components/widgets/dragableCanvas";
 import { ICoord } from "../util/ds";
 import Tool from "../util/tool";
 import { chartManager, MARKID } from "./chartManager";
-import { addSelection, extractAttributeConstrains, meetAttributeConstrains, meetMarkTypeConstrains } from "./kfTree";
+import { addSelection, calcSelectedMarks, extractAttributeConstrains, getSuggestFrames, meetAttributeConstrains, meetMarkTypeConstrains } from "./kfTree";
 import { MarkTableManager, markTableManager } from "./markTableManager";
 import { Polygon } from "./polygon";
+import { suggestPanel } from "./suggestPanel";
 
 const SELECTION_MASK = "selectionMask";
 
@@ -61,6 +62,15 @@ export class MarkSelector {
 
         }
         MarkSelector.complete();
+        // TODO: update recommendList
+        const recommendList = document.getElementById("recommendList");
+        const height: number = suggestPanel.kfHeight;
+        recommendList.innerHTML = "";
+        // suggestPanel.removeSuggestPanel();
+        console.log('nextframes_m',getSuggestFrames(), MarkSelector.selection);
+        
+        const suggestpanel = suggestPanel.createSuggestPanel(getSuggestFrames() , height, [...calcSelectedMarks()]);
+        recommendList.appendChild(suggestpanel);
     }
 
     static selectMark(id: string) {

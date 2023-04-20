@@ -1,8 +1,10 @@
+import { set } from "lodash";
 import { AnimationTreeGroup } from "./animationTree";
 import { chartManager, MARKID } from "./chartManager";
 import { KfItem, KfRow, KfNode, KfOmit, kfTrack, KfDelay, KfColume, KfGroup } from "./kfTrack";
 import { MarkSelector } from "./markSelector";
 import { sortStrings } from "./sortUtil";
+import Tool from "../util/tool";
 type MarkType = string;
 type AttributeName = string;
 type AttributeValue = string;
@@ -394,7 +396,7 @@ const placeNode = (node: KfTreeNode, attributeSelectors: Map<string, string>) =>
     }
 }
 
-const calcNonSelectedMarks = () => {
+export const calcNonSelectedMarks = () => {
     const nonSelectedMarks: Set<string> = new Set(chartManager.marks.keys());
     for (let group of kfTrees) {
         const attributeSelectors = group.attributeSelectors;
@@ -417,7 +419,7 @@ const calcNonSelectedMarks = () => {
     return nonSelectedMarks;
 }
 
-const calcSelectedMarks = () => {
+export const calcSelectedMarks = () => {
     const result: Set<string> = new Set();
     const nonSelectedMarks = calcNonSelectedMarks();
     for (let i of chartManager.marks.keys()) {
@@ -635,6 +637,85 @@ const renderKfTree = () => {
     }
     const disabledMarks = calcSelectedMarks();
     MarkSelector.reset(disabledMarks, kfTrees[kfTrees.length - 1].attributeSelectors, expandOptions);
+}
+
+export const getSuggestFrames = (): string[][] => {
+    if (expandOptions.length == 0) {
+        return [];
+    }
+    const results = expandOptions.map(i => [...i]);
+    const attributeSelectors = kfTrees[kfTrees.length - 1].attributeSelectors;
+    const allAvailableMarks = [...calcNonSelectedMarks()].filter(i => meetAttributeConstrains(i, attributeSelectors));
+    const allAttributes = new Map<string, string>();
+    for (let mark of allAvailableMarks) {
+        const attributes = chartManager.marks.get(mark);
+        for (let [k, v] of attributes) {
+            if (k == MARKID) {
+                continue;
+            }
+            if (attributeSelectors.has(k)) {
+                continue;
+            } else if (allAttributes.has(k)) {
+                continue;
+            } else {
+                allAttributes.set(k, v);
+            }
+        }
+    }
+
+    const addFrame = (frameMarks: string[]) => {
+        for (let result of results) {
+            if (Tool.identicalArrays(result, frameMarks)) {
+                return;
+            }
+        }
+        results.push(frameMarks);
+    }
+
+    const enumMarks = (selectedAttributes: Map<string, string>) => {
+        const selectedMarks = new Set<string>();
+        for (let id of allAvailableMarks) {
+            if (meetAttributeConstrains(id, selectedAttributes)) {
+                selectedMarks.add(id);
+            }
+        }
+        const allTypes: string[] = [];
+        for (let id of selectedMarks) {
+            const markType = chartManager.marks.get(id).get(MARKID);
+            if (!allTypes.includes(markType)) {
+                allTypes.push(markType);
+            }
+        }
+        for (let i = 1; i < (1 << allTypes.length); i++) {
+            const selectedTypes = new Set<string>();
+            for (let j = 0; j < allTypes.length; j++) {
+                if ((1 << j) & i) {
+                    selectedTypes.add(allTypes[j]);
+                }
+            }
+            const frameMarks: string[] = [];
+            for (let id of selectedMarks) {
+                const markType = chartManager.marks.get(id).get(MARKID);
+                if (selectedTypes.has(markType)) {
+                    frameMarks.push(id);
+                }
+            }
+            addFrame(frameMarks);
+        }
+    }
+
+    const allAttributePairs = [...allAttributes];
+    for (let i = 0; i < (1 << (allAttributePairs.length)); i++) {
+        const selectedAttributes = new Map<string, string>();
+        for (let j = 0; j < allAttributePairs.length; j++) {
+            if ((1 << j) & i) {
+                selectedAttributes.set(allAttributePairs[j][0], allAttributePairs[j][1]);
+            }
+        }
+        enumMarks(selectedAttributes);
+    }
+    console.log(results);
+    return results;
 }
 
 const generateCanisSpec = () => {

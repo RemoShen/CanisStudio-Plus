@@ -1,3 +1,4 @@
+import { forIn } from "lodash";
 import { chartManager } from "./chartManager";
 import { KfTreeGroup, KfTreeNode, meetAttributeConstrains, meetMarkTypeConstrains } from "./kfTree";
 import { sortStrings } from "./sortUtil";
@@ -10,24 +11,40 @@ class AnimationTreeItem {
 }
 
 export class AnimationTreeGroup extends AnimationTreeItem {
-    children: AnimationTreeItem[] = [];
+    children: AnimationTreeItem[][] = [];
 
     fromKfTreeGroup(kfGroup: KfTreeGroup, marks: string[], isFirst: boolean, lastDuration: number) {
         const delay = isFirst ? 0 : kfGroup.delay;
         this.delay = Math.max(-lastDuration, delay);
         let isFirstNode = true;
-        for (let child of kfGroup.children.flatMap(val => val)) {
-            if (child.grouping == null) {
-                const childNode = new AnimationTreeNode();
-                lastDuration = childNode.fromKfTreeNode(child, marks, isFirstNode, lastDuration);
-                this.children.push(childNode);
-            } else {
-                const childGroup = new AnimationTreeGroup();
-                lastDuration = childGroup.fromKfTreeNode(child, marks, isFirstNode, lastDuration);
-                this.children.push(childGroup);
+        for (let arr of kfGroup.children) {
+            let col = [];
+            for (let child of arr) {
+                if (child.grouping == null) {
+                    const childNode = new AnimationTreeNode();
+                    lastDuration = childNode.fromKfTreeNode(child, marks, isFirstNode, lastDuration);
+                    col.push(childNode);
+                } else {
+                    const childGroup = new AnimationTreeGroup();
+                    lastDuration = childGroup.fromKfTreeNode(child, marks, isFirstNode, lastDuration);
+                    col.push(childGroup);
+                }
+                isFirstNode = false;
             }
-            isFirstNode = false;
+            this.children.push(col);
         }
+        // for (let child of kfGroup.children.flatMap(val => val)) {
+        //     if (child.grouping == null) {
+        //         const childNode = new AnimationTreeNode();
+        //         lastDuration = childNode.fromKfTreeNode(child, marks, isFirstNode, lastDuration);
+        //         this.children.push(childNode);
+        //     } else {
+        //         const childGroup = new AnimationTreeGroup();
+        //         lastDuration = childGroup.fromKfTreeNode(child, marks, isFirstNode, lastDuration);
+        //         this.children.push(childGroup);
+        //     }
+        //     isFirstNode = false;
+        // }
 
         return lastDuration;
     }
@@ -79,7 +96,7 @@ export class AnimationTreeGroup extends AnimationTreeItem {
             }
             const child = new AnimationTreeGroup();
             lastDuration = child.fromKfTreeGroup(kfNode.grouping.child, Array.from(partition.get(attributeName)), isFirstChild, lastDuration);
-            this.children.push(child);
+            this.children.push([child]);
             isFirstChild = false;
         }
         return lastDuration;
@@ -87,9 +104,18 @@ export class AnimationTreeGroup extends AnimationTreeItem {
 
     render(animations: any[], time: number) {
         time += this.delay;
-        for (let child of this.children) {
-            time = child.render(animations, time);
+        for(let arr of this.children){
+            let nextTime = time;
+            time += arr[0].delay;
+            arr[0].delay = 0;
+            for(let child of arr){
+                nextTime = Math.max(nextTime, child.render(animations, time))
+            }
+            time = nextTime;
         }
+        // for (let child of this.children) {
+        //     time = child.render(animations, time);
+        // }
         return time;
     }
 }
