@@ -1,15 +1,15 @@
-@font-face {
-    font-family: fantasy;
-    src: url("")
-}
+// @font-face {
+//     font-family: fantasy;
+//     src: url("")
+// }
 
 .nav {
     width: 100%;
     height: 40px;
     min-width: 600px;
-    // background: var(--gray13);
+    background: var(--gray13);
     // background: #eae9e9;
-    background: var(--gray6);
+    // background: var(--gray6);
     font-size: 0px;
     display: flex;
     flex-direction: row;
@@ -36,12 +36,12 @@
     display: block;
     height: var(--nav-content-height);
     line-height: var(--nav-content-height);
-    padding: 8px 10px 13px 10px;
-    // color: var(--gray10);
-    color: #000;
-    font-family: fantasy;
+    padding: 10px 15px;
+    color: var(--gray10);
+    // color: #000;
+    font-family:var(--geforce-font);
     font-size: 20px;
-    width: 140px;
+    // width: 140px;
     // vertical-align: middle;
 }
 
@@ -49,7 +49,7 @@
     margin: 8px 0;
     display: inline-block;
     width: 0px;
-    border-left: 1px solid #cacaca;
+    border-left: 1px solid #515151;
 }
 
 .nav-btn {
@@ -61,8 +61,8 @@
     // transition: background 0.1s cubic-bezier(0.445, 0.05, 0.55, 0.95);
 
     &:hover {
-        // background: var(--gray14);
-        background:var(--gray8);
+        background: var(--gray14);
+        // background:var(--gray8);
         cursor: pointer;
     }
 
@@ -78,7 +78,7 @@
         background-repeat: no-repeat;
         background-size: 100%;
         background-position: center;
-        filter: invert(30%);
+        filter: invert(90%);
     }
 
     .new-icon {

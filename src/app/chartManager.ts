@@ -9,7 +9,8 @@ import { markTableManager } from "./markTableManager";
 
 export const MARKID = "_MARKID";
 export const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-export const NONDATATYPE = ["axis-domain", "axis-tick", "axis-label", "legend-text", "legend-symbol", "x-axis-domain", "x-axis-tick", "x-axis-label", "y-axis-domain", "y-axis-tick", "y-axis-label", "title", "Title", "axis-grid", "y-axis-grid", "x-axis-grid", "y-axis-domain1", "y-axis-tick1", "y-axis-label1", "y-axis-domain2", "y-axis-tick2", "y-axis-label2", "legend-label", "year-title", "title1", "title2"];
+export const NONDATATYPE = ["axis-domain", "axis-tick", "axis-label", "legend-text", "legend-symbol", "x-axis-domain", "x-axis-tick", "x-axis-label", "y-axis-domain", "y-axis-tick", "y-axis-label", "title", "Title", "axis-grid", "y-axis-grid", "x-axis-grid", "y-axis-domain1", "y-axis-tick1", "y-axis-label1", "y-axis-domain2", "y-axis-tick2", "y-axis-label2", "legend-label", "year-title", "title1",
+"title2", "x-axis-title", "y-axis-title", "l-axis-domain", "l-axis-tick", "l-axis-label", "r-axis-domain", "r-axis-tick", "r-axis-label"];
 class MarkTable {
     markType: Set<string> = new Set();
     fieldNames: string[] = [];

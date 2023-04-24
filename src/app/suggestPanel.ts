@@ -61,7 +61,7 @@ export class SuggestPanel {
     // }
     bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 2}`);
     bg.setAttributeNS(null, "fill", "#c9caca");
-    bg.setAttributeNS(null, "stroke", "#676767");
+    bg.setAttributeNS(null, "stroke", "#666666");
     bg.setAttributeNS(null, "rx", "5");
     this.container.appendChild(bg);
 
@@ -77,8 +77,10 @@ export class SuggestPanel {
         "transform",
         `translate(0, ${0 * (height + 2 * SuggestPanel.PADDING)})`
       );
+      bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 1}`);
       this.itemcontainer.appendChild(item);
     } else if (allNextKf.length > 1) {
+      bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 2}`);
       for (let i = 0; i < this.numShown; i++) {
         const item = this.createSuggestItem(allNextKf[i]);
         item.setAttributeNS(

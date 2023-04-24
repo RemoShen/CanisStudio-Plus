@@ -21,6 +21,8 @@ import DrivingImg from '../assets/img/examples/driving.png'
 import DrivingChart from '../assets/charts/driving.svg'
 import FlareImg from '../assets/img/examples/flare.png'
 import FlareChart from '../assets/charts/flare.svg'
+import GanttImg from '../assets/img/examples/gantt.png'
+import GanttChart from '../assets/charts/gantt.svg'
 import UsPopulationImg from '../assets/img/examples/usPopulation.png'
 import UsPopulationChart from '../assets/charts/usPopulation.svg'
 import ChinaPmImg from '../assets/img/examples/chinapm.png'
@@ -29,6 +31,12 @@ import HiringImg from '../assets/img/examples/hiring.png'
 import HiringChart from '../assets/charts/hiring.svg'
 import TScoreImg from '../assets/img/examples/tscore.png'
 import TScoreChart from '../assets/charts/tScore.svg'
+import FruitSaleImg from '../assets/img/examples/fruitsale.png'
+import FruitSaleChart from '../assets/charts/fruit.svg'
+import WeatherImg from '../assets/img/examples/weather.png'
+import WeatherChart from '../assets/charts/weather.svg'
+import EducationImg from '../assets/img/examples/education.png'
+import EducationChart from '../assets/charts/education.svg'
 import { ViewContent } from './viewWindow'
 import { Loading } from './widgets/loading'
 import { chartManager } from '../app/chartManager'
@@ -40,7 +48,7 @@ export default class FloatingWindow {
     static CLICKABLE_AREA_PROJECT: string = 'inputProject';
 
     static MUSHROOM_CHART: string = 'mushroom';
-    // static GANTT_CHART: string = 'gantt';
+    static GANTT_CHART: string = 'gantt';
     static OS_CHART: string = 'mobileOS';
     static PURCHASE_CHART: string = 'purchases';
     static NIGHTINGALE_CHART: string = 'nightingale';
@@ -54,8 +62,10 @@ export default class FloatingWindow {
     static FLARE_CHART: string = 'flare';
     static USPOPULATION_CHART: string = 'uspopulation';
     static HIRING_CHART: string = 'hiring';
-    static TSCORE_CHART: string ='tscore';
-
+    static TSCORE_CHART: string = 'tscore';
+    static FRUITSALE_CHART: string = 'fruitSale';
+    static WEATHER_CHART: string = 'weather';
+    static EDUCATION_CHART: string = 'education';
     floatingWindow: HTMLDivElement;
 
     public createFloatingWindow(id: string) {
@@ -158,11 +168,17 @@ export default class FloatingWindow {
         const exampleItemContainer3: HTMLDivElement = document.createElement('div');
         exampleItemContainer3.className = 'list-item-container';
         exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.USPOPULATION_CHART, 'usPopulation'));
-        exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.CHINAPM_CHART,'chinaPm'));
+        exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.CHINAPM_CHART, 'chinaPm'));
         exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.HIRING_CHART, 'hiring'));
         exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.TSCORE_CHART, 'tScore'));
-
         exampleList.appendChild(exampleItemContainer3);
+        const exampleItemContainer4: HTMLDivElement = document.createElement("div");
+        exampleItemContainer4.className = 'list-item-container';
+        exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.GANTT_CHART, 'eventPlan'));
+        exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.FRUITSALE_CHART, 'fruitSale'));
+        exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.WEATHER_CHART, 'september weather'));
+        exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.EDUCATION_CHART, 'Higher Education v.s. Obesity'))
+        exampleList.appendChild(exampleItemContainer4);
         return exampleList;
     }
 
@@ -354,6 +370,22 @@ export default class FloatingWindow {
             case FloatingWindow.TSCORE_CHART:
                 img.src = TScoreImg;
                 item.onclick = () => this.loadExampleChart(TScoreChart);
+                break;
+            case FloatingWindow.GANTT_CHART:
+                img.src = GanttImg;
+                item.onclick = () => this.loadExampleChart(GanttChart);
+                break;
+            case FloatingWindow.FRUITSALE_CHART:
+                img.src = FruitSaleImg;
+                item.onclick = () => this.loadExampleChart(FruitSaleChart);
+                break;
+            case FloatingWindow.WEATHER_CHART:
+                img.src = WeatherImg;
+                item.onclick = () => this.loadExampleChart(WeatherChart);
+                break;
+            case FloatingWindow.EDUCATION_CHART:
+                img.src = EducationImg;
+                item.onclick = () => this.loadExampleChart(EducationChart);
                 break;
         }
         imgWrapper.appendChild(img);

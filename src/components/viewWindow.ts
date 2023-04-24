@@ -40,10 +40,10 @@ export default class ViewWindow {
             let titleText: string = this.viewTitle;
             switch (titleText) {
                 case ViewWindow.KF_VIEW_TITLE:
-                    titleText = "Animation Specification";
+                    titleText = "Keyrame";
                     break;
                 case ViewWindow.VIDEO_VIEW_TITLE:
-                    titleText = "Animation Preview";
+                    titleText = "Animation";
                     break;
                 default:
                     break;

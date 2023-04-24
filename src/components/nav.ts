@@ -23,10 +23,10 @@ export default class Nav {
         logo.src = LogoImg;
         logoContainer.appendChild(logo);
         const logoText: HTMLSpanElement = document.createElement('span');
-        // logoText.textContent = 'Canis Studio<tspan dy="-3">2</tspan>';
-        logoText.innerHTML = 'Canis Studio<sup>2</sup>'
+        logoText.textContent = 'Canis Studio-2';
+        // logoText.innerHTML = 'CAST<sup>2</sup>'
         logoText.className = 'title-text';
-        // logoContainer.appendChild(logoText);
+        logoContainer.appendChild(logoText);
         this.navContainer.appendChild(logoContainer);
         this.navContainer.appendChild(logoText)
 
