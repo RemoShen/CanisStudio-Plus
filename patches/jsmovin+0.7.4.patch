@@ -1,0 +1,107 @@
+diff --git a/node_modules/jsmovin/bin/path.js b/node_modules/jsmovin/bin/path.js
+index a95ed3c..1938f70 100644
+--- a/node_modules/jsmovin/bin/path.js
++++ b/node_modules/jsmovin/bin/path.js
+@@ -41,6 +41,12 @@ function () {
+ 
+     _defineProperty(this, "currentY", 0);
+ 
++    _defineProperty(this, "nextCVX", 0);
++    
++    _defineProperty(this, "nextCVY", 0);
++
++    _defineProperty(this, "lastBezier", 0);
++
+     _defineProperty(this, "offsetX", Infinity);
+ 
+     _defineProperty(this, "offsetY", Infinity);
+@@ -181,6 +187,9 @@ function () {
+       this.offsetX = Math.min.apply(Math, [this.offsetX].concat(_toConsumableArray(this.calculateBezierMinMax(this.currentX, c1x, c2x, x))));
+       this.offsetY = Math.min.apply(Math, [this.offsetY].concat(_toConsumableArray(this.calculateBezierMinMax(this.currentY, c1y, c2y, y))));
+       this.updateXY(x, y);
++      this.lastbezier = 3;
++      this.nextCVX = x * 2 - c2x;
++      this.nextCVY = x * 2 - c2y;
+     }
+   }, {
+     key: "cubicBezierCurveToRelative",
+@@ -196,6 +205,9 @@ function () {
+       this.offsetX = Math.min.apply(Math, [this.offsetX].concat(_toConsumableArray(this.calculateBezierMinMax(this.currentX, cx, cx, x))));
+       this.offsetY = Math.min.apply(Math, [this.offsetY].concat(_toConsumableArray(this.calculateBezierMinMax(this.currentY, cy, cy, y))));
+       this.updateXY(x, y);
++      this.lastbezier = 2;
++      this.nextCVX = x * 2 -cx;
++      this.nextCVY = y * 2 -cy;
+     }
+   }, {
+     key: "quadraticBezierCurveToRelative",
+@@ -260,6 +272,7 @@ function () {
+       var pathDataSeries = (0, _svgPathParser.parseSVG)(pathData);
+       var pathDataWithType;
+       pathDataSeries.forEach(function (pathDataItem) {
++        _this2.lastbezier = 0;
+         switch (pathDataItem.code) {
+           case 'M':
+             pathDataWithType = pathDataItem;
+@@ -329,6 +342,30 @@ function () {
+                         
+             break;
+             
++          case 'S':
++            pathDataWithType = pathDataItem
++
++            if(_this2.lastbezier !== 3){
++              _this2.nextCVX = _this2.currentX;
++              _this2.nextCVY = _this2.currentY;
++            }
++
++            _this2.cubicBezierCurveTo(_this2.nextCVX, _this2.nextCVY, pathDataWithType.x2, pathDataWithType.y2, pathDataWithType.x, pathDataWithType.y);
++
++            break;
++
++          case 's':
++            pathDataWithType = pathDataItem
++
++            if(_this2.lastbezier !== 3){
++              _this2.nextCVX = _this2.currentX;
++              _this2.nextCVY = _this2.currentY;
++            }
++
++            _this2.cubicBezierCurveToRelative(_this2.nextCVX - _this2.currentX, _this2.nextCVY - _this2.currentY, pathDataWithType.x2, pathDataWithType.y2, pathDataWithType.x, pathDataWithType.y);
++
++            break;
++          
+           case 'Q':
+             pathDataWithType = pathDataItem;
+             
+@@ -343,6 +380,30 @@ function () {
+ 
+             break;
+ 
++          case 'T':
++            pathDataWithType = pathDataItem;
++
++            if(_this2.lastbezier !== 2){
++              _this2.nextCVX = _this2.currentX;
++              _this2.nextCVY = _this2.currentY;
++            }
++
++            _this2.quadraticBezierCurveToRelative(_this2.nextCVX, _this2.nextCVY, pathDataWithType.x, pathDataWithType.y);
++
++            break;
++
++          case 't':
++            pathDataWithType = pathDataItem;
++
++            if(_this2.lastbezier !== 2){
++              _this2.nextCVX = _this2.currentX;
++              _this2.nextCVY = _this2.currentY;
++            }
++
++            _this2.quadraticBezierCurveToRelative(_this2.nextCVX - _this2.currentX, _this2.nextCVY - _this2.currentY, pathDataWithType.x, pathDataWithType.y);
++
++            break;
++
+           case 'A':
+             pathDataWithType = pathDataItem;
+ 

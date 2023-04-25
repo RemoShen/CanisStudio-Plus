@@ -62,6 +62,10 @@ export default class DragableCanvas {
         document.onmousemove = (moveEvt) => {
             canvas.style.left = `${moveEvt.pageX - canvas.width / 2}px`;
             canvas.style.top = `${moveEvt.pageY - canvas.height / 2}px`;
+            const element = document.getElementById("__graph");
+            if (element) {
+                element.setAttribute("display", "none");
+            }
             AddPanel.show()
             const addPanel: HTMLElement = document.getElementById('addPanel');
             const addPanelRect: ClientRect = addPanel.getBoundingClientRect();
@@ -73,6 +77,10 @@ export default class DragableCanvas {
             }
         }
         document.onmouseup = (upEvt) => {
+            const element = document.getElementById("__graph");
+            if (element) {
+                element.removeAttribute("display");
+            }
             canvas.remove();
             // const kfContainer: HTMLElement = document.getElementById('kfContainer');
             // const kfContainerRect: ClientRect = kfContainer.getBoundingClientRect();

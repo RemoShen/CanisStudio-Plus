@@ -314,6 +314,22 @@ class Polygon {
                     this.vertices.push(lastPoint);
                     break;
                 }
+                case "h":
+                    console.assert(args.length >= 1);
+                    args[0] += lastPoint.x;
+                case "H":
+                    console.assert(args.length >= 1);
+                    lastPoint = { x: args[0], y: lastPoint.y }
+                    this.vertices.push(lastPoint);
+                    break;
+                case "v":
+                    console.assert(args.length >= 1);
+                    args[0] += lastPoint.y;
+                case "V":
+                    console.assert(args.length >= 1);
+                    lastPoint = { x: lastPoint.x, y: args[0] }
+                    this.vertices.push(lastPoint);
+                    break;
                 case "a":
                     console.assert(args.length >= 7);
                     args[5] += lastPoint.x;
@@ -444,7 +460,41 @@ class Polygon {
                             y: lastPoint.y * c0 + args[1] * c1 + args[3] * c2 + args[5] * c3
                         })
                     }
-                    lastPoint = { x: args[4], y: args[5] }
+                    lastCV = { x: args[2], y: args[3] };
+                    lastPoint = { x: args[4], y: args[5] };
+                    // TODO: add adaptive sampling
+                    break;
+                }
+                case "s":
+                    console.assert(args.length >= 6);
+                    args[0] += lastPoint.x;
+                    args[1] += lastPoint.y;
+                    args[2] += lastPoint.x;
+                    args[3] += lastPoint.y;
+                case "S": {
+                    console.assert(args.length >= 6);
+                    if (i == 0 || !("cCsS".includes(types[i - 1]))) {
+                        lastCV = lastPoint;
+                    } else {
+                        lastCV = {
+                            x: lastPoint.x * 2 - lastCV.x,
+                            y: lastPoint.y * 2 - lastCV.y
+                        }
+                    }
+                    const numberSegs = 12;
+                    for (let i = 1; i <= numberSegs; i++) {
+                        const t = i / numberSegs;
+                        const c0 = (1 - t) * (1 - t) * (1 - t);
+                        const c1 = 3 * (1 - t) * (1 - t) * t;
+                        const c2 = 3 * (1 - t) * t * t;
+                        const c3 = t * t * t;
+                        this.vertices.push({
+                            x: lastPoint.x * c0 + lastCV.x * c1 + args[0] * c2 + args[2] * c3,
+                            y: lastPoint.y * c0 + lastCV.y * c1 + args[1] * c2 + args[3] * c3
+                        })
+                    }
+                    lastCV = { x: args[0], y: args[1] }
+                    lastPoint = { x: args[2], y: args[3] }
                     // TODO: add adaptive sampling
                     break;
                 }
@@ -454,7 +504,6 @@ class Polygon {
                     return;
                 }
                 default: {
-                    // TODO: add support of command H,h,V,v,S,s
                     console.warn("not support command " + type);
                     if (type.toLowerCase() === type) {
                         args[args.length - 2] += lastPoint.x;

@@ -6,6 +6,7 @@ import { MarkSelector } from "./markSelector";
 import { sortStrings } from "./sortUtil";
 import Tool from "../util/tool";
 import { SuggestPanel } from "./suggestPanel";
+import { easeLinear } from "d3";
 type MarkType = string;
 type AttributeName = string;
 type AttributeValue = string;
@@ -43,6 +44,10 @@ export class KfTreeNode {
     }
 
     updateProperty() {
+        if (this.markTypeSelectors.size == 0) {
+            firstFrame = firstFrame.deepClone(null);
+            return firstFrame.children[0][0];
+        }
         this.updateFlag = true;
         kfTrees = kfTrees.map(i => i.deepClone(null));
         this.updateFlag = false;
@@ -270,15 +275,16 @@ export class KfTreeGroup {
 
 let kfTrees: KfTreeGroup[] = [];
 let expandOptions: Set<string>[] = [];
+let firstFrame: KfTreeGroup;
 
-const history: { kfTrees: KfTreeGroup[], expandOptions: Set<string>[] }[] = [];
+const history: { kfTrees: KfTreeGroup[], expandOptions: Set<string>[], firstFrame: KfTreeGroup }[] = [];
 let historyIndex = -1;
 
 const saveHistory = () => {
     historyIndex++;
     history.length = historyIndex;
     // history.push({ kfTrees: kfTrees.map(i => i.deepClone()), expandOptions: expandOptions.map(i => new Set(i)) });
-    history.push({ kfTrees, expandOptions });
+    history.push({ kfTrees, expandOptions, firstFrame });
 }
 
 export const revert = () => {
@@ -287,6 +293,7 @@ export const revert = () => {
     }
     historyIndex--;
     kfTrees = history[historyIndex].kfTrees;
+    firstFrame = history[historyIndex].firstFrame;
     expandOptions = history[historyIndex].expandOptions;
     kfTrack.resetActiveNode();
     renderKfTree();
@@ -298,6 +305,7 @@ export const redo = () => {
     }
     historyIndex++;
     kfTrees = history[historyIndex].kfTrees;
+    firstFrame = history[historyIndex].firstFrame;
     expandOptions = history[historyIndex].expandOptions;
     kfTrack.resetActiveNode();
     renderKfTree();
@@ -307,6 +315,13 @@ export const clearKfTrees = () => {
     kfTrees.length = 0;
     expandOptions.length = 0;
     historyIndex = -1;
+    const node = new KfTreeNode(new Set(), null);
+    node.property = {
+        duration: 300,
+        effectType: "fade",
+        easing: "easeLinear"
+    }
+    firstFrame = new KfTreeGroup(new Map(), [[node]], null);
     saveHistory();
     kfTrack.resetActiveNode();
     renderKfTree();
@@ -881,6 +896,16 @@ const generateKfTrack = () => {
     const svg = new DOMParser().parseFromString(document.getElementById("chartContainer").innerHTML, "image/svg+xml");
     const nonSelectedMarks = calcNonSelectedMarks();
 
+    if (kfTrees.length == 0) {
+        const group = new KfRow("__graph", null, NaN, firstFrame);
+        const kfTreeNode = firstFrame.children[0][0];
+        const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: "image/svg+xml;charset=utf-8" });
+        const url = URL.createObjectURL(blob);
+        const node = new KfNode(kfTreeNode.property.duration, kfTreeNode.property.effectType, kfTreeNode.property.easing, url, group, kfTreeNode);
+        group.children.push(node)
+        result.push(group);
+        return result;
+    }
     Array.from(svg.getElementsByClassName("mark")).forEach(element => {
         // if (!nonSelectedMarks.has(element.id)) {
         element.setAttribute("display", "none");

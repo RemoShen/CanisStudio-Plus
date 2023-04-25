@@ -664,73 +664,98 @@ export class CanisUtil {
     }
 
     static getPathOffset(d) {
-        const pathData = d
-        const pathDataSeries = parseSVG(pathData)
+        // const pathData = d
+        // const pathDataSeries = parseSVG(pathData)
         const pathMaker = new PathMaker()
-        let pathDataWithType;
-        pathDataSeries.forEach(pathDataItem => {
-            switch (pathDataItem.code) {
-                case 'M':
-                    pathDataWithType = pathDataItem
-                    pathMaker.moveTo(pathDataWithType.x, pathDataWithType.y)
-                    break
-                case 'L':
-                    pathDataWithType = pathDataItem
-                    pathMaker.lineTo(pathDataWithType.x, pathDataWithType.y)
-                    break
-                case 'l':
-                    pathDataWithType = pathDataItem
-                    pathMaker.lineToRelative(pathDataWithType.x, pathDataWithType.y)
-                    break
-                case 'H':
-                    pathDataWithType = pathDataItem
-                    pathMaker.horizontalTo(pathDataWithType.x)
-                    break
-                case 'h':
-                    pathDataWithType = pathDataItem
-                    pathMaker.horizontalToRelative(pathDataWithType.x)
-                    break
-                case 'V':
-                    pathDataWithType = pathDataItem
-                    pathMaker.verticalTo(pathDataWithType.y)
-                    break
-                case 'v':
-                    pathDataWithType = pathDataItem
-                    pathMaker.verticalToRelative(pathDataWithType.y)
-                    break
-                case 'C':
-                    pathDataWithType = pathDataItem
-                    pathMaker.cubicBezierCurveTo(pathDataWithType.x1, pathDataWithType.y1, pathDataWithType.x2, pathDataWithType.y2, pathDataWithType.x, pathDataWithType.y)
-                    break
-                case 'c':
-                    pathDataWithType = pathDataItem
-                    pathMaker.cubicBezierCurveToRelative(pathDataWithType.x1, pathDataWithType.y1, pathDataWithType.x2, pathDataWithType.y2, pathDataWithType.x, pathDataWithType.y)
-                    break
-                case 'Q':
-                    pathDataWithType = pathDataItem
-                    pathMaker.quadraticBezierCurveTo(pathDataWithType.x1, pathDataWithType.y1, pathDataWithType.x, pathDataWithType.y)
-                    break
-                case 'q':
-                    pathDataWithType = pathDataItem
-                    pathMaker.quadraticBezierCurveToRelative(pathDataWithType.x1, pathDataWithType.y1, pathDataWithType.x, pathDataWithType.y)
-                    break
-                case 'A':
-                    pathDataWithType = pathDataItem
-                    pathMaker.arcTo(pathDataWithType.rx, pathDataWithType.ry, pathDataWithType.xAxisRotation, ~~pathDataWithType.largeArc, ~~pathDataWithType.sweep, pathDataWithType.x, pathDataWithType.y)
-                    break
-                case 'a':
-                    pathDataWithType = pathDataItem
-                    pathMaker.arcToRelative(pathDataWithType.rx, pathDataWithType.ry, pathDataWithType.xAxisRotation, ~~pathDataWithType.largeArc, ~~pathDataWithType.sweep, pathDataWithType.x, pathDataWithType.y)
-                    break
-                case 'Z':
-                case 'z':
-                    pathMaker.closePath()
-                    break
-                default:
-                    console.error(pathDataItem)
-                    throw new Error('No implementation found for this path command.')
-            }
-        })
+        pathMaker.parse(d)
+        // let pathDataWithType;
+        // pathDataSeries.forEach(pathDataItem => {
+        //     switch (pathDataItem.code) {
+        //         case 'M':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.moveTo(pathDataWithType.x, pathDataWithType.y)
+        //             break
+        //         case 'L':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.lineTo(pathDataWithType.x, pathDataWithType.y)
+        //             break
+        //         case 'l':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.lineToRelative(pathDataWithType.x, pathDataWithType.y)
+        //             break
+        //         case 'H':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.horizontalTo(pathDataWithType.x)
+        //             break
+        //         case 'h':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.horizontalToRelative(pathDataWithType.x)
+        //             break
+        //         case 'V':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.verticalTo(pathDataWithType.y)
+        //             break
+        //         case 'v':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.verticalToRelative(pathDataWithType.y)
+        //             break
+        //         case 'C':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.cubicBezierCurveTo(pathDataWithType.x1, pathDataWithType.y1, pathDataWithType.x2, pathDataWithType.y2, pathDataWithType.x, pathDataWithType.y)
+        //             break
+        //         case 'c':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.cubicBezierCurveToRelative(pathDataWithType.x1, pathDataWithType.y1, pathDataWithType.x2, pathDataWithType.y2, pathDataWithType.x, pathDataWithType.y)
+        //             break
+        //         case 'Q':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.quadraticBezierCurveTo(pathDataWithType.x1, pathDataWithType.y1, pathDataWithType.x, pathDataWithType.y)
+        //             break
+        //         case 'q':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.quadraticBezierCurveToRelative(pathDataWithType.x1, pathDataWithType.y1, pathDataWithType.x, pathDataWithType.y)
+        //             break
+        //         case 'T':
+        //             pathDataWithType = pathDataItem;
+
+        //             if(_this2.lastbezier !== 2){
+        //             _this2.nextCVX = _this2.currentX;
+        //             _this2.nextCVY = _this2.currentY;
+        //             }
+
+        //             _this2.quadraticBezierCurveToRelative(_this2.nextCVX, _this2.nextCVY, pathDataWithType.x, pathDataWithType.y);
+
+        //             break;
+
+        //         case 't':
+        //             pathDataWithType = pathDataItem;
+
+        //             if(_this2.lastbezier !== 2){
+        //             _this2.nextCVX = _this2.currentX;
+        //             _this2.nextCVY = _this2.currentY;
+        //             }
+
+        //             _this2.quadraticBezierCurveToRelative(_this2.nextCVX - _this2.currentX, _this2.nextCVY - _this2.currentY, pathDataWithType.x, pathDataWithType.y);
+
+        //             break;
+
+        //         case 'A':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.arcTo(pathDataWithType.rx, pathDataWithType.ry, pathDataWithType.xAxisRotation, ~~pathDataWithType.largeArc, ~~pathDataWithType.sweep, pathDataWithType.x, pathDataWithType.y)
+        //             break
+        //         case 'a':
+        //             pathDataWithType = pathDataItem
+        //             pathMaker.arcToRelative(pathDataWithType.rx, pathDataWithType.ry, pathDataWithType.xAxisRotation, ~~pathDataWithType.largeArc, ~~pathDataWithType.sweep, pathDataWithType.x, pathDataWithType.y)
+        //             break
+        //         case 'Z':
+        //         case 'z':
+        //             pathMaker.closePath()
+        //             break
+        //         default:
+        //             console.error(pathDataItem)
+        //             throw new Error('No implementation found for this path command.')
+        //     }
+        // })
         return [pathMaker.offsetX, pathMaker.offsetY];
     }
 

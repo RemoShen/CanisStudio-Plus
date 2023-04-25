@@ -219,12 +219,11 @@ export class KfItem {
         if (this.id == kfTrack.activeNodeId) {
             kfTrack.activeNode = this;
         }
+        this.mainContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        this.container.appendChild(this.mainContainer);
 
         this.delayWidget = new KfDelay(delay, this, originalDelayNode, previousNode);
         this.container.appendChild(this.delayWidget.container);
-
-        this.mainContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
-        this.container.appendChild(this.mainContainer);
     }
 
     getOriginalHeight() {
@@ -240,6 +239,7 @@ export class KfItem {
     }
 
     render(height: number) {
+        return 0;
         // return { element: this.container, length: 0 };
     }
 }
@@ -301,7 +301,8 @@ export class KfColume extends KfGroup {
         this.renderDelay(this.height);
         this.renderLeftBar();
 
-        return { element: this.container, length };
+        return length;
+        // return { element: this.container, length };
     }
 }
 
@@ -569,7 +570,7 @@ export class KfRow extends KfGroup {
             }
         }
         labelContainer.onmousedown = () => {
-            if (kfTrack.timingLock) {
+            if (kfTrack.timingLock || this.label == "__graph") {
                 return;
             }
             if (this.originalNode) {
@@ -644,12 +645,16 @@ export class KfRow extends KfGroup {
         labelText.setAttribute("font-size", String(FONT_SIZE));
         labelText.setAttribute("font-weight", "600");
         const maxStrLen = Math.floor(length / 8);
-        labelText.innerHTML = this.label.length <= maxStrLen ? this.label : this.label.substring(0, maxStrLen - 3) + "...";
+        labelText.innerHTML = this.label == "__graph" ? "graph" : this.label.length <= maxStrLen ? this.label : this.label.substring(0, maxStrLen - 3) + "...";
 
         this.renderDelay(this.height);
         this.renderLeftBar();
 
-        return { element: container, length };
+        if (this.label == "__graph") {
+            this.container.id = "__graph";
+            length = 0;
+        }
+        return length;
     }
 }
 
@@ -689,7 +694,7 @@ export class KfOmit extends KfItem {
 
         this.renderLeftBar();
 
-        return { element: container, length };
+        return length;
     }
 }
 
@@ -830,8 +835,8 @@ export class KfDelay {
         }
         const textWidth = this.lengthGuide.getBoundingClientRect().width;
         this.lengthGuideBackground.setAttribute("width", String((textWidth + ITEM_GAP * 2) / kfTrack.scale));
-        this.lengthGuideBackground.setAttribute("x", String(position - (ITEM_GAP * 6 + textWidth) / kfTrack.scale));
-        this.lengthGuide.setAttribute("x", String(position - ITEM_GAP * 5 / kfTrack.scale));
+        this.lengthGuideBackground.setAttribute("x", String(position + (ITEM_GAP * 4) / kfTrack.scale));
+        this.lengthGuide.setAttribute("x", String(position + ITEM_GAP * 5 / kfTrack.scale));
     }
 
     lengthToTime(length: number) {
@@ -906,7 +911,7 @@ export class KfDelay {
             lengthGuide.setAttribute("x", String(this.length));
             lengthGuide.setAttribute("y", String(18 / kfTrack.scale));
             lengthGuide.setAttribute("font-size", String(12 / kfTrack.scale) + "px");
-            lengthGuide.classList.add("kf-length-guide");
+            lengthGuide.classList.add("kf-delay-length-guide");
 
             this.updateLengthGuide(Math.max(0, this.virtualLength), this.lengthToTime(this.virtualLength));
 
@@ -1320,7 +1325,7 @@ export class KfNode extends KfItem {
 
         this.renderLeftBar();
         this.createMenu();
-        return { element: container, length };
+        return length;
     }
 }
 
@@ -1396,9 +1401,10 @@ class KfTrack {
 
         let x = 0;
         for (let i of this.groups) {
-            i.render(maxHeight);
+            const length = i.render(maxHeight);
             i.translate(x, 20);
-            x += i.length + i.delayLength;
+
+            x += length + i.delayLength;
             x += (maxLevel - 2) * 2;
             innerContainer.append(i.container);
         }
