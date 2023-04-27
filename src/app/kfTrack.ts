@@ -151,11 +151,11 @@ export class KfItem {
         }
     }
 
-    renderDelay(height: number) {
+    renderDelay(height: number, allowNegtiveDelay = false) {
         if (!this.delayWidget.originalNode || isNaN(this.delayWidget.delay)) {
             return;
         }
-        this.delayWidget.render(height);
+        this.delayWidget.render(height, allowNegtiveDelay);
         this.delayLength = this.delayWidget.length;
         this.mainContainer.setAttribute("transform", `translate(${this.delayLength},${0})`);
     }
@@ -750,7 +750,9 @@ export class KfRow extends KfGroup {
 
             const bindBtnIcon = document.createElementNS("http://www.w3.org/2000/svg", "path");
             bindBtnContainer.appendChild(bindBtnIcon);
-            bindBtnIcon.setAttribute("d", "M 3 13 H 9 V 12 H 3 Z M 3 4 V 4 H 21 V 3 H 3 Z M 3 10 H 13 V 9 H 3 Z M 3 6 L 17 6 L 17 7 L 3 7 Z");
+            bindBtnIcon.setAttribute("d", "M 20.44 8.013 L 6 8 L 6 9 L 20.425 8.976 L 15.33 13.348 L 16 14 L 22 9 L 22 8 L 16 3 L 15.283 3.759 Z M 5 14 L 5 3 L 4 3 L 4 14 Z");
+            // bindBtnIcon.setAttribute('points', '10.1,0 10.1,4.1 5.6,0.1 4.3,1.5 8.3,5.1 0,5.1 0,6.9 8.3,6.9 4.3,10.5 5.6,11.9 10.1,7.9 10.1,12 12,12 12,0 ');
+
             bindBtnIcon.setAttribute("transform", `translate(5, 2)`);
             bindBtnIcon.classList.add("kf-button");
 
@@ -788,7 +790,7 @@ export class KfRow extends KfGroup {
         const maxStrLen = Math.floor(length / 8);
         labelText.innerHTML = this.label == "__graph" ? "graph" : this.label.length <= maxStrLen ? this.label : this.label.substring(0, maxStrLen - 3) + "...";
 
-        this.renderDelay(this.height);
+        this.renderDelay(this.height, (this.binding != null) && true);
         this.renderLeftBar();
 
         if (this.label == "__graph") {
@@ -860,7 +862,7 @@ export class KfDelay {
 
     previousNode: KfItem;
 
-    lastNodeLength: number;
+    parentLength: number;
 
     constructor(delayTime: number, parent: KfItem, originalNode: KfTreeGroup | KfTreeNode, previousNode: KfItem) {
         this.container = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -920,7 +922,7 @@ export class KfDelay {
         // this.length = Math.min(Math.max(this.virtualLength, -this.lastNodeLength), MAX_DELAY_LENGTH);
         this.length = Math.min(this.virtualLength, MAX_DELAY_LENGTH);
 
-        this.length = Math.max(0, this.length);
+        this.length = Math.max(-this.parentLength, this.length);
 
         this.length = this.timeToLength(snap(this.lengthToTime(this.length), 50, 10));
         // this.rightDragBar.setAttribute("x", String(this.length - ITEM_GAP));
@@ -962,7 +964,7 @@ export class KfDelay {
         // this.container.removeChild(this.lengthGuide);
         kfTrack.panningLock = false;
 
-        this.originalNode.updateDelay(snap(this.lengthToTime(Math.max(0, Math.min(MAX_DELAY_LENGTH, this.virtualLength))), 50, 10));
+        this.originalNode.updateDelay(snap(this.lengthToTime(Math.max(-this.parentLength, Math.min(MAX_DELAY_LENGTH, this.virtualLength))), 50, 10));
         // this.originalNode.updateDelay(snap(this.lengthToTime(Math.max(-this.lastNodeLength, Math.min(MAX_DELAY_LENGTH, this.virtualLength))), 50, 10));
     }
 
@@ -984,19 +986,23 @@ export class KfDelay {
         if (length >= 0) {
             return lengthToDelay(length);
         }
-        return length / this.lastNodeLength * lengthToDuration(this.lastNodeLength);
+        return length / this.parentLength * lengthToDuration(this.parentLength);
     }
 
     timeToLength(time: number) {
         if (time >= 0) {
             return delayToLength(time);
         }
-        return time / lengthToDuration(this.lastNodeLength) * this.lastNodeLength;
+        return time / lengthToDuration(this.parentLength) * this.parentLength;
     }
 
-    render(height: number) {
+    render(height: number, allowNegtiveDelay: boolean = false) {
         this.height = height;
-        // this.lastNodeLength = this.previousNode.findRightMostLength();
+        if (allowNegtiveDelay) {
+            this.parentLength = this.parent.length;
+        }else{
+            this.parentLength = 0;
+        }
         this.length = this.timeToLength(this.delay);
         // this.length = Math.max(-this.lastNodeLength, this.length);
         this.virtualLength = this.length;

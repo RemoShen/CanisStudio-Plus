@@ -143,6 +143,7 @@ export class KfTreeNode {
 
     deepClone(parent: KfTreeGroup) {
         const result = new KfTreeNode(this.markTypeSelectors, parent);
+        result.markTypeSelectors = new Set(this.markTypeSelectors);
         result.delay = this.delay;
         result.updateFlag = this.updateFlag;
         if (this.grouping) {
@@ -274,6 +275,7 @@ export class KfTreeGroup {
 
     deepClone(parent: KfTreeNode) {
         const result = new KfTreeGroup(this.attributeSelectors, this.children, parent);
+        result.attributeSelectors = new Map(this.attributeSelectors);
         result.children = this.children.map(i => i.map(j => j.deepClone(result)));
         result.delay = this.delay;
         result.updateFlag = this.updateFlag;
@@ -328,7 +330,7 @@ let historyIndex = -1;
 const saveHistory = () => {
     historyIndex++;
     history.length = historyIndex;
-    // history.push({ kfTrees: kfTrees.map(i => i.deepClone()), expandOptions: expandOptions.map(i => new Set(i)) });
+    // history.push({ kfTrees: kfTrees.map(i => i.deepClone()), expandOptions: expandOptions.map(i => new Set(i)), firstFrame });
     history.push({ kfTrees, expandOptions, firstFrame });
 }
 

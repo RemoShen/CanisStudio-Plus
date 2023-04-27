@@ -540,7 +540,9 @@ class CanisSpec {
                                             tmpDomAttrObj['stroke-dashoffset'] = document.getElementById(markId).getTotalLength();
                                             if (mark.tagName === 'path') {
                                                 let discD = CanisUtil.discretizeD(mark.getAttribute('d'), '#000');
+                                                
                                                 if (typeof discD !== 'undefined' && discD) {
+                                                    console.log('discdtype', discD.type);
                                                     if (discD.type === 'pies') {
                                                         tmpDomAttrObj['cx'] = discD.data.cx;
                                                         tmpDomAttrObj['cy'] = discD.data.cy;

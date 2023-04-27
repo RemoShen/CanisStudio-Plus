@@ -348,21 +348,31 @@ export class CanisUtil {
             let circles = []
             let prev = null
             let valid = true
-            result.forEach(x => {
+            // For each of the commands in the SVG path...
+result.forEach(x => {
+                // If the path is not valid, skip it.
                 if (!valid) return
+                // If the command is 'M' (move), set the previous point, and skip to the next command.
                 if (x.command.toLowerCase() === 'm') {
                     prev = x.parameters.slice(-2)
                     return
                 }
+                // If there is no previous point, skip to the next command.
                 if (!prev) return valid = false
+                // If the command is 'Z' (close), skip to the next command.
                 if (x.command.toLowerCase() === 'z') return
+                // Set the first and second points.
                 let firstPoint = prev,
                     secondPoint = x.command.toLowerCase() === x.command ? prev.slice() : [0, 0]
+                // If the command is not 'A' (arc), set the second point.
                 if (x.command.toLowerCase() !== 'a') {
                     return prev = secondPoint.map((v, i) => v + x.parameters[i])
                 }
+                // If the command is 'A' (arc), set the second point based on the arc parameters.
                 secondPoint = secondPoint.map((v, i) => v + x.parameters[i + 5])
+                // Convert the arc parameters to center parameters.
                 let tmp = CanisUtil.svgArcToCenterParam.apply(null, firstPoint.concat(x.parameters.slice(0, 5)).concat(secondPoint));
+                // If the center parameters are not invalid, add them to the list of circles.
                 if (!isNaN(tmp.cx) && !isNaN(tmp.cy)) {
                     circles.push({
                         ...tmp,
@@ -371,15 +381,19 @@ export class CanisUtil {
                         rotate: x.parameters[2]
                     })
                 }
+                // Set the previous point to the second point.
                 prev = secondPoint
             })
+            // check that all the circles have the same center
             if (circles.length <= 0 || !circles.every(x => ['cx', 'cy'].reduce((p, c) => p + Math.abs(x[c] - circles[0][c]), 0) < 1e-1)) valid = false
             if (valid) {
+                // find the largest circle
                 let c = circles.reduce((p, c) => {
                     if (!p) return c
                     if (c.rx + c.ry > p.rx + p.ry) return c
                     return p
                 }, null)
+                // generate the attrResult
                 let attrResult = {
                     type: 'pies',
                     data: {

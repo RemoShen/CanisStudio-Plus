@@ -14,7 +14,7 @@ export class AnimationTreeGroup extends AnimationTreeItem {
 
     fromKfTreeGroup(kfGroup: KfTreeGroup, marks: string[], isFirst: boolean, lastDuration: number) {
         const delay = isFirst ? 0 : kfGroup.delay;
-        this.delay = Math.max(-lastDuration, delay);
+        this.delay = Math.max(0, delay);
         let isFirstNode = true;
         for (let arr of kfGroup.children) {
             let col = [];
@@ -69,7 +69,7 @@ export class AnimationTreeGroup extends AnimationTreeItem {
     fromKfTreeNode(kfNode: KfTreeNode, marks: string[], isFirst: boolean, lastDuration: number) {
         marks = marks.filter(i => meetMarkTypeConstrains(i, kfNode.markTypeSelectors));
         const delay = isFirst ? 0 : kfNode.delay;
-        this.delay = Math.max(-lastDuration, delay);
+        this.delay = Math.max(0, delay);
 
         const groupBy = kfNode.grouping.groupBy;
         const partition: Map<string, Set<string>> = new Map();
