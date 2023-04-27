@@ -5,8 +5,6 @@ import { KfItem, KfRow, KfNode, KfOmit, kfTrack, KfDelay, KfColume, KfGroup } fr
 import { MarkSelector } from "./markSelector";
 import { sortStrings } from "./sortUtil";
 import Tool from "../util/tool";
-import { SuggestPanel } from "./suggestPanel";
-import { easeLinear } from "d3";
 type MarkType = string;
 type AttributeName = string;
 type AttributeValue = string;
@@ -175,6 +173,9 @@ export class KfTreeGroup {
 
     delay: number;
 
+    durationBinding: string = null;
+    startTimeBinding: string = null;
+
     updateFlag: boolean = false;
 
     constructor(attributeSelectors: Map<string, string>, children: KfTreeNode[][], parent: KfTreeNode) {
@@ -182,6 +183,48 @@ export class KfTreeGroup {
         this.children = children;
         this.delay = 0;
         this.parent = parent;
+    }
+
+    isBindable() {
+        return this.parent != null && this.children.length == 1 && this.children[0].length == 1 && this.children[0][0].grouping == null;
+    }
+
+    getBinding(marks: Set<string>) {
+        if (!this.isBindable()) {
+            return null;
+        }
+        const options: string[] = [];
+        const childMarkType = this.children[0][0].markTypeSelectors;
+        for (let markType of childMarkType) {
+            for (let mark of marks) {
+                if (chartManager.marks.get(mark).get(MARKID) != markType) {
+                    continue;
+                }
+                for (let [k, v] of chartManager.numericAttrs.get(mark)) {
+                    if (!options.includes(k)) {
+                        options.push(k);
+                    }
+                }
+                break;
+            }
+        }
+        return {
+            options,
+            duration: this.durationBinding,
+            startTime: this.startTimeBinding,
+            group: this
+        }
+    }
+
+    updateBinding(startTime: string, duration: string) {
+        const group = this.updateProperty();
+        group.durationBinding = duration;
+        group.startTimeBinding = startTime;
+        if (startTime && group.delay == 0) {
+            group.delay = group.children[0][0].property.duration;
+        }
+        saveHistory();
+        renderKfTree();
     }
 
     updateProperty() {
@@ -234,6 +277,8 @@ export class KfTreeGroup {
         result.children = this.children.map(i => i.map(j => j.deepClone(result)));
         result.delay = this.delay;
         result.updateFlag = this.updateFlag;
+        result.startTimeBinding = this.startTimeBinding;
+        result.durationBinding = this.durationBinding;
         return result;
     }
 
@@ -953,6 +998,7 @@ const generateKfTrackOfGroup = (
     originalParent: KfTreeNode = null,
     delay: number = NaN) => {
     const result = new KfRow(label, parent, delay, originalNode, sortable, sortAttributes, originalParent);
+    result.binding = group.getBinding(marks);
     let isFirst = true;
     const addNewChild = (nextNode: KfItem, originalNode: KfTreeGroup | KfTreeNode) => {
         const previousNode = isFirst ? null : result.children[result.children.length - 1];

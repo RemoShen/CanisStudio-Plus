@@ -1,4 +1,3 @@
-import { forIn } from "lodash";
 import { chartManager } from "./chartManager";
 import { KfTreeGroup, KfTreeNode, meetAttributeConstrains, meetMarkTypeConstrains } from "./kfTree";
 import { sortStrings } from "./sortUtil";
@@ -49,6 +48,24 @@ export class AnimationTreeGroup extends AnimationTreeItem {
         return lastDuration;
     }
 
+    fromBindedGroup(kfGroup: KfTreeGroup, marks: string[], isFirst: boolean, lastDuration: number, minStartTimeBinding: number, minDurationBinding: number) {
+        if (kfGroup.startTimeBinding) {
+            this.delay = calcMean(marks, kfGroup.startTimeBinding) / minStartTimeBinding * kfGroup.delay;
+        } else {
+            const delay = isFirst ? 0 : kfGroup.delay;
+            this.delay = Math.max(-lastDuration, delay);
+        }
+        const kfNode = kfGroup.children[0][0];
+
+        const child = new AnimationTreeNode();
+        lastDuration = child.fromKfTreeNode(kfNode, marks, false, 0);
+        if (kfGroup.durationBinding) {
+            lastDuration = child.duration = calcMean(marks, kfGroup.durationBinding) / minDurationBinding * child.duration;
+        }
+        this.children.push([child]);
+        return lastDuration;
+    }
+
     fromKfTreeNode(kfNode: KfTreeNode, marks: string[], isFirst: boolean, lastDuration: number) {
         marks = marks.filter(i => meetMarkTypeConstrains(i, kfNode.markTypeSelectors));
         const delay = isFirst ? 0 : kfNode.delay;
@@ -90,25 +107,65 @@ export class AnimationTreeGroup extends AnimationTreeItem {
             }
         }
         let isFirstChild = true;
-        for (let attributeName of sequence) {
-            if (!partition.has(attributeName)) {
-                continue;
+        const childGroup = kfNode.grouping.child;
+        if (childGroup.isBindable()) {
+            let minStartTimeBinding = Infinity;
+            let minDurationBinding = Infinity;
+            if (childGroup.durationBinding) {
+                for (let [k, v] of partition) {
+                    minDurationBinding = Math.min(minDurationBinding, calcMean([...v], childGroup.durationBinding))
+                }
             }
-            const child = new AnimationTreeGroup();
-            lastDuration = child.fromKfTreeGroup(kfNode.grouping.child, Array.from(partition.get(attributeName)), isFirstChild, lastDuration);
-            this.children.push([child]);
-            isFirstChild = false;
+            if (childGroup.startTimeBinding) {
+                for (let [k, v] of partition) {
+                    minStartTimeBinding = Math.min(minStartTimeBinding, calcMean([...v], childGroup.startTimeBinding))
+                }
+                const tmp = [];
+                for (let attributeName of sequence) {
+                    if (!partition.has(attributeName)) {
+                        continue;
+                    }
+                    const child = new AnimationTreeGroup();
+                    lastDuration = child.fromBindedGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration, minStartTimeBinding, minDurationBinding);
+                    tmp.push(child);
+                    isFirstChild = false;
+                }
+                for (let i = 1; i < tmp.length; i++) {
+                    tmp[i].delay -= tmp[0].delay;
+                }
+                this.children.push(tmp);
+            } else {
+                for (let attributeName of sequence) {
+                    if (!partition.has(attributeName)) {
+                        continue;
+                    }
+                    const child = new AnimationTreeGroup();
+                    lastDuration = child.fromBindedGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration, minStartTimeBinding, minDurationBinding);
+                    this.children.push([child]);
+                    isFirstChild = false;
+                }
+            }
+        } else {
+            for (let attributeName of sequence) {
+                if (!partition.has(attributeName)) {
+                    continue;
+                }
+                const child = new AnimationTreeGroup();
+                lastDuration = child.fromKfTreeGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration);
+                this.children.push([child]);
+                isFirstChild = false;
+            }
         }
         return lastDuration;
     }
 
     render(animations: any[], time: number) {
         time += this.delay;
-        for(let arr of this.children){
+        for (let arr of this.children) {
             let nextTime = time;
             time += arr[0].delay;
             arr[0].delay = 0;
-            for(let child of arr){
+            for (let child of arr) {
                 nextTime = Math.max(nextTime, child.render(animations, time))
             }
             time = nextTime;
@@ -175,4 +232,18 @@ const generateCanisFrame = (selector: string, effectType: string, easing: string
             }
         ]
     }
+}
+
+function calcMean(marks: string[], channel: string) {
+    let result = 0;
+    let cnt = 0;
+    for (let i of marks) {
+        const attributes = chartManager.numericAttrs.get(i);
+        if (attributes.has(channel)) {
+            cnt++;
+            result += Number(attributes.get(channel));
+        }
+    }
+    result /= cnt;
+    return result;
 }

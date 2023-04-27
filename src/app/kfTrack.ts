@@ -1,3 +1,4 @@
+import { bin } from 'd3';
 import '../assets/style/keyframeTrack.scss'
 import { AddPanel } from './addPanel';
 import { KfTreeGroup, KfTreeNode, calcSelectedMarks, getSuggestFrames } from './kfTree';
@@ -309,6 +310,12 @@ export class KfColume extends KfGroup {
 export class KfRow extends KfGroup {
     label: string;
     sortable: boolean;
+    binding: {
+        options: string[],
+        duration: string,
+        startTime: string,
+        group: KfTreeGroup
+    } = null;
     sortAttributes: string[];
     originalGrouping: KfTreeNode;
     originalNode: KfTreeNode | KfTreeGroup;
@@ -403,7 +410,7 @@ export class KfRow extends KfGroup {
 
         const sortListContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
         kfTrack.innerContainer.appendChild(sortListContainer);
-        sortListContainer.setAttribute("transform", `translate(${this.getX() + 30},${this.getY() + 2}), scale(${1 / kfTrack.scale})`);
+        sortListContainer.setAttribute("transform", `translate(${this.getX() + this.delayLength + 30},${this.getY() + 2}), scale(${1 / kfTrack.scale})`);
         const itemWidth = 120;
         const itemHeight = 20;
         let index = 0;
@@ -474,8 +481,8 @@ export class KfRow extends KfGroup {
             text.setAttribute("font-size", "12");
             text.setAttribute("x", String(itemWidth / 2));
             text.setAttribute("y", String(itemHeight / 2 + 4));
-            text.setAttribute("fill", "rgb(163, 163, 163)")
-            text.setAttribute("text-anchor", "middle")
+            text.setAttribute("fill", "rgb(163, 163, 163)");
+            text.setAttribute("text-anchor", "middle");
             text.setAttribute("font-weight", "600");
             itemContainer.appendChild(text);
 
@@ -531,6 +538,114 @@ export class KfRow extends KfGroup {
         }
     }
 
+    createBindList(bindBtnContainer: Element) {
+        const bindListContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+        kfTrack.innerContainer.appendChild(bindListContainer);
+        bindListContainer.setAttribute("transform", `translate(${this.getX() + this.delayLength + this.length - 5},${this.getY() + 2}), scale(${1 / kfTrack.scale})`);
+        const itemWidth = 80;
+        const itemHeight = 20;
+
+        const background = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        background.setAttribute("width", "25");
+        background.setAttribute("height", "16");
+        background.setAttribute("transform", `scale(${kfTrack.scale}), translate(${-25}, 0)`);
+        background.setAttribute("opacity", "0");
+        bindListContainer.appendChild(background);
+
+        const binding = this.binding;
+        const options = binding.options.concat([null]);
+
+        const createList = (title: string, highlighted: string, callback: Function) => {
+            const listContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            let index = 0;
+            {
+                const itemBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                itemBackground.setAttribute("width", String(itemWidth));
+                itemBackground.setAttribute("height", String(itemHeight));
+                itemBackground.setAttribute("fill", "#676767");
+                itemBackground.setAttribute("stroke", "#AAA");
+                itemBackground.setAttribute("y", String(index * (itemHeight)));
+                listContainer.appendChild(itemBackground);
+
+                const itemContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                // itemContainer.classList.add("kf-button");
+                itemContainer.setAttribute("transform", `translate(${0},${index * (itemHeight)})`);
+                listContainer.appendChild(itemContainer);
+
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.innerHTML = title;
+                text.setAttribute("text-anchor", "middle")
+                text.setAttribute("font-size", "12");
+                text.setAttribute("font-weight", "600");
+                text.setAttribute("y", "14");
+                text.setAttribute("x", String(itemWidth / 2));
+                text.setAttribute("fill", "white");
+                itemContainer.appendChild(text);
+
+                index++;
+            }
+            for (let option of options) {
+                const itemBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                itemBackground.setAttribute("width", String(itemWidth));
+                itemBackground.setAttribute("height", String(itemHeight));
+                itemBackground.setAttribute("fill", "#676767");
+                itemBackground.setAttribute("stroke", "#AAA");
+                itemBackground.setAttribute("y", String(index * (itemHeight)));
+                listContainer.appendChild(itemBackground);
+
+                const itemContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                // itemContainer.classList.add("kf-button");
+                itemContainer.setAttribute("transform", `translate(${0},${index * (itemHeight)})`);
+                listContainer.appendChild(itemContainer);
+
+                const buttonContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+                itemContainer.appendChild(buttonContainer);
+                buttonContainer.setAttribute("transform", `translate(${itemWidth / 2},${2})`);
+                buttonContainer.classList.add("kf-order-button");
+
+                const rect = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                buttonContainer.appendChild(rect);
+                rect.setAttribute("height", "16");
+                rect.setAttribute("width", "50");
+                rect.setAttribute("rx", "3");
+                rect.setAttribute("x", String(-50 / 2));
+
+                const text = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                text.innerHTML = option ? option : "Default";
+                text.setAttribute("text-anchor", "middle")
+                text.setAttribute("font-size", "12");
+                text.setAttribute("font-weight", "600");
+                text.setAttribute("y", "12");
+                buttonContainer.appendChild(text);
+
+                buttonContainer.onclick = () => {
+                    callback(option);
+                }
+
+                if (option == highlighted) {
+                    buttonContainer.classList.add("kf-active-order-button");
+                }
+                index++;
+            }
+            return listContainer;
+        }
+
+        const l1 = createList("Start Time", binding.startTime, (startTime: string) => {
+            binding.group.updateBinding(startTime, binding.duration);
+        });
+        bindListContainer.appendChild(l1);
+        const l2 = createList("Duration", binding.duration, (duration: string) => {
+            binding.group.updateBinding(binding.startTime, duration);
+        });
+        bindListContainer.appendChild(l2);
+        l2.setAttribute("transform", `translate(${itemWidth},0)`);
+
+        bindListContainer.onmouseleave = () => {
+            bindBtnContainer.removeAttribute("style");
+            kfTrack.innerContainer.removeChild(bindListContainer);
+        }
+    }
+
     render(height: number) {
         this.height = height;
         const container = this.mainContainer;
@@ -552,11 +667,13 @@ export class KfRow extends KfGroup {
         if (this.sortable) {
             const sortBtnContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
             labelContainer.appendChild(sortBtnContainer);
-            sortBtnContainer.classList.add("kf-sort-btn-container")
+            sortBtnContainer.classList.add("kf-label-btn-container")
 
             const sortBtnBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
             sortBtnContainer.appendChild(sortBtnBackground);
-            sortBtnBackground.classList.add("kf-sort-btn-background");
+            sortBtnBackground.classList.add("kf-label-btn-background");
+            sortBtnBackground.setAttribute("x", "5");
+            sortBtnBackground.setAttribute("y", "2");
 
             const sortBtnIcon = document.createElementNS("http://www.w3.org/2000/svg", "path");
             sortBtnContainer.appendChild(sortBtnIcon);
@@ -569,6 +686,7 @@ export class KfRow extends KfGroup {
                 this.createSortList(sortBtnContainer);
             }
         }
+
         labelContainer.onmousedown = () => {
             if (kfTrack.timingLock || this.label == "__graph") {
                 return;
@@ -618,6 +736,29 @@ export class KfRow extends KfGroup {
         length -= (this.levelFromLeaves - 1) * 2;
         this.length = length;
 
+        if (this.binding) {
+            const bindBtnContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            labelContainer.appendChild(bindBtnContainer);
+            bindBtnContainer.classList.add("kf-label-btn-container");
+            bindBtnContainer.setAttribute("transform", `translate(${length - 35},0)`)
+
+            const bindBtnBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            bindBtnContainer.appendChild(bindBtnBackground);
+            bindBtnBackground.classList.add("kf-label-btn-background");
+            bindBtnBackground.setAttribute("x", "5");
+            bindBtnBackground.setAttribute("y", "2");
+
+            const bindBtnIcon = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            bindBtnContainer.appendChild(bindBtnIcon);
+            bindBtnIcon.setAttribute("d", "M 3 13 H 9 V 12 H 3 Z M 3 4 V 4 H 21 V 3 H 3 Z M 3 10 H 13 V 9 H 3 Z M 3 6 L 17 6 L 17 7 L 3 7 Z");
+            bindBtnIcon.setAttribute("transform", `translate(5, 2)`);
+            bindBtnIcon.classList.add("kf-button");
+
+            bindBtnContainer.onclick = () => {
+                bindBtnContainer.setAttribute("style", "opacity: 1");
+                this.createBindList(bindBtnContainer);
+            }
+        }
 
         // labelBackground.setAttribute("d", createLabelBackgroundShape(length, this.levelFromLeaves * (LABEL_HEIGHT + ITEM_SPACE) + THUMBNAIL_HEIGHT, LABEL_CORNER_RADIUS));
         labelBackground.setAttribute("width", String(length));

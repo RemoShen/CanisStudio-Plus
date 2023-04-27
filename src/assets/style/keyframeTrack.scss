@@ -53,19 +53,19 @@
     fill: #CCC;
 }
 
-.kf-sort-btn-container {
+.kf-label-btn-container {
     transition-timing-function: ease;
     transition: opacity 0.2s;
     opacity: 0;
     // display: none;
 }
 
-.kf-label-container:hover .kf-sort-btn-container {
+.kf-label-container:hover .kf-label-btn-container {
     // display: inline;
     opacity: 1;
 }
 
-.kf-sort-btn-background {
+.kf-label-btn-background {
     x: 5px;
     y: 2px;
     height: 16px;
@@ -74,7 +74,7 @@
     fill: #676767;
 }
 
-.kf-sort-btn-container:hover .kf-button {
+.kf-label-btn-container:hover .kf-button {
     fill: #CCC;
 }
 

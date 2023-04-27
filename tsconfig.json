@@ -12,6 +12,7 @@
         "allowSyntheticDefaultImports": true,
         "resolveJsonModule": true,
         "esModuleInterop": true,
-        "suppressImplicitAnyIndexErrors": true
-    }
+        "suppressImplicitAnyIndexErrors": true,
+        "ignoreDeprecations":"5.0"
+        }
 }
