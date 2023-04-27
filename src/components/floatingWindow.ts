@@ -37,6 +37,8 @@ import WeatherImg from '../assets/img/examples/weather.png'
 import WeatherChart from '../assets/charts/weather.svg'
 import EducationImg from '../assets/img/examples/education.png'
 import EducationChart from '../assets/charts/education.svg'
+import GdpChart from '../assets/charts/GDPofRegions.svg'
+import GdpImg from '../assets/img/examples/GDPofRegions.png'
 import { ViewContent } from './viewWindow'
 import { Loading } from './widgets/loading'
 import { chartManager } from '../app/chartManager'
@@ -66,6 +68,7 @@ export default class FloatingWindow {
     static FRUITSALE_CHART: string = 'fruitSale';
     static WEATHER_CHART: string = 'weather';
     static EDUCATION_CHART: string = 'education';
+    static GDP_CHART: string = 'gdp';
     floatingWindow: HTMLDivElement;
 
     public createFloatingWindow(id: string) {
@@ -179,6 +182,10 @@ export default class FloatingWindow {
         exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.WEATHER_CHART, 'september weather'));
         exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.EDUCATION_CHART, 'Higher Education v.s. Obesity'))
         exampleList.appendChild(exampleItemContainer4);
+        const exampleItemContainer5: HTMLDivElement = document.createElement('div');
+        exampleItemContainer5.className = 'list-item-container';
+        exampleItemContainer5.appendChild(this.createExampleItem(FloatingWindow.GDP_CHART, 'gdp of region'));
+        exampleList.appendChild(exampleItemContainer5);
         return exampleList;
     }
 
@@ -386,6 +393,10 @@ export default class FloatingWindow {
             case FloatingWindow.EDUCATION_CHART:
                 img.src = EducationImg;
                 item.onclick = () => this.loadExampleChart(EducationChart);
+                break;
+            case FloatingWindow.GDP_CHART:
+                img.src = GdpImg;
+                item.onclick = () => this.loadExampleChart(GdpChart);
                 break;
         }
         imgWrapper.appendChild(img);
