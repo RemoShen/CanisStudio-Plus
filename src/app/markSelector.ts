@@ -274,9 +274,9 @@ export class MarkSelector {
             maskElement.setAttribute("transform", new Polygon().getTransformFromChartContent(element).toString());
         }
         maskElement.setAttribute("fill", "none");
-        maskElement.setAttribute("stroke", "black");
+        maskElement.setAttribute("stroke", "#1a73e8");
         maskElement.id = "__" + element.id;
-        maskElement.setAttribute("stroke-dasharray", "3, 3");
+        // maskElement.setAttribute("stroke-dasharray", "3, 3");
 
         // const animation = document.createElementNS("http://www.w3.org/2000/svg", "animate");
         // animation.setAttribute("attributeName", "stroke-dashoffset");
@@ -286,13 +286,13 @@ export class MarkSelector {
         // animation.setAttribute("repeatCount", "indefinite");
         // maskElement.appendChild(animation);
 
-        const animation2 = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-        animation2.setAttribute("attributeName", "stroke");
-        animation2.setAttribute("keyTimes", "0; 0.5; 1");
-        animation2.setAttribute("values", "black; white; black");
-        animation2.setAttribute("dur", "0.6");
-        animation2.setAttribute("repeatCount", "indefinite");
-        maskElement.appendChild(animation2);
+        // const animation2 = document.createElementNS("http://www.w3.org/2000/svg", "animate");
+        // animation2.setAttribute("attributeName", "stroke");
+        // animation2.setAttribute("keyTimes", "0; 0.5; 1");
+        // animation2.setAttribute("values", "black; white; black");
+        // animation2.setAttribute("dur", "0.6");
+        // animation2.setAttribute("repeatCount", "indefinite");
+        // maskElement.appendChild(animation2);
 
         MarkSelector.selectionMask.appendChild(maskElement);
         //update dataTableSelection

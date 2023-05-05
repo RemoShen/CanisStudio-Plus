@@ -180,12 +180,13 @@ export default class FloatingWindow {
         exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.GANTT_CHART, 'eventPlan'));
         exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.FRUITSALE_CHART, 'fruitSale'));
         exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.WEATHER_CHART, 'september weather'));
-        exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.EDUCATION_CHART, 'Higher Education v.s. Obesity'))
+        exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.GDP_CHART, 'gdp of region'));
+        // exampleItemContainer4.appendChild(this.createExampleItem(FloatingWindow.EDUCATION_CHART, 'Higher Education v.s. Obesity'))
         exampleList.appendChild(exampleItemContainer4);
-        const exampleItemContainer5: HTMLDivElement = document.createElement('div');
-        exampleItemContainer5.className = 'list-item-container';
-        exampleItemContainer5.appendChild(this.createExampleItem(FloatingWindow.GDP_CHART, 'gdp of region'));
-        exampleList.appendChild(exampleItemContainer5);
+        // const exampleItemContainer5: HTMLDivElement = document.createElement('div');
+        // exampleItemContainer5.className = 'list-item-container';
+        // exampleItemContainer5.appendChild(this.createExampleItem(FloatingWindow.GDP_CHART, 'gdp of region'));
+        // exampleList.appendChild(exampleItemContainer5);
         return exampleList;
     }
 

@@ -284,14 +284,17 @@ export class KfColume extends KfGroup {
         // const background = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         // this.container.appendChild(background);
         // background.setAttribute("fill", "#f7f7f7")
-
+        let x = 0;
         for (let child of this.children) {
             child.render(height);
             container.appendChild(child.container);
-            child.translate(0, y);
-            y += child.height + 20;
-            length = Math.max(length, child.length + child.delayLength);
+            child.translate(x, y);
+
+            length = Math.max(length, x + child.length + child.delayLength);
             this.right.push(child.length + child.delayLength);
+
+            x += ITEM_GAP;
+            y += child.height + 20;
         }
         y -= 20;
         this.height = y;
@@ -316,6 +319,7 @@ export class KfRow extends KfGroup {
         startTime: string,
         group: KfTreeGroup
     } = null;
+    vertical: boolean = false;
     sortAttributes: string[];
     originalGrouping: KfTreeNode;
     originalNode: KfTreeNode | KfTreeGroup;
@@ -790,12 +794,11 @@ export class KfRow extends KfGroup {
         const maxStrLen = Math.floor(length / 8);
         labelText.innerHTML = this.label == "__graph" ? "graph" : this.label.length <= maxStrLen ? this.label : this.label.substring(0, maxStrLen - 3) + "...";
 
-        this.renderDelay(this.height, (this.binding != null) && true);
+        this.renderDelay(this.height, (this.binding != null) && !this.vertical);
         this.renderLeftBar();
 
         if (this.label == "__graph") {
             this.container.id = "__graph";
-            length = 0;
         }
         return length;
     }
@@ -804,14 +807,18 @@ export class KfRow extends KfGroup {
 export class KfOmit extends KfItem {
     numberOmitted: number;
     lastNode: KfItem;
-    constructor(numberOmitted: number, parent: KfRow, delay: number, originalDelayNode: KfTreeGroup | KfTreeNode, lastNode: KfItem) {
+    constructor(numberOmitted: number, parent: KfGroup, delay: number, originalDelayNode: KfTreeGroup | KfTreeNode, lastNode: KfItem) {
         super(parent, delay, originalDelayNode);
         this.numberOmitted = numberOmitted;
         this.lastNode = lastNode;
     }
 
     render(height: number) {
-        height = this.lastNode.height;
+        if (this.lastNode) {
+            height = this.lastNode.height;
+        } else {
+            height = 10;
+        }
         this.renderDelay(height);
         this.height = height;
         const container = this.mainContainer;
@@ -1000,7 +1007,7 @@ export class KfDelay {
         this.height = height;
         if (allowNegtiveDelay) {
             this.parentLength = this.parent.length;
-        }else{
+        } else {
             this.parentLength = 0;
         }
         this.length = this.timeToLength(this.delay);
@@ -1478,6 +1485,7 @@ export class KfNode extends KfItem {
 
 class KfTrack {
     groups: KfItem[];
+    lastGroup: KfItem;
     length: number;
     panningX: number;
     panningY: number;
@@ -1495,6 +1503,7 @@ class KfTrack {
     updateKfTrack(groups: KfItem[]) {
         // console.log(groups);
         this.groups = groups;
+        this.lastGroup = groups.pop();
         this.render();
     }
 
@@ -1558,28 +1567,36 @@ class KfTrack {
         // x += 20;
         x -= (maxLevel - 2) * 2;
         // x -= ITEM_GAP;
+
+        const suggestFrames = getSuggestFrames([]);
+        AddPanel.createAddPlusPanel(maxHeight, suggestFrames.length > 0);
+        const addPanelContainer = AddPanel.container;
+        innerContainer.appendChild(addPanelContainer);
+        addPanelContainer.setAttribute("transform", `translate(${x}, 20)`);
+        x += AddPanel.width
+
+        // suggestPanel.removeSuggestPanel();
         const recommendList: SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "g");
         recommendList.setAttribute("transform", `translate(${x}, 20)`);
         recommendList.setAttribute("id", "recommendList");
         innerContainer.appendChild(recommendList);
-        // suggestPanel.removeSuggestPanel();
-        const suggestFrames = getSuggestFrames([]);
-        console.log(suggestFrames);
+        suggestPanel.createSuggestPanel(suggestFrames, maxHeight, [...calcSelectedMarks()]);
         if (suggestFrames.length > 0) {
             this.timingLock = true;
+            x += 260;
         } else {
             this.timingLock = false;
         }
-        suggestPanel.createSuggestPanel(suggestFrames, maxHeight, [...calcSelectedMarks()]);
-        if (!document.getElementById("addPanel")) {
-            const highLightPanel = AddPanel.createAddPanel(maxHeight);
-            highLightPanel.setAttribute("transform", `translate(${x}, 20)`);
-            innerContainer.appendChild(highLightPanel);
-        } else {
-            const addPanel = document.getElementById("addPanel");
-            addPanel.setAttribute("transform", `translate(${x}, 20)`);
+
+        {
+            this.lastGroup.calcLevelFromLeaves();
+            const length = this.lastGroup.render(maxHeight);
+            this.lastGroup.translate(x, 20);
+
+            x += length + this.lastGroup.delayLength;
+            innerContainer.append(this.lastGroup.container);
         }
-        x += 260;
+
         this.length = x;
         if (this.activeNodeId == -1) {
             this.updatePanning(x, 0);

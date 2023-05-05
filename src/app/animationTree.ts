@@ -156,6 +156,17 @@ export class AnimationTreeGroup extends AnimationTreeItem {
                 isFirstChild = false;
             }
         }
+        if (kfNode.vertical) {
+            let index = 0;
+            for (let child of this.children) {
+                if (child.length == 1) {
+                    child[0].delay *= index;
+                    child[0].delay = Math.max(child[0].delay, 0);
+                }
+                index++;
+            }
+            this.children = [this.children.flatMap(i => i)];
+        }
         return lastDuration;
     }
 
@@ -184,7 +195,9 @@ export class AnimationTreeNode extends AnimationTreeItem {
     easing: string;
 
     fromKfTreeNode(kfNode: KfTreeNode, marks: string[], isFirst: boolean, lastDuration: number) {
-        marks = marks.filter(i => meetMarkTypeConstrains(i, kfNode.markTypeSelectors));
+        if (kfNode.markTypeSelectors.size > 0) {
+            marks = marks.filter(i => meetMarkTypeConstrains(i, kfNode.markTypeSelectors));
+        }
         const delay = isFirst ? 0 : kfNode.delay;
         this.delay = Math.max(-lastDuration, delay);
 

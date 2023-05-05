@@ -10,6 +10,7 @@ import { ChartSpec, Animation } from '../../canis/moduleIdx'
 import { chartManager } from '../../app/chartManager';
 import { MarkSelector } from '../../app/markSelector';
 import { AddPanel } from '../../app/addPanel';
+import { kfTrack } from '../../app/kfTrack';
 
 export default class DragableCanvas {
     /**
@@ -62,11 +63,12 @@ export default class DragableCanvas {
         document.onmousemove = (moveEvt) => {
             canvas.style.left = `${moveEvt.pageX - canvas.width / 2}px`;
             canvas.style.top = `${moveEvt.pageY - canvas.height / 2}px`;
-            const element = document.getElementById("__graph");
-            if (element) {
-                element.setAttribute("display", "none");
+
+            const deltaL = AddPanel.show()
+            if (deltaL) {
+                kfTrack.lastGroup.translate(deltaL, 0);
             }
-            AddPanel.show()
+
             const addPanel: HTMLElement = document.getElementById('addPanel');
             const addPanelRect: ClientRect = addPanel.getBoundingClientRect();
             if (moveEvt.pageX >= addPanelRect.left && moveEvt.pageX <= addPanelRect.right && moveEvt.pageY >= addPanelRect.top && moveEvt.pageY <= addPanelRect.bottom) {
@@ -77,19 +79,20 @@ export default class DragableCanvas {
             }
         }
         document.onmouseup = (upEvt) => {
-            const element = document.getElementById("__graph");
-            if (element) {
-                element.removeAttribute("display");
-            }
             canvas.remove();
+
+
             // const kfContainer: HTMLElement = document.getElementById('kfContainer');
             // const kfContainerRect: ClientRect = kfContainer.getBoundingClientRect();
             const addPanel: HTMLElement = document.getElementById('addPanel');
             const addPanelRect: ClientRect = addPanel.getBoundingClientRect();
+
+            const deltaL = AddPanel.fold();
+            kfTrack.lastGroup.translate(deltaL, 0);
+
             if (upEvt.pageX >= addPanelRect.left && upEvt.pageX <= addPanelRect.right && upEvt.pageY >= addPanelRect.top && upEvt.pageY <= addPanelRect.bottom) {
                 MarkSelector.emitSelection();
             }
-            AddPanel.hide();
 
             targetSVG.classList.toggle('chart-when-dragging');
             document.onmouseup = null;

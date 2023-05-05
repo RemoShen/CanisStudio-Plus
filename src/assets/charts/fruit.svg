@@ -12,7 +12,7 @@
                             <path class="background" d="M0,0h0v0h0Z" fill="none"></path>
                             <g>
                                 <g class="mark-rule role-axis-grid axis-grid">
-                                    <line id="mark0" class="mark axis-grid" data-datum="{&quot;_MARKID&quot;:&quot;axis-grid&quot;}" transform="translate(0,240)" x2="300.0064503877522" y2="0.0015823300256071172" fill="none" stroke="#ddd" stroke-width="1" opacity="1"></line>
+                                    <!-- <line id="mark0" class="mark axis-grid" data-datum="{&quot;_MARKID&quot;:&quot;axis-grid&quot;}" transform="translate(0,240)" x2="300.0064503877522" y2="0.0015823300256071172" fill="none" stroke="#ddd" stroke-width="1" opacity="1"></line> -->
                                     <line id="mark2" class="mark axis-grid" data-datum="{&quot;_MARKID&quot;:&quot;axis-grid&quot;}" transform="translate(0,203)" x2="300.00422874403154" y2="0.009755014575218204" fill="none" stroke="#ddd" stroke-width="1" opacity="1"></line>
                                     <line id="mark4" class="mark axis-grid" data-datum="{&quot;_MARKID&quot;:&quot;axis-grid&quot;}" transform="translate(0,166)" x2="300.0038478455394" y2="0.005544520508615023" fill="none" stroke="#ddd" stroke-width="1" opacity="1"></line>
                                     <line id="mark6" class="mark axis-grid" data-datum="{&quot;_MARKID&quot;:&quot;axis-grid&quot;}" transform="translate(0,129)" x2="300.0086628706192" y2="0.004361611091609243" fill="none" stroke="#ddd" stroke-width="1" opacity="1"></line>
@@ -21,13 +21,13 @@
                                     <line id="mark12" class="mark axis-grid" data-datum="{&quot;_MARKID&quot;:&quot;axis-grid&quot;}" transform="translate(0,18)" x2="300.00720724846" y2="0.0038599554898016562" fill="none" stroke="#ddd" stroke-width="1" opacity="1"></line>
                                 </g>
                                 <g class="mark-rule role-axis-tick axis-tick">
-                                    <line id="mark1000" class="mark axis-tick" data-datum="{&quot;_MARKID&quot;:&quot;axis-tick&quot;,&quot;y-label&quot;:&quot;_0&quot;}" transform="translate(0,240)" x2="-4.991768841964199" y2="0.002249051013861214" fill="none" stroke="#888" stroke-width="1" opacity="1"></line>
+                                    <!-- <line id="mark1000" class="mark axis-tick" data-datum="{&quot;_MARKID&quot;:&quot;axis-tick&quot;,&quot;y-label&quot;:&quot;_0&quot;}" transform="translate(0,240)" x2="-4.991768841964199" y2="0.002249051013861214" fill="none" stroke="#888" stroke-width="1" opacity="1"></line>
                                     <line id="mark1002" class="mark axis-tick" data-datum="{&quot;_MARKID&quot;:&quot;axis-tick&quot;,&quot;y-label&quot;:&quot;_40&quot;}" transform="translate(0,203)" x2="-4.996144321601513" y2="0.007363445749594324" fill="none" stroke="#888" stroke-width="1" opacity="1"></line>
                                     <line id="mark1004" class="mark axis-tick" data-datum="{&quot;_MARKID&quot;:&quot;axis-tick&quot;,&quot;y-label&quot;:&quot;_80&quot;}" transform="translate(0,166)" x2="-4.994105034506699" y2="0.009042921597849885" fill="none" stroke="#888" stroke-width="1" opacity="1"></line>
                                     <line id="mark1006" class="mark axis-tick" data-datum="{&quot;_MARKID&quot;:&quot;axis-tick&quot;,&quot;y-label&quot;:&quot;_120&quot;}" transform="translate(0,129)" x2="-4.997387516897709" y2="0.008954181843816897" fill="none" stroke="#888" stroke-width="1" opacity="1"></line>
                                     <line id="mark1008" class="mark axis-tick" data-datum="{&quot;_MARKID&quot;:&quot;axis-tick&quot;,&quot;y-label&quot;:&quot;_160&quot;}" transform="translate(0,92)" x2="-4.997805586002342" y2="0.009991652464150555" fill="none" stroke="#888" stroke-width="1" opacity="1"></line>
                                     <line id="mark1010" class="mark axis-tick" data-datum="{&quot;_MARKID&quot;:&quot;axis-tick&quot;,&quot;y-label&quot;:&quot;_200&quot;}" transform="translate(0,55)" x2="-4.998176991783945" y2="0.005928518349144381" fill="none" stroke="#888" stroke-width="1" opacity="1"></line>
-                                    <line id="mark1012" class="mark axis-tick" data-datum="{&quot;_MARKID&quot;:&quot;axis-tick&quot;,&quot;y-label&quot;:&quot;_240&quot;}" transform="translate(0,18)" x2="-4.9976225479811776" y2="0.00976223411689333" fill="none" stroke="#888" stroke-width="1" opacity="1"></line>
+                                    <line id="mark1012" class="mark axis-tick" data-datum="{&quot;_MARKID&quot;:&quot;axis-tick&quot;,&quot;y-label&quot;:&quot;_240&quot;}" transform="translate(0,18)" x2="-4.9976225479811776" y2="0.00976223411689333" fill="none" stroke="#888" stroke-width="1" opacity="1"></line> -->
                                 </g>
                                 <g class="mark-text role-axis-label axis-label">
                                     <text id="mark2000" class="mark axis-label" data-datum="{&quot;_MARKID&quot;:&quot;y-axis-label&quot;,&quot;y-label&quot;:&quot;_0&quot;}" text-anchor="end" transform="translate(-7,243)" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">0</text>
@@ -122,10 +122,10 @@
                         <g transform="translate(0.5,240.5)">
                             <path class="background" d="M0,0h0v0h0Z" fill="none"></path>
                             <g>
-                                <g class="mark-rule role-axis-tick axis-tick">
+                                <!-- <g class="mark-rule role-axis-tick axis-tick">
                                     <line id="mark1014" class="mark axis-tick" data-datum="{&quot;_MARKID&quot;:&quot;axis-tick&quot;,&quot;y-label&quot;:&quot;_undefined&quot;}" transform="translate(81,0)" x2="0.008054881727044154" y2="0.007826408270650368" fill="none" stroke="#888" stroke-width="1" opacity="1"></line>
                                     <line id="mark1015" class="mark axis-tick" data-datum="{&quot;_MARKID&quot;:&quot;axis-tick&quot;,&quot;y-label&quot;:&quot;_undefined&quot;}" transform="translate(217,0)" x2="0.009812287016054608" y2="0.009994433825581194" fill="none" stroke="#888" stroke-width="1" opacity="1"></line>
-                                </g>
+                                </g> -->
                                 <g class="mark-text role-axis-label axis-label">
                                     <text id="mark2014" class="mark axis-label" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-label&quot;,&quot;category&quot;:&quot;_2001&quot;}" text-anchor="middle" transform="translate(80.81818181818181,12)" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">2001</text>
                                     <text id="mark2015" class="mark axis-label" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-label&quot;,&quot;category&quot;:&quot;_2002&quot;}" text-anchor="middle" transform="translate(217.18181818181816,12)" font-family="sans-serif" font-size="10px" fill="#000" opacity="1">2002</text>
