@@ -2,7 +2,7 @@
 
 
 <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" id="visChart" class="marks" width="350" height="284" viewBox="0 0 350 284" version="1.1">
-    <g transform="translate(45,10)" id="chartContent">
+    <g transform="translate(45,17)" id="chartContent">
         <g class="mark-group role-frame root frame">
             <g transform="translate(0,0)">
                 <path class="background" d="M0,0h300v240h-300Z" fill="none"></path>
@@ -134,7 +134,7 @@
                                     <line id="mark3001" class="mark axis-domain" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-domain&quot;}" transform="translate(0,0)" x2="300.0076782473944" y2="0.0009315516640110233" fill="none" stroke="#888" stroke-width="1" opacity="1"></line>
                                 </g>
                                 <g class="mark-text role-axis-title axis-title">
-                                    <text id="mark4001" class="mark axis-title" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-title&quot;}" text-anchor="middle" transform="translate(150,27)" font-family="sans-serif" font-size="11px" font-weight="bold" fill="#000" opacity="1">Year</text>
+                                    <text id="mark4001" class="mark axis-title" data-datum="{&quot;_MARKID&quot;:&quot;x-axis-title&quot;}" text-anchor="middle" transform="translate(150,19)" font-family="sans-serif" font-size="11px" font-weight="bold" fill="#000" opacity="1">Year</text>
                                 </g>
                             </g>
                         </g>

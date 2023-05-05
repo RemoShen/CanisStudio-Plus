@@ -541,6 +541,7 @@ class CanisSpec {
                                             if (mark.tagName === 'path') {
                                                 let discD = CanisUtil.discretizeD(mark.getAttribute('d'), '#000');
                                                 
+                                                
                                                 if (typeof discD !== 'undefined' && discD) {
                                                     console.log('discdtype', discD.type);
                                                     if (discD.type === 'pies') {

@@ -385,7 +385,7 @@ result.forEach(x => {
                 prev = secondPoint
             })
             // check that all the circles have the same center
-            if (circles.length <= 0 || !circles.every(x => ['cx', 'cy'].reduce((p, c) => p + Math.abs(x[c] - circles[0][c]), 0) < 1e-1)) valid = false
+            if (circles.length <= 0 || !circles.every(x => ['cx', 'cy'].reduce((p, c) => p + Math.abs(x[c] - circles[0][c]), 0) < 0.2)) valid = false
             if (valid) {
                 // find the largest circle
                 let c = circles.reduce((p, c) => {

@@ -273,9 +273,18 @@ export class MarkSelector {
             maskElement.removeAttribute("stroke-width");
             maskElement.setAttribute("transform", new Polygon().getTransformFromChartContent(element).toString());
         }
-        maskElement.setAttribute("fill", "none");
+        maskElement.setAttribute("fill", "fff");
+        maskElement.setAttribute("fill-opacity", "0");
         maskElement.setAttribute("stroke", "#1a73e8");
         maskElement.id = "__" + element.id;
+        maskElement.addEventListener("mouseover", () => {
+            maskElement.classList.add("highlight");
+
+        });
+        maskElement.addEventListener("mouseout", () => {
+            maskElement.classList.remove("highlight");
+
+        });
         // maskElement.setAttribute("stroke-dasharray", "3, 3");
 
         // const animation = document.createElementNS("http://www.w3.org/2000/svg", "animate");
@@ -344,7 +353,6 @@ export class MarkSelector {
 
     static reset(disabledMarks: Set<string>, attributeSelectors: Map<string, string>, expandOptions: Set<string>[]) {
         MarkSelector.selection.clear();
-        // MarkTableManager.selection.clear();
         markTableManager.reset();
         markTableManager.render();
         MarkSelector.scale = 1;
@@ -353,6 +361,38 @@ export class MarkSelector {
         if (!svg) {
             return;
         }
+        const marks = svg.querySelectorAll("[id*='mark']");
+        marks.forEach((mark) => {
+            mark.addEventListener("mouseover", () => {
+                if (mark.tagName == "text") {
+                    const boundingRect = mark.getBoundingClientRect();
+                    const p1 = Tool.screenToSvgCoords(MarkSelector.svg, boundingRect.left, boundingRect.top);
+                    const p2 = Tool.screenToSvgCoords(MarkSelector.svg, boundingRect.right, boundingRect.bottom);
+                    const width = (p2.x - p1.x) / MarkSelector.scale;
+                    const height = (p2.y - p1.y) / MarkSelector.scale;
+                    const maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                    maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale));
+                    maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale));
+                    maskElement.setAttribute("width", String(width));
+                    maskElement.setAttribute("height", String(height));
+                    maskElement.setAttribute("fill", "none");
+                    maskElement.setAttribute("stroke", "#1a73e8");
+                    maskElement.setAttribute("stroke-width", "2");
+                    maskElement.id = "__" + mark.id;
+                    MarkSelector.selectionMask.appendChild(maskElement);
+                } else {
+                    mark.classList.add("highlight");
+                }
+            });
+            mark.addEventListener("mouseout", () => {
+                if (mark.tagName == "text") {
+                    const maskElement = document.getElementById("__" + mark.id);
+                    MarkSelector.selectionMask.removeChild(maskElement);
+                } else {
+                    mark.classList.remove("highlight");
+                }
+            });
+        });
         MarkSelector.svg = svg;
 
         const selectionMask = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -360,7 +400,6 @@ export class MarkSelector {
         selectionMask.id = SELECTION_MASK;
 
         document.getElementById("chartContent").appendChild(selectionMask);
-
         MarkSelector.chartDimension = {
             width: Number(MarkSelector.svg.getAttribute("width")),
             height: Number(MarkSelector.svg.getAttribute("height")),
@@ -426,7 +465,6 @@ export class MarkSelector {
     }
 
     static onMouseDown(downEvent: MouseEvent) {
-
         if (downEvent.button == 1) {
             MarkSelector.emitSelection();
             return;
@@ -436,7 +474,6 @@ export class MarkSelector {
             document.onmouseup = MarkSelector.finishTranslate;
             return;
         }
-        // console.log("startSelection", downEvent);
         if (!MarkSelector.svg) {
             return;
         }

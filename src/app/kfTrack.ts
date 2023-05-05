@@ -824,24 +824,25 @@ export class KfOmit extends KfItem {
         const container = this.mainContainer;
         const length = 50;
         this.length = length;
-        for (let i = 0; i < 3; i++) {
-            const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-            circle.setAttribute("cx", String(i * 10 + 15));
-            circle.setAttribute("cy", String(height / 2));
-            circle.setAttribute("r", "3");
-            circle.setAttribute("fill", OMIT_COLOR);
-            container.appendChild(circle);
+        if (this.numberOmitted > 0) {
+            for (let i = 0; i < 3; i++) {
+                const circle = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+                circle.setAttribute("cx", String(i * 10 + 15));
+                circle.setAttribute("cy", String(height / 2));
+                circle.setAttribute("r", "3");
+                circle.setAttribute("fill", OMIT_COLOR);
+                container.appendChild(circle);
+            }
+            const text = document.createElementNS("http://www.w3.org/2000/svg", "text");;
+            text.innerHTML = `x${this.numberOmitted}`;
+            text.setAttribute("text-anchor", "middle");
+            text.setAttribute("fill", OMIT_COLOR);
+            text.setAttribute("x", String(length / 2));
+            text.setAttribute("y", String(height / 2 + 16));
+            text.setAttribute("font-size", String(FONT_SIZE));
+            text.setAttribute("font-weight", "600");
+            container.appendChild(text);
         }
-        const text = document.createElementNS("http://www.w3.org/2000/svg", "text");;
-        text.innerHTML = `x${this.numberOmitted}`;
-        text.setAttribute("text-anchor", "middle");
-        text.setAttribute("fill", OMIT_COLOR);
-        text.setAttribute("x", String(length / 2));
-        text.setAttribute("y", String(height / 2 + 16));
-        text.setAttribute("font-size", String(FONT_SIZE));
-        text.setAttribute("font-weight", "600");
-        container.appendChild(text);
-
         this.renderLeftBar();
 
         return length;
@@ -1569,7 +1570,7 @@ class KfTrack {
         // x -= ITEM_GAP;
 
         const suggestFrames = getSuggestFrames([]);
-        AddPanel.createAddPlusPanel(maxHeight, suggestFrames.length > 0);
+        AddPanel.createAddPanel(maxHeight, suggestFrames.length > 0);
         const addPanelContainer = AddPanel.container;
         innerContainer.appendChild(addPanelContainer);
         addPanelContainer.setAttribute("transform", `translate(${x}, 20)`);

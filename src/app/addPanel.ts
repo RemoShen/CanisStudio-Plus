@@ -50,40 +50,6 @@ export class AddPanel {
         this.fold();
     }
 
-    static createAddPlusPanel(height: number, shouldHide = false) {
-        this.height = height;
-        this.shouldHide = shouldHide;
-        const container = document.createElementNS("http://www.w3.org/2000/svg", "g");
-        this.container = container;
-
-        container.setAttribute("id", "addPanel");
-        const dashBox = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        // dashBox.setAttribute("class", "dashBox");
-        dashBox.setAttribute("height", String(height - 2 * padding));
-        dashBox.setAttribute("x", String(padding));
-        dashBox.setAttribute("y", String(padding));
-
-        dashBox.setAttribute("rx", "8");
-        dashBox.setAttribute("stroke", regularColor);
-        dashBox.setAttribute("stroke-width", "1");
-        dashBox.setAttribute("stroke-dasharray", "4 4");
-        dashBox.setAttribute("fill", "none");
-        container.appendChild(dashBox);
-        this.box = dashBox;
-
-        const plusIcon = document.createElementNS("http://www.w3.org/2000/svg", "path");
-        const r = 5;
-        const w = 1;
-        plusIcon.setAttribute("d",
-            `M${w} ${r}V${w}H${r}V${-w}H${w}V${-r}H${-w}V${-w}H${-r}V${w}H${-w}V${r}Z`
-        );
-        plusIcon.setAttribute("fill", regularColor);
-        this.icon = plusIcon;
-        container.appendChild(plusIcon);
-
-        this.fold();
-    }
-
     static resize(width: number, height: number) {
         const result = width - this.width;
         this.width = width;
@@ -97,7 +63,11 @@ export class AddPanel {
         this.box.setAttribute("height", String(height - padding * 2));
         if (height === foldedHeight) {
             this.box.setAttribute("transform", `translate(${0}, ${this.height / 2.55})`)
+            this.box.setAttribute('stroke', 'gray')
+            this.icon.setAttribute("fill", "gray");
         }else{
+            this.icon.setAttribute("fill", regularColor);
+            this.box.setAttribute('stroke', regularColor)
             this.box.setAttribute("transform", `translate(${0}, ${0})`)
         }
         return result;
