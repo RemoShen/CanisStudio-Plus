@@ -6,11 +6,12 @@ import CanisGenerator, { canis, ICanisSpec } from "./core/canisGenerator";
 import { clearKfTrees } from "./kfTree";
 import { MarkSelector, MarkSelectorMode } from "./markSelector";
 import { markTableManager } from "./markTableManager";
+import Tool from "../util/tool";
 
 export const MARKID = "_MARKID";
 export const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
 export const NONDATATYPE = ["axis-domain", "axis-tick", "axis-label", "legend-text", "legend-symbol", "x-axis-domain", "x-axis-tick", "x-axis-label", "y-axis-domain", "y-axis-tick", "y-axis-label", "title", "Title", "axis-grid", "y-axis-grid", "x-axis-grid", "y-axis-domain1", "y-axis-tick1", "y-axis-label1", "y-axis-domain2", "y-axis-tick2", "y-axis-label2", "legend-label", "year-title", "title1",
-"title2", "x-axis-title", "y-axis-title", "l-axis-domain", "l-axis-tick", "l-axis-label", "r-axis-domain", "r-axis-tick", "r-axis-label"];
+    "title2", "x-axis-title", "y-axis-title", "l-axis-domain", "l-axis-tick", "l-axis-label", "r-axis-domain", "r-axis-tick", "r-axis-label"];
 class MarkTable {
     markType: Set<string> = new Set();
     fieldNames: string[] = [];
@@ -106,7 +107,6 @@ class ChartManager {
             this.marks.set(mark.id, attributeMap);
             this.numericAttrs.set(mark.id, numericAttributeMap);
         }
-
         // MarkSelector.reset(new Set(), new Map(), []);
         this.loadMarkTables();
         clearKfTrees();
@@ -134,7 +134,6 @@ class ChartManager {
             }
             markTables.push(new MarkTable(mark, id));
         }
-        console.log('markTables', markTables);
         this.markTables = markTables;
         markTableManager.render();
     }
@@ -144,9 +143,7 @@ class ChartManager {
             return;
         }
         this.canisSpec.animations = animations;
-        // console.log(JSON.stringify(this.canisSpec));
         const lottieSpec = await canis.renderSpec(this.canisSpec, () => { });
-        // console.log(lottieSpec);
         this.updateAnimation(lottieSpec);
     }
 
@@ -168,7 +165,6 @@ class ChartManager {
         })
         // document.getElementById(Player.PLAY_BTN_ID).click();
     }
-
 }
 
 export const chartManager = new ChartManager();

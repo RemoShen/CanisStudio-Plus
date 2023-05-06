@@ -41,7 +41,6 @@ export class MarkSelector {
     // static selectStartPoint: ICoord;
     // static currentSelection: string[];
 
-    // TODO: for test, remove it later
     static updateSelection(elements: string[]) {
         elements = elements.filter(i => MarkSelector.selectableMarks.has(i));
         let flag = 0;
@@ -254,18 +253,27 @@ export class MarkSelector {
 
         const sizeThreshold = 10
 
-        if (width < sizeThreshold && height < sizeThreshold) {
-            maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale - (sizeThreshold - width) / 2));
-            maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale - (sizeThreshold - height) / 2));
-            maskElement.setAttribute("width", String(sizeThreshold));
-            maskElement.setAttribute("height", String(sizeThreshold));
-        } else if (element.tagName == "text") {
+        if (element.tagName == "text") {
             maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
             maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale));
             maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale));
             maskElement.setAttribute("width", String(width));
             maskElement.setAttribute("height", String(height));
+        } else if (width < sizeThreshold || height < sizeThreshold) {
+            if (width < sizeThreshold && height < sizeThreshold) {
+                maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale - (sizeThreshold - width) / 2));
+                maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale - (sizeThreshold - height) / 2));
+                maskElement.setAttribute("width", String(sizeThreshold));
+                maskElement.setAttribute("height", String(sizeThreshold));
+
+            } else {
+                maskElement = element.cloneNode() as Element;
+                maskElement.classList.remove("mark");
+                maskElement.setAttribute("transform", new Polygon().getTransformFromChartContent(element).toString());
+                maskElement.setAttribute("stroke-width", "3");
+                maskElement.setAttribute("opacity", "0.8")
+            }
         } else {
             maskElement = element.cloneNode() as Element;
             maskElement.classList.remove("mark");
@@ -273,20 +281,24 @@ export class MarkSelector {
             maskElement.removeAttribute("stroke-width");
             maskElement.setAttribute("transform", new Polygon().getTransformFromChartContent(element).toString());
         }
-        maskElement.setAttribute("fill", "fff");
+        maskElement.setAttribute("fill", 'fff');
         maskElement.setAttribute("fill-opacity", "0");
         maskElement.setAttribute("stroke", "#1a73e8");
         maskElement.id = "__" + element.id;
         maskElement.addEventListener("mouseover", () => {
-            maskElement.classList.add("highlight");
+            // maskElement.classList.add("highlight");
+            this.addHoverHighlight(maskElement.id);
 
         });
         maskElement.addEventListener("mouseout", () => {
-            maskElement.classList.remove("highlight");
+            // maskElement.classList.remove("highlight");
+            this.removeHoverHighlight(maskElement.id);
 
         });
-        // maskElement.setAttribute("stroke-dasharray", "3, 3");
-
+        maskElement.addEventListener("click", () => {
+            this.removeHoverHighlight(maskElement.id);
+            MarkSelector.updateSelection([element.id]);
+        });
         // const animation = document.createElementNS("http://www.w3.org/2000/svg", "animate");
         // animation.setAttribute("attributeName", "stroke-dashoffset");
         // animation.setAttribute("from", "0");
@@ -315,6 +327,69 @@ export class MarkSelector {
         markTableManager.removeHighLightRow(id);
     }
 
+    static addHoverHighlight(id: string) {
+        const element: HTMLElement = document.getElementById(id);
+        // MarkSelector.addDisable(id);
+        let maskElement: Element;
+
+        const boundingRect = element.getBoundingClientRect();
+        const p1 = Tool.screenToSvgCoords(MarkSelector.svg, boundingRect.left, boundingRect.top);
+        const p2 = Tool.screenToSvgCoords(MarkSelector.svg, boundingRect.right, boundingRect.bottom);
+        const width = (p2.x - p1.x) / MarkSelector.scale;
+        const height = (p2.y - p1.y) / MarkSelector.scale;
+
+        const sizeThreshold = 10
+
+        if (width < sizeThreshold || height < sizeThreshold) {
+            if (width < sizeThreshold && height >= sizeThreshold) {
+                maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale - (sizeThreshold - width) / 2));
+                maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale));
+                maskElement.setAttribute("width", String(sizeThreshold));
+                maskElement.setAttribute("height", String(height));
+
+            } else if (height < sizeThreshold && width >= sizeThreshold) {
+                maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale));
+                maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale - (sizeThreshold - height) / 2));
+                maskElement.setAttribute("width", String(width));
+                maskElement.setAttribute("height", String(sizeThreshold));
+            } else {
+                maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale - (sizeThreshold - width) / 2));
+                maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale - (sizeThreshold - height) / 2));
+                maskElement.setAttribute("width", String(sizeThreshold));
+                maskElement.setAttribute("height", String(sizeThreshold));
+            }
+        } else if (element.tagName == "text") {
+            maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale));
+            maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale));
+            maskElement.setAttribute("width", String(width));
+            maskElement.setAttribute("height", String(height));
+        } else {
+            maskElement = element.cloneNode() as Element;
+            maskElement.classList.remove("mark");
+            maskElement.removeAttribute("opacity");
+            maskElement.removeAttribute("stroke-width");
+            maskElement.setAttribute("transform", new Polygon().getTransformFromChartContent(element).toString());
+        }
+        maskElement.setAttribute("fill", 'none');
+        // maskElement.setAttribute("fill-opacity", "0");
+        maskElement.setAttribute("stroke", "#1a73e8");
+        maskElement.setAttribute("stroke-width", "2");
+        maskElement.id = "___" + element.id;
+        MarkSelector.selectionMask.appendChild(maskElement);
+        //update dataTableSelection
+        markTableManager.addHighLightRow(id);
+    }
+
+    static removeHoverHighlight(id: string) {
+        const element: HTMLElement = document.getElementById(id);
+        MarkSelector.selectionMask.removeChild(document.getElementById("___" + element.id));
+        markTableManager.removeHighLightRow(id);
+
+    }
     static addDisable(id: string) {
         MarkTableManager.disabledMarks.add(id);
         const element: HTMLElement = document.getElementById(id)
@@ -328,7 +403,6 @@ export class MarkSelector {
         markTableManager.notOptional(id);
 
     }
-
     static removeDisable(id: string) {
         MarkTableManager.disabledMarks.delete(id);
         const element: HTMLElement = document.getElementById(id)
@@ -357,40 +431,22 @@ export class MarkSelector {
         markTableManager.render();
         MarkSelector.scale = 1;
         MarkSelector.panning = { x: 0, y: 0 };
-        const svg = document.getElementById("visChart");
+        let svg = document.getElementById("visChart");
         if (!svg) {
             return;
         }
         const marks = svg.querySelectorAll("[id*='mark']");
         marks.forEach((mark) => {
             mark.addEventListener("mouseover", () => {
-                if (mark.tagName == "text") {
-                    const boundingRect = mark.getBoundingClientRect();
-                    const p1 = Tool.screenToSvgCoords(MarkSelector.svg, boundingRect.left, boundingRect.top);
-                    const p2 = Tool.screenToSvgCoords(MarkSelector.svg, boundingRect.right, boundingRect.bottom);
-                    const width = (p2.x - p1.x) / MarkSelector.scale;
-                    const height = (p2.y - p1.y) / MarkSelector.scale;
-                    const maskElement = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-                    maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale));
-                    maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale));
-                    maskElement.setAttribute("width", String(width));
-                    maskElement.setAttribute("height", String(height));
-                    maskElement.setAttribute("fill", "none");
-                    maskElement.setAttribute("stroke", "#1a73e8");
-                    maskElement.setAttribute("stroke-width", "2");
-                    maskElement.id = "__" + mark.id;
-                    MarkSelector.selectionMask.appendChild(maskElement);
-                } else {
-                    mark.classList.add("highlight");
-                }
+                MarkSelector.addHoverHighlight(mark.id);
+
             });
             mark.addEventListener("mouseout", () => {
-                if (mark.tagName == "text") {
-                    const maskElement = document.getElementById("__" + mark.id);
-                    MarkSelector.selectionMask.removeChild(maskElement);
-                } else {
-                    mark.classList.remove("highlight");
-                }
+                MarkSelector.removeHoverHighlight(mark.id);
+
+            });
+            mark.addEventListener("click", () => {
+                MarkSelector.updateSelection([mark.id]);
             });
         });
         MarkSelector.svg = svg;
@@ -407,7 +463,6 @@ export class MarkSelector {
         //update dataTable
         MarkSelector.setCompleteData(disabledMarks, attributeSelectors, expandOptions);
     }
-
     static limitTranslate() {
         MarkSelector.panning.x = Math.min(0, MarkSelector.panning.x);
         MarkSelector.panning.x = Math.max(MarkSelector.chartDimension.width * (1 - MarkSelector.scale), MarkSelector.panning.x);
@@ -558,7 +613,7 @@ export class MarkSelector {
                 if (!MarkSelector.selectableMarks.has(element.id)) {
                     continue;
                 }
-                MarkSelector.updateSelection([element.id]);
+                // MarkSelector.updateSelection([element.id]);
                 return;
             }
             return;
@@ -624,6 +679,8 @@ export class MarkSelector {
 
             // MarkSelector.svg.appendChild(polygon.display());
         }
+        console.log('select', selection);
+
         MarkSelector.updateSelection(selection);
     }
 
