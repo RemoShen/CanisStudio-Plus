@@ -1007,6 +1007,7 @@ const generateKfTrack = () => {
         const kfTreeNode = firstFrame.children[0][0];
         const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: "image/svg+xml;charset=utf-8" });
         const url = URL.createObjectURL(blob);
+        
         const node = new KfNode(kfTreeNode.property.duration, kfTreeNode.property.effectType, kfTreeNode.property.easing, url, group, kfTreeNode);
         group.children.push(node)
         result.push(group);
@@ -1079,6 +1080,10 @@ const generateKfTrackOfGroup = (
                     )
                     childGroup.levelFromLeaves = 1;
                     addNewRow(childGroup, child);
+                    //TODO: calc duration
+                    //duration 绑定在谁身上？ 从kfTree node的parent上 child.parent(group) group.durationBinding
+                    //data binding from chartManager.numericAttrs
+                    //
                     childGroup.children.push(new KfNode(
                         child.property.duration,
                         child.property.effectType,
@@ -1088,6 +1093,7 @@ const generateKfTrackOfGroup = (
                         child
                     ))
                 } else {
+                    //TODO: calc duration
                     addNewRow(new KfNode(
                         // Array.from(child.markTypeSelectors).join(","),
                         child.property.duration,
@@ -1438,6 +1444,8 @@ const generateKfTrackOfGroup = (
     // for (let i of result.children) {
     //     result.levelFromLeaves = Math.max(i.levelFromLeaves + 1, result.levelFromLeaves);
     // }
+    console.log('result', result);
+    
     return result;
 }
 
@@ -1454,11 +1462,11 @@ const flatten = (group: KfTreeGroup, marks: Set<string>) => {
 
         if (child.grouping == null) {
             result.push(subset);
-            console.log("----------------");
-            for (let id of subset) {
-                console.log(document.getElementById(id));
-            }
-            console.log("----------------");
+            // console.log("----------------");
+            // for (let id of subset) {
+            //     console.log(document.getElementById(id));
+            // }
+            // console.log("----------------");
         } else {
             const groupBy = child.grouping.groupBy;
             const partition: Map<string, Set<string>> = new Map();
