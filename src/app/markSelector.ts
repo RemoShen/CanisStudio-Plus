@@ -381,13 +381,13 @@ export class MarkSelector {
         maskElement.id = "___" + element.id;
         MarkSelector.selectionMask.appendChild(maskElement);
         //update dataTableSelection
-        markTableManager.addHighLightRow(id);
+        // markTableManager.addHighLightRow(id);
     }
 
     static removeHoverHighlight(id: string) {
         const element: HTMLElement = document.getElementById(id);
         MarkSelector.selectionMask.removeChild(document.getElementById("___" + element.id));
-        markTableManager.removeHighLightRow(id);
+        // markTableManager.removeHighLightRow(id);
 
     }
     static addDisable(id: string) {

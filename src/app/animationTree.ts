@@ -111,11 +111,19 @@ export class AnimationTreeGroup extends AnimationTreeItem {
         if (childGroup.isBindable()) {
             let minStartTimeBinding = Infinity;
             let minDurationBinding = Infinity;
-            if (childGroup.durationBinding) {
-                for (let [k, v] of partition) {
-                    minDurationBinding = Math.min(minDurationBinding, calcMean([...v], childGroup.durationBinding))
+            // if (childGroup.durationBinding) {
+            //     for (let [k, v] of partition) {
+            //         minDurationBinding = Math.min(minDurationBinding, calcMean([...v], childGroup.durationBinding))
+            //     }
+            // }
+            const currentAttr: string = childGroup.durationBinding;
+            const allValues: string[] = [];
+            chartManager.numericAttrs.forEach((value, key) => {
+                if (value.has(currentAttr)) {
+                    allValues.push(value.get(currentAttr));
                 }
-            }
+            })
+            minDurationBinding = Math.min(...allValues.map(i => Number(i)));
             if (childGroup.startTimeBinding) {
                 for (let [k, v] of partition) {
                     minStartTimeBinding = Math.min(minStartTimeBinding, calcMean([...v], childGroup.startTimeBinding))

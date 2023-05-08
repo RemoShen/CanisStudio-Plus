@@ -1,7 +1,7 @@
 import { bin } from 'd3';
 import '../assets/style/keyframeTrack.scss'
 import { AddPanel } from './addPanel';
-import { KfTreeGroup, KfTreeNode, calcSelectedMarks, getSuggestFrames } from './kfTree';
+import { KfTreeGroup, KfTreeNode, calcNonSelectedMarks, calcSelectedMarks, getSuggestFrames } from './kfTree';
 import { MarkSelector } from './markSelector';
 import { SuggestPanel, suggestPanel } from './suggestPanel';
 
@@ -41,10 +41,12 @@ const OMIT_COLOR = "#777";
 const LABEL_BORDER_COLOR = "#ffffff";
 const LABEL_BORDER_OPACITY = "0.5";
 
-const DURATION_TO_LENGTH_K = 0.25;
-const DURATION_TO_LENGTH_B = 125;
+const DURATION_TO_LENGTH_K = 0.15;
+const DURATION_TO_LENGTH_B = 100;
+// const DURATION_TO_LENGTH_K = 0.25;
+// const DURATION_TO_LENGTH_B = 125;
 const MIN_DURATION = 100;
-const MAX_DURATION = 1000;
+const MAX_DURATION = 2000;
 
 const lengthToDuration = (length: number) => {
     return (length - DURATION_TO_LENGTH_B) / DURATION_TO_LENGTH_K;
@@ -61,6 +63,7 @@ const DELAY_TO_LENGTH_K = 0.125;
 const DELAY_TO_LENGTH_B = 0;
 const MIN_DELAY = 0;
 const MAX_DELAY = 1000;
+
 
 const lengthToDelay = (length: number) => {
     return (length - DELAY_TO_LENGTH_B) / DELAY_TO_LENGTH_K;
@@ -1158,7 +1161,8 @@ export class KfNode extends KfItem {
     }
 
     updateLengthGuide() {
-        const duration = lengthToDuration(this.length);
+        const duration = snap(lengthToDuration(this.length), 10);
+
         this.lengthGuide.innerHTML = `${duration} ms`;
         const textWidth = this.lengthGuide.getBoundingClientRect().width;
         this.lengthGuideBackground.setAttribute("width", String((textWidth + ITEM_GAP * 2) / kfTrack.scale));
@@ -1568,14 +1572,16 @@ class KfTrack {
         // x += 20;
         x -= (maxLevel - 2) * 2;
         // x -= ITEM_GAP;
+        const nonSelectedMarks = calcNonSelectedMarks();
 
         const suggestFrames = getSuggestFrames([]);
-        AddPanel.createAddPanel(maxHeight, suggestFrames.length > 0);
-        const addPanelContainer = AddPanel.container;
-        innerContainer.appendChild(addPanelContainer);
-        addPanelContainer.setAttribute("transform", `translate(${x}, 20)`);
-        x += AddPanel.width
-
+        if (nonSelectedMarks.size) {
+            AddPanel.createAddPanel(maxHeight, suggestFrames.length > 0);
+            const addPanelContainer = AddPanel.container;
+            innerContainer.appendChild(addPanelContainer);
+            addPanelContainer.setAttribute("transform", `translate(${x}, 20)`);
+            x += AddPanel.width
+        }
         // suggestPanel.removeSuggestPanel();
         const recommendList: SVGElement = document.createElementNS("http://www.w3.org/2000/svg", "g");
         recommendList.setAttribute("transform", `translate(${x}, 20)`);
@@ -1588,8 +1594,7 @@ class KfTrack {
         } else {
             this.timingLock = false;
         }
-
-        {
+        if (nonSelectedMarks.size) {
             this.lastGroup.calcLevelFromLeaves();
             const length = this.lastGroup.render(maxHeight);
             this.lastGroup.translate(x, 20);

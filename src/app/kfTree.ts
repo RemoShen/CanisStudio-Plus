@@ -637,7 +637,6 @@ export const addSelection = (selection: string[]) => {
                         attributeValues.add(chartManager.marks.get(id).get(attributeName));
                     }
                 }
-
                 for (let i = 1; i < sequence.length; i++) {
                     if (attributeValues.has(sequence[i])) {
                         attributeSelectors.set(attributeName, sequence[i]);
@@ -827,6 +826,7 @@ export const getSuggestFrames = (selections: string[]): string[][] => {
         return results2;
     }
 }
+
 
 const generateCanisSpec = () => {
     let animations: any[] = [];
@@ -1081,9 +1081,6 @@ const generateKfTrackOfGroup = (
                     childGroup.levelFromLeaves = 1;
                     addNewRow(childGroup, child);
                     //TODO: calc duration
-                    //duration 绑定在谁身上？ 从kfTree node的parent上 child.parent(group) group.durationBinding
-                    //data binding from chartManager.numericAttrs
-                    //
                     childGroup.children.push(new KfNode(
                         child.property.duration,
                         child.property.effectType,
@@ -1094,9 +1091,38 @@ const generateKfTrackOfGroup = (
                     ))
                 } else {
                     //TODO: calc duration
+                    const currentAttr: string = group.durationBinding;
+
+                    const allValues: string[] = [];
+                    chartManager.numericAttrs.forEach((value, key) => {
+                        if (value.has(currentAttr)) {
+                            allValues.push(value.get(currentAttr));
+                        }
+                    })
+
+                    const minDurationBinding: number = Math.min(...allValues.map(i => Number(i)));
+                    //same rate duration
+                    
+                    let sumDurationBinding: number = 0;
+                    subset.forEach((value) => {
+                        const currentMark = chartManager.numericAttrs.get(value).get(currentAttr);
+                        if (currentMark) {
+                            sumDurationBinding += Number(currentMark);
+                        }
+                    })
+                    const meanDurationBinding: number = sumDurationBinding / subset.size;
+
+                    let duration: number = 0;
+                    if(currentAttr){
+                        duration = meanDurationBinding / minDurationBinding * child.property.duration;
+                        
+                    }else{
+                        duration = child.property.duration;
+                    }
+
                     addNewRow(new KfNode(
                         // Array.from(child.markTypeSelectors).join(","),
-                        child.property.duration,
+                        duration,
                         child.property.effectType,
                         child.property.easing,
                         url,
