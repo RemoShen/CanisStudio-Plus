@@ -1,4 +1,3 @@
-import { result, set } from "lodash";
 import { AnimationTreeGroup } from "./animationTree";
 import { chartManager, MARKID } from "./chartManager";
 import { KfItem, KfRow, KfNode, KfOmit, kfTrack, KfDelay, KfColume, KfGroup } from "./kfTrack";
@@ -29,9 +28,9 @@ export class KfTreeNode {
         effectType: string;
         easing: string;
     }
+    durationBinding: string = null;
 
     delay: number;
-
     updateFlag: boolean = false;
 
     constructor(markTypeSelectors: Set<MarkType>, parent: KfTreeGroup) {
@@ -40,6 +39,46 @@ export class KfTreeNode {
         this.property = null;
         this.delay = 0;
         this.parent = parent;
+    }
+
+    calcDurationRatio(marks: string[]) {
+        if (!this.durationBinding) {
+            return 1;
+        }
+        return chartManager.getAvgValue(marks, this.durationBinding) / chartManager.getMinValue(this.durationBinding);
+    }
+
+    getBinding(marks: Set<string>) {
+        const options: string[] = [];
+        const childMarkType = this.markTypeSelectors;
+        for (let markType of childMarkType) {
+            for (let mark of marks) {
+                if (chartManager.marks.get(mark).get(MARKID) != markType) {
+                    continue;
+                }
+                for (let [k, v] of chartManager.numericAttrs.get(mark)) {
+                    if (!options.includes(k)) {
+                        options.push(k);
+                    }
+                }
+                break;
+            }
+        }
+        if (options.length == 0) {
+            return null;
+        }
+        return {
+            duration: {
+                binding: this.durationBinding,
+                node: this
+            },
+            startTime: null as {
+                binding: string,
+                group: KfTreeGroup
+            },
+            options,
+            // assume that every children has the same numeric attributes
+        }
     }
 
     updateProperty() {
@@ -57,6 +96,12 @@ export class KfTreeNode {
                 return result;
             }
         }
+    }
+
+    updateDurationBinding(durationBinding: string) {
+        this.updateProperty().durationBinding = durationBinding;
+        saveHistory();
+        renderKfTree();
     }
 
     updateDuration(duration: number) {
@@ -148,6 +193,7 @@ export class KfTreeNode {
         result.delay = this.delay;
         result.updateFlag = this.updateFlag;
         result.vertical = this.vertical;
+        result.durationBinding = this.durationBinding;
         if (this.grouping) {
             result.grouping = {
                 groupBy: this.grouping.groupBy,
@@ -176,7 +222,6 @@ export class KfTreeGroup {
 
     delay: number;
 
-    durationBinding: string = null;
     startTimeBinding: string = null;
 
     updateFlag: boolean = false;
@@ -211,27 +256,56 @@ export class KfTreeGroup {
                 break;
             }
         }
+        if (options.length == 0) {
+            return null
+        }
         return {
+            duration: {
+                binding: this.children[0][0].durationBinding,
+                node: this.children[0][0]
+            },
+            startTime: {
+                binding: this.startTimeBinding,
+                group: this
+            },
             options,
-            duration: this.durationBinding,
-            startTime: this.startTimeBinding,
-            group: this
+            // assume that every children has the same numeric attributes
         }
     }
 
-    updateBinding(startTime: string, duration: string) {
+    // updateDurationBinding(durationBinding: string) {
+    //     this.updateProperty().children[0][0].durationBinding = durationBinding;
+    //     saveHistory();
+    //     renderKfTree();
+    // }
+
+    updateStartTimeBinding(startTimeBinding: string) {
         const group = this.updateProperty();
-        group.durationBinding = duration;
-        group.startTimeBinding = startTime;
-        if (startTime && group.delay == 0) {
+        group.startTimeBinding = startTimeBinding;
+        if (startTimeBinding && group.delay == 0) {
             group.delay = group.children[0][0].property.duration;
         }
-        if (startTime) {
+        if (startTimeBinding) {
             group.parent.vertical = true;
         }
         saveHistory();
         renderKfTree();
     }
+
+    // TODO: remove it later
+    // updateBinding(startTime: string, duration: string) {
+    //     const group = this.updateProperty();
+    //     group.children[0][0].durationBinding = duration;
+    //     group.startTimeBinding = startTime;
+    //     if (startTime && group.delay == 0) {
+    //         group.delay = group.children[0][0].property.duration;
+    //     }
+    //     if (startTime) {
+    //         group.parent.vertical = true;
+    //     }
+    //     saveHistory();
+    //     renderKfTree();
+    // }
 
     updateProperty() {
         this.updateFlag = true;
@@ -289,7 +363,6 @@ export class KfTreeGroup {
         result.delay = this.delay;
         result.updateFlag = this.updateFlag;
         result.startTimeBinding = this.startTimeBinding;
-        result.durationBinding = this.durationBinding;
         return result;
     }
 
@@ -1007,7 +1080,7 @@ const generateKfTrack = () => {
         const kfTreeNode = firstFrame.children[0][0];
         const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: "image/svg+xml;charset=utf-8" });
         const url = URL.createObjectURL(blob);
-        
+
         const node = new KfNode(kfTreeNode.property.duration, kfTreeNode.property.effectType, kfTreeNode.property.easing, url, group, kfTreeNode);
         group.children.push(node)
         result.push(group);
@@ -1070,7 +1143,7 @@ const generateKfTrackOfGroup = (
 
                 const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: "image/svg+xml;charset=utf-8" });
                 const url = URL.createObjectURL(blob);
-
+                const durationRatio = child.calcDurationRatio([...subset]);
                 if (numberChildren > 1) {
                     const childGroup = new KfRow(
                         Array.from(child.markTypeSelectors).join(","),
@@ -1079,56 +1152,62 @@ const generateKfTrackOfGroup = (
                         child
                     )
                     childGroup.levelFromLeaves = 1;
+                    childGroup.binding = child.getBinding(subset);
                     addNewRow(childGroup, child);
-                    //TODO: calc duration
-                    childGroup.children.push(new KfNode(
-                        child.property.duration,
+
+                    const childNode = new KfNode(
+                        child.property.duration * durationRatio,
                         child.property.effectType,
                         child.property.easing,
                         url,
                         childGroup,
                         child
-                    ))
+                    )
+                    childNode.durationRatio = durationRatio;
+                    childGroup.children.push(childNode);
+
                 } else {
                     //TODO: calc duration
-                    const currentAttr: string = group.durationBinding;
+                    // const currentAttr: string = group.children[0][0].durationBinding;
 
-                    const allValues: string[] = [];
-                    chartManager.numericAttrs.forEach((value, key) => {
-                        if (value.has(currentAttr)) {
-                            allValues.push(value.get(currentAttr));
-                        }
-                    })
+                    // const allValues: string[] = [];
+                    // chartManager.numericAttrs.forEach((value, key) => {
+                    //     if (value.has(currentAttr)) {
+                    //         allValues.push(value.get(currentAttr));
+                    //     }
+                    // })
 
-                    const minDurationBinding: number = Math.min(...allValues.map(i => Number(i)));
-                    //same rate duration
-                    
-                    let sumDurationBinding: number = 0;
-                    subset.forEach((value) => {
-                        const currentMark = chartManager.numericAttrs.get(value).get(currentAttr);
-                        if (currentMark) {
-                            sumDurationBinding += Number(currentMark);
-                        }
-                    })
-                    const meanDurationBinding: number = sumDurationBinding / subset.size;
+                    // const minDurationBinding: number = Math.min(...allValues.map(i => Number(i)));
+                    // //same rate duration
 
-                    let duration: number = 0;
-                    if(currentAttr){
-                        duration = meanDurationBinding / minDurationBinding * child.property.duration;
-                        
-                    }else{
-                        duration = child.property.duration;
-                    }
+                    // let sumDurationBinding: number = 0;
+                    // subset.forEach((value) => {
+                    //     const currentMark = chartManager.numericAttrs.get(value).get(currentAttr);
+                    //     if (currentMark) {
+                    //         sumDurationBinding += Number(currentMark);
+                    //     }
+                    // })
+                    // const meanDurationBinding: number = sumDurationBinding / subset.size;
 
-                    addNewRow(new KfNode(
+                    // let duration: number = 0;
+                    // if (currentAttr) {
+                    //     duration = meanDurationBinding / minDurationBinding * child.property.duration;
+
+                    // } else {
+                    //     duration = child.property.duration;
+                    // }
+
+                    const childNode = new KfNode(
                         // Array.from(child.markTypeSelectors).join(","),
-                        duration,
+                        child.property.duration * durationRatio,
                         child.property.effectType,
                         child.property.easing,
                         url,
                         colume,
                         child
-                    ), child);
+                    );
+                    childNode.durationRatio = durationRatio;
+                    addNewRow(childNode, child);
                 }
 
                 for (let id of subset) {
@@ -1471,7 +1550,7 @@ const generateKfTrackOfGroup = (
     //     result.levelFromLeaves = Math.max(i.levelFromLeaves + 1, result.levelFromLeaves);
     // }
     console.log('result', result);
-    
+
     return result;
 }
 

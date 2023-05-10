@@ -317,10 +317,15 @@ export class KfRow extends KfGroup {
     label: string;
     sortable: boolean;
     binding: {
+        duration: {
+            binding: string,
+            node: KfTreeNode
+        },
+        startTime: {
+            binding: string,
+            group: KfTreeGroup
+        },
         options: string[],
-        duration: string,
-        startTime: string,
-        group: KfTreeGroup
     } = null;
     vertical: boolean = false;
     sortAttributes: string[];
@@ -637,15 +642,24 @@ export class KfRow extends KfGroup {
             return listContainer;
         }
 
-        const l1 = createList("Start Time", binding.startTime, (startTime: string) => {
-            binding.group.updateBinding(startTime, binding.duration);
-        });
-        bindListContainer.appendChild(l1);
-        const l2 = createList("Duration", binding.duration, (duration: string) => {
-            binding.group.updateBinding(binding.startTime, duration);
-        });
-        bindListContainer.appendChild(l2);
-        l2.setAttribute("transform", `translate(${itemWidth},0)`);
+        let x = 0;
+        if (binding.startTime) {
+            const l1 = createList("Start Time", binding.startTime.binding, (startTime: string) => {
+                binding.startTime.group.updateStartTimeBinding(startTime);
+            });
+            bindListContainer.appendChild(l1);
+            x += itemWidth;
+        }
+
+        if (binding.duration) {
+
+            const l2 = createList("Duration", binding.duration.binding, (duration: string) => {
+                binding.duration.node.updateDurationBinding(duration);
+            });
+            bindListContainer.appendChild(l2);
+            l2.setAttribute("transform", `translate(${x},0)`);
+            x += itemWidth;
+        }
 
         bindListContainer.onmouseleave = () => {
             bindBtnContainer.removeAttribute("style");
@@ -1135,6 +1149,8 @@ export class KfNode extends KfItem {
     effectType: string;
     easing: string;
 
+    durationRatio: number = 1;
+
     virtualLength: number;
 
     thumbnail: Element;
@@ -1173,7 +1189,9 @@ export class KfNode extends KfItem {
     updateWidth(moveEvent: MouseEvent) {
         this.virtualLength += moveEvent.movementX;
         let deltaL = -this.length;
-        this.length = Math.min(Math.max(this.virtualLength, MIN_LENGTH), MAX_LENGTH);
+        // this.length = this.virtualLength;
+        this.length = Math.min(Math.max(this.virtualLength, durationToLength(MIN_DURATION * this.durationRatio)), durationToLength(MAX_DURATION * this.durationRatio));
+        // console.log(this.durationRatio);
         deltaL += this.length;
         this.thumbnail.setAttribute("width", String(this.length));
         this.thumbnailBackground.setAttribute("width", String(this.length));
@@ -1192,7 +1210,7 @@ export class KfNode extends KfItem {
         // this.container.removeChild(this.lengthGuideBackground);
         // this.container.removeChild(this.lengthGuide);
         kfTrack.panningLock = false;
-        this.originalNode.updateDuration(lengthToDuration(this.length));
+        this.originalNode.updateDuration(lengthToDuration(this.length) / this.durationRatio);
     }
 
     createBtnIcon(btnType: string) {

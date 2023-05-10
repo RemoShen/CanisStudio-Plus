@@ -48,7 +48,7 @@ export class AnimationTreeGroup extends AnimationTreeItem {
         return lastDuration;
     }
 
-    fromBindedGroup(kfGroup: KfTreeGroup, marks: string[], isFirst: boolean, lastDuration: number, minStartTimeBinding: number, minDurationBinding: number) {
+    fromBindedGroup(kfGroup: KfTreeGroup, marks: string[], isFirst: boolean, lastDuration: number, minStartTimeBinding: number) {
         if (kfGroup.startTimeBinding) {
             this.delay = calcMean(marks, kfGroup.startTimeBinding) / minStartTimeBinding * kfGroup.delay;
         } else {
@@ -59,9 +59,6 @@ export class AnimationTreeGroup extends AnimationTreeItem {
 
         const child = new AnimationTreeNode();
         lastDuration = child.fromKfTreeNode(kfNode, marks, false, 0);
-        if (kfGroup.durationBinding) {
-            lastDuration = child.duration = calcMean(marks, kfGroup.durationBinding) / minDurationBinding * child.duration;
-        }
         this.children.push([child]);
         return lastDuration;
     }
@@ -109,32 +106,34 @@ export class AnimationTreeGroup extends AnimationTreeItem {
         let isFirstChild = true;
         const childGroup = kfNode.grouping.child;
         if (childGroup.isBindable()) {
-            let minStartTimeBinding = Infinity;
-            let minDurationBinding = Infinity;
+            // let minStartTimeBinding = Infinity;
+            // let minDurationBinding = Infinity;
             // if (childGroup.durationBinding) {
             //     for (let [k, v] of partition) {
             //         minDurationBinding = Math.min(minDurationBinding, calcMean([...v], childGroup.durationBinding))
             //     }
             // }
-            const currentAttr: string = childGroup.durationBinding;
-            const allValues: string[] = [];
-            chartManager.numericAttrs.forEach((value, key) => {
-                if (value.has(currentAttr)) {
-                    allValues.push(value.get(currentAttr));
-                }
-            })
-            minDurationBinding = Math.min(...allValues.map(i => Number(i)));
+            // const currentAttr: string = childGroup.children[0][0].durationBinding;
+            // const allValues: string[] = [];
+            // chartManager.numericAttrs.forEach((value, key) => {
+            //     if (value.has(currentAttr)) {
+            //         allValues.push(value.get(currentAttr));
+            //     }
+            // })
+            // minDurationBinding = Math.min(...allValues.map(i => Number(i)));
+            let minStartTimeBinding = Infinity;
             if (childGroup.startTimeBinding) {
-                for (let [k, v] of partition) {
-                    minStartTimeBinding = Math.min(minStartTimeBinding, calcMean([...v], childGroup.startTimeBinding))
-                }
+                minStartTimeBinding = chartManager.getMinValue(childGroup.startTimeBinding);
+                // for (let [k, v] of partition) {
+                // minStartTimeBinding = Math.min(minStartTimeBinding, calcMean([...v], childGroup.startTimeBinding))
+                // }
                 const tmp = [];
                 for (let attributeName of sequence) {
                     if (!partition.has(attributeName)) {
                         continue;
                     }
                     const child = new AnimationTreeGroup();
-                    lastDuration = child.fromBindedGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration, minStartTimeBinding, minDurationBinding);
+                    lastDuration = child.fromBindedGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration, minStartTimeBinding);
                     tmp.push(child);
                     isFirstChild = false;
                 }
@@ -148,7 +147,7 @@ export class AnimationTreeGroup extends AnimationTreeItem {
                         continue;
                     }
                     const child = new AnimationTreeGroup();
-                    lastDuration = child.fromBindedGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration, minStartTimeBinding, minDurationBinding);
+                    lastDuration = child.fromBindedGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration, minStartTimeBinding);
                     this.children.push([child]);
                     isFirstChild = false;
                 }
@@ -210,7 +209,7 @@ export class AnimationTreeNode extends AnimationTreeItem {
         this.delay = Math.max(-lastDuration, delay);
 
         this.marks = marks;
-        this.duration = kfNode.property.duration;
+        this.duration = kfNode.property.duration * kfNode.calcDurationRatio(marks);
         this.easing = kfNode.property.easing;
         this.effectType = kfNode.property.effectType;
 

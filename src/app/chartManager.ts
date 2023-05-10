@@ -165,6 +165,30 @@ class ChartManager {
         })
         // document.getElementById(Player.PLAY_BTN_ID).click();
     }
+
+    getMinValue(fieldName: string) {
+        let result = Infinity;
+        for (let [id, attrs] of this.numericAttrs) {
+            if (attrs.has(fieldName)) {
+                result = Math.min(result, Number(attrs.get(fieldName)));
+            }
+        }
+        return result;
+    }
+
+    getAvgValue(marks: string[], fieldName: string) {
+        let result = 0;
+        let count = 0;
+        for (let id of marks) {
+            const attr = this.numericAttrs.get(id);
+            if (attr.has(fieldName)) {
+                result += Number(attr.get(fieldName));
+                count++;
+            }
+        }
+        result /= count;
+        return result;
+    }
 }
 
 export const chartManager = new ChartManager();
