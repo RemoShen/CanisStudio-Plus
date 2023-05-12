@@ -58,7 +58,6 @@ export class MarkSelector {
                     flag = 1;
                 }
             }
-
         }
         MarkSelector.complete();
         //update recommendList
@@ -134,7 +133,6 @@ export class MarkSelector {
             }
         }
         if (this.selection.size == 0) {
-            // this.confirmButton.setAttribute("style", "display:none");
         }
     }
 
