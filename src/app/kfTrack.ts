@@ -565,6 +565,7 @@ export class KfRow extends KfGroup {
         bindListContainer.appendChild(background);
 
         const binding = this.binding;
+        
         const options = binding.options.concat([null]);
 
         const createList = (title: string, highlighted: string, callback: Function) => {

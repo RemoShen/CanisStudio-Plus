@@ -1102,6 +1102,7 @@ const generateKfTrackOfGroup = (
     delay: number = NaN) => {
     const result = new KfRow(label, parent, delay, originalNode, sortable, sortAttributes, originalParent);
     result.binding = group.getBinding(marks);
+    
     result.vertical = group.parent ? group.parent.vertical : false;
     let isFirst = true;
     const addNewChild = (nextNode: KfItem, originalNode: KfTreeGroup | KfTreeNode) => {
@@ -1153,6 +1154,9 @@ const generateKfTrackOfGroup = (
                     )
                     childGroup.levelFromLeaves = 1;
                     childGroup.binding = child.getBinding(subset);
+                    
+                    
+                    
                     addNewRow(childGroup, child);
 
                     const childNode = new KfNode(
