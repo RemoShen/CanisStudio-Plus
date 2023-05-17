@@ -12,9 +12,16 @@ class AnimationTreeItem {
 export class AnimationTreeGroup extends AnimationTreeItem {
     children: AnimationTreeItem[][] = [];
 
-    fromKfTreeGroup(kfGroup: KfTreeGroup, marks: string[], isFirst: boolean, lastDuration: number) {
-        const delay = isFirst ? 0 : kfGroup.delay;
-        this.delay = Math.max(0, delay);
+    fromKfTreeGroup(kfGroup: KfTreeGroup, marks: string[], isFirst: boolean, lastDuration: number, minStartTimeBinding: number) {
+        // const delay = isFirst ? 0 : kfGroup.delay;
+        // this.delay = Math.max(0, delay);
+        if (kfGroup.startTimeBinding) {
+            this.delay = calcMean(marks, kfGroup.startTimeBinding) / minStartTimeBinding * kfGroup.delay;
+        } else {
+            const delay = isFirst ? 0 : kfGroup.delay;
+            this.delay = Math.max(-lastDuration, delay);
+        }
+
         let isFirstNode = true;
         for (let arr of kfGroup.children) {
             let col = [];
@@ -48,20 +55,20 @@ export class AnimationTreeGroup extends AnimationTreeItem {
         return lastDuration;
     }
 
-    fromBindedGroup(kfGroup: KfTreeGroup, marks: string[], isFirst: boolean, lastDuration: number, minStartTimeBinding: number) {
-        if (kfGroup.startTimeBinding) {
-            this.delay = calcMean(marks, kfGroup.startTimeBinding) / minStartTimeBinding * kfGroup.delay;
-        } else {
-            const delay = isFirst ? 0 : kfGroup.delay;
-            this.delay = Math.max(-lastDuration, delay);
-        }
-        const kfNode = kfGroup.children[0][0];
+    // fromBindedGroup(kfGroup: KfTreeGroup, marks: string[], isFirst: boolean, lastDuration: number, minStartTimeBinding: number) {
+    //     if (kfGroup.startTimeBinding) {
+    //         this.delay = calcMean(marks, kfGroup.startTimeBinding) / minStartTimeBinding * kfGroup.delay;
+    //     } else {
+    //         const delay = isFirst ? 0 : kfGroup.delay;
+    //         this.delay = Math.max(-lastDuration, delay);
+    //     }
+    //     const kfNode = kfGroup.children[0][0];
 
-        const child = new AnimationTreeNode();
-        lastDuration = child.fromKfTreeNode(kfNode, marks, false, 0);
-        this.children.push([child]);
-        return lastDuration;
-    }
+    //     const child = new AnimationTreeNode();
+    //     lastDuration = child.fromKfTreeNode(kfNode, marks, false, 0);
+    //     this.children.push([child]);
+    //     return lastDuration;
+    // }
 
     fromKfTreeNode(kfNode: KfTreeNode, marks: string[], isFirst: boolean, lastDuration: number) {
         marks = marks.filter(i => meetMarkTypeConstrains(i, kfNode.markTypeSelectors));
@@ -105,72 +112,79 @@ export class AnimationTreeGroup extends AnimationTreeItem {
         }
         let isFirstChild = true;
         const childGroup = kfNode.grouping.child;
-        if (childGroup.isBindable()) {
-            // let minStartTimeBinding = Infinity;
-            // let minDurationBinding = Infinity;
-            // if (childGroup.durationBinding) {
-            //     for (let [k, v] of partition) {
-            //         minDurationBinding = Math.min(minDurationBinding, calcMean([...v], childGroup.durationBinding))
-            //     }
+        // if (childGroup.isBindable()) {
+        //     // let minStartTimeBinding = Infinity;
+        //     // let minDurationBinding = Infinity;
+        //     // if (childGroup.durationBinding) {
+        //     //     for (let [k, v] of partition) {
+        //     //         minDurationBinding = Math.min(minDurationBinding, calcMean([...v], childGroup.durationBinding))
+        //     //     }
+        //     // }
+        //     // const currentAttr: string = childGroup.children[0][0].durationBinding;
+        //     // const allValues: string[] = [];
+        //     // chartManager.numericAttrs.forEach((value, key) => {
+        //     //     if (value.has(currentAttr)) {
+        //     //         allValues.push(value.get(currentAttr));
+        //     //     }
+        //     // })
+        //     // minDurationBinding = Math.min(...allValues.map(i => Number(i)));
+        let minStartTimeBinding = Infinity;
+        if (childGroup.startTimeBinding) {
+            minStartTimeBinding = chartManager.getMinValue(childGroup.startTimeBinding);
+            // for (let [k, v] of partition) {
+            // minStartTimeBinding = Math.min(minStartTimeBinding, calcMean([...v], childGroup.startTimeBinding))
             // }
-            // const currentAttr: string = childGroup.children[0][0].durationBinding;
-            // const allValues: string[] = [];
-            // chartManager.numericAttrs.forEach((value, key) => {
-            //     if (value.has(currentAttr)) {
-            //         allValues.push(value.get(currentAttr));
+            // const tmp = [];
+            // for (let attributeName of sequence) {
+            //     if (!partition.has(attributeName)) {
+            //         continue;
             //     }
-            // })
-            // minDurationBinding = Math.min(...allValues.map(i => Number(i)));
-            let minStartTimeBinding = Infinity;
-            if (childGroup.startTimeBinding) {
-                minStartTimeBinding = chartManager.getMinValue(childGroup.startTimeBinding);
-                // for (let [k, v] of partition) {
-                // minStartTimeBinding = Math.min(minStartTimeBinding, calcMean([...v], childGroup.startTimeBinding))
-                // }
-                const tmp = [];
-                for (let attributeName of sequence) {
-                    if (!partition.has(attributeName)) {
-                        continue;
-                    }
-                    const child = new AnimationTreeGroup();
-                    lastDuration = child.fromBindedGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration, minStartTimeBinding);
-                    tmp.push(child);
-                    isFirstChild = false;
-                }
-                for (let i = 1; i < tmp.length; i++) {
-                    tmp[i].delay -= tmp[0].delay;
-                }
-                this.children.push(tmp);
-            } else {
-                for (let attributeName of sequence) {
-                    if (!partition.has(attributeName)) {
-                        continue;
-                    }
-                    const child = new AnimationTreeGroup();
-                    lastDuration = child.fromBindedGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration, minStartTimeBinding);
-                    this.children.push([child]);
-                    isFirstChild = false;
-                }
-            }
-        } else {
-            for (let attributeName of sequence) {
-                if (!partition.has(attributeName)) {
-                    continue;
-                }
-                const child = new AnimationTreeGroup();
-                lastDuration = child.fromKfTreeGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration);
-                this.children.push([child]);
-                isFirstChild = false;
-            }
+            //     const child = new AnimationTreeGroup();
+            //     lastDuration = child.fromBindedGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration, minStartTimeBinding);
+            //     tmp.push(child);
+            //     isFirstChild = false;
+            // }
+            // for (let i = 1; i < tmp.length; i++) {
+            //     tmp[i].delay -= tmp[0].delay;
+            // }
+            // this.children.push(tmp);
         }
+        //     } else {
+        //         for (let attributeName of sequence) {
+        //             if (!partition.has(attributeName)) {
+        //                 continue;
+        //             }
+        //             const child = new AnimationTreeGroup();
+        //             lastDuration = child.fromBindedGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration, minStartTimeBinding);
+        //             this.children.push([child]);
+        //             isFirstChild = false;
+        //         }
+        //     }
+        // } else {
+        for (let attributeName of sequence) {
+            if (!partition.has(attributeName)) {
+                continue;
+            }
+            const child = new AnimationTreeGroup();
+            lastDuration = child.fromKfTreeGroup(childGroup, Array.from(partition.get(attributeName)), isFirstChild, lastDuration, minStartTimeBinding);
+            this.children.push([child]);
+            isFirstChild = false;
+        }
+        // }
         if (kfNode.vertical) {
-            let index = 0;
-            for (let child of this.children) {
-                if (child.length == 1) {
-                    child[0].delay *= index;
-                    child[0].delay = Math.max(child[0].delay, 0);
+            if (!childGroup.startTimeBinding) {
+                let index = 0;
+                for (let child of this.children) {
+                    if (child.length == 1) {
+                        child[0].delay *= index;
+                        child[0].delay = Math.max(child[0].delay, 0);
+                    }
+                    index++;
                 }
-                index++;
+            } else {
+                for (let i = 1; i < this.children.length; i++) {
+                    this.children[i][0].delay -= this.children[0][0].delay;
+                }
             }
             this.children = [this.children.flatMap(i => i)];
         }

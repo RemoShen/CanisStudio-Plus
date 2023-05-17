@@ -238,9 +238,12 @@ export class KfTreeGroup {
     }
 
     getBinding(marks: Set<string>) {
-        if (!this.isBindable()) {
+        if(!this.parent){
             return null;
         }
+        // if (!this.isBindable()) {
+        //     return null;
+        // }
         const options: string[] = [];
         const childMarkType = this.children[0][0].markTypeSelectors;
         for (let markType of childMarkType) {
@@ -259,11 +262,18 @@ export class KfTreeGroup {
         if (options.length == 0) {
             return null
         }
-        return {
-            duration: {
+        let durationBinding: {
+            binding: string,
+            node: KfTreeNode
+        } = null;
+        if (this.isBindable()) {
+            durationBinding = {
                 binding: this.children[0][0].durationBinding,
                 node: this.children[0][0]
-            },
+            };
+        }
+        return {
+            duration: durationBinding,
             startTime: {
                 binding: this.startTimeBinding,
                 group: this
@@ -283,7 +293,11 @@ export class KfTreeGroup {
         const group = this.updateProperty();
         group.startTimeBinding = startTimeBinding;
         if (startTimeBinding && group.delay == 0) {
-            group.delay = group.children[0][0].property.duration;
+            if(group.children[0][0].property){
+                group.delay = group.children[0][0].property.duration;
+            }else{
+                group.delay = 300;
+            }
         }
         if (startTimeBinding) {
             group.parent.vertical = true;
@@ -333,7 +347,7 @@ export class KfTreeGroup {
         console.assert(parent);
         parent.vertical = !parent.vertical;
         if (!parent.vertical) {
-            this.startTimeBinding = null;
+            node.startTimeBinding = null;
         }
         // const pparent = parent.parent;
         // const index = pparent.children.findIndex(i => i.includes(parent));
@@ -913,7 +927,8 @@ const generateCanisSpec = () => {
             group,
             Array.from(chartManager.marks.keys()).filter(i => meetAttributeConstrains(i, group.attributeSelectors)),
             isFirst,
-            lastDuration
+            lastDuration,
+            1
         );
         isFirst = false;
         time = animationTreeGroup.render(animations, time);
@@ -925,7 +940,8 @@ const generateCanisSpec = () => {
             firstFrame,
             [...calcNonSelectedMarks()],
             true,
-            0
+            0,
+            1
         );
         isFirst = false;
         time = animationTreeGroup.render(animations, time);
@@ -1102,7 +1118,7 @@ const generateKfTrackOfGroup = (
     delay: number = NaN) => {
     const result = new KfRow(label, parent, delay, originalNode, sortable, sortAttributes, originalParent);
     result.binding = group.getBinding(marks);
-    
+
     result.vertical = group.parent ? group.parent.vertical : false;
     let isFirst = true;
     const addNewChild = (nextNode: KfItem, originalNode: KfTreeGroup | KfTreeNode) => {
@@ -1154,9 +1170,9 @@ const generateKfTrackOfGroup = (
                     )
                     childGroup.levelFromLeaves = 1;
                     childGroup.binding = child.getBinding(subset);
-                    
-                    
-                    
+
+
+
                     addNewRow(childGroup, child);
 
                     const childNode = new KfNode(
