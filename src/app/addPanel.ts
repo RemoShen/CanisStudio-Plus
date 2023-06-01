@@ -62,7 +62,7 @@ export class AddPanel {
         this.box.setAttribute("width", String(width - padding * 2));
         this.box.setAttribute("height", String(height - padding * 2));
         if (height === foldedHeight) {
-            this.box.setAttribute("transform", `translate(${0}, ${this.height / 2.55})`)
+            this.box.setAttribute("transform", `translate(${0}, ${(this.height - padding * 2) / 2 - 9})`)
             this.box.setAttribute('stroke', 'gray')
             this.icon.setAttribute("fill", "gray");
         }else{
