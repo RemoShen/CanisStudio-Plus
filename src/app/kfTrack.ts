@@ -422,7 +422,8 @@ export class KfRow extends KfGroup {
 
         const sortListContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
         kfTrack.innerContainer.appendChild(sortListContainer);
-        sortListContainer.setAttribute("transform", `translate(${this.getX() + this.delayLength + 30},${this.getY() + 2}), scale(${1 / kfTrack.scale})`);
+        sortListContainer.setAttribute("transform", `translate(${this.getX() + this.delayLength + this.length - 5},${this.getY() + 2}), scale(${1 / kfTrack.scale})`);
+        // sortListContainer.setAttribute("transform", `translate(${this.getX() + this.delayLength + 30},${this.getY() + 2}), scale(${1 / kfTrack.scale})`);
         const itemWidth = 120;
         const itemHeight = 20;
         let index = 0;
@@ -553,7 +554,8 @@ export class KfRow extends KfGroup {
     createBindList(bindBtnContainer: Element) {
         const bindListContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
         kfTrack.innerContainer.appendChild(bindListContainer);
-        bindListContainer.setAttribute("transform", `translate(${this.getX() + this.delayLength + this.length - 5},${this.getY() + 2}), scale(${1 / kfTrack.scale})`);
+        bindListContainer.setAttribute("transform", `translate(${this.getX() + this.delayLength + 30},${this.getY() + 2}), scale(${1 / kfTrack.scale})`);
+        // bindListContainer.setAttribute("transform", `translate(${this.getX() + this.delayLength + this.length - 5},${this.getY() + 2}), scale(${1 / kfTrack.scale})`);
         const itemWidth = 80;
         const itemHeight = 20;
 
@@ -686,26 +688,29 @@ export class KfRow extends KfGroup {
         labelContainer.appendChild(labelText);
         this.labelText = labelText;
 
-        if (this.sortable) {
-            const sortBtnContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
-            labelContainer.appendChild(sortBtnContainer);
-            sortBtnContainer.classList.add("kf-label-btn-container")
+        if (this.binding) {
+            const bindBtnContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            labelContainer.appendChild(bindBtnContainer);
+            bindBtnContainer.classList.add("kf-label-btn-container");
+            // bindBtnContainer.setAttribute("transform", `translate(${length - 35},0)`)
 
-            const sortBtnBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            sortBtnContainer.appendChild(sortBtnBackground);
-            sortBtnBackground.classList.add("kf-label-btn-background");
-            sortBtnBackground.setAttribute("x", "5");
-            sortBtnBackground.setAttribute("y", "2");
+            const bindBtnBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            bindBtnContainer.appendChild(bindBtnBackground);
+            bindBtnBackground.classList.add("kf-label-btn-background");
+            bindBtnBackground.setAttribute("x", "5");
+            bindBtnBackground.setAttribute("y", "2");
 
-            const sortBtnIcon = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            sortBtnContainer.appendChild(sortBtnIcon);
-            sortBtnIcon.setAttribute("d", "M 3 13 H 9 V 12 H 3 Z M 3 4 V 4 H 21 V 3 H 3 Z M 3 10 H 13 V 9 H 3 Z M 3 6 L 17 6 L 17 7 L 3 7 Z");
-            sortBtnIcon.setAttribute("transform", `translate(5, 2)`);
-            sortBtnIcon.classList.add("kf-button");
+            const bindBtnIcon = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            bindBtnContainer.appendChild(bindBtnIcon);
+            bindBtnIcon.setAttribute("d", "M 20.44 8.013 L 6 8 L 6 9 L 20.425 8.976 L 15.33 13.348 L 16 14 L 22 9 L 22 8 L 16 3 L 15.283 3.759 Z M 5 14 L 5 3 L 4 3 L 4 14 Z");
+            // bindBtnIcon.setAttribute('points', '10.1,0 10.1,4.1 5.6,0.1 4.3,1.5 8.3,5.1 0,5.1 0,6.9 8.3,6.9 4.3,10.5 5.6,11.9 10.1,7.9 10.1,12 12,12 12,0 ');
 
-            sortBtnContainer.onclick = () => {
-                sortBtnContainer.setAttribute("style", "opacity: 1");
-                this.createSortList(sortBtnContainer);
+            bindBtnIcon.setAttribute("transform", `translate(5, 2)`);
+            bindBtnIcon.classList.add("kf-button");
+
+            bindBtnContainer.onclick = () => {
+                bindBtnContainer.setAttribute("style", "opacity: 1");
+                this.createBindList(bindBtnContainer);
             }
         }
 
@@ -757,32 +762,30 @@ export class KfRow extends KfGroup {
         // length -= ITEM_GAP;
         length -= (this.levelFromLeaves - 1) * 2;
         this.length = length;
+        if (this.sortable) {
+            const sortBtnContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
+            labelContainer.appendChild(sortBtnContainer);
+            sortBtnContainer.classList.add("kf-label-btn-container")
+            sortBtnContainer.setAttribute("transform", `translate(${length - 35},0)`)
 
-        if (this.binding) {
-            const bindBtnContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
-            labelContainer.appendChild(bindBtnContainer);
-            bindBtnContainer.classList.add("kf-label-btn-container");
-            bindBtnContainer.setAttribute("transform", `translate(${length - 35},0)`)
+            const sortBtnBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+            sortBtnContainer.appendChild(sortBtnBackground);
+            sortBtnBackground.classList.add("kf-label-btn-background");
+            sortBtnBackground.setAttribute("x", "5");
+            sortBtnBackground.setAttribute("y", "2");
 
-            const bindBtnBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            bindBtnContainer.appendChild(bindBtnBackground);
-            bindBtnBackground.classList.add("kf-label-btn-background");
-            bindBtnBackground.setAttribute("x", "5");
-            bindBtnBackground.setAttribute("y", "2");
+            const sortBtnIcon = document.createElementNS("http://www.w3.org/2000/svg", "path");
+            sortBtnContainer.appendChild(sortBtnIcon);
+            sortBtnIcon.setAttribute("d", "M 3 13 H 9 V 12 H 3 Z M 3 4 V 4 H 21 V 3 H 3 Z M 3 10 H 13 V 9 H 3 Z M 3 6 L 17 6 L 17 7 L 3 7 Z");
+            sortBtnIcon.setAttribute("transform", `translate(5, 2)`);
+            sortBtnIcon.classList.add("kf-button");
 
-            const bindBtnIcon = document.createElementNS("http://www.w3.org/2000/svg", "path");
-            bindBtnContainer.appendChild(bindBtnIcon);
-            bindBtnIcon.setAttribute("d", "M 20.44 8.013 L 6 8 L 6 9 L 20.425 8.976 L 15.33 13.348 L 16 14 L 22 9 L 22 8 L 16 3 L 15.283 3.759 Z M 5 14 L 5 3 L 4 3 L 4 14 Z");
-            // bindBtnIcon.setAttribute('points', '10.1,0 10.1,4.1 5.6,0.1 4.3,1.5 8.3,5.1 0,5.1 0,6.9 8.3,6.9 4.3,10.5 5.6,11.9 10.1,7.9 10.1,12 12,12 12,0 ');
-
-            bindBtnIcon.setAttribute("transform", `translate(5, 2)`);
-            bindBtnIcon.classList.add("kf-button");
-
-            bindBtnContainer.onclick = () => {
-                bindBtnContainer.setAttribute("style", "opacity: 1");
-                this.createBindList(bindBtnContainer);
+            sortBtnContainer.onclick = () => {
+                sortBtnContainer.setAttribute("style", "opacity: 1");
+                this.createSortList(sortBtnContainer);
             }
         }
+
 
         // labelBackground.setAttribute("d", createLabelBackgroundShape(length, this.levelFromLeaves * (LABEL_HEIGHT + ITEM_SPACE) + THUMBNAIL_HEIGHT, LABEL_CORNER_RADIUS));
         labelBackground.setAttribute("width", String(length));
