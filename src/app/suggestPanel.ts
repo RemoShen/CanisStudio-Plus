@@ -377,6 +377,16 @@ export class Itemimg {
       (mark: SVGElement) => {
         if (nextKf.includes(mark.id)) {
           mark.setAttributeNS(null, "opacity", "1");
+          //如果mark是text类型，则加粗显示，并在原来的基础上增加字体大小，并且位置不要偏移
+          if (mark.tagName === "text") {
+            mark.setAttributeNS(null, "font-weight", "bolder");
+            mark.setAttributeNS(null, "font-size", "20");
+          }
+          //如果class包含axis-ticks，则将其加粗显示，并且变长
+          if (mark.classList.contains("axis-tick")) {
+            mark.setAttributeNS(null, "stroke-width", "5");
+          }
+
         } else if (selectedMarks.includes(mark.id)) {
           mark.setAttributeNS(null, "opacity", "0.3");
         } else {
@@ -391,6 +401,7 @@ export class Itemimg {
         }
       }
     );
+
     const imgSrc: string = Tool.svg2url(svgClone);
     const chartThumbnail: SVGImageElement = document.createElementNS(
       "http://www.w3.org/2000/svg",
