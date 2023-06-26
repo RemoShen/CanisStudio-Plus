@@ -308,14 +308,14 @@ export class MarkSelector {
           "x",
           String(
             (p1.x - MarkSelector.panning.x) / MarkSelector.scale -
-              (sizeThreshold - width) / 2
+            (sizeThreshold - width) / 2
           )
         );
         maskElement.setAttribute(
           "y",
           String(
             (p1.y - MarkSelector.panning.y) / MarkSelector.scale -
-              (sizeThreshold - height) / 2
+            (sizeThreshold - height) / 2
           )
         );
         maskElement.setAttribute("width", String(sizeThreshold));
@@ -346,11 +346,9 @@ export class MarkSelector {
     maskElement.id = "__" + element.id;
     maskElement.addEventListener("mouseover", () => {
       maskElement.classList.add("highlight");
-      // this.addHoverHighlight(maskElement.id);
     });
     maskElement.addEventListener("mouseout", () => {
       maskElement.classList.remove("highlight");
-      // this.removeHoverHighlight(maskElement.id);
     });
     maskElement.addEventListener("click", () => {
       // this.removeHoverHighlight(maskElement.id);
@@ -439,14 +437,14 @@ export class MarkSelector {
           "x",
           String(
             (p1.x - MarkSelector.panning.x) / MarkSelector.scale -
-              (sizeThreshold - width) / 2
+            (sizeThreshold - width) / 2
           )
         );
         maskElement.setAttribute(
           "y",
           String(
             (p1.y - MarkSelector.panning.y) / MarkSelector.scale -
-              (sizeThreshold - height) / 2
+            (sizeThreshold - height) / 2
           )
         );
         maskElement.setAttribute("width", String(sizeThreshold));
@@ -546,12 +544,16 @@ export class MarkSelector {
     const marks = svg.querySelectorAll("[id*='mark']");
     marks.forEach((mark) => {
       mark.addEventListener("mouseover", () => {
-        mark.classList.add("highlight");
-        // MarkSelector.addHoverHighlight(mark.id);
+        if (mark.tagName != "text") {
+          mark.classList.add("highlight");
+        }else {
+          mark.classList.add("highlight-text");
+        }
+
       });
       mark.addEventListener("mouseout", () => {
         mark.classList.remove("highlight");
-        // MarkSelector.removeHoverHighlight(mark.id);
+        mark.classList.remove("highlight-text");
       });
       mark.addEventListener("click", () => {
         MarkSelector.updateSelection([mark.id]);
