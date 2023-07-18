@@ -1,8 +1,10 @@
 import { ICoord } from "../util/ds";
-import { addSelection, previewFrame } from "./kfTree";
+import { addSelection, firstFrame, previewFrame } from "./kfTree";
 import "../assets/style/suggestBox.scss";
 import Tool from "../util/tool";
 import Lottie from "lottie-web";
+import { canis } from "./core/canisGenerator";
+import { Player, player } from "../components/player";
 export class SuggestPanel {
   static PADDING: number = 6;
   static SHOWN_NUM: number = 2;
@@ -174,7 +176,8 @@ export class SuggestPanel {
     container.onmouseover = () => {
       container.style.cursor = 'pointer';
       container.style.backgroundColor = '#fff';
-      animation.play();
+      animation.goToAndPlay((player.totalTime - firstFrame.children[0][0].property.duration) / 20, true);
+      console.log('time', player.totalTime, firstFrame.children[0][0].property.duration);
     };
     container.onmouseout = () => {
       container.style.backgroundColor = 'transparent';

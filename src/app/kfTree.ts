@@ -402,7 +402,7 @@ export class KfTreeGroup {
 
 let kfTrees: KfTreeGroup[] = [];
 let expandOptions: Set<string>[] = [];
-let firstFrame: KfTreeGroup;
+export let firstFrame: KfTreeGroup;
 
 const history: { kfTrees: KfTreeGroup[], expandOptions: Set<string>[], firstFrame: KfTreeGroup }[] = [];
 let historyIndex = -1;
