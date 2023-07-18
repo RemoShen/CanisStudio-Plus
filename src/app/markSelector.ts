@@ -76,6 +76,11 @@ export class MarkSelector {
     suggestPanel.createSuggestPanel(allNextKf, height, [
       ...calcSelectedMarks(),
     ]);
+    const loc = document.getElementById("recommendList").getBoundingClientRect().left;
+    const aniPreview = document.getElementById("aniPreview");
+    const locold = aniPreview.getBoundingClientRect().left;
+    const xMove = loc - locold;
+    aniPreview.style.transform = `translate(${xMove}px, 20px)`;
   }
 
   static selectMark(id: string) {
@@ -354,21 +359,6 @@ export class MarkSelector {
       // this.removeHoverHighlight(maskElement.id);
       MarkSelector.updateSelection([element.id]);
     });
-    // const animation = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    // animation.setAttribute("attributeName", "stroke-dashoffset");
-    // animation.setAttribute("from", "0");
-    // animation.setAttribute("to", "6");
-    // animation.setAttribute("dur", "0.5");
-    // animation.setAttribute("repeatCount", "indefinite");
-    // maskElement.appendChild(animation);
-
-    // const animation2 = document.createElementNS("http://www.w3.org/2000/svg", "animate");
-    // animation2.setAttribute("attributeName", "stroke");
-    // animation2.setAttribute("keyTimes", "0; 0.5; 1");
-    // animation2.setAttribute("values", "black; white; black");
-    // animation2.setAttribute("dur", "0.6");
-    // animation2.setAttribute("repeatCount", "indefinite");
-    // maskElement.appendChild(animation2);
 
     MarkSelector.selectionMask.appendChild(maskElement);
     //update dataTableSelection
@@ -413,10 +403,6 @@ export class MarkSelector {
         );
         const mark = document.getElementById(id);
         mark.classList.add("highlight");
-        // maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale - (sizeThreshold - width) / 2));
-        // maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale));
-        // maskElement.setAttribute("width", String(sizeThreshold));
-        // maskElement.setAttribute("height", String(height));
       } else if (height < sizeThreshold && width >= sizeThreshold) {
         maskElement = document.createElementNS(
           "http://www.w3.org/2000/svg",
@@ -424,10 +410,6 @@ export class MarkSelector {
         );
         const mark = document.getElementById(id);
         mark.classList.add("highlight");
-        // maskElement.setAttribute("x", String((p1.x - MarkSelector.panning.x) / MarkSelector.scale));
-        // maskElement.setAttribute("y", String((p1.y - MarkSelector.panning.y) / MarkSelector.scale - (sizeThreshold - height) / 2));
-        // maskElement.setAttribute("width", String(width));
-        // maskElement.setAttribute("height", String(sizeThreshold));
       } else {
         maskElement = document.createElementNS(
           "http://www.w3.org/2000/svg",
@@ -664,17 +646,11 @@ export class MarkSelector {
     if (!MarkSelector.svg) {
       return;
     }
-    // MarkSelector.selectStartPoint = Tool.screenToSvgCoords(svg, downEvent.pageX, downEvent.pageY);
-    // if (MarkSelector.mode == markSelectorMode.LASSO_SELECT) {
-    //     document.onmousemove = MarkSelector.updateLassoSelection;
-    //     document.onmouseup = MarkSelector.finishLassoSelection;
-    // } else {
 
     const downEvtTarget: HTMLElement = <HTMLElement>downEvent.target;
     const targetId: string = downEvtTarget.id.replace("__", "");
 
     if ([...MarkSelector.selection].includes(targetId)) {
-      // document.onmouseup = MarkSelector.finishRectSelection;
       // if mouse move over 3px, then start drag
 
       let lastMouseX = downEvent.pageX,
@@ -807,53 +783,7 @@ export class MarkSelector {
       ) {
         selection.push(id);
       }
-
-      // let y = yBegin;
-      // let flag = false;
-
-      // if (polygon.closed) {
-      //     for (let i = 0; i < numberSteps; i++) {
-      //         const intersections = polygon.lineIntersect(y).map(i => [i, 0]).concat([[xBegin, 1], [xEnd, 1]]);
-      //         intersections.sort();
-      //         let inPolygon = false;
-      //         let inRect = false;
-      //         for (let [x, f] of intersections) {
-      //             if (f == 0) {
-      //                 inPolygon = !inPolygon;
-      //             } else {
-      //                 inRect = !inRect;
-      //             }
-      //             if (inPolygon && inRect) {
-      //                 flag = true;
-      //                 break;
-      //             }
-      //         }
-      //         if (flag) {
-      //             break;
-      //         }
-
-      //         y += yStep;
-      //     }
-      // } else {
-      //     for (let i = 0; i < numberSteps; i++) {
-      //         const intersections = polygon.lineIntersect(y);
-      //         for (let j of intersections) {
-      //             if (j >= xBegin && j <= xEnd) {
-      //                 flag = true;
-      //                 break;
-      //             }
-      //         }
-      //         y += yStep;
-      //     }
-      // }
-
-      // if (flag) {
-      //     selection.push(id);
-      // }
-
-      // MarkSelector.svg.appendChild(polygon.display());
     }
-    console.log("select", selection);
 
     MarkSelector.updateSelection(selection);
   }
@@ -875,7 +805,6 @@ export class MarkSelector {
     chartContainer.classList.remove("single-select");
     chartContainer.classList.add("lasso-select");
     MarkSelector.removeSelectedTool();
-    // document.getElementsByClassName('lasso-icon')[0].classList.add('selected-tool');
   }
 
   static setSingleSelect() {
@@ -887,8 +816,5 @@ export class MarkSelector {
     chartContainer.classList.remove("lasso-select");
     chartContainer.classList.add("single-select");
     MarkSelector.removeSelectedTool();
-    // document.getElementsByClassName('arrow-icon')[0].classList.add('selected-tool');
   }
 }
-
-// export const markSelector = new MarkSelector();

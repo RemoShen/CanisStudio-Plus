@@ -1,8 +1,8 @@
 import { ICoord } from "../util/ds";
-import { addSelection } from "./kfTree";
-import { MarkSelector } from "./markSelector";
+import { addSelection, previewFrame } from "./kfTree";
 import "../assets/style/suggestBox.scss";
 import Tool from "../util/tool";
+import Lottie from "lottie-web";
 export class SuggestPanel {
   static PADDING: number = 6;
   static SHOWN_NUM: number = 2;
@@ -31,11 +31,14 @@ export class SuggestPanel {
         "g"
       );
     }
+    const aniPreview = document.createElement('div');
+    aniPreview.setAttribute('id', 'aniPreview');
+    aniPreview.style.position = 'fixed';
+    document.getElementById('kfContainer').appendChild(aniPreview);
 
     if (allNextKf.length <= 0) {
       this.numShown = allNextKf.length;
       if (typeof this.suggestMenu !== "undefined") {
-        // this.container.removeChild(this.suggestMenu.container);
         this.container.innerHTML = '';
         this.suggestMenu = undefined;
       }
@@ -54,11 +57,6 @@ export class SuggestPanel {
       "rect"
     );
     bg.setAttributeNS(null, "width", `${this.boxWidth}`);
-    // if (allNextKf.length === 1) {
-    //   bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 1}`);
-    // } else if (allNextKf.length > 1) {
-    //   bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 2}`);
-    // }
     bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 2}`);
     bg.setAttributeNS(null, "fill", "#c9caca");
     bg.setAttributeNS(null, "stroke", "#666666");
@@ -78,6 +76,10 @@ export class SuggestPanel {
         `translate(0, ${0 * (height + 2 * SuggestPanel.PADDING)})`
       );
       bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 1}`);
+
+      const preview = this.createPreviewItem(allNextKf[0]);
+      preview.style.transform = `translate(5px, ${0 * (2 * SuggestPanel.PADDING) + SuggestPanel.PADDING}px)`;
+
       this.itemcontainer.appendChild(item);
     } else if (allNextKf.length > 1) {
       bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 2}`);
@@ -88,6 +90,8 @@ export class SuggestPanel {
           "transform",
           `translate(0, ${i * (height + 2 * SuggestPanel.PADDING)})`
         );
+        const preview = this.createPreviewItem(allNextKf[i]);
+        preview.style.transform = `translate(5px, ${i * (4 * SuggestPanel.PADDING) + SuggestPanel.PADDING}px)`;
         this.itemcontainer.appendChild(item);
       }
     }
@@ -105,6 +109,10 @@ export class SuggestPanel {
   }
   public removeSuggestPanel() {
     const recommendList = document.getElementById("recommendList");
+    const aniPreview = document.getElementById('aniPreview');
+    if (aniPreview) {
+      aniPreview.parentNode.removeChild(aniPreview);
+    }
     if (recommendList) {
       recommendList.innerHTML = "";
     }
@@ -135,11 +143,43 @@ export class SuggestPanel {
     bg.setAttributeNS(null, "rx", "5");
     container.appendChild(bg);
     container.appendChild(itemImg.container);
+    container.onmouseout = () => {
+      bg.classList.add("hide-ele");
+
+    };
     container.onmouseover = () => {
       bg.classList.remove("hide-ele");
     };
+    container.onclick = () => {
+      setTimeout(() => {
+        addSelection(nextKf);
+      }, 1);
+    };
+    return container;
+  }
+  public createPreviewItem(nextKf: string[]) {
+    const container = document.createElement('div');
+    document.getElementById('aniPreview').appendChild(container);
+    container.style.width = `${Itemimg.KF_WIDTH}px`;
+    container.style.height = `${suggestPanel.kfHeight - 2 * SuggestPanel.PADDING}px`;
+
+    //lottie
+    const animation = Lottie.loadAnimation({
+      container: container,
+      renderer: 'svg',
+      loop: true,
+      autoplay: false,
+      animationData: previewFrame(nextKf)
+    });
+    container.onmouseover = () => {
+      //指针变成手指
+      container.style.cursor = 'pointer';
+      container.style.backgroundColor = '#fff';
+      animation.play();
+    };
     container.onmouseout = () => {
-      bg.classList.add("hide-ele");
+      container.style.backgroundColor = 'transparent';
+      animation.stop();
     };
     container.onclick = () => {
       setTimeout(() => {
@@ -230,7 +270,6 @@ export class SuggestMenu {
       "http://www.w3.org/2000/svg",
       "polygon"
     );
-    // arrow.setAttributeNS(null, 'fill', SuggestMenu.MENU_ICON_COLOR);
     arrow.classList.add("clickable-component", "normal-btn");
     switch (direct) {
       case SuggestMenu.UP_DIRECT:
@@ -276,6 +315,8 @@ export class SuggestMenu {
 
   public arrowClickListener() {
     this.parentSuggestPanel.itemcontainer.innerHTML = "";
+    const aniPreview = document.getElementById("aniPreview");
+    aniPreview.innerHTML = "";
     for (let i = this.pageIdx * 2; i < (this.pageIdx + 1) * 2; i++) {
       if (i < this.nextKf.length) {
         const index: number = i % 2;
@@ -287,8 +328,11 @@ export class SuggestMenu {
           (this.parentSuggestPanel.kfHeight + 2 * SuggestPanel.PADDING)
           })`
         );
+        const preview = this.parentSuggestPanel.createPreviewItem(this.nextKf[i]);
+        preview.style.transform = `translate(5px, ${index * ( 4 * SuggestPanel.PADDING) + SuggestPanel.PADDING}px)`;
         this.parentSuggestPanel.itemcontainer.appendChild(item);
       }
+      //
     }
     this.dots.forEach((dot: SVGCircleElement, idx: number) => {
       if (idx === this.pageIdx) {
@@ -347,6 +391,7 @@ export class Itemimg {
       "transform",
       `translate(5, ${SuggestPanel.PADDING})`
     );
+
     const thumbnail = this.drawItemContent(nextKf, selectedMarks, suggestPanel.kfHeight - 2 * SuggestPanel.PADDING);
     this.container.appendChild(bg);
     this.container.appendChild(thumbnail);
@@ -377,12 +422,10 @@ export class Itemimg {
       (mark: SVGElement) => {
         if (nextKf.includes(mark.id)) {
           mark.setAttributeNS(null, "opacity", "1");
-          //如果mark是text类型，则加粗显示，并在原来的基础上增加字体大小，并且位置不要偏移
           if (mark.tagName === "text") {
             mark.setAttributeNS(null, "font-weight", "bolder");
             mark.setAttributeNS(null, "font-size", "20");
           }
-          //如果class包含axis-ticks，则将其加粗显示，并且变长
           if (mark.classList.contains("axis-tick")) {
             mark.setAttributeNS(null, "stroke-width", "5");
           }
@@ -410,6 +453,8 @@ export class Itemimg {
     chartThumbnail.setAttributeNS(null, "href", imgSrc);
     chartThumbnail.setAttributeNS(null, "width", `${Itemimg.KF_WIDTH}`);
     chartThumbnail.setAttributeNS(null, "height", `${height}`);
+    chartThumbnail.classList.add("thumbnail");
+    
     return chartThumbnail;
   }
 }

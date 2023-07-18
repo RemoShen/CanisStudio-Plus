@@ -567,7 +567,7 @@ export class KfRow extends KfGroup {
         bindListContainer.appendChild(background);
 
         const binding = this.binding;
-        
+
         const options = binding.options.concat([null]);
 
         const createList = (title: string, highlighted: string, callback: Function) => {
@@ -898,7 +898,6 @@ export class KfDelay {
         this.parent = parent;
 
         this.delay = delayTime;
-        // this.length = delayToLength(delayTime);
 
         this.originalNode = originalNode;
 
@@ -906,13 +905,11 @@ export class KfDelay {
     }
 
     controlOn() {
-        // this.rightDragBar.removeAttribute("display");
         this.background.removeAttribute("display");
         this.iconPolygon.removeAttribute("display");
     }
 
     controlOff() {
-        // this.rightDragBar.setAttribute("display", "none");
         this.background.setAttribute("display", "none");
         this.iconPolygon.setAttribute("display", "none");
     }
@@ -948,18 +945,11 @@ export class KfDelay {
     updateWidth(moveEvent: MouseEvent) {
         this.virtualLength += moveEvent.movementX;
         let deltaL = -this.length;
-        // this.length = Math.min(Math.max(this.virtualLength, -this.lastNodeLength), MAX_DELAY_LENGTH);
         this.length = Math.min(this.virtualLength, MAX_DELAY_LENGTH);
 
         this.length = Math.max(-this.parentLength, this.length);
 
         this.length = this.timeToLength(snap(this.lengthToTime(this.length), 50, 10));
-        // this.rightDragBar.setAttribute("x", String(this.length - ITEM_GAP));
-
-        // if (this.length < 0) {
-        // this.length = Math.max(delayToLength(-100), this.length);
-        // this.length = -20;
-        // }
 
         if (this.length < 0) {
             this.dragBar.removeAttribute("display");
@@ -988,13 +978,9 @@ export class KfDelay {
     finishUpdateWidth(upEvent: MouseEvent) {
         document.onmousemove = null;
         document.onmouseup = null;
-        // this.virtualLength = this.length;
-        // this.container.removeChild(this.lengthGuideBackground);
-        // this.container.removeChild(this.lengthGuide);
         kfTrack.panningLock = false;
 
         this.originalNode.updateDelay(snap(this.lengthToTime(Math.max(-this.parentLength, Math.min(MAX_DELAY_LENGTH, this.virtualLength))), 50, 10));
-        // this.originalNode.updateDelay(snap(this.lengthToTime(Math.max(-this.lastNodeLength, Math.min(MAX_DELAY_LENGTH, this.virtualLength))), 50, 10));
     }
 
     updateLengthGuide(position: number, delay: number) {
@@ -1040,10 +1026,6 @@ export class KfDelay {
         const background = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         this.container.appendChild(background);
         this.background = background;
-        // background.setAttribute("width", String(this.length));
-        // background.setAttribute("height", String(height));
-        // background.setAttribute("x", String(-ITEM_GAP));
-        // background.setAttribute("y", String(ITEM_GAP));
         background.setAttribute("rx", String(ITEM_GAP))
         background.setAttribute("fill", "#FFBD89");
 
@@ -1094,38 +1076,6 @@ export class KfDelay {
             document.onmousemove = (event: MouseEvent) => { this.updateWidth(event) };
             document.onmouseup = (event: MouseEvent) => { this.finishUpdateWidth(event) };
         };
-
-        // const hoverArea = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        // this.container.appendChild(hoverArea);
-        // this.hoverArea = hoverArea;
-        // hoverArea.setAttribute("width", String(2 * ITEM_GAP));
-        // hoverArea.setAttribute("height", String(height - 2 * ITEM_GAP))
-        // hoverArea.setAttribute("x", String(-ITEM_GAP));
-        // hoverArea.setAttribute("y", String(ITEM_GAP));
-        // hoverArea.setAttribute("opacity", "0");
-        // hoverArea.onmouseover = () => {
-        //     this.controlOn();
-        //     if (this.parent) {
-        //         this.parent.resize(this, this.length);
-        //     } else {
-        //         kfTrack.resize(this, this.length);
-        //     }
-        // };
-
-        // hoverArea.onmouseleave = () => {
-        //     this.controlOff();
-        //     if (this.parent) {
-        //         this.parent.resize(this, -this.length);
-        //     } else {
-        //         kfTrack.resize(this, -this.length);
-        //     }
-        // };
-
-        // hoverArea.onclick = () => {
-        //     kfTrack.setActiveNode(this);
-        //     this.originalNode.updateDelay(100);
-        // }
-
         this.updateElements();
 
         if (this.length < 0) {
@@ -1136,13 +1086,10 @@ export class KfDelay {
 
         this.length = Math.max(this.length, 0);
 
-        // return { element: this.container, length: 0 };
 
         if (this.length == 0) {
-            // this.controlOff();
             return { element: this.container, length: 0 };
         } else {
-            // this.hoverArea.setAttribute("display", "none");
             return { element: this.container, length: this.length };
         }
     }
@@ -1360,7 +1307,6 @@ export class KfNode extends KfItem {
             kfTrack.innerContainer.removeChild(container);
             this.menuContainer.removeAttribute("style");
         }
-        // return container;
     }
 
     createMenu() {
@@ -1426,26 +1372,8 @@ export class KfNode extends KfItem {
         const container = this.mainContainer;
         const length = this.length;
         this.virtualLength = length;
-        // const labelBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        // container.appendChild(labelBackground);
-        // const labelText = document.createElementNS("http://www.w3.org/2000/svg", "text");
-        // container.appendChild(labelText);
         container.classList.add("kf-item-container");
 
-        // labelBackground.setAttribute("d", createLabelBackgroundShape(length, THUMBNAIL_HEIGHT, LABEL_CORNER_RADIUS));
-        // labelBackground.setAttribute("width", String(length));
-        // labelBackground.setAttribute("height", String(THUMBNAIL_HEIGHT));
-        // labelBackground.setAttribute("rx", String(LABEL_CORNER_RADIUS));
-        // labelBackground.setAttribute("fill", LABEL_COLORS[0]);
-        // labelBackground.setAttribute("stroke", LABEL_BORDER_COLOR);
-        // labelBackground.setAttribute("stroke-opacity", LABEL_BORDER_OPACITY);
-
-        // labelText.setAttribute("fill", TEXT_COLORS[0]);
-        // labelText.setAttribute("text-anchor", "middle");
-        // labelText.setAttribute("x", String(length / 2));
-        // labelText.setAttribute("y", String(LABEL_HEIGHT - TEXT_OFFSET));
-        // labelText.setAttribute("font-size", String(FONT_SIZE));
-        // labelText.innerHTML = this.label;
 
         const thumbnailBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         container.appendChild(thumbnailBackground);
@@ -1518,6 +1446,10 @@ class KfTrack {
     panningY: number;
     scale: number = 1;
 
+    aniX: number;
+    aniY: number;
+    aniScale: number = 1;
+
     container: Element;
     innerContainer: Element;
     panningLock: boolean = false;
@@ -1566,7 +1498,6 @@ class KfTrack {
             i.calcLevelFromLeaves();
             maxHeight = Math.max(maxHeight, i.getOriginalHeight());
             maxLevel = Math.max(maxLevel, i.levelFromLeaves);
-            console.log(i);
         }
 
         const innerContainer = document.createElementNS("http://www.w3.org/2000/svg", "g");
@@ -1610,6 +1541,7 @@ class KfTrack {
         recommendList.setAttribute("id", "recommendList");
         innerContainer.appendChild(recommendList);
         suggestPanel.createSuggestPanel(suggestFrames, maxHeight, [...calcSelectedMarks()]);
+
         if (suggestFrames.length > 0) {
             this.timingLock = true;
             x += 260;
@@ -1629,8 +1561,9 @@ class KfTrack {
         if (this.activeNodeId == -1) {
             this.updatePanning(x, 0);
         } else {
-            this.updatePanning(this.activeNode.getX() - this.activeNodeX, 0)
+            this.updatePanning(this.activeNode.getX() - this.activeNodeX, 0);
         }
+
         container.addEventListener("wheel", (event: WheelEvent) => {
             const factorX = 0.06;
             const factorY = 0.02;
@@ -1643,12 +1576,10 @@ class KfTrack {
             }
         })
     }
-
     updateScale(scale: number) {
         scale = Math.max(0.5, Math.min(1, scale));
         let scaleFactor = scale / this.scale
         this.scale = scale;
-
         this.updatePanning(this.panningX, this.panningY);
     }
 
@@ -1666,21 +1597,11 @@ class KfTrack {
         this.panningX = x;
         this.panningY = y;
         this.innerContainer.setAttribute("transform", `scale(${this.scale})translate(${-this.panningX},${this.panningY})`);
+        const aniPreview = document.getElementById("aniPreview");
+        const loc = document.getElementById('recommendList').getBoundingClientRect();
+        aniPreview.style.left = `${loc.left}px`;
+        aniPreview.style.top = `${loc.top}px`;
     }
-    // createAddPanel(height: number) {
-    //     const dashBox = document.createElementNS(
-    //         "http://www.w3.org/2000/svg",
-    //         "rect"
-    //     );
-    //     dashBox.setAttribute("id", "dashBox");
-    //     dashBox.setAttribute("width", "240");
-    //     dashBox.setAttribute("height", height.toString());
-    //     dashBox.setAttribute("rx", "4");
-    //     dashBox.setAttribute("stroke", "#2196f3");
-    //     dashBox.setAttribute("stroke-width", "2");
-    //     dashBox.setAttribute("fill", "none");
-    //     return dashBox;
-    // }
 }
 
 export const kfTrack = new KfTrack();

@@ -131,7 +131,6 @@ export class KfTreeNode {
     updateSort(channel: string, order: string) {
         this.updateProperty().grouping.sort = { channel, order };
         saveHistory();
-        console.log(channel, order);
         renderKfTree();
     }
 
@@ -238,7 +237,7 @@ export class KfTreeGroup {
     }
 
     getBinding(marks: Set<string>) {
-        if(!this.parent){
+        if (!this.parent) {
             return null;
         }
         // if (!this.isBindable()) {
@@ -293,9 +292,9 @@ export class KfTreeGroup {
         const group = this.updateProperty();
         group.startTimeBinding = startTimeBinding;
         if (startTimeBinding && group.delay == 0) {
-            if(group.children[0][0].property){
+            if (group.children[0][0].property) {
                 group.delay = group.children[0][0].property.duration;
-            }else{
+            } else {
                 group.delay = 300;
             }
         }
@@ -305,21 +304,6 @@ export class KfTreeGroup {
         saveHistory();
         renderKfTree();
     }
-
-    // TODO: remove it later
-    // updateBinding(startTime: string, duration: string) {
-    //     const group = this.updateProperty();
-    //     group.children[0][0].durationBinding = duration;
-    //     group.startTimeBinding = startTime;
-    //     if (startTime && group.delay == 0) {
-    //         group.delay = group.children[0][0].property.duration;
-    //     }
-    //     if (startTime) {
-    //         group.parent.vertical = true;
-    //     }
-    //     saveHistory();
-    //     renderKfTree();
-    // }
 
     updateProperty() {
         this.updateFlag = true;
@@ -469,20 +453,44 @@ export const clearKfTrees = () => {
     kfTrack.resetActiveNode();
     renderKfTree();
 };
-
-const needNewGroup = (attributeSelectors: Map<string, string>) => {
-    if (kfTrees.length == 0) {
+const needNewGroupPreview = (attributeSelectors: Map<string, string>, kfT: KfTreeGroup[]) => {
+    if (kfT.length == 0) {
         return true;
     }
-    const activeGroup = kfTrees[kfTrees.length - 1];
-    // if (activeGroup.attributeSelectors.size == 0) {
-    //     return true;
-    // }
+    const activeGroup = kfT[kfT.length - 1];
     if (attributeSelectors.size != activeGroup.attributeSelectors.size) {
         return true;
     }
     for (let [k, v] of activeGroup.attributeSelectors) {
         if (attributeSelectors.get(k) != v) {
+            return true;
+        }
+    }
+    return false;
+}
+const needNewGroup = (attributeSelectors: Map<string, string>) => {
+    if (kfTrees.length == 0) {
+        return true;
+    }
+    const activeGroup = kfTrees[kfTrees.length - 1];
+    if (attributeSelectors.size != activeGroup.attributeSelectors.size) {
+        return true;
+    }
+    for (let [k, v] of activeGroup.attributeSelectors) {
+        if (attributeSelectors.get(k) != v) {
+            return true;
+        }
+    }
+    return false;
+}
+const needExpandPreview = (markTypeSelectors: Set<string>, kfT: KfTreeGroup[]) => {
+    if (kfT.length == 0) {
+        return false;
+    }
+    const group = kfT[kfT.length - 1];
+    const firstChild = group.children[0][0];
+    for (let i of markTypeSelectors) {
+        if (firstChild.markTypeSelectors.has(i)) {
             return true;
         }
     }
@@ -554,10 +562,31 @@ const placeNode = (node: KfTreeNode, attributeSelectors: Map<string, string>) =>
         node.parent = kfTrees[kfTrees.length - 1];
     }
 }
-
 export const calcNonSelectedMarks = () => {
     const nonSelectedMarks: Set<string> = new Set(chartManager.marks.keys());
     for (let group of kfTrees) {
+        const attributeSelectors = group.attributeSelectors;
+        const markTypeSelectors: Set<string> = new Set();
+        for (let child of group.children.flatMap(val => val)) {
+            for (let typeName of child.markTypeSelectors) {
+                markTypeSelectors.add(typeName);
+            }
+        }
+        for (let id of nonSelectedMarks) {
+            if (!meetMarkTypeConstrains(id, markTypeSelectors)) {
+                continue;
+            }
+            if (!meetAttributeConstrains(id, attributeSelectors)) {
+                continue;
+            }
+            nonSelectedMarks.delete(id);
+        }
+    }
+    return nonSelectedMarks;
+}
+export const calcNonSelectedMarksPreview = (kfT: KfTreeGroup[]) => {
+    const nonSelectedMarks: Set<string> = new Set(chartManager.marks.keys());
+    for (let group of kfT) {
         const attributeSelectors = group.attributeSelectors;
         const markTypeSelectors: Set<string> = new Set();
         for (let child of group.children.flatMap(val => val)) {
@@ -599,6 +628,199 @@ const getLeftMost = (group: KfTreeGroup) => {
     return { leftMostGroup, leftMostNode };
 }
 
+export const previewFrame = (nextKf: string[]) => {
+    let kfT: KfTreeGroup[] = kfTrees.map(i => i.deepClone(null));
+    const markTypeSelectors: Set<string> = new Set();
+    for (let markId of nextKf) {
+        const attributes = chartManager.marks.get(markId);
+        markTypeSelectors.add(attributes.get(MARKID));
+    }
+    const attributeSelectors: Map<string, string> = extractAttributeConstrains(new Set(nextKf));
+    if (needExpandPreview(markTypeSelectors, kfT)) {
+        let groupBy = "";
+        const group = kfT.pop();
+
+        for (let [k, v] of group.attributeSelectors) {
+            if (attributeSelectors.get(k) != v) {
+                groupBy = k;
+                break;
+            }
+        }
+        console.assert(groupBy != "");
+
+        let parentAttributeSelectors = new Map(group.attributeSelectors)
+        parentAttributeSelectors.delete(groupBy);
+        for (let child of group.children.flatMap(val => val)) {
+            for (let markType of child.markTypeSelectors) {
+                markTypeSelectors.add(markType);
+            }
+        }
+        const { leftMostGroup, leftMostNode } = getLeftMost(group);
+        const node = new KfTreeNode(markTypeSelectors, null);
+        node.grouping = {
+            groupBy,
+            child: group,
+            sequence: getExpandSequence(
+                selectByMarkTypeSelectors(leftMostNode.markTypeSelectors),
+                groupBy,
+                leftMostGroup.attributeSelectors.get(groupBy)
+            ),
+            sort: {
+                channel: null,
+                order: null,
+            }
+        }
+        group.parent = node;
+
+        attributeSelectors.delete(groupBy);
+        //place Node
+        if (needNewGroupPreview(parentAttributeSelectors, kfT)) {
+            const group = new KfTreeGroup(parentAttributeSelectors, [[node]], null);
+            node.parent = group;
+            kfT.push(group);
+        } else {
+            kfT[kfT.length - 1].children.push([node]);
+            node.parent = kfT[kfT.length - 1];
+        }
+    } else {
+        const node = new KfTreeNode(markTypeSelectors, null);
+        node.property = {
+            duration: 300,
+            effectType: "fade",
+            easing: "easeLinear"
+        }
+
+        if (needNewGroupPreview(attributeSelectors, kfT)) {
+            const group = new KfTreeGroup(attributeSelectors, [[node]], null);
+            node.parent = group;
+            kfT.push(group);
+        } else {
+            kfT[kfT.length - 1].children.push([node]);
+            node.parent = kfT[kfT.length - 1];
+        }
+    }
+    while (true) {
+        const nonSelectedMarks = calcNonSelectedMarks();
+        // check if it can construct subtree
+        const lastGroup = kfT[kfT.length - 1];
+        const attributeSelectors = lastGroup.attributeSelectors;
+        const markTypeSelectors: Set<string> = new Set();
+        for (let child of lastGroup.children.flatMap(val => val)) {
+            for (let typeName of child.markTypeSelectors) {
+                markTypeSelectors.add(typeName);
+            }
+        }
+
+        let canUpdateSubtree = false;
+        for (let id of nonSelectedMarks) {
+            if (meetAttributeConstrains(id, attributeSelectors)) {
+                canUpdateSubtree = true;
+                break;
+            }
+        }
+
+        // check how many ways it can expand
+        let parentAttributeSelectors: Map<string, string> = new Map();
+        if (kfT.length >= 2) {
+            parentAttributeSelectors = kfT[kfT.length - 2].attributeSelectors;
+        }
+
+        // some asserts
+        for (let [k, v] of parentAttributeSelectors) {
+            console.assert(attributeSelectors.get(k) == v);
+        }
+
+        if (attributeSelectors.size == parentAttributeSelectors.size) {
+            break;
+        }
+        if (attributeSelectors.size - parentAttributeSelectors.size > 1 || canUpdateSubtree) {
+            const expandDirections: string[] = [];
+            for (let [k, v] of attributeSelectors) {
+                if (!parentAttributeSelectors.has(k)) {
+                    expandDirections.push(k);
+                }
+            }
+
+            let { leftMostGroup, leftMostNode } = getLeftMost(kfT[kfT.length - 1]);
+
+            const marks = selectByMarkTypeSelectors(leftMostNode.markTypeSelectors);
+
+            for (let attributeName of expandDirections) {
+                const attributeSelectors = new Map(leftMostGroup.attributeSelectors);
+                const sequence = getExpandSequence(
+                    marks,
+                    attributeName,
+                    attributeSelectors.get(attributeName),
+                );
+                attributeSelectors.delete(attributeName);
+                const filteredMarks: Set<string> = new Set();
+                const attributeValues: Set<string> = new Set();
+                for (let id of marks) {
+                    if (meetAttributeConstrains(id, attributeSelectors)) {
+                        filteredMarks.add(id);
+                        attributeValues.add(chartManager.marks.get(id).get(attributeName));
+                    }
+                }
+                for (let i = 1; i < sequence.length; i++) {
+                    if (attributeValues.has(sequence[i])) {
+                        attributeSelectors.set(attributeName, sequence[i]);
+                        break;
+                    }
+                }
+                console.assert(attributeSelectors.get(attributeName) != undefined);
+                if (attributeSelectors.get(attributeName) != undefined) {
+                    const markSet: Set<string> = new Set();
+                    for (let id of filteredMarks) {
+                        if (meetAttributeConstrains(id, attributeSelectors)) {
+                            markSet.add(id);
+                        }
+                    }
+                }
+            }
+            break;
+        }
+        let groupBy = "";
+        for (let [k, v] of attributeSelectors) {
+            if (!parentAttributeSelectors.has(k)) {
+                groupBy = k;
+                break;
+            }
+        }
+
+        kfT.length--;
+
+        const { leftMostGroup, leftMostNode } = getLeftMost(lastGroup);
+        const node = new KfTreeNode(markTypeSelectors, null);
+        node.grouping = {
+            groupBy,
+            child: lastGroup,
+            sequence: getExpandSequence(
+                selectByMarkTypeSelectors(leftMostNode.markTypeSelectors),
+                groupBy,
+                leftMostGroup.attributeSelectors.get(groupBy)
+            ),
+            sort: {
+                channel: null,
+                order: null,
+            }
+        }
+        lastGroup.parent = node;
+
+        attributeSelectors.delete(groupBy);
+        if (needNewGroupPreview(attributeSelectors, kfT)) {
+            const group = new KfTreeGroup(attributeSelectors, [[node]], null);
+            node.parent = group;
+            kfT.push(group);
+        } else {
+            kfT[kfT.length - 1].children.push([node]);
+            node.parent = kfT[kfT.length - 1];
+        }
+    }
+    // generate Canis animation
+    const animationTree = generatePreviewCanisSpec(kfT);
+    const lottiespec = chartManager.updatePreviewCanisSpec(animationTree);
+    return lottiespec;
+}
 
 export const addSelection = (selection: string[]) => {
     kfTrees = kfTrees.map(i => i.deepClone(null));
@@ -650,7 +872,6 @@ export const addSelection = (selection: string[]) => {
 
         attributeSelectors.delete(groupBy);
         placeNode(node, parentAttributeSelectors);
-        console.log(kfTrees);
     } else {
         const node = new KfTreeNode(markTypeSelectors, null);
         node.property = {
@@ -779,12 +1000,6 @@ export const addSelection = (selection: string[]) => {
     kfTrack.resetActiveNode();
     saveHistory();
     renderKfTree();
-
-    // TODO: for test, remove later
-    // for (let group of kfTrees) {
-    //     flatten(group, new Set(Array.from(chartManager.markTable.keys()).filter(i => meetAttributeConstrains(i, group.attributeSelectors))));
-    // }
-    // console.log("################");
 }
 
 const renderKfTree = () => {
@@ -841,12 +1056,10 @@ export const getSuggestFrames = (selections: string[]): string[][] => {
     }
     const constrains = extractAttributeConstrains(new Set(selections))
     for (let [k, v] of constrains) {
-        // console.assert(allAttributes.has(k));
         if (allAttributes.has(k)) {
             allAttributes.set(k, v);
         }
     }
-
     const addFrame = (frameMarks: string[]) => {
         if (results.some(i => Tool.identicalArrays(i, frameMarks))) {
             return;
@@ -906,15 +1119,45 @@ export const getSuggestFrames = (selections: string[]): string[][] => {
         }
         enumMarks(selectedAttributes);
     }
-    // console.log(results);
     if (results.length <= 8) {
         return results;
     } else {
+
         return results2;
     }
 }
 
-
+const generatePreviewCanisSpec = (kfTree: KfTreeGroup[]) => {
+    let animations: any[] = [];
+    let time = 0;
+    let lastDuration = 0;
+    let isFirst = true;
+    for (let group of kfTree) {
+        const animationTreeGroup = new AnimationTreeGroup();
+        lastDuration = animationTreeGroup.fromKfTreeGroup(
+            group,
+            Array.from(chartManager.marks.keys()).filter(i => meetAttributeConstrains(i, group.attributeSelectors)),
+            isFirst,
+            lastDuration,
+            1
+        );
+        isFirst = false;
+        time = animationTreeGroup.render(animations, time);
+    }
+    {
+        const animationTreeGroup = new AnimationTreeGroup();
+        lastDuration = animationTreeGroup.fromKfTreeGroup(
+            firstFrame,
+            [...calcNonSelectedMarksPreview(kfTree)],
+            true,
+            0,
+            1
+        );
+        isFirst = false;
+        time = animationTreeGroup.render(animations, time);
+    }
+    return animations;
+}
 const generateCanisSpec = () => {
     let animations: any[] = [];
     let time = 0;
@@ -936,6 +1179,7 @@ const generateCanisSpec = () => {
 
     {
         const animationTreeGroup = new AnimationTreeGroup();
+
         lastDuration = animationTreeGroup.fromKfTreeGroup(
             firstFrame,
             [...calcNonSelectedMarks()],
@@ -946,18 +1190,6 @@ const generateCanisSpec = () => {
         isFirst = false;
         time = animationTreeGroup.render(animations, time);
     }
-
-    // for (let group of kfTrees) {
-    //     time = generateCanisSpecOfGroup(
-    //         group,
-    //         new Set(Array.from(chartManager.marks.keys()).filter(i => meetAttributeConstrains(i, group.attributeSelectors))),
-    //         animations,
-    //         time,
-    //         isFirst
-    //     );
-    //     isFirst = false;
-    // }
-    // // console.log(JSON.stringify(animations));
     return animations;
 }
 
@@ -1410,167 +1642,6 @@ const generateKfTrackOfGroup = (
         }
         addNewChild(colume, arr[0]);
     }
-    // for (let child of group.children.flatMap(val => val)) {
-    //     const subset: Set<string> = new Set();
-    //     for (let id of marks) {
-    //         if (meetMarkTypeConstrains(id, child.markTypeSelectors)) {
-    //             subset.add(id);
-    //         }
-    //     }
-
-    //     if (child.grouping == null) {
-    //         if (subset.size == 0) {
-    //             continue;
-    //         }
-    //         for (let id of subset) {
-    //             svg.getElementById(id).removeAttribute("display");
-    //         }
-
-    //         const blob = new Blob([new XMLSerializer().serializeToString(svg)], { type: "image/svg+xml;charset=utf-8" });
-    //         const url = URL.createObjectURL(blob);
-    //         // TODO: delete blob?
-
-    //         if (group.children.length > 1) {
-    //             const childGroup = new KfRow(
-    //                 Array.from(child.markTypeSelectors).join(","),
-    //                 result
-    //             )
-    //             childGroup.levelFromLeaves = 1;
-    //             addNewChild(childGroup, child);
-    //             childGroup.children.push(new KfNode(
-    //                 child.property.duration,
-    //                 child.property.effectType,
-    //                 child.property.easing,
-    //                 url,
-    //                 childGroup,
-    //                 child
-    //             ))
-    //         } else {
-    //             addNewChild(new KfNode(
-    //                 // Array.from(child.markTypeSelectors).join(","),
-    //                 child.property.duration,
-    //                 child.property.effectType,
-    //                 child.property.easing,
-    //                 url,
-    //                 result,
-    //                 child
-    //             ), child);
-    //         }
-
-    //         for (let id of subset) {
-    //             const element = svg.getElementById(id);
-    //             const opacity = element.getAttribute("opacity");
-    //             if (opacity == null || opacity.length == 0) {
-    //                 element.setAttribute("opacity", "0.3");
-    //             } else {
-    //                 element.setAttribute("opacity", String(Number(opacity) * 0.3));
-    //             }
-    //         }
-    //     } else {
-    //         const groupBy = child.grouping.groupBy;
-    //         const partition: Map<string, Set<string>> = new Map();
-    //         for (let id of subset) {
-    //             const value = chartManager.marks.get(id).get(groupBy);
-    //             if (!partition.has(value)) {
-    //                 partition.set(value, new Set());
-    //             }
-    //             partition.get(value).add(id);
-    //         }
-    //         const sequence: string[] = child.grouping.sequence.filter(i => partition.has(i));
-    //         if (child.grouping.sort.channel) {
-    //             const channel = child.grouping.sort.channel;
-    //             const order = child.grouping.sort.order;
-    //             if (channel == groupBy) {
-    //                 sortStrings(sequence);
-    //             } else if (channel) {
-    //                 const count = new Map<string, number>();
-    //                 for (let [k, v] of partition) {
-    //                     let sum = 0;
-    //                     for (let id of v) {
-    //                         const value = chartManager.numericAttrs.get(id).get(channel);
-    //                         if (value) {
-    //                             sum += Number(value);
-    //                         }
-    //                     }
-    //                     count.set(k, sum);
-    //                 }
-    //                 sequence.sort((a: string, b: string) => {
-    //                     return count.get(a) - count.get(b);
-    //                 });
-    //             }
-    //             if (order == "dsc") {
-    //                 sequence.reverse();
-    //             }
-    //         }
-
-    //         const sortAttributes: string[] = [];
-    //         sortAttributes.push(groupBy);
-    //         for (let id of subset) {
-    //             for (let attributeName of chartManager.numericAttrs.get(id).keys()) {
-    //                 if (!sortAttributes.includes(attributeName)) {
-    //                     sortAttributes.push(attributeName);
-    //                 }
-    //             }
-    //         }
-
-    //         if (partition.size <= 3) {
-    //             let isFirstChild = true;
-    //             for (let attributeName of sequence) {
-    //                 if (!partition.has(attributeName)) {
-    //                     continue;
-    //                 }
-    //                 const originalNode = isFirstChild ? child : child.grouping.child;
-    //                 isFirstChild = false;
-    //                 addNewChild(generateKfTrackOfGroup(
-    //                     child.grouping.child, partition.get(attributeName), attributeName,
-    //                     svg,
-    //                     result,
-    //                     true,
-    //                     sortAttributes,
-    //                     child
-    //                 ), originalNode)
-    //             }
-    //         } else {
-    //             let keys = sequence;
-    //             addNewChild(generateKfTrackOfGroup(
-    //                 child.grouping.child, partition.get(keys[0]), keys[0], svg, result, true,
-    //                 sortAttributes, child
-    //             ), child);
-    //             addNewChild(generateKfTrackOfGroup(
-    //                 child.grouping.child, partition.get(keys[1]), keys[1], svg, result, true,
-    //                 sortAttributes, child
-    //             ), child.grouping.child);
-
-    //             for (let i = 2; i < keys.length - 1; i++) {
-    //                 const marks = partition.get(keys[i]);
-    //                 for (let id of marks) {
-    //                     const element = svg.getElementById(id);
-    //                     element.removeAttribute("display");
-    //                     const opacity = element.getAttribute("opacity");
-    //                     if (opacity == null || opacity.length == 0) {
-    //                         element.setAttribute("opacity", "0.3");
-    //                     } else {
-    //                         element.setAttribute("opacity", String(Number(opacity) * 0.3));
-    //                     }
-    //                 }
-    //             }
-    //             const omit = new KfOmit(keys.length - 3, result);
-    //             omit.levelFromLeaves = result.children[result.children.length - 1].levelFromLeaves;
-    //             // result.children.push(omit);
-    //             addNewChild(omit, child.grouping.child);
-
-    //             result.children.push(generateKfTrackOfGroup(
-    //                 child.grouping.child, partition.get(keys[keys.length - 1]), keys[keys.length - 1], svg, result, true,
-    //                 sortAttributes, child
-    //             ));
-    //         }
-    //     }
-    // }
-    // for (let i of result.children) {
-    //     result.levelFromLeaves = Math.max(i.levelFromLeaves + 1, result.levelFromLeaves);
-    // }
-    console.log('result', result);
-
     return result;
 }
 
@@ -1587,11 +1658,6 @@ const flatten = (group: KfTreeGroup, marks: Set<string>) => {
 
         if (child.grouping == null) {
             result.push(subset);
-            // console.log("----------------");
-            // for (let id of subset) {
-            //     console.log(document.getElementById(id));
-            // }
-            // console.log("----------------");
         } else {
             const groupBy = child.grouping.groupBy;
             const partition: Map<string, Set<string>> = new Map();

@@ -13,14 +13,27 @@ export default class Canis {
     duration() {
         return Animation.wholeEndTime;
     }
-
+    renderSpecPreview(spec, callback) {
+        if (Object.keys(this.canisObj).length === 0) {
+            this.canisObj = new CanisSpec();
+        }
+        //
+        this.canisObj.initPreview(spec);
+        return this.canisObj.render(callback);
+        // return this.canisObj.init(spec).then(() => {
+        //     return this.canisObj.render(callback);
+        // })
+    }
     renderSpec(spec, callback) {
         if (Object.keys(this.canisObj).length === 0) {
             this.canisObj = new CanisSpec();
         }
-        return this.canisObj.init(spec).then(() => {
-            return this.canisObj.render(callback);
-        })
+        //
+        this.canisObj.init(spec);
+        return this.canisObj.render(callback);
+        // return this.canisObj.init(spec).then(() => {
+        //     return this.canisObj.render(callback);
+        // })
     }
 
     reset() {

@@ -24,7 +24,6 @@ export class AddPanel {
 
         container.setAttribute("id", "addPanel");
         const dashBox = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        // dashBox.setAttribute("class", "dashBox");
         dashBox.setAttribute("height", String(height - 2 * padding));
         dashBox.setAttribute("x", String(padding));
         dashBox.setAttribute("y", String(padding));

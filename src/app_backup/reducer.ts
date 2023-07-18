@@ -77,7 +77,6 @@ export default class Reducer {
                 currentAni.offset = 300;
                 break;
             case action.UPDATE_ANI_ALIGN_AFTER_ANI:
-                console.log('in htre');
                 if (typeof currentAni.align !== 'undefined') {
                     const alignedOnData: boolean = typeof Animation.animations.get(actionInfo.currentAniId).alignOnData === 'undefined' ? false : Animation.animations.get(actionInfo.currentAniId).alignOnData;
                     //remove align and set grouping for this ani

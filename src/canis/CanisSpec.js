@@ -33,20 +33,6 @@ class CanisSpec {
         return this._constants;
     }
 
-    // set actionTmpls(actionArr) {
-    //     this._actionTmpls.clear();
-    //     actionArr.forEach(a => {
-    //         if(!a.name || typeof a.name === 'undefined'){
-    //             a.name = '';
-    //         }
-    //         this._actionTmpls.set(a.name, a);
-    //     })
-    // }
-
-    // get actionTmpls() {
-    //     return this._actionTmpls;
-    // }
-
     set animations(aniJson) {
         // console.log('assigning animations: ', this.chartSpecs, aniJson);
         let idxAniJson = aniJson.map(tmpAni => {
@@ -125,6 +111,39 @@ class CanisSpec {
         ChartSpec.addLottieMarkLayers(ChartSpec.svgChart);
 
         // console.timeEnd('prepeocess charts');
+        return canisObj;
+    }
+    preprocessChartsPreview(spec, diffChart, status = {}) {
+        // console.time('prepeocess charts');
+        let canisObj = spec;
+
+        // if (diffChart) {//using different chart, processing charts
+        this.chartSpecs = [];
+        [canisObj.charts, this.hasError] = ChartSpec.chartPreProcessing(canisObj.charts, status);
+        if (this.hasError) return canisObj;
+        //deal with input charts
+        for (let i = 0; i < canisObj.charts.length; i++) {
+            const chartName = typeof canisObj.charts[i].id === 'undefined' ? 'chart' + i : canisObj.charts[i].id;
+            const chartType = typeof canisObj.charts[i].type === 'undefined' ? ChartSpec.CHART_URL : canisObj.charts[i].type;
+            const tmpChart = new ChartSpec(chartName, chartType, canisObj.charts[i].source);
+            this.chartSpecs.push(tmpChart);
+        }
+        //init facet
+        if (canisObj.facet) {
+            this.facet = new FacetSpec(canisObj.facet.type, canisObj.facet.views);
+        }
+        this.hasError = ChartSpec.loadCharts(this.chartSpecs, this.facet, status);
+        if (this.hasError) return canisObj;
+
+        //set viewport for jsmovin
+        globalVar.jsMovin.setViewport(ChartSpec.viewport.chartWidth, ChartSpec.viewport.chartHeight);
+
+        ChartSpec.removeTransAndMerge();
+        document.getElementById('chartContainer').innerHTML = '';
+        document.getElementById('chartContainer').appendChild(ChartSpec.svgChart);
+        // }
+        globalVar.jsMovin.clearLayers();
+        ChartSpec.addLottieMarkLayers(ChartSpec.svgChart);
         return canisObj;
     }
 
@@ -234,15 +253,6 @@ class CanisSpec {
                         break;
                     }
                 }
-                // //check align
-                // if (spec.animations[i].align) {
-                //     if (!Object.keys(Animation.alignTarget).includes(Animation.transAlign(spec.animations[i].align))) {
-                //         hasError = true;
-                //         status.info = { type: 'error', msg: 'The value of align has to be one of: element or object.', errSpec: '"align":"' + spec.animations[i].align.replace(/\s/g, '') + '"' };
-                //         break;
-                //     }
-                // }
-                //check align
                 if (spec.animations[i].align && typeof spec.animations[i].align === 'object') {
                     hasError = this.checkAttrs(Animation.alignAttrs, spec.animations[i].align, status);
                     if (hasError) {
@@ -344,8 +354,7 @@ class CanisSpec {
         }
         return false;
     }
-
-    async init(spec, status = {}) {
+    initPreview(spec, status = {}) {
         if (JSON.stringify(status) !== '{}') {
             this.hasError = false;
             // this.hasError = this.checkSpec(spec, status);
@@ -372,9 +381,9 @@ class CanisSpec {
             } else {
                 //set framerate for jsmovin
                 globalVar.jsMovin.setFrameRate(TimingSpec.FRAME_RATE);
-
                 const diffChart = this.compareSpec(spec);
-                let canisObj = await this.preprocessCharts(spec, diffChart, status);
+                let chartContainer = document.getElementById('visChart');
+                let canisObj =  this.preprocessChartsPreview(spec, diffChart, status);
 
                 //init user defined variables
                 if (canisObj.constants && typeof canisObj.constants !== 'undefined') {
@@ -566,14 +575,245 @@ class CanisSpec {
 
                                 }
                             })
-                            // console.log('after', Animation.domMarks);
                         }
-                        // animation.calAniTime(markIds, lastAnimation);
                         animation.calAniTime(markIds);
                         Animation.animations.get(aniKey).alignOnData = animation.alignOnData;
                         lastAnimation = animation;
                         document.body.removeChild(tmpContainer);
-                        // console.log('test marks in order in the end: ', animation.marksInOrder);
+                    }
+                }
+                document.getElementById('chartContainer').innerHTML = '';
+                document.getElementById('chartContainer').appendChild(chartContainer);
+            }
+        }
+
+    }
+    init(spec, status = {}) {
+        if (JSON.stringify(status) !== '{}') {
+            this.hasError = false;
+            // this.hasError = this.checkSpec(spec, status);
+        } else {
+            this.hasError = false;
+        }
+
+        if (!this.hasError) {
+            Animation.resetAll();
+            GroupingSpec.frames.clear();//clear keyframe record;
+            GroupingSpec.framesMark.clear();//clear keyframe record;
+            if (spec.charts.length === 0) {//no charts specified
+                Animation.domMarks.clear();
+                Animation.allMarks = [];
+                ChartSpec.dataMarkDatum.clear();
+                ChartSpec.nonDataMarkDatum.clear();
+                ChartSpec.chartUnderstanding = { mShape: ['shape'] };
+                Animation.animations.clear();
+                Animation.markClass.clear();
+                ActionSpec.actionTmpls.clear();
+                if (document.getElementById('chartContainer')) {
+                    document.getElementById('chartContainer').innerHTML = '';
+                }
+            } else {
+                //set framerate for jsmovin
+                globalVar.jsMovin.setFrameRate(TimingSpec.FRAME_RATE);
+
+                const diffChart = this.compareSpec(spec);
+                let canisObj =  this.preprocessCharts(spec, diffChart, status);
+
+                //init user defined variables
+                if (canisObj.constants && typeof canisObj.constants !== 'undefined') {
+                    this.constants = canisObj.constants;
+                }
+                if (canisObj.effectTmpls && typeof canisObj.effectTmpls !== 'undefined') {
+                    ActionSpec.assignActionTmpls(canisObj.effectTmpls, status);
+                }
+                console.log('effect tmpls: ', ActionSpec.actionTmpls);
+
+                //deal with animations
+                this.animations = canisObj.animations;
+                if (Array.isArray(this.animations)) {
+                    let lastAnimation;
+                    for (let aniIdx = 0; aniIdx < this.animations.length; aniIdx++) {
+                        let animationJson = this.animations[aniIdx];
+
+                        // console.time('using dom');
+                        //use the selector in animation to select marks and record dom attrs
+                        // console.time('query dom');
+                        let tmpContainer = document.createElement('div');
+                        document.body.appendChild(tmpContainer);
+                        tmpContainer.innerHTML = ChartSpec.charts[animationJson.chartIdx].outerHTML;
+                        let marks = tmpContainer.querySelectorAll(animationJson.selector);
+                        let tmpAllMarks = [];
+                        [].forEach.call(tmpContainer.querySelectorAll('.mark'), function (tm) {
+                            tmpAllMarks.push(tm.getAttribute('id'));
+                            let mClass = tm.getAttribute('class').split(' ');
+                            let markType = '';
+                            for (let i = 0, len = mClass.length; i < len; i++) {
+                                if (mClass[i] === 'mark') {
+                                    markType = mClass[i + 1];
+                                }
+                            }
+                            Animation.markClass.set(tm.getAttribute('id'), markType);
+                        })
+                        Animation.allMarks = [...new Set([...Animation.allMarks, ...tmpAllMarks])];
+                        if (marks.length === 0) {
+                            if (typeof animationJson.selector === 'number') {
+                                status.info = { type: 'error', msg: 'The selector need to be a CSS selector', errSpec: '"selector":' + animationJson.selector };
+                            } else {
+                                status.info = { type: 'error', msg: 'The selector ' + animationJson.selector + ' selects no marks', errSpec: '"selector":"' + animationJson.selector.replace(/\s/g, '') + '"' };
+                            }
+                            return;
+                        }
+                        // console.timeEnd('query dom');
+                        animationJson.selector = this.sortSelector(animationJson.selector);
+
+                        let usedChangedAttrs = [];
+                        for (let i = 0; i < ChartSpec.changedAttrs.length; i++) {
+                            usedChangedAttrs.push(ChartSpec.changedAttrs[i]);
+                        }
+
+                        //check whether the animation is existed
+                        //TODO: remove non existed animations in the current spec
+                        let animation;
+                        let markIds = [];
+                        if (marks.length > 0) {
+                            [].forEach.call(marks, function (mark) {
+                                markIds.push(mark.getAttribute('id'));
+                            })
+                        }
+                        let aniKey = animationJson.chartIdx + '_' + animationJson.selector;
+                        if (aniKey === '0_.mark') {
+                            aniKey = `0_#${Animation.allMarks.join(', #')}`;
+                        }
+                        if (typeof Animation.animations.get(aniKey) !== 'undefined') {//already have this animation
+                            animation = Animation.animations.get(aniKey);
+                            animation.translate(animationJson, usedChangedAttrs, true, status);
+                        } else {
+                            animation = new Animation();
+                            animation.translate(animationJson, usedChangedAttrs, false, status);//translate from json obj to Animation obj
+                            Animation.animations.set(aniKey, animation);
+                        }
+                        //auto fill align property for animations except the first one
+                        if (typeof animation.align === 'undefined' && typeof lastAnimation !== 'undefined') {
+                            animation.align = {
+                                target: lastAnimation.id,
+                                type: Animation.alignTarget.withObj
+                            }
+                        }
+                        //replace contant variables
+                        if (this.constants.size > 0) {
+                            animation.replaceConstants(this.constants, status);
+                        }
+
+                        // console.timeEnd('using dom');
+                        // let markIds = [];//record all ids of selected marks
+                        if (marks.length > 0) {
+                            const idxForEachCls = new Map();
+                            [].forEach.call(marks, function (mark) {
+                                if (mark.classList.contains('mark')) {
+                                    let markId = mark.getAttribute('id');
+                                    let markCls = mark.getAttribute('class');
+                                    if (typeof idxForEachCls.get(markCls) === 'undefined') {
+                                        idxForEachCls.set(markCls, 0);
+                                    } else {
+                                        idxForEachCls.set(markCls, idxForEachCls.get(markCls) + 1);
+                                    }
+                                    // markIds.push(markId);
+                                    if (typeof Animation.domMarks.get(markId) === 'undefined') {
+                                        //process path
+                                        if (mark.tagName === 'path') {//consider the linkage shape later
+                                            let markJSON = CanisUtil.toJSON(mark);
+                                            let transformedAttrs = CanisUtil.discretizePath(markJSON);
+
+                                            if (transformedAttrs) {
+                                                if (transformedAttrs.type === 'lines') {
+                                                    for (let i = 0; i < transformedAttrs.data.length; i++) {
+                                                        markJSON.attr['x' + (1 + 2 * i)] = transformedAttrs.data[i][0][0];
+                                                        markJSON.attr['y' + (1 + 2 * i)] = transformedAttrs.data[i][0][1];
+                                                        markJSON.attr['x' + (2 + 2 * i)] = transformedAttrs.data[i][1][0];
+                                                        markJSON.attr['y' + (2 + 2 * i)] = transformedAttrs.data[i][1][1];
+                                                    }
+                                                } else {
+                                                    let tfAttrsDataKeys = Object.keys(transformedAttrs.data);
+
+                                                    for (let i = 0; i < tfAttrsDataKeys.length; i++) {
+                                                        let tAttr = tfAttrsDataKeys[i];
+                                                        if (tAttr === 'radius') {
+                                                            if (transformedAttrs.data[tAttr].length > 1) {
+                                                                markJSON.attr.innerRadius = transformedAttrs.data[tAttr][0].rx + 1;
+                                                                markJSON.attr.outterRadius = transformedAttrs.data[tAttr][1].rx - 1;
+                                                            } else {
+                                                                markJSON.attr.innerRadius = 0;
+                                                                markJSON.attr.outterRadius = transformedAttrs.data[tAttr][0].rx - 1;
+                                                            }
+                                                        } else {
+                                                            markJSON.attr[tAttr] = transformedAttrs.data[tAttr];
+                                                        }
+                                                    }
+                                                }
+                                                mark = CanisUtil.toDOM(markJSON);
+                                            }
+                                        }
+
+                                        let tmpDomAttrObj = {};
+                                        let attrArr = [...mark.attributes];
+                                        for (let i = 0; i < attrArr.length; i++) {
+                                            let attrName = attrArr[i];
+                                            tmpDomAttrObj[attrName.name] = mark.getAttribute(attrName.name);
+                                        }
+                                        let markDom = document.getElementById(markId);
+                                        tmpDomAttrObj['bbWidth'] = markDom.getBBox().width;
+                                        tmpDomAttrObj['bbHeight'] = markDom.getBBox().height;
+                                        tmpDomAttrObj['bbX'] = markDom.getBBox().x;
+                                        tmpDomAttrObj['bbY'] = markDom.getBBox().y;
+                                        tmpDomAttrObj['content'] = mark.textContent;
+                                        tmpDomAttrObj['id'] = markId;
+                                        let dataDatumAttrValue = JSON.parse(mark.getAttribute('data-datum'));
+                                        if (Array.isArray(dataDatumAttrValue)) {
+                                            dataDatumAttrValue = dataDatumAttrValue[0];
+                                        }
+                                        dataDatumAttrValue.clsIdx = `a${idxForEachCls.get(markCls)}`;
+                                        if (typeof ChartSpec.nonDataMarkDatum.get(markId) !== 'undefined') {
+                                            ChartSpec.nonDataMarkDatum.get(markId).clsIdx = `a${idxForEachCls.get(markCls)}`;
+                                        }
+                                        tmpDomAttrObj['data-datum'] = dataDatumAttrValue;
+                                        // CanisSpec.markData.set(markId, dataDatumAttrValue);
+                                        tmpDomAttrObj['tagName'] = mark.tagName;
+                                        if (mark.tagName === 'path' || mark.tagName === 'line') {
+                                            tmpDomAttrObj['stroke-dasharray'] = document.getElementById(markId).getTotalLength();
+                                            tmpDomAttrObj['stroke-dashoffset'] = document.getElementById(markId).getTotalLength();
+                                            if (mark.tagName === 'path') {
+                                                let discD = CanisUtil.discretizeD(mark.getAttribute('d'), '#000');
+                                                
+                                                
+                                                if (typeof discD !== 'undefined' && discD) {
+                                                    console.log('discdtype', discD.type);
+                                                    if (discD.type === 'pies') {
+                                                        tmpDomAttrObj['cx'] = discD.data.cx;
+                                                        tmpDomAttrObj['cy'] = discD.data.cy;
+                                                        tmpDomAttrObj['startAngle'] = (discD.data.clockwise ? discD.data.startAngle : discD.data.endAngle) - 1 / (Math.PI * 2);
+                                                        tmpDomAttrObj['endAngle'] = (!discD.data.clockwise ? discD.data.startAngle : discD.data.endAngle) + Math.PI * 4 + 1 / (Math.PI * 2);
+                                                        if (discD.data.radius.length > 1) {
+                                                            tmpDomAttrObj['innerRadius'] = discD.data.radius[0].rx > discD.data.radius[1].rx ? discD.data.radius[1].rx : discD.data.radius[0].rx;
+                                                            tmpDomAttrObj['outterRadius'] = discD.data.radius[0].rx > discD.data.radius[1].rx ? discD.data.radius[0].rx : discD.data.radius[1].rx;
+                                                            tmpDomAttrObj['outterRadius']++;
+                                                        } else {
+                                                            tmpDomAttrObj['innerRadius'] = 0;
+                                                            tmpDomAttrObj['outterRadius'] = discD.data.radius[0].rx + 1;
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                        Animation.domMarks.set(markId, tmpDomAttrObj);
+                                    }
+
+                                }
+                            })
+                        }
+                        animation.calAniTime(markIds);
+                        Animation.animations.get(aniKey).alignOnData = animation.alignOnData;
+                        lastAnimation = animation;
+                        document.body.removeChild(tmpContainer);
                     }
                 }
             }

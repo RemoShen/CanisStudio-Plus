@@ -7,6 +7,7 @@ import { clearKfTrees } from "./kfTree";
 import { MarkSelector, MarkSelectorMode } from "./markSelector";
 import { markTableManager } from "./markTableManager";
 import Tool from "../util/tool";
+import { clone } from "lodash";
 
 export const MARKID = "_MARKID";
 export const MONTHS = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December", "Jan", "Feb", "Mar", "Apr", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
@@ -71,14 +72,13 @@ class ChartManager {
     lottieSpec: any;
     lottieAnimation: any;
 
-    async loadChart(chart: string) {
+    loadChart(chart: string) {
         const chartSpec: IChartSpec[] = CanisGenerator.generateChartSpec([chart]);
         const spec: ICanisSpec = { charts: chartSpec, animations: [] };
         this.marks.clear();
         this.numericAttrs.clear();
         this.canisSpec = spec;
-        const lottieSpec = await canis.renderSpec(this.canisSpec, () => { });
-        // console.log('lottiespec', lottieSpec);
+        const lottieSpec = canis.renderSpec(this.canisSpec, () => { });
 
         this.updateAnimation(lottieSpec);
 
@@ -107,7 +107,6 @@ class ChartManager {
             this.marks.set(mark.id, attributeMap);
             this.numericAttrs.set(mark.id, numericAttributeMap);
         }
-        // MarkSelector.reset(new Set(), new Map(), []);
         this.loadMarkTables();
         clearKfTrees();
     }
@@ -137,19 +136,26 @@ class ChartManager {
         this.markTables = markTables;
         markTableManager.render();
     }
+    updatePreviewCanisSpec(animations: any[]) {
+        if (!this.canisSpec) {
+            return;
+        }
+        const spec :ICanisSpec = {charts: this.canisSpec.charts, animations: animations};
+        const lottieSpec =  canis.renderSpecPreview(spec, () => { });
+        return lottieSpec;
+    }
 
-    async updateCanisSpec(animations: any[]) {
+    updateCanisSpec(animations: any[]) {
         if (!this.canisSpec) {
             return;
         }
         this.canisSpec.animations = animations;
-        const lottieSpec = await canis.renderSpec(this.canisSpec, () => { });
+        const lottieSpec = canis.renderSpec(this.canisSpec, () => { });
         this.updateAnimation(lottieSpec);
     }
 
     updateAnimation(lottieSpec: any) {
         this.lottieSpec = lottieSpec;
-        // console.log(JSON.stringify(lottieSpec));
         document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID).innerHTML = '';
         this.lottieAnimation = Lottie.loadAnimation({
             container: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID),

@@ -19,8 +19,6 @@ export class MarkTableManager {
             const dataTable = document.createElement('table');
             dataTable.className = 'selectable-table';
             const headerTr: HTMLTableRowElement = document.createElement('tr');
-            //create table header
-            //markId
             const th: HTMLTableHeaderCellElement = document.createElement('th');
             th.className = 'no-activate-th';
             const thContainer: HTMLDivElement = document.createElement('div');
@@ -95,7 +93,6 @@ export class MarkTableManager {
                 }
                 titleContent.className = 'non-activate-p';
                 thContainer.appendChild(titleContent);
-                //create sort button
                 const sortBtn: HTMLSpanElement = document.createElement('span');
                 let iconCls: string = '';
                 if (dataTableMark.sortAttribute[index] === AttrSort.ASSCENDING_ORDER) {
@@ -197,15 +194,12 @@ export class MarkTableManager {
             })
             dataTable.appendChild(headerTr);
 
-            //create table body
             dataTableMark.items.forEach((item) => {
                 const tr: HTMLTableRowElement = document.createElement('tr');
                 tr.setAttribute('dataItem', item.id);
-                //markId
                 const td: HTMLTableDataCellElement = document.createElement('td');
                 td.innerText = item.id;
                 tr.appendChild(td);
-                //attributes
                 item.attributes.forEach((value, index) => {
                     const td: HTMLTableDataCellElement = document.createElement('td');
                     td.innerText = value;
