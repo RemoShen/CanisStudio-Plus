@@ -172,7 +172,6 @@ export class SuggestPanel {
       animationData: previewFrame(nextKf)
     });
     container.onmouseover = () => {
-      //指针变成手指
       container.style.cursor = 'pointer';
       container.style.backgroundColor = '#fff';
       animation.play();
