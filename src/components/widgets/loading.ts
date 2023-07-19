@@ -52,4 +52,4 @@ export class Loading {
     }
 }
 
-// export let loadingBlock: Loading = new Loading();
+export let loadingBlock: Loading = new Loading();

@@ -1,5 +1,5 @@
 import { ICoord } from "../util/ds";
-import { addSelection, firstFrame, previewFrame } from "./kfTree";
+import { addSelection, firstFrame, previewFrame, previewList } from "./kfTree";
 import "../assets/style/suggestBox.scss";
 import Tool from "../util/tool";
 import Lottie from "lottie-web";
@@ -78,10 +78,6 @@ export class SuggestPanel {
         `translate(0, ${0 * (height + 2 * SuggestPanel.PADDING)})`
       );
       bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 1}`);
-
-      const preview = this.createPreviewItem(allNextKf[0]);
-      preview.style.transform = `translate(5px, ${0 * (2 * SuggestPanel.PADDING) + SuggestPanel.PADDING}px)`;
-
       this.itemcontainer.appendChild(item);
     } else if (allNextKf.length > 1) {
       bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 2}`);
@@ -92,8 +88,6 @@ export class SuggestPanel {
           "transform",
           `translate(0, ${i * (height + 2 * SuggestPanel.PADDING)})`
         );
-        const preview = this.createPreviewItem(allNextKf[i]);
-        preview.style.transform = `translate(5px, ${i * (4 * SuggestPanel.PADDING) + SuggestPanel.PADDING}px)`;
         this.itemcontainer.appendChild(item);
       }
     }
@@ -134,6 +128,7 @@ export class SuggestPanel {
     container.classList.add("clickable-component");
     const itemImg = new Itemimg();
     const img = itemImg.createItemimg(nextKf, this.selectedMarks);
+    const previewAnimation = this.createPreviewItem(nextKf);
     const bg: SVGRectElement = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "rect"
@@ -145,6 +140,8 @@ export class SuggestPanel {
     bg.setAttributeNS(null, "rx", "5");
     container.appendChild(bg);
     container.appendChild(itemImg.container);
+    container.appendChild(previewAnimation);
+
     container.onmouseout = () => {
       bg.classList.add("hide-ele");
 
@@ -160,35 +157,83 @@ export class SuggestPanel {
     return container;
   }
   public createPreviewItem(nextKf: string[]) {
+    const foreignObject = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "foreignObject"
+    );
+    foreignObject.setAttributeNS(null, "width", `${Itemimg.KF_WIDTH}px`);
+    foreignObject.setAttributeNS(null, "height", `${this.kfHeight - 2 * SuggestPanel.PADDING}px`);
+    foreignObject.setAttributeNS(null, "transform", `translate(${5}, ${SuggestPanel.PADDING})`);
     const container = document.createElement('div');
+    //preview list 
     document.getElementById('aniPreview').appendChild(container);
     container.style.width = `${Itemimg.KF_WIDTH}px`;
     container.style.height = `${suggestPanel.kfHeight - 2 * SuggestPanel.PADDING}px`;
 
-    //lottie
+    const pre = previewList.find((item) => {
+      return Tool.identicalArrays(item.nextKf, nextKf);
+    });
     const animation = Lottie.loadAnimation({
       container: container,
       renderer: 'svg',
       loop: true,
       autoplay: false,
-      animationData: previewFrame(nextKf)
+      animationData: pre.animation,
     });
+    //animation list
+    const videoBox = document.getElementById('videoContainer').getBoundingClientRect();
+    const videoPreview = document.createElement('div');
+    videoPreview.style.width = `${videoBox.width}px`;
+    videoPreview.style.height = `${videoBox.height}px`;
+    videoPreview.style.position = 'absolute';
+    document.getElementById('videoContainer').appendChild(videoPreview);
+    const videoPreviewAnimation = Lottie.loadAnimation({
+      container: videoPreview,
+      renderer: 'svg',
+      loop: true,
+      autoplay: false,
+      animationData: pre.animation,
+    });
+
     container.onmouseover = () => {
       container.style.cursor = 'pointer';
       container.style.backgroundColor = '#fff';
+      player.stopAnimation();
       animation.goToAndPlay((player.totalTime - firstFrame.children[0][0].property.duration) / 20, true);
-      console.log('time', player.totalTime, firstFrame.children[0][0].property.duration);
+      videoPreviewAnimation.goToAndPlay((player.totalTime - firstFrame.children[0][0].property.duration) / 20, true);
     };
     container.onmouseout = () => {
       container.style.backgroundColor = 'transparent';
       animation.stop();
+      videoPreviewAnimation.stop();
     };
-    container.onclick = () => {
-      setTimeout(() => {
-        addSelection(nextKf);
-      }, 1);
-    };
-    return container;
+    foreignObject.appendChild(container);
+    return foreignObject;
+  }
+  public createAnimationItem(nextKf: string[]) {
+    const foreignObject = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "foreignObject"
+    );
+    foreignObject.setAttributeNS(null, "width", `${Itemimg.KF_WIDTH}px`);
+    foreignObject.setAttributeNS(null, "height", `${this.kfHeight - 2 * SuggestPanel.PADDING}px`);
+    const container = document.createElement('div');
+    document.getElementById('videoContainer').appendChild(container);
+    // container.style.width = `${Itemimg.KF_WIDTH}px`;
+    // container.style.height = `${suggestPanel.kfHeight - 2 * SuggestPanel.PADDING}px`;
+
+    const pre = previewList.find((item) => {
+      return Tool.identicalArrays(item.nextKf, nextKf);
+    });
+    const animation = Lottie.loadAnimation({
+      container: container,
+      renderer: 'svg',
+      loop: true,
+      autoplay: false,
+      animationData: pre.animation,
+    });
+    foreignObject.appendChild(container);
+    return foreignObject;
   }
 }
 export class SuggestMenu {
@@ -330,8 +375,6 @@ export class SuggestMenu {
           (this.parentSuggestPanel.kfHeight + 2 * SuggestPanel.PADDING)
           })`
         );
-        const preview = this.parentSuggestPanel.createPreviewItem(this.nextKf[i]);
-        preview.style.transform = `translate(5px, ${index * ( 4 * SuggestPanel.PADDING) + SuggestPanel.PADDING}px)`;
         this.parentSuggestPanel.itemcontainer.appendChild(item);
       }
       //
@@ -456,7 +499,7 @@ export class Itemimg {
     chartThumbnail.setAttributeNS(null, "width", `${Itemimg.KF_WIDTH}`);
     chartThumbnail.setAttributeNS(null, "height", `${height}`);
     chartThumbnail.classList.add("thumbnail");
-    
+
     return chartThumbnail;
   }
 }

@@ -177,6 +177,9 @@ export class Player {
         clearInterval(this.animationInterval);
         this.animationInterval = 'undefined';
     }
+    public stopAnimation() {
+        chartManager.lottieAnimation.stop();
+    }
 }
 
 export let player = new Player();

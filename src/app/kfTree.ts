@@ -4,6 +4,7 @@ import { KfItem, KfRow, KfNode, KfOmit, kfTrack, KfDelay, KfColume, KfGroup } fr
 import { MarkSelector } from "./markSelector";
 import { sortStrings } from "./sortUtil";
 import Tool from "../util/tool";
+import { Loading, loadingBlock } from "../components/widgets/loading";
 type MarkType = string;
 type AttributeName = string;
 type AttributeValue = string;
@@ -402,6 +403,7 @@ export class KfTreeGroup {
 
 let kfTrees: KfTreeGroup[] = [];
 let expandOptions: Set<string>[] = [];
+export let previewList: { nextKf: string[], animation: any }[] = [];
 export let firstFrame: KfTreeGroup;
 
 const history: { kfTrees: KfTreeGroup[], expandOptions: Set<string>[], firstFrame: KfTreeGroup }[] = [];
@@ -823,6 +825,7 @@ export const previewFrame = (nextKf: string[]) => {
 }
 
 export const addSelection = (selection: string[]) => {
+
     kfTrees = kfTrees.map(i => i.deepClone(null));
     const markTypeSelectors: Set<string> = new Set();
     for (let markId of selection) {
@@ -999,24 +1002,39 @@ export const addSelection = (selection: string[]) => {
 
     kfTrack.resetActiveNode();
     saveHistory();
+
     renderKfTree();
+
 }
 
 const renderKfTree = () => {
-    chartManager.updateCanisSpec(generateCanisSpec());
-    // if (!SuggestPanel.svgTable) {
-    //     const svg = document.getElementById("visChart");
-    //     SuggestPanel.svgTable = svg.cloneNode(true) as HTMLElement;
-    // }
-    const kfTrackData = generateKfTrack();
-    kfTrack.updateKfTrack(kfTrackData);
+    const wrapper = document.getElementById("appWrapper");
+    loadingBlock.createLoading(wrapper, "Generating animation...");
+    setTimeout(() => {
+        chartManager.updateCanisSpec(generateCanisSpec());
+        const allNextKf: string[][] = getSuggestFrames([]);
 
-    if (kfTrees.length == 0) {
-        MarkSelector.reset(new Set(), new Map(), expandOptions);
-        return;
-    }
-    const disabledMarks = calcSelectedMarks();
-    MarkSelector.reset(disabledMarks, kfTrees[kfTrees.length - 1].attributeSelectors, expandOptions);
+        //caculate the preview animations 
+
+        previewList = [];
+        for (let i = 0; i < allNextKf.length; i++) {
+            const nextKf = allNextKf[i];
+            const animation = previewFrame(nextKf)
+            previewList.push({ nextKf: nextKf, animation: animation });
+        }
+
+        const kfTrackData = generateKfTrack();
+        kfTrack.updateKfTrack(kfTrackData);
+        Loading.removeLoading();
+        if (kfTrees.length == 0) {
+            MarkSelector.reset(new Set(), new Map(), expandOptions);
+            return;
+        }
+        const disabledMarks = calcSelectedMarks();
+        MarkSelector.reset(disabledMarks, kfTrees[kfTrees.length - 1].attributeSelectors, expandOptions);
+    }, 0);
+
+
 }
 
 export const getSuggestFrames = (selections: string[]): string[][] => {
