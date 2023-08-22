@@ -719,23 +719,28 @@ export class KfRow extends KfGroup {
                 return;
             }
             if (this.originalNode) {
-                let virtualMovement = 0;
-                let actualMovement = 0;
+                let virtualMovementX = 0;
+                let actualMovementX = 0;
+                let virtualMovementY = 0;
+                let actualMovementY = 0;
                 document.onmousemove = (event: MouseEvent) => {
-                    virtualMovement += event.movementX;
-                    const newActualMovement = Math.max(-100, Math.min(100, virtualMovement));
-                    this.translate(newActualMovement - actualMovement, 0);
-                    actualMovement = newActualMovement;
+                    virtualMovementX += event.movementX;
+                    virtualMovementY += event.movementY;
+                    const newactualMovementX = Math.max(-300, Math.min(300, virtualMovementX));
+                    const newactualMovementY = Math.max(-100, Math.min(1000, virtualMovementY));
+                    this.translate(newactualMovementX - actualMovementX, newactualMovementY - actualMovementY);
+                    actualMovementX = newactualMovementX;
+                    actualMovementY = newactualMovementY;
                 }
                 document.onmouseup = (event: MouseEvent) => {
                     document.onmousemove = null;
                     document.onmouseup = null;
-                    if (actualMovement == -100) {
+                    if (actualMovementX == -300) {
                         this.originalNode.moveForward();
-                    } else if (actualMovement == 100) {
+                    } else if (actualMovementX == 300) {
                         this.originalNode.moveBackward();
                     } else {
-                        this.translate(-actualMovement, 0);
+                        this.translate(-actualMovementX, -actualMovementY);
                     }
                 }
             }
