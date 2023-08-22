@@ -153,7 +153,6 @@ export default class FloatingWindow {
         //add chart examples
         const exampleItemContainer1: HTMLDivElement = document.createElement('div');
         exampleItemContainer1.className = 'list-item-container';
-        // exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.MUSHROOM_CHART, 'Mushroom'));
         exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.NIGHTINGALE_CHART, 'Nightingale'));
         exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.OS_CHART, 'Mobile OS'));
         exampleItemContainer1.appendChild(this.createExampleItem(FloatingWindow.PURCHASE_CHART, 'Doughnut Purchases'));
@@ -173,7 +172,8 @@ export default class FloatingWindow {
         exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.USPOPULATION_CHART, 'usPopulation'));
         exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.CHINAPM_CHART, 'chinaPm'));
         exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.HIRING_CHART, 'hiring'));
-        exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.TSCORE_CHART, 'tScore'));
+        exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.MUSHROOM_CHART, 'Mushroom'));
+        // exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.TSCORE_CHART, 'tScore'));
         exampleList.appendChild(exampleItemContainer3);
         const exampleItemContainer4: HTMLDivElement = document.createElement("div");
         exampleItemContainer4.className = 'list-item-container';

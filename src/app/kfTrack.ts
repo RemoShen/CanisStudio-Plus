@@ -985,11 +985,11 @@ export class KfDelay {
 
     updateLengthGuide(position: number, delay: number) {
         if (delay < 0) {
-            this.lengthGuide.innerHTML = `${Math.round(-delay)} ms forward`;
+            this.lengthGuide.innerHTML = `forward: ${Math.round(-delay)} ms`;
         } else if (delay == 0) {
             this.lengthGuide.innerHTML = "no delay";
         } else {
-            this.lengthGuide.innerHTML = `${delay} ms delay`;
+            this.lengthGuide.innerHTML = `delay: ${delay} ms`;
         }
         const textWidth = this.lengthGuide.getBoundingClientRect().width;
         this.lengthGuideBackground.setAttribute("width", String((textWidth + ITEM_GAP * 2) / kfTrack.scale));
@@ -1130,7 +1130,7 @@ export class KfNode extends KfItem {
     updateLengthGuide() {
         const duration = snap(lengthToDuration(this.length), 10);
 
-        this.lengthGuide.innerHTML = `${duration} ms`;
+        this.lengthGuide.innerHTML = `duration: ${duration} ms`;
         const textWidth = this.lengthGuide.getBoundingClientRect().width;
         this.lengthGuideBackground.setAttribute("width", String((textWidth + ITEM_GAP * 2) / kfTrack.scale));
         this.lengthGuideBackground.setAttribute("x", String(this.length - (ITEM_GAP * 4 + textWidth) / kfTrack.scale));

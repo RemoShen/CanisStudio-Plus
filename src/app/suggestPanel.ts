@@ -128,7 +128,7 @@ export class SuggestPanel {
     container.classList.add("clickable-component");
     const itemImg = new Itemimg();
     const img = itemImg.createItemimg(nextKf, this.selectedMarks);
-    const previewAnimation = this.createPreviewItem(nextKf);
+    // const previewAnimation = this.createPreviewItem(nextKf);
     const bg: SVGRectElement = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "rect"
@@ -140,7 +140,7 @@ export class SuggestPanel {
     bg.setAttributeNS(null, "rx", "5");
     container.appendChild(bg);
     container.appendChild(itemImg.container);
-    container.appendChild(previewAnimation);
+    // container.appendChild(previewAnimation);
 
     container.onmouseout = () => {
       bg.classList.add("hide-ele");

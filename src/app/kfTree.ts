@@ -545,6 +545,10 @@ const getExpandSequence = (marks: Set<string>, attributeName: string, firstValue
             tryInsert(value);
         }
     }
+    if (sequence.length == 5) {
+        sequence.sort();
+    }
+
     let index = sequence.indexOf(firstValue);
     if (index >= sequence.length / 2) {
         sequence = sequence.reverse();
@@ -1013,15 +1017,14 @@ const renderKfTree = () => {
     setTimeout(() => {
         chartManager.updateCanisSpec(generateCanisSpec());
         const allNextKf: string[][] = getSuggestFrames([]);
-
         //caculate the preview animations 
 
-        previewList = [];
-        for (let i = 0; i < allNextKf.length; i++) {
-            const nextKf = allNextKf[i];
-            const animation = previewFrame(nextKf)
-            previewList.push({ nextKf: nextKf, animation: animation });
-        }
+        // previewList = [];
+        // for (let i = 0; i < allNextKf.length; i++) {
+        //     const nextKf = allNextKf[i];
+        //     const animation = previewFrame(nextKf)
+        //     previewList.push({ nextKf: nextKf, animation: animation });
+        // }
 
         const kfTrackData = generateKfTrack();
         kfTrack.updateKfTrack(kfTrackData);
@@ -1038,6 +1041,9 @@ const renderKfTree = () => {
 }
 
 export const getSuggestFrames = (selections: string[]): string[][] => {
+    // if(expandOptions.length == 1 && expandOptions[0].has("mark117") && expandOptions[0].has("mark20")){
+    //     return [[...expandOptions[0]], ["mark117", "mark20", "mark87", "mark156"]];
+    // }
     if (expandOptions.length == 0) {
         return [];
     }
@@ -1140,7 +1146,6 @@ export const getSuggestFrames = (selections: string[]): string[][] => {
     if (results.length <= 8) {
         return results;
     } else {
-
         return results2;
     }
 }
