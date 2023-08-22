@@ -1,10 +1,11 @@
 import { ICoord } from "../util/ds";
-import { addSelection, firstFrame, previewFrame, previewList } from "./kfTree";
+import { KfTreeGroup, KfTreeNode, addSelection, firstFrame, kfTrees, previewFrame, previewList } from "./kfTree";
 import "../assets/style/suggestBox.scss";
 import Tool from "../util/tool";
 import Lottie from "lottie-web";
 import { canis } from "./core/canisGenerator";
 import { Player, player } from "../components/player";
+import { KfColume, KfGroup, KfRow, kfTrack } from "./kfTrack";
 export class SuggestPanel {
   static PADDING: number = 6;
   static SHOWN_NUM: number = 2;

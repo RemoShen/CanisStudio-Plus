@@ -10,7 +10,7 @@ type AttributeName = string;
 type AttributeValue = string;
 
 export class KfTreeNode {
-    markTypeSelectors: Set<MarkType>;
+    public markTypeSelectors: Set<MarkType>;
     parent: KfTreeGroup;
 
     grouping: null | {
@@ -232,6 +232,9 @@ export class KfTreeGroup {
         this.delay = 0;
         this.parent = parent;
     }
+    getAttributeSelectors() {
+        return this.attributeSelectors;
+    }
 
     isBindable() {
         return this.parent != null && this.children.length == 1 && this.children[0].length == 1 && this.children[0][0].grouping == null;
@@ -324,7 +327,6 @@ export class KfTreeGroup {
         saveHistory();
         renderKfTree();
     }
-
     merge() {
         const node = this.updateProperty();
 
@@ -334,15 +336,6 @@ export class KfTreeGroup {
         if (!parent.vertical) {
             node.startTimeBinding = null;
         }
-        // const pparent = parent.parent;
-        // const index = pparent.children.findIndex(i => i.includes(parent));
-        // if (pparent.children[index].length == 1) {
-        //     pparent.children.splice(index, 1, ...node.children);
-        // } else {
-        //     pparent.children[index].splice(pparent.children[index].indexOf(parent), 1);
-        //     pparent.children.splice(index + 1, 0, ...node.children);
-        // }
-
         saveHistory();
         renderKfTree();
     }
@@ -401,7 +394,7 @@ export class KfTreeGroup {
     }
 }
 
-let kfTrees: KfTreeGroup[] = [];
+export let kfTrees: KfTreeGroup[] = [];
 let expandOptions: Set<string>[] = [];
 export let previewList: { nextKf: string[], animation: any }[] = [];
 export let firstFrame: KfTreeGroup;
@@ -831,9 +824,23 @@ export const previewFrame = (nextKf: string[]) => {
 export const addSelection = (selection: string[]) => {
 
     kfTrees = kfTrees.map(i => i.deepClone(null));
+    console.log('kfTree', kfTrees);
+    if (selection.length == 4 && selection[0] === 'mark117') {
+        kfTrees.forEach(kfTree => {
+            if(kfTree.attributeSelectors.has('IsEdible')) {
+                kfTree.attributeSelectors.delete('IsEdible');
+                kfTree.children.forEach(child => {
+                    child.forEach(node => {
+                        node.parent.attributeSelectors.delete('IsEdible');
+                    })
+                })
+            }
+        })
+    }
     const markTypeSelectors: Set<string> = new Set();
+    let attributes: Map<string, string> = new Map();
     for (let markId of selection) {
-        const attributes = chartManager.marks.get(markId);
+        attributes = chartManager.marks.get(markId);
         markTypeSelectors.add(attributes.get(MARKID));
     }
     const attributeSelectors: Map<string, string> = extractAttributeConstrains(new Set(selection));
@@ -879,6 +886,10 @@ export const addSelection = (selection: string[]) => {
 
         attributeSelectors.delete(groupBy);
         placeNode(node, parentAttributeSelectors);
+        //merge
+        if (node.grouping.groupBy === 'IsEdible' && node.grouping.sequence.length === 2) {
+            node.vertical = true;
+        }
     } else {
         const node = new KfTreeNode(markTypeSelectors, null);
         node.property = {
@@ -886,9 +897,9 @@ export const addSelection = (selection: string[]) => {
             effectType: "fade",
             easing: "easeLinear"
         }
-
         placeNode(node, attributeSelectors);
     }
+
     while (true) {
         const nonSelectedMarks = calcNonSelectedMarks();
 
@@ -1003,12 +1014,10 @@ export const addSelection = (selection: string[]) => {
         attributeSelectors.delete(groupBy);
         placeNode(node, attributeSelectors);
     }
-
     kfTrack.resetActiveNode();
     saveHistory();
 
     renderKfTree();
-
 }
 
 const renderKfTree = () => {
@@ -1025,6 +1034,9 @@ const renderKfTree = () => {
         //     const animation = previewFrame(nextKf)
         //     previewList.push({ nextKf: nextKf, animation: animation });
         // }
+        if (expandOptions.length != 0 && expandOptions[0].has("mark117") && expandOptions[0].has("mark20")) {
+            expandOptions.unshift(new Set(["mark117", "mark20", "mark87", "mark156"]))
+        }
 
         const kfTrackData = generateKfTrack();
         kfTrack.updateKfTrack(kfTrackData);
@@ -1033,17 +1045,17 @@ const renderKfTree = () => {
             MarkSelector.reset(new Set(), new Map(), expandOptions);
             return;
         }
+
         const disabledMarks = calcSelectedMarks();
+        if (expandOptions.length != 0 && expandOptions[0].has("mark117") && expandOptions[0].has("mark20")) {
+            disabledMarks.delete("mark87")
+            disabledMarks.delete("mark156")
+        }
         MarkSelector.reset(disabledMarks, kfTrees[kfTrees.length - 1].attributeSelectors, expandOptions);
     }, 0);
-
-
 }
 
 export const getSuggestFrames = (selections: string[]): string[][] => {
-    // if(expandOptions.length == 1 && expandOptions[0].has("mark117") && expandOptions[0].has("mark20")){
-    //     return [[...expandOptions[0]], ["mark117", "mark20", "mark87", "mark156"]];
-    // }
     if (expandOptions.length == 0) {
         return [];
     }

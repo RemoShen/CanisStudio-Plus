@@ -121,6 +121,7 @@ const createLabelBackgroundShape = (width: number, height: number, radius: numbe
 
 export class KfItem {
     static idCounter = 0;
+    children: any;
     static resetCounter() {
         this.idCounter = 0;
     }
@@ -713,7 +714,6 @@ export class KfRow extends KfGroup {
                 this.createBindList(bindBtnContainer);
             }
         }
-
         labelContainer.onmousedown = () => {
             if (kfTrack.timingLock || this.label == "__graph") {
                 return;
@@ -735,9 +735,10 @@ export class KfRow extends KfGroup {
                 document.onmouseup = (event: MouseEvent) => {
                     document.onmousemove = null;
                     document.onmouseup = null;
-                    if (actualMovementX == -300) {
+                    if (actualMovementX <= -100) {
                         this.originalNode.moveForward();
-                    } else if (actualMovementX == 300) {
+
+                    } else if (actualMovementX >= 100) {
                         this.originalNode.moveBackward();
                     } else {
                         this.translate(-actualMovementX, -actualMovementY);
