@@ -165,14 +165,14 @@ export default class FloatingWindow {
         // exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.POLIO_CHART, 'Polio Incidence Rates'));
         exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.DESSERT_CHART, 'Dessert'))
         exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.DRIVING_CHART, 'Driving'));
-        exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.FLARE_CHART, 'Flare'));
+        exampleItemContainer2.appendChild(this.createExampleItem(FloatingWindow.MUSHROOM_CHART, 'Mushroom'));
         exampleList.appendChild(exampleItemContainer2);
         const exampleItemContainer3: HTMLDivElement = document.createElement('div');
         exampleItemContainer3.className = 'list-item-container';
         exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.USPOPULATION_CHART, 'usPopulation'));
         exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.CHINAPM_CHART, 'chinaPm'));
         exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.HIRING_CHART, 'hiring'));
-        exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.MUSHROOM_CHART, 'Mushroom'));
+        exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.FLARE_CHART, 'Flare'));
         // exampleItemContainer3.appendChild(this.createExampleItem(FloatingWindow.TSCORE_CHART, 'tScore'));
         exampleList.appendChild(exampleItemContainer3);
         const exampleItemContainer4: HTMLDivElement = document.createElement("div");

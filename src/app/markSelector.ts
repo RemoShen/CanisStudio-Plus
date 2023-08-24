@@ -50,7 +50,6 @@ export class MarkSelector {
   static selectionRect: Element;
   // static selectStartPoint: ICoord;
   // static currentSelection: string[];
-
   static updateSelection(elements: string[]) {
     elements = elements.filter((i) => MarkSelector.selectableMarks.has(i));
     let flag = 0;
@@ -73,6 +72,14 @@ export class MarkSelector {
     //update recommendList
     const height: number = suggestPanel.kfHeight;
     const allNextKf: string[][] = getSuggestFrames([...MarkSelector.selection]);
+    for (let i = 0; i < allNextKf.length; i++) {
+      const element = allNextKf[i];
+      if (element.length == MarkSelector.selection.size) {
+        allNextKf.splice(i, 1);
+        allNextKf.unshift(element);
+        break;
+      }
+    }
     suggestPanel.createSuggestPanel(allNextKf, height, [
       ...calcSelectedMarks(),
     ]);
@@ -528,7 +535,7 @@ export class MarkSelector {
       mark.addEventListener("mouseover", () => {
         if (mark.tagName != "text") {
           mark.classList.add("highlight");
-        }else {
+        } else {
           mark.classList.add("highlight-text");
         }
 

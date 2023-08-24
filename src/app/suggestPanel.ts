@@ -6,6 +6,7 @@ import Lottie from "lottie-web";
 import { canis } from "./core/canisGenerator";
 import { Player, player } from "../components/player";
 import { KfColume, KfGroup, KfRow, kfTrack } from "./kfTrack";
+import { MarkSelector } from "./markSelector";
 export class SuggestPanel {
   static PADDING: number = 6;
   static SHOWN_NUM: number = 2;
@@ -72,7 +73,7 @@ export class SuggestPanel {
     );
     this.container.appendChild(this.itemcontainer);
     if (allNextKf.length === 1) {
-      const item = this.createSuggestItem(allNextKf[0]);
+      const item = this.createSuggestItem(allNextKf[0], allNextKf);
       item.setAttributeNS(
         null,
         "transform",
@@ -83,7 +84,7 @@ export class SuggestPanel {
     } else if (allNextKf.length > 1) {
       bg.setAttributeNS(null, "height", `${(height + SuggestPanel.PADDING) * 2}`);
       for (let i = 0; i < this.numShown; i++) {
-        const item = this.createSuggestItem(allNextKf[i]);
+        const item = this.createSuggestItem(allNextKf[i], allNextKf);
         item.setAttributeNS(
           null,
           "transform",
@@ -121,7 +122,7 @@ export class SuggestPanel {
       popupLayer.removeChild(this.container);
     }
   }
-  public createSuggestItem(nextKf: string[]) {
+  public createSuggestItem(nextKf: string[], allNextKf: string[][]) {
     const container = document.createElementNS(
       "http://www.w3.org/2000/svg",
       "g"
@@ -145,10 +146,29 @@ export class SuggestPanel {
 
     container.onmouseout = () => {
       bg.classList.add("hide-ele");
-
+      allNextKf.forEach((item: string[]) => {
+        item.forEach((mark: string) => {
+          if (!nextKf.includes(mark)) {
+            const markEle = document.getElementById(mark);
+            if (markEle) {
+              markEle.setAttributeNS(null, "opacity", "1");
+            }
+          }
+        });
+      });
     };
     container.onmouseover = () => {
       bg.classList.remove("hide-ele");
+      allNextKf.forEach((item: string[]) => {
+        item.forEach((mark: string) => {
+          if (!nextKf.includes(mark)) {
+            const markEle = document.getElementById(mark);
+            if (markEle) {
+              markEle.setAttributeNS(null, "opacity", "0.15");
+            }
+          }
+        });
+      });
     };
     container.onclick = () => {
       setTimeout(() => {
@@ -368,7 +388,7 @@ export class SuggestMenu {
     for (let i = this.pageIdx * 2; i < (this.pageIdx + 1) * 2; i++) {
       if (i < this.nextKf.length) {
         const index: number = i % 2;
-        const item = this.parentSuggestPanel.createSuggestItem(this.nextKf[i]);
+        const item = this.parentSuggestPanel.createSuggestItem(this.nextKf[i], this.nextKf);
         item.setAttributeNS(
           null,
           "transform",
