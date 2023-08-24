@@ -1,0 +1,620 @@
+<svg id="visChart" x="0" y="0" width="900" height="600" viewBox="0 0 900.000000 600.000000" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve">
+  <g id="chartContent" transform="translate(450.000000,300.000000)">
+    <g transform="translate(0,0)" opacity="1">
+      <g transform="translate(0,0)" opacity="1"></g>
+      <g transform="translate(0,0)" opacity="1">
+        <g transform="translate(0,0)" opacity="1">
+          <g transform="translate(0,0)" opacity="1">
+            <g transform="translate(0,0)" opacity="1"></g>
+            <g transform="translate(0,0)" opacity="1">
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-325.36751988,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-325.3675198777959,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;0&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:22.96,&quot;Total&quot;:3275},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-325.3675198777959,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;1&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:9.95,&quot;Total&quot;:3275},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-325.3675198777959,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;2&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:33.89,&quot;Total&quot;:3275},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-325.3675198777959,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;3&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:10.35,&quot;Total&quot;:3275},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-325.3675198777959,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;4&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:16.52,&quot;Total&quot;:3275},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-325.3675198777959,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;5&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:6.32,&quot;Total&quot;:3275}]" opacity="1">
+                  <g transform="translate(-36.12662724,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(36.12662724272495, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1001" class=" mark Shape1 rectangle" d="M -36.55516691,235.42853967 L -36.5516641,127.25074545 L 36.5503666,127.25359901 L 36.55439261,235.43309167 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:22.96,&quot;Total&quot;:3275}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1002" class=" mark Shape1 rectangle" d="M -36.55516691,127.25037076 L -36.55977662,80.36910121 L 36.55111094,80.36830092 L 36.55150243,127.25493296 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:9.95,&quot;Total&quot;:3275}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1003" class=" mark Shape1 rectangle" d="M -36.55516691,80.37002317 L -36.55184452,-79.30701508 L 36.5580661,-79.30658194 L 36.55252333,80.36639018 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:33.89,&quot;Total&quot;:3275}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1004" class=" mark Shape1 rectangle" d="M -36.55516691,-79.3058542 L -36.55230453,-128.07133536 L 36.55740277,-128.06608375 L 36.5588338,-79.31011769 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:10.35,&quot;Total&quot;:3275}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1005" class=" mark Shape1 rectangle" d="M -36.55516691,-128.07083888 L -36.55265199,-205.90872579 L 36.5590973,-205.91027812 L 36.55872769,-128.07396309 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:16.52,&quot;Total&quot;:3275}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1006" class=" mark Shape1 rectangle" d="M -36.55516691,-205.90635066 L -36.55791788,-235.68225863 L 36.55610026,-235.68836474 L 36.54995413,-205.90467617 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:6.32,&quot;Total&quot;:3275}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <g transform="translate(-36.55516691,181.33945521)" opacity="1"><text id="mark25" class=" mark Text1 text" x="-34.88232709978888" y="3.929947582993595" data-datum="{&quot;_TYPE&quot;:&quot;Text3&quot;,&quot;_MARKID&quot;:&quot;Text3&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Total&quot;:3275}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Grain</text></g>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <g transform="translate(-36.55516691,103.81019696)" opacity="1"><text id="mark26" class=" mark Text1 text" x="-50.27490522478888" y="3.929947582993595" data-datum="{&quot;_TYPE&quot;:&quot;Text3&quot;,&quot;_MARKID&quot;:&quot;Text3&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Total&quot;:3275}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Produce</text></g>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <g transform="translate(-36.55516691,0.53208448)" opacity="1"><text id="mark27" class=" mark Text1 text" x="-68.98388959978888" y="3.929947582993595" data-datum="{&quot;_TYPE&quot;:&quot;Text3&quot;,&quot;_MARKID&quot;:&quot;Text3&quot;,&quot;Category&quot;:&quot;Sugar &amp;amp; Fat&quot;,&quot;Total&quot;:3275}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Sugar &amp; Fat</text></g>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <g transform="translate(-36.55516691,-103.68834654)" opacity="1"><text id="mark28" class=" mark Text1 text" x="-70.70068647478888" y="3.929947582993595" data-datum="{&quot;_TYPE&quot;:&quot;Text3&quot;,&quot;_MARKID&quot;:&quot;Text3&quot;,&quot;Category&quot;:&quot;Milk\n                                            &amp;amp; Eggs&quot;,&quot;Total&quot;:3275}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Milk
+                                        &amp; Eggs</text></g>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <g transform="translate(-36.55516691,-166.98859477)" opacity="1"><text id="mark29" class=" mark Text1 text" x="-33.89795209978888" y="3.929947582993595" data-datum="{&quot;_TYPE&quot;:&quot;Text3&quot;,&quot;_MARKID&quot;:&quot;Text3&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Total&quot;:3275}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Meat</text></g>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <g transform="translate(-36.55516691,-220.79498366)" opacity="1"><text id="mark30" class=" mark Text1 text" x="-37.02685834978888" y="3.929947582993595" data-datum="{&quot;_TYPE&quot;:&quot;Text3&quot;,&quot;_MARKID&quot;:&quot;Text3&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Total&quot;:3275}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Other</text></g>
+                                  </g>
+                                </g>
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-254.93438554,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-254.9343855435062,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;6&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:46.27,&quot;Total&quot;:3110},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-254.9343855435062,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;7&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:16.46,&quot;Total&quot;:3110},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-254.9343855435062,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;8&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:12.06,&quot;Total&quot;:3110},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-254.9343855435062,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;9&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:1.86,&quot;Total&quot;:3110},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-254.9343855435062,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;10&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:17.43,&quot;Total&quot;:3110},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-254.9343855435062,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;11&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:5.92,&quot;Total&quot;:3110}]" opacity="1">
+                  <g transform="translate(-34.30650709,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(34.30650709156476, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1007" class=" mark Shape1 rectangle" d="M -34.73504676,235.42853967 L -34.73420503,17.44900224 L 34.73053561,17.44983862 L 34.73599187,235.42927566 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:46.27,&quot;Total&quot;:3110}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1008" class=" mark Shape1 rectangle" d="M -34.73504676,17.44494459 L -34.73353048,-60.09988773 L 34.73787029,-60.09599762 L 34.73671281,17.44002964 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:16.46,&quot;Total&quot;:3110}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1009" class=" mark Shape1 rectangle" d="M -34.73504676,-60.10011647 L -34.73140267,-116.91850252 L 34.73134528,-116.91263693 L 34.73539904,-60.095429 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:12.06,&quot;Total&quot;:3110}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1010" class=" mark Shape1 rectangle" d="M -34.73504676,-116.91624261 L -34.73280584,-125.67920215 L 34.73370751,-125.68352406 L 34.73078613,-116.91835736 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:1.86,&quot;Total&quot;:3110}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1011" class=" mark Shape1 rectangle" d="M -34.73504676,-125.67892874 L -34.73318652,-207.79653705 L 34.73380924,-207.79573132 L 34.73302858,-125.68099809 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:17.43,&quot;Total&quot;:3110}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1012" class=" mark Shape1 rectangle" d="M -34.73504676,-207.79377771 L -34.73800402,-235.68545509 L 34.73691079,-235.68256655 L 34.73964062,-207.79726621 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:5.92,&quot;Total&quot;:3110}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-196.26033049,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-196.26033048883326,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;12&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:25.76,&quot;Total&quot;:2209},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-196.26033048883326,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;13&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:41.38,&quot;Total&quot;:2209},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-196.26033048883326,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;14&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:21.73,&quot;Total&quot;:2209},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-196.26033048883326,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;15&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:0.91,&quot;Total&quot;:2209},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-196.26033048883326,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;16&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:7.29,&quot;Total&quot;:2209},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-196.26033048883326,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;17&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:2.94,&quot;Total&quot;:2209}]" opacity="1">
+                  <g transform="translate(-24.36754796,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(24.36754796310822, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1013" class=" mark Shape1 rectangle" d="M -24.79608763,235.42853967 L -24.79215031,114.08594166 L 24.79271613,114.0865756 L 24.80068725,235.42384624 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:25.76,&quot;Total&quot;:2209}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1014" class=" mark Shape1 rectangle" d="M -24.79608763,114.08218245 L -24.79468994,-80.84502051 L 24.79374984,-80.84454009 L 24.80066956,114.0845647 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:41.38,&quot;Total&quot;:2209}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1015" class=" mark Shape1 rectangle" d="M -24.79608763,-80.84453579 L -24.79320542,-183.20985238 L 24.80004651,-183.21150535 L 24.79183859,-80.83967738 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:21.73,&quot;Total&quot;:2209}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1016" class=" mark Shape1 rectangle" d="M -24.79608763,-183.20697145 L -24.79222498,-187.49806838 L 24.79741539,-187.49706411 L 24.79832491,-183.20439389 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:0.91,&quot;Total&quot;:2209}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1017" class=" mark Shape1 rectangle" d="M -24.79608763,-187.49366341 L -24.79392219,-221.83483287 L 24.800278,-221.82957572 L 24.79350873,-187.49252762 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:7.29,&quot;Total&quot;:2209}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1018" class=" mark Shape1 rectangle" d="M -24.79608763,-221.83430565 L -24.80103548,-235.68145184 L 24.79547548,-235.67890399 L 24.80082682,-221.83803867 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:2.94,&quot;Total&quot;:2209}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-134.31005916,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-134.31005916207195,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;18&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:44.67,&quot;Total&quot;:3407},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-134.31005916207195,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;19&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:15.7,&quot;Total&quot;:3407},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-134.31005916207195,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;20&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:23.54,&quot;Total&quot;:3407},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-134.31005916207195,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;21&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:4.29,&quot;Total&quot;:3407},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-134.31005916207195,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;22&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:8.69,&quot;Total&quot;:3407},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-134.31005916207195,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;23&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:3.11,&quot;Total&quot;:3407}]" opacity="1">
+                  <g transform="translate(-37.58272336,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(37.5827233636531, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1019" class=" mark Shape1 rectangle" d="M -38.01126303,235.42853967 L -38.01327486,24.97940718 L 38.00998607,24.97817235 L 38.01582801,235.43320822 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:44.67,&quot;Total&quot;:3407}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1020" class=" mark Shape1 rectangle" d="M -38.01126303,24.9827391 L -38.00923973,-48.97799976 L 38.01562885,-48.97725371 L 38.01018216,24.98139585 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:15.7,&quot;Total&quot;:3407}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1021" class=" mark Shape1 rectangle" d="M -38.01126303,-48.98186956 L -38.01472732,-159.87728446 L 38.00766634,-159.87879621 L 38.01008826,-48.98587058 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:23.54,&quot;Total&quot;:3407}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1022" class=" mark Shape1 rectangle" d="M -38.01126303,-159.88167134 L -38.00911483,-180.09605146 L 38.01329146,-180.09036488 L 38.00775163,-159.8776081 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:4.29,&quot;Total&quot;:3407}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1023" class=" mark Shape1 rectangle" d="M -38.01126303,-180.09238288 L -38.00970386,-221.03355441 L 38.00666586,-221.03542234 L 38.01587717,-180.09649734 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:8.69,&quot;Total&quot;:3407}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1024" class=" mark Shape1 rectangle" d="M -38.01126303,-221.03202933 L -38.01089695,-235.67927084 L 38.01012306,-235.68803628 L 38.0154299,-221.0337928 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:3.11,&quot;Total&quot;:3407}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-58.30625406,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-58.306254062110156,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;24&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:28.05,&quot;Total&quot;:3483},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-58.306254062110156,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;25&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:8.58,&quot;Total&quot;:3483},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-58.306254062110156,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;26&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:31.75,&quot;Total&quot;:3483},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-58.306254062110156,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;27&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:9.79,&quot;Total&quot;:3483},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-58.306254062110156,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;28&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:15.62,&quot;Total&quot;:3483},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:-58.306254062110156,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;29&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:6.2,&quot;Total&quot;:3483}]" opacity="1">
+                  <g transform="translate(-38.42108174,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(38.4210817363087, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1025" class=" mark Shape1 rectangle" d="M -38.84962141,235.42853967 L -38.84718428,103.26541698 L 38.8467113,103.26646921 L 38.84905947,235.43141228 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:28.05,&quot;Total&quot;:3483}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1026" class=" mark Shape1 rectangle" d="M -38.84962141,103.2683638 L -38.85420524,62.84511548 L 38.84933344,62.84249373 L 38.8505475,103.26906231 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:8.58,&quot;Total&quot;:3483}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1027" class=" mark Shape1 rectangle" d="M -38.84962141,62.84289824 L -38.8486048,-86.75329967 L 38.84492909,-86.753621 L 38.84661655,62.84762359 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:31.75,&quot;Total&quot;:3483}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1028" class=" mark Shape1 rectangle" d="M -38.84962141,-86.7501707 L -38.8535473,-132.87575195 L 38.84464783,-132.87366754 L 38.84833379,-86.75210027 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:9.79,&quot;Total&quot;:3483}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1029" class=" mark Shape1 rectangle" d="M -38.84962141,-132.87666346 L -38.84779506,-206.46882692 L 38.8512305,-206.47611867 L 38.85422777,-132.87837617 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:15.62,&quot;Total&quot;:3483}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1030" class=" mark Shape1 rectangle" d="M -38.84962141,-206.47174178 L -38.84914138,-235.67916688 L 38.84875711,-235.68144288 L 38.84820175,-206.46824825 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:6.2,&quot;Total&quot;:3483}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(8.18880213,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:8.18880212694205,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;30&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:63.69,&quot;Total&quot;:2545},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:8.18880212694205,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;31&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:7.23,&quot;Total&quot;:2545},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:8.18880212694205,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;32&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:21.85,&quot;Total&quot;:2545},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:8.18880212694205,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;33&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:1.34,&quot;Total&quot;:2545},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:8.18880212694205,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;34&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:3.42,&quot;Total&quot;:2545},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:8.18880212694205,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;35&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:2.48,&quot;Total&quot;:2545}]" opacity="1">
+                  <g transform="translate(-28.07397445,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(28.07397445274351, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1031" class=" mark Shape1 rectangle" d="M -28.50251412,235.42853967 L -28.49986816,-64.59282873 L 28.506841,-64.59682332 L 28.50119076,235.42485645 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:63.69,&quot;Total&quot;:2545}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1032" class=" mark Shape1 rectangle" d="M -28.50251412,-64.59279152 L -28.50270108,-98.65180641 L 28.50314469,-98.64680675 L 28.50454981,-64.59337932 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:7.23,&quot;Total&quot;:2545}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1033" class=" mark Shape1 rectangle" d="M -28.50251412,-98.65079473 L -28.50329724,-201.57555577 L 28.50734392,-201.57954557 L 28.49906861,-98.65428912 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:21.85,&quot;Total&quot;:2545}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1034" class=" mark Shape1 rectangle" d="M -28.50251412,-201.57850845 L -28.50458788,-207.88747227 L 28.50019006,-207.88943345 L 28.50321028,-201.58032764 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:1.34,&quot;Total&quot;:2545}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1035" class=" mark Shape1 rectangle" d="M -28.50251412,-207.89078013 L -28.49849115,-224.00144037 L 28.50726561,-224.00480518 L 28.50117986,-207.89043862 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:3.42,&quot;Total&quot;:2545}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1036" class=" mark Shape1 rectangle" d="M -28.50251412,-224.00120489 L -28.50558541,-235.68584823 L 28.49967785,-235.68571489 L 28.50000689,-224.00043783 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:2.48,&quot;Total&quot;:2545}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(66.33336768,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:66.33336768309573,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;36&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:40.17,&quot;Total&quot;:2726},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:66.33336768309573,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;37&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:7.63,&quot;Total&quot;:2726},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:66.33336768309573,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;38&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:27.44,&quot;Total&quot;:2726},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:66.33336768309573,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;39&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:4.15,&quot;Total&quot;:2726},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:66.33336768309573,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;40&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:12.03,&quot;Total&quot;:2726},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:66.33336768309573,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;41&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:8.58,&quot;Total&quot;:2726}]" opacity="1">
+                  <g transform="translate(-30.0705911,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(30.070591103410138, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1037" class=" mark Shape1 rectangle" d="M -30.49913077,235.42853967 L -30.49616479,46.17849347 L 30.50390794,46.17973367 L 30.50315874,235.42848628 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:40.17,&quot;Total&quot;:2726}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1038" class=" mark Shape1 rectangle" d="M -30.49913077,46.18278617 L -30.4944955,10.23230349 L 30.50142759,10.23346368 L 30.49914,46.18238827 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:7.63,&quot;Total&quot;:2726}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1039" class=" mark Shape1 rectangle" d="M -30.49913077,10.23692858 L -30.49656263,-119.03313821 L 30.50372041,-119.03242083 L 30.49422287,10.23283844 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:27.44,&quot;Total&quot;:2726}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1040" class=" mark Shape1 rectangle" d="M -30.49913077,-119.03624732 L -30.5016969,-138.58703938 L 30.49544859,-138.58251393 L 30.50258266,-119.03815142 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:4.15,&quot;Total&quot;:2726}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1041" class=" mark Shape1 rectangle" d="M -30.49913077,-138.58740184 L -30.49647982,-195.26141358 L 30.49655299,-195.26413617 L 30.49752955,-138.58543738 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:12.03,&quot;Total&quot;:2726}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1042" class=" mark Shape1 rectangle" d="M -30.49913077,-195.26219434 L -30.49971531,-235.68190736 L 30.49707253,-235.68049016 L 30.49597927,-195.26234706 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:8.58,&quot;Total&quot;:2726}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(123.16524052,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:123.16524052417026,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;42&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:50.82,&quot;Total&quot;:2426},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:123.16524052417026,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;43&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:4.66,&quot;Total&quot;:2426},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:123.16524052417026,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;44&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:27.45,&quot;Total&quot;:2426},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:123.16524052417026,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;45&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:13.23,&quot;Total&quot;:2426},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:123.16524052417026,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;46&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:3.34,&quot;Total&quot;:2426},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:123.16524052417026,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;47&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:0.49,&quot;Total&quot;:2426}]" opacity="1">
+                  <g transform="translate(-26.76128174,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(26.761281737664348, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1043" class=" mark Shape1 rectangle" d="M -27.18982141,235.42853967 L -27.1926095,-4.01022241 L 27.18613733,-4.01198967 L 27.19140187,235.42869207 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:50.82,&quot;Total&quot;:2426}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1044" class=" mark Shape1 rectangle" d="M -27.18982141,-4.01460249 L -27.18885478,-25.96947169 L 27.18972306,-25.96853189 L 27.19279293,-4.01361772 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:4.66,&quot;Total&quot;:2426}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1045" class=" mark Shape1 rectangle" d="M -27.18982141,-25.97062458 L -27.19212777,-155.3077067 L 27.18624361,-155.3063307 L 27.19299239,-25.97559719 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:27.45,&quot;Total&quot;:2426}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1046" class=" mark Shape1 rectangle" d="M -27.18982141,-155.30384482 L -27.19479977,-217.63574789 L 27.1877549,-217.63344429 L 27.19364522,-155.30820721 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:13.23,&quot;Total&quot;:2426}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1047" class=" mark Shape1 rectangle" d="M -27.18982141,-217.63821654 L -27.18634131,-233.37485623 L 27.18604924,-233.37159603 L 27.19460611,-217.63619638 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:3.34,&quot;Total&quot;:2426}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1048" class=" mark Shape1 rectangle" d="M -27.18982141,-233.37493623 L -27.18739097,-235.68837811 L 27.18505792,-235.68823322 L 27.18599623,-233.37462734 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:0.49,&quot;Total&quot;:2426}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(179.73236862,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:179.73236861598514,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;48&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:43.89,&quot;Total&quot;:2702},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:179.73236861598514,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;49&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:25.09,&quot;Total&quot;:2702},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:179.73236861598514,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;50&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:17.17,&quot;Total&quot;:2702},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:179.73236861598514,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;51&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:3.77,&quot;Total&quot;:2702},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:179.73236861598514,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;52&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:5.81,&quot;Total&quot;:2702},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:179.73236861598514,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;53&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:4.26,&quot;Total&quot;:2702}]" opacity="1">
+                  <g transform="translate(-29.80584635,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(29.80584635415048, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1049" class=" mark Shape1 rectangle" d="M -30.23438602,235.42853967 L -30.23795357,28.63536375 L 30.23426307,28.63202379 L 30.23149225,235.42519421 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:43.89,&quot;Total&quot;:2702}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1050" class=" mark Shape1 rectangle" d="M -30.23438602,28.63673507 L -30.23667143,-89.58131186 L 30.23338597,-89.57266888 L 30.23580346,28.63525898 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:25.09,&quot;Total&quot;:2702}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1051" class=" mark Shape1 rectangle" d="M -30.23438602,-89.57712634 L -30.23329581,-170.47875912 L 30.23134208,-170.47659455 L 30.23830718,-89.57557826 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:17.17,&quot;Total&quot;:2702}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1052" class=" mark Shape1 rectangle" d="M -30.23438602,-170.47517338 L -30.23444626,-188.24141956 L 30.23009953,-188.23849687 L 30.23071545,-170.47748295 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:3.77,&quot;Total&quot;:2702}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1053" class=" mark Shape1 rectangle" d="M -30.23438602,-188.23787795 L -30.2303121,-215.61164163 L 30.23353857,-215.61458175 L 30.23617891,-188.24227538 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:5.81,&quot;Total&quot;:2702}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1054" class=" mark Shape1 rectangle" d="M -30.23438602,-215.61223167 L -30.23759608,-235.68343479 L 30.23412099,-235.68457786 L 30.23371733,-215.61647368 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:4.26,&quot;Total&quot;:2702}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(242.86296028,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:242.86296028319578,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;54&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:51.57,&quot;Total&quot;:3021},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:242.86296028319578,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;55&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:4.97,&quot;Total&quot;:3021},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:242.86296028319578,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;56&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:22.61,&quot;Total&quot;:3021},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:242.86296028319578,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;57&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:2.81,&quot;Total&quot;:3021},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:242.86296028319578,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;58&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:11.98,&quot;Total&quot;:3021},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:242.86296028319578,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;59&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:6.06,&quot;Total&quot;:3021}]" opacity="1">
+                  <g transform="translate(-33.32474531,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(33.32474531306018, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1055" class=" mark Shape1 rectangle" d="M -33.75328498,235.42853967 L -33.75417978,-7.52588652 L 33.75647126,-7.52571275 L 33.75520661,235.43135334 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:51.57,&quot;Total&quot;:3021}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1056" class=" mark Shape1 rectangle" d="M -33.75328498,-7.52399974 L -33.75024623,-30.9393511 L 33.75023787,-30.93694898 L 33.75039024,-7.52375059 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:4.97,&quot;Total&quot;:3021}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1057" class=" mark Shape1 rectangle" d="M -33.75328498,-30.93827395 L -33.75441547,-137.4547452 L 33.75108625,-137.46119608 L 33.74918569,-30.94225729 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:22.61,&quot;Total&quot;:3021}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1058" class=" mark Shape1 rectangle" d="M -33.75328498,-137.45673266 L -33.75164594,-150.69952763 L 33.75586462,-150.69019138 L 33.7573246,-137.45281666 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:2.81,&quot;Total&quot;:3021}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1059" class=" mark Shape1 rectangle" d="M -33.75328498,-150.69498428 L -33.75560549,-207.13037029 L 33.7577608,-207.13554934 L 33.7531945,-150.69954602 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:11.98,&quot;Total&quot;:3021}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1060" class=" mark Shape1 rectangle" d="M -33.75328498,-207.13422069 L -33.75230781,-235.68582895 L 33.75653261,-235.67939703 L 33.75481571,-207.13209518 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:6.06,&quot;Total&quot;:3021}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(316.80396255,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:316.803962545176,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;60&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:22.81,&quot;Total&quot;:3682},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:316.803962545176,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;61&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:8.75,&quot;Total&quot;:3682},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:316.803962545176,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;62&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:39.54,&quot;Total&quot;:3682},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:316.803962545176,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;63&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:9.99,&quot;Total&quot;:3682},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:316.803962545176,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;64&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:12.49,&quot;Total&quot;:3682},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:316.803962545176,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;65&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:6.41,&quot;Total&quot;:3682}]" opacity="1">
+                  <g transform="translate(-40.61625695,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(40.61625694892008, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1061" class=" mark Shape1 rectangle" d="M -41.04479662,235.42853967 L -41.04441132,127.95743322 L 41.04853144,127.958639 L 41.04872809,235.42700885 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:22.81,&quot;Total&quot;:3682}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1062" class=" mark Shape1 rectangle" d="M -41.04479662,127.95710967 L -41.04356948,86.73121888 L 41.04806285,86.73126531 L 41.03985663,127.95224528 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:8.75,&quot;Total&quot;:3682}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1063" class=" mark Shape1 rectangle" d="M -41.04479662,86.73067334 L -41.04785589,-99.56099465 L 41.0466521,-99.56960121 L 41.04684938,86.73065886 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:39.54,&quot;Total&quot;:3682}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1064" class=" mark Shape1 rectangle" d="M -41.04479662,-99.56570291 L -41.04964208,-146.63298606 L 41.04105599,-146.63031886 L 41.04074156,-99.56215986 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:9.99,&quot;Total&quot;:3682}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1065" class=" mark Shape1 rectangle" d="M -41.04479662,-146.63451421 L -41.04499223,-205.48073717 L 41.04873975,-205.47786733 L 41.04004013,-146.6311019 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:12.49,&quot;Total&quot;:3682}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1066" class=" mark Shape1 rectangle" d="M -41.04479662,-205.48230731 L -41.04272923,-235.68723328 L 41.04200683,-235.68641763 L 41.04046838,-205.47990073 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:6.41,&quot;Total&quot;:3682}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(378.71010975,15)" class="nested-chart" data-datum="[{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:378.71010974706076,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;66&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:59.69,&quot;Total&quot;:1930},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:378.71010974706076,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;67&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:14.4,&quot;Total&quot;:1930},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:378.71010974706076,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;68&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:18.96,&quot;Total&quot;:1930},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:378.71010974706076,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;69&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:0.78,&quot;Total&quot;:1930},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:378.71010974706076,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;70&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:3.83,&quot;Total&quot;:1930},{&quot;_TYPE&quot;:&quot;nested-chart&quot;,&quot;_MARKID&quot;:&quot;NestedChart1&quot;,&quot;_x&quot;:378.71010974706076,&quot;_y&quot;:-15.000000000000028,&quot;_id&quot;:&quot;71&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:2.33,&quot;Total&quot;:1930}]" opacity="1">
+                  <g transform="translate(-21.28989025,-235)" opacity="1">
+                    <g>
+                      <g transform="translate(21.28989025296463, 234.99999999999997)">
+                        <g transform="translate(0,0)" opacity="1">
+                          <g transform="translate(0,0)" opacity="1"></g>
+                          <g transform="translate(0,0)" opacity="1">
+                            <g transform="translate(0,0)" opacity="1">
+                              <g transform="translate(0,0)" opacity="1">
+                                <g transform="translate(0,0)" opacity="1"></g>
+                                <g transform="translate(0,0)" opacity="1">
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1067" class=" mark Shape1 rectangle" d="M -21.71842992,235.42853967 L -21.72164199,-45.80711965 L 21.71874705,-45.8088017 L 21.71895903,235.4282603 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Grain&quot;,&quot;Amount&quot;:59.69,&quot;Total&quot;:1930}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(247,242,167)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1068" class=" mark Shape1 rectangle" d="M -21.71842992,-45.80642994 L -21.71799088,-113.65085286 L 21.71434778,-113.65289489 L 21.71500996,-45.81009511 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Produce&quot;,&quot;Amount&quot;:14.4,&quot;Total&quot;:1930}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(121,220,119)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1069" class=" mark Shape1 rectangle" d="M -21.71842992,-113.65336515 L -21.71977363,-202.98434819 L 21.71946295,-202.98418188 L 21.72065418,-113.64956056 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Sugar &amp; Fat&quot;,&quot;Amount&quot;:18.96,&quot;Total&quot;:1930}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(222,147,223)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1070" class=" mark Shape1 rectangle" d="M -21.71842992,-202.98516317 L -21.71524532,-206.65740375 L 21.71712502,-206.65944822 L 21.72248634,-202.99012644 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Milk &amp; Eggs&quot;,&quot;Amount&quot;:0.78,&quot;Total&quot;:1930}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(251,187,26)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1071" class=" mark Shape1 rectangle" d="M -21.71842992,-206.66020549 L -21.7150226,-224.70805163 L 21.72225998,-224.70828532 L 21.71936446,-206.6584196 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Meat&quot;,&quot;Amount&quot;:3.83,&quot;Total&quot;:1930}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(228,31,40)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                  <g transform="translate(0,0)" opacity="1">
+                                    <path id="mark1072" class=" mark Shape1 rectangle" d="M -21.71842992,-224.70560562 L -21.72232532,-235.68341688 L 21.71855691,-235.67956778 L 21.7203321,-224.70742375 Z" data-datum="{&quot;_TYPE&quot;:&quot;Shape1&quot;,&quot;_MARKID&quot;:&quot;Shape1&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Category&quot;:&quot;Other&quot;,&quot;Amount&quot;:2.33,&quot;Total&quot;:1930}" stroke="rgb(255,255,255)" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="miter" fill="rgb(217,217,217)" fill-opacity="1" text-anchor="start" opacity="1" cursor="pointer" pointer-events="all"></path>
+                                  </g>
+                                </g>
+                                
+                              </g>
+                              <g transform="translate(0,0)" opacity="1"></g>
+                            </g>
+                          </g>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </g>
+              </g>
+            </g>
+            <g transform="translate(0,0)" opacity="1">
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-325.36751988,250)" opacity="1"><text id="mark1" class=" mark Text1 text" x="-22.9423828125" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Total&quot;:3275}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Australia</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-254.93438554,250)" opacity="1"><text id="mark2" class=" mark Text1 text" x="-15.01171875" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;China&quot;,&quot;Total&quot;:3110}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">China</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-196.26033049,250)" opacity="1"><text id="mark3" class=" mark Text1 text" x="-17.6748046875" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;Congo&quot;,&quot;Total&quot;:2209}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Congo</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-134.31005916,250)" opacity="1"><text id="mark4" class=" mark Text1 text" x="-13.6904296875" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;Cuba&quot;,&quot;Total&quot;:3407}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Cuba</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-58.30625406,250)" opacity="1"><text id="mark5" class=" mark Text1 text" x="-17.373046875" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;France&quot;,&quot;Total&quot;:3483}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">France</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(8.18880213,250)" opacity="1"><text id="mark6" class=" mark Text1 text" x="-10.2685546875" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;Iraq&quot;,&quot;Total&quot;:2545}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Iraq</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(66.33336768,250)" opacity="1"><text id="mark7" class=" mark Text1 text" x="-15.169921875" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;Japan&quot;,&quot;Total&quot;:2726}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Japan</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(123.16524052,250)" opacity="1"><text id="mark8" class=" mark Text1 text" x="-21.6708984375" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;Pakistan&quot;,&quot;Total&quot;:2426}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Pakistan</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(179.73236862,250)" opacity="1"><text id="mark9" class=" mark Text1 text" x="-11.7568359375" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;Peru&quot;,&quot;Total&quot;:2702}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Peru</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(242.86296028,250)" opacity="1"><text id="mark10" class=" mark Text1 text" x="-32.2822265625" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;South Africa&quot;,&quot;Total&quot;:3021}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">South Africa</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(316.80396255,250)" opacity="1"><text id="mark11" class=" mark Text1 text" x="-35.115234375" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;United States&quot;,&quot;Total&quot;:3682}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">United States</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(378.71010975,250)" opacity="1"><text id="mark12" class=" mark Text1 text" x="-19.67578125" y="33.2315973611373" data-datum="{&quot;_TYPE&quot;:&quot;Text1&quot;,&quot;_MARKID&quot;:&quot;Text1&quot;,&quot;Country&quot;:&quot;Zambia&quot;,&quot;Total&quot;:1930}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">Zambia</text></g>
+              </g>
+            </g>
+            <g transform="translate(0,0)" opacity="1">
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-325.36751988,250)" opacity="1"><text id="mark13" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;Country&quot;:&quot;Australia&quot;,&quot;Total&quot;:3275,&quot;total&quot;:3275}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">3275.0</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-254.93438554,250)" opacity="1"><text id="mark14" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;total&quot;:3110,&quot;Country&quot;:&quot;China&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">3110.0</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-196.26033049,250)" opacity="1"><text id="mark15" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;total&quot;:2209,&quot;Country&quot;:&quot;Congo&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">2209.0</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-134.31005916,250)" opacity="1"><text id="mark16" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;total&quot;:3407,&quot;Country&quot;:&quot;Cuba&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">3407.0</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(-58.30625406,250)" opacity="1"><text id="mark17" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;total&quot;:3483,&quot;Country&quot;:&quot;France&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">3483.0</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(8.18880213,250)" opacity="1"><text id="mark18" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;total&quot;:2545,&quot;Country&quot;:&quot;Iraq&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">2545.0</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(66.33336768,250)" opacity="1"><text id="mark19" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;total&quot;:2726,&quot;Country&quot;:&quot;Japan&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">2726.0</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(123.16524052,250)" opacity="1"><text id="mark20" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;total&quot;:2426,&quot;Country&quot;:&quot;Pakistan&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">2426.0</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(179.73236862,250)" opacity="1"><text id="mark21" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;total&quot;:2702,&quot;Country&quot;:&quot;Peru&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">2702.0</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(242.86296028,250)" opacity="1"><text id="mark22" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;total&quot;:3021,&quot;Country&quot;:&quot;South Africa&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">3021.0</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(316.80396255,250)" opacity="1"><text id="mark23" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;total&quot;:3682,&quot;Country&quot;:&quot;United States&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">3682.0</text></g>
+              </g>
+              <g transform="translate(0,0)" opacity="1">
+                <g transform="translate(378.71010975,250)" opacity="1"><text id="mark24" class=" mark Text2 text" x="-17.47265625" y="15.842155688250905" data-datum="{&quot;_TYPE&quot;:&quot;Text2&quot;,&quot;_MARKID&quot;:&quot;Text2&quot;,&quot;total&quot;:1930,&quot;Country&quot;:&quot;Zambia&quot;}" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="12px">1930.0</text></g>
+              </g>
+            </g>
+          </g>
+          <g transform="translate(0,0)" opacity="1"></g>
+        </g>
+      </g>
+      <g transform="translate(0,0)" opacity="1">
+        <g transform="translate(19.25292644,-300)" opacity="1"><text id="mark5001" x="-247.248046875" y="51.254979615608626" class="mark title" stroke="none" stroke-opacity="1" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" fill="rgb(0,0,0)" fill-opacity="1" text-anchor="start" opacity="1" font-family="Segoe UI" font-size="24px" data-datum="{&quot;_MARKID&quot;:&quot;title&quot;,&quot;text&quot;:&quot;Per Capita Food Supply (Daily Calories) in 2013&quot;,&quot;_TYPE&quot;:&quot;title&quot;}">Per Capita Food Supply (Daily Calories) in 2013</text></g>
+      </g>
+    </g>
+  </g>
+</svg>

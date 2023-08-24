@@ -24,7 +24,6 @@ export default class Nav {
         logoContainer.appendChild(logo);
         const logoText: HTMLSpanElement = document.createElement('span');
         logoText.textContent = 'CAST2';
-        // logoText.innerHTML = 'CAST<sup>2</sup>'
         logoText.className = 'title-text';
         logoContainer.appendChild(logoText);
         this.navContainer.appendChild(logoContainer);
@@ -33,12 +32,6 @@ export default class Nav {
         this.navContainer.appendChild(this.createSeparator());
 
         // create buttons
-        // this.navContainer.appendChild(new NavBtn().createNavFileBtn({
-        //     inputId: 'createNew',
-        //     classNameStr: 'new',
-        //     title: 'load chart',
-        //     evtType: NavBtn.CREATE_NEW
-        // }));
         this.navContainer.appendChild(new NavBtn().createNavBtn({
             classNameStr: 'open',
             title: 'open project',
@@ -72,15 +65,6 @@ export default class Nav {
             evtType: NavBtn.RESET
         }));
         this.navContainer.appendChild(this.createSeparator());
-
-        const testBtn: HTMLButtonElement = document.createElement('button');
-        // testBtn.innerHTML = 'testSpec';
-        testBtn.innerHTML = 'testGif';
-        testBtn.onclick = () => {
-            // NavBtn.testSpec();
-            NavBtn.testGif();
-        }
-        // this.navContainer.appendChild(testBtn);
     }
 
     public createSeparator() {
@@ -313,48 +297,15 @@ class NavBtn {
 
     public revert(): void {
         revert();
-        // TODO:
-        // Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING })
-        // setTimeout(() => {
-        //     State.revertHistory();
-        //     Loading.removeLoading();
-        // }, 1);
     }
 
     public redo(): void {
         redo();
-        // TODO:
-        // Reducer.triger(action.UPDATE_LOADING_STATUS, { il: true, srcDom: document.getElementById(ViewContent.VIDEO_VIEW_CONTENT_ID), content: Loading.LOADING })
-        // setTimeout(() => {
-        //     State.redoHistory();
-        //     Loading.removeLoading();
-        // }, 1);
     }
 
     public reset(): void {
         clearKfTrees();
         markTableManager.reset();
         markTableManager.render();
-        // TODO:
-        // Reducer.triger(action.RESET_STATE, {});
-    }
-
-    // public static testSpec(): void {
-    //     const floatingWindow: FloatingWindow = new FloatingWindow();
-    //     floatingWindow.createFloatingWindow(FloatingWindow.TYPE_SPEC);
-    //     document.getElementById('appWrapper').appendChild(floatingWindow.floatingWindow);
-    // }
-
-    public static async testGif() {
-        // TODO:
-        // console.log(state.lottieSpec);
-        // const gif = new LottieRenderer();
-        // await LottieRenderer({
-        //     animationData: state.lottieSpec,
-        //     // path: 'fixtures/bodymovin.json',
-        //     output: 'example.gif',
-        //     width: 640
-        // })
-
     }
 }
