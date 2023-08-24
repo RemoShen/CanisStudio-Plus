@@ -837,6 +837,19 @@ export const addSelection = (selection: string[]) => {
             }
         })
     }
+    if((selection.length == 1 || selection.length == 2) && selection[0] === 'mark3001'){
+        kfTrees.forEach(kfTree => {
+            if (kfTree.attributeSelectors.has('IsEdible')) {
+                kfTree.attributeSelectors.delete('IsEdible');
+                kfTree.children.forEach(child => {
+                    child.forEach(node => {
+                        node.parent.attributeSelectors.delete('IsEdible');
+                    })
+                })
+            }
+        });
+
+    }
     // if(selection.length == 2 && selection[0] === 'mark117'){
     //     kfTrees.forEach(kfTree => {
     //         if (kfTree.attributeSelectors.has('Odor')) {
@@ -1053,7 +1066,11 @@ const renderKfTree = () => {
                 expandOptions.unshift(new Set(["mark87", "mark156"]));
             }
         }
-
+        if(allNextKf.length === 1 && expandOptions.length == 2 && expandOptions[0].has("mark117") && expandOptions[0].has("mark20")){
+            expandOptions.unshift(new Set(["mark2001"]));
+            expandOptions.unshift(new Set(["mark3001", "mark2001"]));
+            expandOptions.unshift(new Set(["mark3001"]));
+        }
         const kfTrackData = generateKfTrack();
         kfTrack.updateKfTrack(kfTrackData);
         Loading.removeLoading();
