@@ -1066,7 +1066,9 @@ const renderKfTree = () => {
                 expandOptions.unshift(new Set(["mark87", "mark156"]));
             }
         }
-        if(allNextKf.length === 1 && expandOptions.length == 2 && expandOptions[0].has("mark117") && expandOptions[0].has("mark20")){
+        console.log('expandOptions', MarkSelector.selectableMarks);
+        
+        if(allNextKf.length === 1 && expandOptions.length == 2 && expandOptions[0].has("mark117") && MarkSelector.selectableMarks.size == 13){
             expandOptions.unshift(new Set(["mark2001"]));
             expandOptions.unshift(new Set(["mark3001", "mark2001"]));
             expandOptions.unshift(new Set(["mark3001"]));
