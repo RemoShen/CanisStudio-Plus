@@ -357,10 +357,22 @@ export class MarkSelector {
     maskElement.setAttribute("stroke", "#1a73e8");
     maskElement.id = "__" + element.id;
     maskElement.addEventListener("mouseover", () => {
-      maskElement.classList.add("highlight");
+      MarkSelector.selection.forEach((id) => {
+        const maskId: string = "__" + id;
+        const maskElement: Element = document.getElementById(maskId);
+        maskElement.classList.add("highlight");
+      });
+
+      // maskElement.classList.add("highlight");
     });
     maskElement.addEventListener("mouseout", () => {
-      maskElement.classList.remove("highlight");
+      // maskElement.classList.remove("highlight");
+      MarkSelector.selection.forEach((id) => {
+        const maskId: string = "__" + id;
+        const maskElement: Element = document.getElementById(maskId);
+        maskElement.classList.remove("highlight");
+      }
+      );
     });
     maskElement.addEventListener("click", () => {
       // this.removeHoverHighlight(maskElement.id);
