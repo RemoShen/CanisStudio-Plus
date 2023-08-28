@@ -396,7 +396,6 @@ export class KfTreeGroup {
 
 export let kfTrees: KfTreeGroup[] = [];
 let expandOptions: Set<string>[] = [];
-export let previewList: { nextKf: string[], animation: any }[] = [];
 export let firstFrame: KfTreeGroup;
 
 const history: { kfTrees: KfTreeGroup[], expandOptions: Set<string>[], firstFrame: KfTreeGroup }[] = [];
@@ -1050,12 +1049,6 @@ const renderKfTree = () => {
         const allNextKf: string[][] = getSuggestFrames([]);
         //caculate the preview animations 
 
-        // previewList = [];
-        // for (let i = 0; i < allNextKf.length; i++) {
-        //     const nextKf = allNextKf[i];
-        //     const animation = previewFrame(nextKf)
-        //     previewList.push({ nextKf: nextKf, animation: animation });
-        // }
         if (expandOptions.length != 0 && expandOptions[0].has("mark117") && expandOptions[0].has("mark20")) {
             if (!expandOptions.some(i => Tool.identicalArrays([...i], ["mark117", "mark20", "mark87", "mark156"]))) {
                 expandOptions.unshift(new Set(["mark117", "mark20", "mark87", "mark156"]));
@@ -1073,6 +1066,7 @@ const renderKfTree = () => {
             expandOptions.unshift(new Set(["mark3001", "mark2001"]));
             expandOptions.unshift(new Set(["mark3001"]));
         }
+
         const kfTrackData = generateKfTrack();
         kfTrack.updateKfTrack(kfTrackData);
         Loading.removeLoading();
