@@ -157,7 +157,7 @@ export class KfContainer {
         this.kfWidgetContainer.onmouseenter = (enterEvt) => {
             enterEvt.stopPropagation();
             if (!state.mousemoving) {
-                this.updateKfSlider({width:kfTrack.length, height:200});
+                this.updateKfSlider({ width: kfTrack.length, height: 200 });
                 if (parseFloat(this.xSlider.getAttributeNS(null, 'width')) < parseFloat(this.xSliderBg.getAttributeNS(null, 'width'))) {
                     this.xSliderContainer.setAttribute('style', `height:${KfContainer.SLIDER_W + 4}px; margin-top:${-KfContainer.SLIDER_W}px`);
                 }
@@ -212,9 +212,11 @@ export class KfContainer {
                 let oriTrans: ICoord = Tool.extractTransNums(document.getElementById('kfTracksInnerContainer').getAttributeNS(null, 'transform'));
                 // let oriTrans: ICoord = Tool.extractTransNums(this.kfTrackContainer.getAttributeNS(null, 'transform'));
                 this.transDistance.w = oriTrans.x - diffX * this.xSliderPercent;
-                document.getElementById('kfTracksInnerContainer').setAttributeNS(null, 'transform', `translate(${oriTrans.x - diffX * this.xSliderPercent}, 0)`);
-                // kfTrack.updatePanning(oriTrans.x + diffX * this.xSliderPercent, 0);
-                // this.kfTrackContainer.setAttributeNS(null, 'transform', `translate(${oriTrans.x - diffX * this.xSliderPercent}, ${oriTrans.y})`);
+                if (oriTrans.x <=0) {
+                    document.getElementById('kfTracksInnerContainer').setAttributeNS(null, 'transform', `translate(${oriTrans.x - diffX * this.xSliderPercent}, 0)`);
+                }else{
+                    document.getElementById('kfTracksInnerContainer').setAttributeNS(null, 'transform', `translate(0, 0)`);
+                }
             }
             translated = true;
         }
@@ -398,7 +400,7 @@ export class KfContainer {
         //update xslider and xslider track width
         this.xSliderContainerW = this.kfWidgetContainer.clientWidth;
         this.xSliderBg.setAttributeNS(null, 'width', `${this.xSliderContainerW}`);
-        
+
         if (typeof kfGroupSize.width !== 'undefined') {
             const widthWithExtra: number = this.xSliderContainerW - 100;
             this.xSliderPercent = (kfGroupSize.width) / widthWithExtra;

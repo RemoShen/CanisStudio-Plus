@@ -1626,7 +1626,7 @@ class KfTrack {
 
             } else {
                 this.updatePanning(this.panningX + event.deltaY * factorX, this.panningY);
-                // kfContainer.kfContainerTransX(this.panningX + event.deltaY * factorX);
+                kfContainer.kfContainerTransX(this.panningX + event.deltaY * factorX);
             }
         })
     }
