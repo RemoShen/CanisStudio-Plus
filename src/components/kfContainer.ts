@@ -6,6 +6,7 @@ import Reducer from '../app_backup/reducer';
 import * as action from '../app_backup/action';
 import { state } from '../app_backup/state';
 import KfTrack from './widgets/kfTrack';
+import { kfTrack } from '../app/kfTrack';
 
 export class KfContainer {
     static KF_CONTAINER: string = 'kfTracksContainer';
@@ -156,7 +157,7 @@ export class KfContainer {
         this.kfWidgetContainer.onmouseenter = (enterEvt) => {
             enterEvt.stopPropagation();
             if (!state.mousemoving) {
-                this.updateKfSlider({});
+                this.updateKfSlider({width:kfTrack.length, height:200});
                 if (parseFloat(this.xSlider.getAttributeNS(null, 'width')) < parseFloat(this.xSliderBg.getAttributeNS(null, 'width'))) {
                     this.xSliderContainer.setAttribute('style', `height:${KfContainer.SLIDER_W + 4}px; margin-top:${-KfContainer.SLIDER_W}px`);
                 }
@@ -207,10 +208,13 @@ export class KfContainer {
             this.xSlider.setAttributeNS(null, 'x', `${currentSliderX + diffX}`);
 
             //update viewBox of keyframe
-            if (this.kfTrackContainer.getAttributeNS(null, 'transform')) {
-                let oriTrans: ICoord = Tool.extractTransNums(this.kfTrackContainer.getAttributeNS(null, 'transform'));
+            if (document.getElementById('kfTracksInnerContainer').getAttributeNS(null, 'transform')) {
+                let oriTrans: ICoord = Tool.extractTransNums(document.getElementById('kfTracksInnerContainer').getAttributeNS(null, 'transform'));
+                // let oriTrans: ICoord = Tool.extractTransNums(this.kfTrackContainer.getAttributeNS(null, 'transform'));
                 this.transDistance.w = oriTrans.x - diffX * this.xSliderPercent;
-                this.kfTrackContainer.setAttributeNS(null, 'transform', `translate(${oriTrans.x - diffX * this.xSliderPercent}, ${oriTrans.y})`);
+                document.getElementById('kfTracksInnerContainer').setAttributeNS(null, 'transform', `translate(${oriTrans.x - diffX * this.xSliderPercent}, 0)`);
+                // kfTrack.updatePanning(oriTrans.x + diffX * this.xSliderPercent, 0);
+                // this.kfTrackContainer.setAttributeNS(null, 'transform', `translate(${oriTrans.x - diffX * this.xSliderPercent}, ${oriTrans.y})`);
             }
             translated = true;
         }
@@ -344,12 +348,15 @@ export class KfContainer {
         this.xSlider.setAttributeNS(null, 'rx', `${KfContainer.SLIDER_W / 2}`);
         this.xSlider.setAttributeNS(null, 'fill', '#f2f2f2');
         this.xSlider.onmousedown = (downEvt) => {
-            Reducer.triger(action.UPDATE_MOUSE_MOVING, true);
+            // Reducer.triger(action.UPDATE_MOUSE_MOVING, true);
             let preX: number = downEvt.pageX;
             document.onmousemove = (moveEvt) => {
                 moveEvt.stopPropagation();
                 const currentX: number = moveEvt.pageX;
                 const diffX: number = currentX - preX;
+                //
+                // let oriTrans: ICoord = Tool.extractTransNums(document.getElementById('kfTracksInnerContainer').getAttributeNS(null, 'transform'));
+                // kfTrack.updatePanning(diffX * this.xSliderPercent, 0);
                 if (this.kfContainerTransX(diffX)) {
                     preX = currentX;
                 }
@@ -357,7 +364,7 @@ export class KfContainer {
             document.onmouseup = (upEvt) => {
                 document.onmousemove = null;
                 document.onmouseup = null;
-                Reducer.triger(action.UPDATE_MOUSE_MOVING, false);
+                // Reducer.triger(action.UPDATE_MOUSE_MOVING, false);
             }
         }
         this.xSliderContainer.appendChild(this.xSlider);
@@ -391,6 +398,7 @@ export class KfContainer {
         //update xslider and xslider track width
         this.xSliderContainerW = this.kfWidgetContainer.clientWidth;
         this.xSliderBg.setAttributeNS(null, 'width', `${this.xSliderContainerW}`);
+        
         if (typeof kfGroupSize.width !== 'undefined') {
             const widthWithExtra: number = this.xSliderContainerW - 100;
             this.xSliderPercent = (kfGroupSize.width) / widthWithExtra;

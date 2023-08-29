@@ -1,9 +1,11 @@
 import { bin } from 'd3';
 import '../assets/style/keyframeTrack.scss'
 import { AddPanel } from './addPanel';
-import { KfTreeGroup, KfTreeNode, calcNonSelectedMarks, calcSelectedMarks, getSuggestFrames } from './kfTree';
+import { KfTreeGroup, KfTreeNode, calcNonSelectedMarks, calcSelectedMarks, getSuggestFrames, kfTrees } from './kfTree';
 import { MarkSelector } from './markSelector';
 import { SuggestPanel, suggestPanel } from './suggestPanel';
+import Tool from '../util/tool';
+import { kfContainer } from '../components/kfContainer';
 
 const LABEL_HEIGHT = 20;
 const LABEL_CORNER_RADIUS = 3;
@@ -719,29 +721,79 @@ export class KfRow extends KfGroup {
                 return;
             }
             if (this.originalNode) {
+                
                 let virtualMovementX = 0;
                 let actualMovementX = 0;
                 let virtualMovementY = 0;
                 let actualMovementY = 0;
+                let moveX = 0;
+                let moveY = 0;
+                let moveDirection: string = 'Left'
+                for (let i = 0; i < this.parent.children.length; i++) {
+                    if (this.parent.children[i].id == this.id) {
+                        if (i > 0) {
+                            if (this.parent.children[i - 1] instanceof KfOmit) {
+                                if (Tool.diffLessThan(this.parent.children[i - 1].x, this.x, 5)) {
+                                    moveX = this.parent.children[i - 2].length;
+                                    moveY = this.parent.children[i - 2].height + this.parent.children[i - 1].height;
+                                    moveDirection = 'Right';
+                                } else if (Tool.diffLessThan(this.parent.children[i - 1].y, this.y, 1)) {
+                                    moveX = this.parent.children[i - 2].length + this.parent.children[i - 1].length;
+                                    moveY = this.parent.children[i - 2].height;
+                                    moveDirection = 'Left';
+                                }
+                            } else {
+                                moveX = this.parent.children[i - 1].length
+                                moveY = this.parent.children[i - 1].height
+                            }
+                        }
+                        break;
+                    }
+                }
+                let x = this.getX();
+                let y = this.getY();
+                this.container.parentNode.removeChild(this.container);
+                this.container.setAttribute("transform", `translate(${x},${y})`);
+                kfTrack.innerContainer.appendChild(this.container);
+
                 document.onmousemove = (event: MouseEvent) => {
                     virtualMovementX += event.movementX;
                     virtualMovementY += event.movementY;
-                    const newactualMovementX = Math.max(-300, Math.min(300, virtualMovementX));
-                    const newactualMovementY = Math.max(-100, Math.min(1000, virtualMovementY));
-                    this.translate(newactualMovementX - actualMovementX, newactualMovementY - actualMovementY);
+                    let newactualMovementX, newactualMovementY;
+                    if (moveDirection == 'Left') {
+                        newactualMovementX = Math.max(-moveX, Math.min(0, virtualMovementX));
+                        newactualMovementY = Math.max(0, Math.min(moveY, virtualMovementY));
+                    } else {
+                        newactualMovementX = Math.max(0, Math.min(moveX, virtualMovementX));
+                        newactualMovementY = Math.min(0, Math.max(-moveY, virtualMovementY));
+                    }
+                    // this.translate(newactualMovementX - actualMovementX, newactualMovementY - actualMovementY);
+                    x += newactualMovementX - actualMovementX;
+                    y += newactualMovementY - actualMovementY;
+                    this.container.setAttribute("transform", `translate(${x},${y})`);
                     actualMovementX = newactualMovementX;
                     actualMovementY = newactualMovementY;
+                    if (moveX != 0) {
+                        if (Tool.diffLessThan(Math.abs(actualMovementX), Math.abs(moveX), 7)) {
+                            this.leftDragBar.setAttribute("style", "opacity: 1");
+                        } else {
+                            this.leftDragBar.removeAttribute("style");
+                        }
+                    }
                 }
                 document.onmouseup = (event: MouseEvent) => {
                     document.onmousemove = null;
                     document.onmouseup = null;
+   
                     if (actualMovementX <= -100) {
                         this.originalNode.moveForward();
-
                     } else if (actualMovementX >= 100) {
                         this.originalNode.moveBackward();
                     } else {
-                        this.translate(-actualMovementX, -actualMovementY);
+                        this.container.parentNode.removeChild(this.container);
+                        this.parent.container.appendChild(this.container);
+                        this.translate(0,0)
+                        // this.translate(-actualMovementX, -actualMovementY);
                     }
                 }
             }
@@ -1262,14 +1314,6 @@ export class KfNode extends KfItem {
         background1.setAttribute("height", String(25 * kfTrack.scale));
         container.appendChild(background1);
 
-        // const background2 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-        // // background2.setAttribute("opacity", "0");
-        // // background2.setAttribute("x", "");
-        // // background2.setAttribute("y", string(y))
-        // background2.setAttribute("width", String(itemWidth));
-        // background2.setAttribute("height", String((itemHeight) * items.length));
-        // container.appendChild(background2);
-
         let index = 0;
         for (let item of items) {
             const itemBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
@@ -1566,8 +1610,10 @@ class KfTrack {
         this.length = x;
         if (this.activeNodeId == -1) {
             this.updatePanning(x, 0);
+            kfContainer.kfContainerTransX(x);
         } else {
             this.updatePanning(this.activeNode.getX() - this.activeNodeX, 0);
+            kfContainer.kfContainerTransX(this.activeNode.getX() - this.activeNodeX);
         }
 
         container.addEventListener("wheel", (event: WheelEvent) => {
@@ -1577,8 +1623,10 @@ class KfTrack {
                 // this.updateScale(this.scale * Math.pow(1.0001, -event.deltaY));
             } else if (event.altKey) {
                 this.updatePanning(this.panningX, this.panningY + event.deltaY * factorY);
+
             } else {
                 this.updatePanning(this.panningX + event.deltaY * factorX, this.panningY);
+                // kfContainer.kfContainerTransX(this.panningX + event.deltaY * factorX);
             }
         })
     }

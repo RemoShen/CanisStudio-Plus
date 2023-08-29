@@ -50,6 +50,10 @@ export default class Tool {
         }
         return false;
     }
+    public static diffLessThan(a: number, b: number, threshold: number): boolean {
+        return Math.abs(a - b) < threshold;
+    }
+
     public static formatTime(time: number): string {
         const minute: number = Math.floor(time / 60000);
         const second: number = Math.floor((time - minute * 60000) / 1000);

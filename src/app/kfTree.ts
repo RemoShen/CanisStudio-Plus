@@ -628,6 +628,31 @@ const getLeftMost = (group: KfTreeGroup) => {
 
 export const previewFrame = (nextKf: string[]) => {
     let kfT: KfTreeGroup[] = kfTrees.map(i => i.deepClone(null));
+    if (nextKf.length == 4 && nextKf[0] === 'mark117') {
+        kfT.forEach(kfTree => {
+            if (kfTree.attributeSelectors.has('IsEdible')) {
+                kfTree.attributeSelectors.delete('IsEdible');
+                kfTree.children.forEach(child => {
+                    child.forEach(node => {
+                        node.parent.attributeSelectors.delete('IsEdible');
+                    })
+                })
+            }
+        })
+    }
+    if ((nextKf.length == 1 || nextKf.length == 2) && nextKf[0] === 'mark3001') {
+        kfT.forEach(kfTree => {
+            if (kfTree.attributeSelectors.has('IsEdible')) {
+                kfTree.attributeSelectors.delete('IsEdible');
+                kfTree.children.forEach(child => {
+                    child.forEach(node => {
+                        node.parent.attributeSelectors.delete('IsEdible');
+                    })
+                })
+            }
+        });
+
+    }
     const markTypeSelectors: Set<string> = new Set();
     for (let markId of nextKf) {
         const attributes = chartManager.marks.get(markId);
@@ -680,6 +705,7 @@ export const previewFrame = (nextKf: string[]) => {
             kfT[kfT.length - 1].children.push([node]);
             node.parent = kfT[kfT.length - 1];
         }
+
     } else {
         const node = new KfTreeNode(markTypeSelectors, null);
         node.property = {
@@ -823,7 +849,6 @@ export const previewFrame = (nextKf: string[]) => {
 export const addSelection = (selection: string[]) => {
 
     kfTrees = kfTrees.map(i => i.deepClone(null));
-    console.log('kfTree', kfTrees);
     if (selection.length == 4 && selection[0] === 'mark117') {
         kfTrees.forEach(kfTree => {
             if (kfTree.attributeSelectors.has('IsEdible')) {
@@ -836,7 +861,7 @@ export const addSelection = (selection: string[]) => {
             }
         })
     }
-    if((selection.length == 1 || selection.length == 2) && selection[0] === 'mark3001'){
+    if ((selection.length == 1 || selection.length == 2) && selection[0] === 'mark3001') {
         kfTrees.forEach(kfTree => {
             if (kfTree.attributeSelectors.has('IsEdible')) {
                 kfTree.attributeSelectors.delete('IsEdible');
@@ -849,19 +874,6 @@ export const addSelection = (selection: string[]) => {
         });
 
     }
-    // if(selection.length == 2 && selection[0] === 'mark117'){
-    //     kfTrees.forEach(kfTree => {
-    //         if (kfTree.attributeSelectors.has('Odor')) {
-    //             kfTree.attributeSelectors.delete('Odor');
-    //             kfTree.children.forEach(child => {
-    //                 child.forEach(node => {
-    //                     node.parent.attributeSelectors.delete('Odor');
-    //                 })
-    //             })
-    //         }
-    //     })
-
-    // }
     const markTypeSelectors: Set<string> = new Set();
     let attributes: Map<string, string> = new Map();
     for (let markId of selection) {
@@ -1045,9 +1057,9 @@ const renderKfTree = () => {
     const wrapper = document.getElementById("appWrapper");
     loadingBlock.createLoading(wrapper, "Generating animation...");
     setTimeout(() => {
+
         chartManager.updateCanisSpec(generateCanisSpec());
         const allNextKf: string[][] = getSuggestFrames([]);
-        //caculate the preview animations 
 
         if (expandOptions.length != 0 && expandOptions[0].has("mark117") && expandOptions[0].has("mark20")) {
             if (!expandOptions.some(i => Tool.identicalArrays([...i], ["mark117", "mark20", "mark87", "mark156"]))) {
@@ -1059,9 +1071,7 @@ const renderKfTree = () => {
                 expandOptions.unshift(new Set(["mark87", "mark156"]));
             }
         }
-        console.log('expandOptions', MarkSelector.selectableMarks);
-        
-        if(allNextKf.length === 1 && expandOptions.length == 2 && expandOptions[0].has("mark117") && MarkSelector.selectableMarks.size == 13){
+        if (allNextKf.length === 1 && expandOptions.length == 2 && expandOptions[0].has("mark117") && MarkSelector.selectableMarks.size == 13) {
             expandOptions.unshift(new Set(["mark2001"]));
             expandOptions.unshift(new Set(["mark3001", "mark2001"]));
             expandOptions.unshift(new Set(["mark3001"]));
