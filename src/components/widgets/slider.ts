@@ -1,6 +1,7 @@
 import '../../assets/style/slider.scss'
 import Reducer from '../../app_backup/reducer';
 import * as action from '../../app_backup/action';
+import { kfTrack } from '../../app/kfTrack';
 
 export default class Slider {
     static SLIDER_HEIGHT = 26;

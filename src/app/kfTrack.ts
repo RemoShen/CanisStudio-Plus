@@ -721,7 +721,7 @@ export class KfRow extends KfGroup {
                 return;
             }
             if (this.originalNode) {
-                
+
                 let virtualMovementX = 0;
                 let actualMovementX = 0;
                 let virtualMovementY = 0;
@@ -743,9 +743,14 @@ export class KfRow extends KfGroup {
                                     moveDirection = 'Left';
                                 }
                             } else {
+                                moveDirection = 'none';
                                 moveX = this.parent.children[i - 1].length
                                 moveY = this.parent.children[i - 1].height
                             }
+                        } else {
+                            moveDirection = 'none';
+                            moveX = 3000
+                            moveY = 3000
                         }
                         break;
                     }
@@ -763,9 +768,12 @@ export class KfRow extends KfGroup {
                     if (moveDirection == 'Left') {
                         newactualMovementX = Math.max(-moveX, Math.min(0, virtualMovementX));
                         newactualMovementY = Math.max(0, Math.min(moveY, virtualMovementY));
-                    } else {
+                    } else if (moveDirection == 'Right') {
                         newactualMovementX = Math.max(0, Math.min(moveX, virtualMovementX));
                         newactualMovementY = Math.min(0, Math.max(-moveY, virtualMovementY));
+                    } else {
+                        newactualMovementX = Math.max(-moveX, Math.min(moveX, virtualMovementX));
+                        newactualMovementY = Math.max(-moveY, Math.min(moveY, virtualMovementY));
                     }
                     // this.translate(newactualMovementX - actualMovementX, newactualMovementY - actualMovementY);
                     x += newactualMovementX - actualMovementX;
@@ -775,16 +783,20 @@ export class KfRow extends KfGroup {
                     actualMovementY = newactualMovementY;
                     if (moveX != 0) {
                         if (Tool.diffLessThan(Math.abs(actualMovementX), Math.abs(moveX), 7)) {
-                            this.leftDragBar.setAttribute("style", "opacity: 1");
+                            if (this.leftDragBar) {
+                                this.leftDragBar.setAttribute("style", "opacity: 1");
+                            }
                         } else {
-                            this.leftDragBar.removeAttribute("style");
+                            if (this.leftDragBar) {
+                                this.leftDragBar.removeAttribute("style");
+                            }
                         }
                     }
                 }
                 document.onmouseup = (event: MouseEvent) => {
                     document.onmousemove = null;
                     document.onmouseup = null;
-   
+
                     if (actualMovementX <= -100) {
                         this.originalNode.moveForward();
                     } else if (actualMovementX >= 100) {
@@ -792,7 +804,7 @@ export class KfRow extends KfGroup {
                     } else {
                         this.container.parentNode.removeChild(this.container);
                         this.parent.container.appendChild(this.container);
-                        this.translate(0,0)
+                        this.translate(0, 0)
                         // this.translate(-actualMovementX, -actualMovementY);
                     }
                 }
