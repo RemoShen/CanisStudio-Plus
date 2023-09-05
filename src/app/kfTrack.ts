@@ -716,7 +716,7 @@ export class KfRow extends KfGroup {
                 this.createBindList(bindBtnContainer);
             }
         }
-        labelContainer.onmousedown = () => {
+        labelBackground.onmousedown = () => {
             if (kfTrack.timingLock || this.label == "__graph") {
                 return;
             }
