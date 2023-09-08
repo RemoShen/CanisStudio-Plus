@@ -11,7 +11,8 @@
 
 .kf-drag-bar-right {
     opacity: 0;
-    fill: #5c7db3;
+    fill:transparent
+    // fill: #5c7db3;
 }
 
 .kf-drag-bar-right:hover {
@@ -21,7 +22,8 @@
 
 .kf-drag-bar-left {
     opacity: 0;
-    fill: #b78966;
+    fill:#FFBD89
+    // fill: #b78966;
 }
 
 .kf-drag-bar-left:hover {
