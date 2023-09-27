@@ -23,7 +23,7 @@ export default class Nav {
         logo.src = LogoImg;
         logoContainer.appendChild(logo);
         const logoText: HTMLSpanElement = document.createElement('span');
-        logoText.textContent = 'CAST2';
+        logoText.textContent = 'CASTPlus';
         logoText.className = 'title-text';
         logoContainer.appendChild(logoText);
         this.navContainer.appendChild(logoContainer);

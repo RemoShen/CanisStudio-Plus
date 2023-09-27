@@ -43,12 +43,15 @@ const OMIT_COLOR = "#777";
 const LABEL_BORDER_COLOR = "#ffffff";
 const LABEL_BORDER_OPACITY = "0.5";
 
-const DURATION_TO_LENGTH_K = 0.15;
-const DURATION_TO_LENGTH_B = 100;
+const ITEM_LENGTH = 150;
+
+const DURATION_TO_LENGTH_K = 0.125;
+const DURATION_TO_LENGTH_B = ITEM_LENGTH - 2 * ITEM_GAP;
 // const DURATION_TO_LENGTH_K = 0.25;
 // const DURATION_TO_LENGTH_B = 125;
 const MIN_DURATION = 100;
-const MAX_DURATION = 2000;
+const MAX_DURATION = 20000;
+
 
 const lengthToDuration = (length: number) => {
     return (length - DURATION_TO_LENGTH_B) / DURATION_TO_LENGTH_K;
@@ -64,7 +67,7 @@ const MAX_LENGTH = durationToLength(MAX_DURATION);
 const DELAY_TO_LENGTH_K = 0.125;
 const DELAY_TO_LENGTH_B = 0;
 const MIN_DELAY = 0;
-const MAX_DELAY = 1000;
+const MAX_DELAY = 20000;
 
 
 const lengthToDelay = (length: number) => {
@@ -1173,7 +1176,8 @@ export class KfNode extends KfItem {
     durationRatio: number = 1;
 
     virtualLength: number;
-
+    background: Element;
+    iconPolygon: Element;
     thumbnail: Element;
     thumbnailBackground: Element;
     rightDragBar: Element;
@@ -1206,7 +1210,42 @@ export class KfNode extends KfItem {
         this.lengthGuideBackground.setAttribute("x", String(this.length - (ITEM_GAP * 4 + textWidth) / kfTrack.scale));
         this.lengthGuide.setAttribute("x", String(this.length - ITEM_GAP * 3 / kfTrack.scale));
     }
+    controlOn() {
+        this.background.removeAttribute("display");
+        this.iconPolygon.removeAttribute("display");
+    }
 
+    controlOff() {
+        this.background.setAttribute("display", "none");
+        this.iconPolygon.setAttribute("display", "none");
+    }
+    updateDurationBar() {
+        if (this.length < 0) {
+            this.controlOn();
+
+            if (this.length > -12) {
+                this.iconPolygon.setAttribute("display", "none");
+            }
+
+            // this.rightBar.setAttribute("x", String(this.length));
+
+            this.background.setAttribute("x", String(this.length));
+            this.background.setAttribute("y", String(this.height));
+            this.background.setAttribute("width", String(-this.length));
+            this.background.setAttribute("height", String(LABEL_HEIGHT));
+            this.iconPolygon.setAttribute("transform", `rotate(180) translate(${- this.length / 2 - 6},${- this.height - LABEL_HEIGHT / 2 - 6})`);
+        } else if (this.length == 0) {
+            this.controlOff();
+        } else {
+            this.controlOn();
+
+            this.background.setAttribute("x", String(ITEM_LENGTH - 2 * ITEM_GAP));
+            this.background.setAttribute("height", String(this.height));
+            this.background.setAttribute("y", String(0));
+            this.background.setAttribute("width", String(this.length  - ITEM_LENGTH + 2 * ITEM_GAP));
+            this.iconPolygon.setAttribute("transform", `translate(${ITEM_LENGTH - 2 * ITEM_GAP + (this.length - ITEM_LENGTH) / 2},${this.height / 2 - 6})`);
+        }
+    }
     updateWidth(moveEvent: MouseEvent) {
         this.virtualLength += moveEvent.movementX;
         let deltaL = -this.length;
@@ -1214,11 +1253,12 @@ export class KfNode extends KfItem {
         this.length = Math.min(Math.max(this.virtualLength, durationToLength(MIN_DURATION * this.durationRatio)), durationToLength(MAX_DURATION * this.durationRatio));
         // console.log(this.durationRatio);
         deltaL += this.length;
-        this.thumbnail.setAttribute("width", String(this.length));
-        this.thumbnailBackground.setAttribute("width", String(this.length));
+        this.thumbnail.setAttribute("width", String(ITEM_LENGTH - 2 * ITEM_GAP));
+        this.thumbnailBackground.setAttribute("width", String(ITEM_LENGTH - 2 * ITEM_GAP));
         this.rightDragBar.setAttribute("x", String(this.length - 2 * ITEM_GAP));
-        this.menuContainer.setAttribute("transform", `translate(${this.length / 2},${0})`);
+        // this.menuContainer.setAttribute("transform", `translate(${this.length / 2},${0})`);
 
+        this.updateDurationBar();
         this.updateLengthGuide();
 
         this.parent.resize(this, deltaL);
@@ -1381,7 +1421,8 @@ export class KfNode extends KfItem {
         const menuRoundCorner = 10;
         const menuBackgroundColor = "#676767"
 
-        menuContainer.setAttribute("transform", `translate(${this.length / 2},${0})`);
+        // menuContainer.setAttribute("transform", `translate(${this.length / 2},${0})`);
+        menuContainer.setAttribute("transform", `translate(${ITEM_LENGTH / 2},${0})`);
 
         const menuBackground1 = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         menuContainer.appendChild(menuBackground1);
@@ -1443,7 +1484,7 @@ export class KfNode extends KfItem {
         // thumbnailBackground.setAttribute("stroke", LABEL_COLORS[0]);
         thumbnailBackground.setAttribute("fill", "white");
         thumbnailBackground.setAttribute("stroke", "#CCC");
-        thumbnailBackground.setAttribute("width", String(length));
+        thumbnailBackground.setAttribute("width", String(ITEM_LENGTH - 2 * ITEM_GAP));
         thumbnailBackground.setAttribute("height", String(height));
         // thumbnailBackground.setAttribute("y", String(LABEL_HEIGHT));
 
@@ -1451,9 +1492,23 @@ export class KfNode extends KfItem {
         container.appendChild(thumbnail);
         this.thumbnail = thumbnail;
         thumbnail.setAttribute("href", this.thumbnailUrl);
-        thumbnail.setAttribute("width", String(length));
+        thumbnail.setAttribute("width", String(ITEM_LENGTH - 2 * ITEM_GAP));
         thumbnail.setAttribute("height", String(height));
         // thumbnail.setAttribute("y", String(LABEL_HEIGHT));
+
+        const background = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+        container.appendChild(background);
+        this.background = background;
+        background.setAttribute("rx", String(ITEM_GAP))
+        background.setAttribute("fill", "#71b1ed");
+
+
+        const iconPolygon = document.createElementNS('http://www.w3.org/2000/svg', 'polygon');
+        container.appendChild(iconPolygon);
+        this.iconPolygon = iconPolygon;
+        iconPolygon.setAttribute("transform", `translate(${(this.length + ITEM_LENGTH - 2 * ITEM_GAP) / 2 - 2 * ITEM_GAP},${height / 2 - 6})`);
+        iconPolygon.setAttributeNS(null, 'fill', '#fff');
+        iconPolygon.setAttributeNS(null, 'points', '10.1,0 10.1,4.1 5.6,0.1 4.3,1.5 8.3,5.1 0,5.1 0,6.9 8.3,6.9 4.3,10.5 5.6,11.9 10.1,7.9 10.1,12 12,12 12,0 ');
 
         const rightDragBar = document.createElementNS("http://www.w3.org/2000/svg", "rect");
         container.appendChild(rightDragBar);
@@ -1494,6 +1549,7 @@ export class KfNode extends KfItem {
             document.onmouseup = (event: MouseEvent) => { this.finishUpdateWidth(event) };
         }
 
+        this.updateDurationBar();
         this.renderLeftBar();
         this.createMenu();
         return length;
