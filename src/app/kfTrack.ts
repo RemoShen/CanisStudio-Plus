@@ -1116,39 +1116,43 @@ export class KfDelay {
         dragBar.setAttribute("height", String(LABEL_HEIGHT));
         dragBar.setAttribute("y", String(height));
         dragBar.setAttribute("width", String(2 * ITEM_GAP));
+        if (this.originalNode instanceof KfTreeGroup && this.originalNode.startTimeBinding) {
+        } else {
+            dragBar.onmousedown = this.parent.leftDragBarCallback = (downEvent: MouseEvent) => {
+                if (downEvent.button != 0) {
+                    return;
+                }
+                // this.previousNode.hideRightDragBar();
+                this.parent.leftDragBar.setAttribute("style", "opacity:1");
+                this.dragBar.setAttribute("style", "opacity:1");
+                kfTrack.panningLock = true;
+                // rightDragBar.setAttribute("style", "opacity:1");
 
-        dragBar.onmousedown = this.parent.leftDragBarCallback = (downEvent: MouseEvent) => {
-            if (downEvent.button != 0) {
-                return;
-            }
-            // this.previousNode.hideRightDragBar();
-            this.parent.leftDragBar.setAttribute("style", "opacity:1");
-            this.dragBar.setAttribute("style", "opacity:1");
-            kfTrack.panningLock = true;
-            // rightDragBar.setAttribute("style", "opacity:1");
+                kfTrack.setActiveNode(this.parent);
 
-            kfTrack.setActiveNode(this.parent);
+                const lengthGuideBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
+                this.container.appendChild(lengthGuideBackground);
+                this.lengthGuideBackground = lengthGuideBackground;
+                lengthGuideBackground.classList.add("kf-length-guide-bg");
+                lengthGuideBackground.setAttribute("y", String((6 - ITEM_GAP) / kfTrack.scale));
+                lengthGuideBackground.setAttribute("height", String((20) / kfTrack.scale));
 
-            const lengthGuideBackground = document.createElementNS("http://www.w3.org/2000/svg", "rect");
-            this.container.appendChild(lengthGuideBackground);
-            this.lengthGuideBackground = lengthGuideBackground;
-            lengthGuideBackground.classList.add("kf-length-guide-bg");
-            lengthGuideBackground.setAttribute("y", String((6 - ITEM_GAP) / kfTrack.scale));
-            lengthGuideBackground.setAttribute("height", String((20) / kfTrack.scale));
-
-            const lengthGuide = document.createElementNS("http://www.w3.org/2000/svg", "text");
-            this.container.appendChild(lengthGuide);
-            this.lengthGuide = lengthGuide;
-            lengthGuide.setAttribute("x", String(this.length));
-            lengthGuide.setAttribute("y", String(18 / kfTrack.scale));
-            lengthGuide.setAttribute("font-size", String(12 / kfTrack.scale) + "px");
-            lengthGuide.classList.add("kf-delay-length-guide");
-
-            this.updateLengthGuide(Math.max(0, this.virtualLength), this.lengthToTime(this.virtualLength));
-
-            document.onmousemove = (event: MouseEvent) => { this.updateWidth(event) };
-            document.onmouseup = (event: MouseEvent) => { this.finishUpdateWidth(event) };
-        };
+                const lengthGuide = document.createElementNS("http://www.w3.org/2000/svg", "text");
+                this.container.appendChild(lengthGuide);
+                this.lengthGuide = lengthGuide;
+                lengthGuide.setAttribute("x", String(this.length));
+                lengthGuide.setAttribute("y", String(18 / kfTrack.scale));
+                lengthGuide.setAttribute("font-size", String(12 / kfTrack.scale) + "px");
+                lengthGuide.classList.add("kf-delay-length-guide");
+                this.updateLengthGuide(Math.max(0, this.virtualLength), this.lengthToTime(this.virtualLength));
+                document.onmousemove = (event: MouseEvent) => {
+                    this.updateWidth(event)
+                };
+                document.onmouseup = (event: MouseEvent) => {
+                    this.finishUpdateWidth(event)
+                };
+            };
+        }
         this.updateElements();
 
         if (this.length < 0) {
@@ -1242,7 +1246,7 @@ export class KfNode extends KfItem {
             this.background.setAttribute("x", String(ITEM_LENGTH - 2 * ITEM_GAP));
             this.background.setAttribute("height", String(this.height));
             this.background.setAttribute("y", String(0));
-            this.background.setAttribute("width", String(this.length  - ITEM_LENGTH + 2 * ITEM_GAP));
+            this.background.setAttribute("width", String(this.length - ITEM_LENGTH + 2 * ITEM_GAP));
             this.iconPolygon.setAttribute("transform", `translate(${ITEM_LENGTH - 2 * ITEM_GAP + (this.length - ITEM_LENGTH) / 2},${this.height / 2 - 6})`);
         }
     }
