@@ -1665,7 +1665,7 @@ class KfTrack {
 
         if (suggestFrames.length > 0) {
             this.timingLock = true;
-            x += 320;
+            x += 330;
         } else {
             this.timingLock = false;
         }

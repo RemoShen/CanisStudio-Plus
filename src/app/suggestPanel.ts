@@ -14,9 +14,9 @@ export class SuggestPanel {
   static SHOWN_NUM: number = 2;
   static MENU_WIDTH: number = 20;
 
-  public kfWidth: number = 300;
+  public kfWidth: number = 310;
   public kfHeight: number = 178;
-  public boxWidth: number = 300;
+  public boxWidth: number = 310;
   public menuWidth: number = 0;
   public preMenuWidth: number = 0;
   public numShown: number = SuggestPanel.SHOWN_NUM;
@@ -433,7 +433,7 @@ export class Itemimg {
     text.setAttributeNS(
       null,
       "transform",
-      `translate(225, ${4 * SuggestPanel.PADDING})`
+      `translate(225, ${SuggestPanel.PADDING})`
     );
 
     const thumbnail = this.drawItemContent(nextKf, selectedMarks, suggestPanel.kfHeight - 2 * SuggestPanel.PADDING);
