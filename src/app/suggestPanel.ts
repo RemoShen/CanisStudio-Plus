@@ -141,7 +141,7 @@ export class SuggestPanel {
     bg.setAttributeNS(null, "rx", "5");
     container.appendChild(bg);
     container.appendChild(itemImg.container);
-    
+
     const animation = previewFrame(nextKf)
     //animation list
     const videoBox = document.getElementById('videoContainer').getBoundingClientRect();
@@ -278,9 +278,13 @@ export class SuggestMenu {
       "http://www.w3.org/2000/svg",
       "polygon"
     );
+    arrow.classList.add(direct);
     arrow.classList.add("clickable-component", "normal-btn");
     switch (direct) {
       case SuggestMenu.UP_DIRECT:
+        if (this.pageIdx === 0) {
+          arrow.classList.remove("clickable-component", "normal-btn");
+        }
         arrow.setAttributeNS(
           null,
           "points",
@@ -296,9 +300,23 @@ export class SuggestMenu {
             this.pageIdx--;
             this.arrowClickListener();
           }
+          if(this.pageIdx === 0){
+            arrow.classList.remove("clickable-component", "normal-btn");
+          }
+          let down = document.getElementsByClassName("down")
+          for (let i = 0; i< down.length; i++){
+            let element = down[i];
+            if(!element.classList.contains("clickable-component")){
+              element.classList.add("clickable-component", "normal-btn")
+            }
+          }
+
         };
         break;
       case SuggestMenu.DOWN_DIRECT:
+        if (this.pageIdx === this.numPages - 1) {
+          arrow.classList.remove("clickable-component", "normal-btn");
+        }
         arrow.setAttributeNS(
           null,
           "points",
@@ -314,6 +332,16 @@ export class SuggestMenu {
           if (this.pageIdx < this.numPages - 1) {
             this.pageIdx++;
             this.arrowClickListener();
+          }
+          if(this.pageIdx === this.numPages - 1){
+            arrow.classList.remove("clickable-component", "normal-btn");
+          }
+          let up = document.getElementsByClassName("up")
+          for (let i = 0; i< up.length; i++){
+            let element = up[i];
+            if(!element.classList.contains("clickable-component")){
+              element.classList.add("clickable-component", "normal-btn")
+            }
           }
         };
         break;
@@ -357,6 +385,7 @@ export class SuggestMenu {
     dot.classList.add("clickable-component", "normal-btn");
     if (idx === 0) {
       dot.classList.add("clickable-component", "highlight-btn");
+
     }
     dot.setAttributeNS(null, "fill", SuggestMenu.MENU_ICON_COLOR);
     dot.setAttributeNS(null, "r", `${SuggestMenu.BTN_SIZE / 2 - 6}`);
