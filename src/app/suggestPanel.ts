@@ -7,14 +7,16 @@ import { canis } from "./core/canisGenerator";
 import { Player, player } from "../components/player";
 import { KfColume, KfGroup, KfRow, kfTrack } from "./kfTrack";
 import { MarkSelector } from "./markSelector";
+import { MONTHS, TIME, chartManager } from "./chartManager";
+import { MarkTableManager, markTableManager } from "./markTableManager";
 export class SuggestPanel {
   static PADDING: number = 6;
   static SHOWN_NUM: number = 2;
   static MENU_WIDTH: number = 20;
 
-  public kfWidth: number = 240;
+  public kfWidth: number = 300;
   public kfHeight: number = 178;
-  public boxWidth: number = 240;
+  public boxWidth: number = 300;
   public menuWidth: number = 0;
   public preMenuWidth: number = 0;
   public numShown: number = SuggestPanel.SHOWN_NUM;
@@ -300,13 +302,13 @@ export class SuggestMenu {
             this.pageIdx--;
             this.arrowClickListener();
           }
-          if(this.pageIdx === 0){
+          if (this.pageIdx === 0) {
             arrow.classList.remove("clickable-component", "normal-btn");
           }
           let down = document.getElementsByClassName("down")
-          for (let i = 0; i< down.length; i++){
+          for (let i = 0; i < down.length; i++) {
             let element = down[i];
-            if(!element.classList.contains("clickable-component")){
+            if (!element.classList.contains("clickable-component")) {
               element.classList.add("clickable-component", "normal-btn")
             }
           }
@@ -333,13 +335,13 @@ export class SuggestMenu {
             this.pageIdx++;
             this.arrowClickListener();
           }
-          if(this.pageIdx === this.numPages - 1){
+          if (this.pageIdx === this.numPages - 1) {
             arrow.classList.remove("clickable-component", "normal-btn");
           }
           let up = document.getElementsByClassName("up")
-          for (let i = 0; i< up.length; i++){
+          for (let i = 0; i < up.length; i++) {
             let element = up[i];
-            if(!element.classList.contains("clickable-component")){
+            if (!element.classList.contains("clickable-component")) {
               element.classList.add("clickable-component", "normal-btn")
             }
           }
@@ -427,9 +429,144 @@ export class Itemimg {
       `translate(5, ${SuggestPanel.PADDING})`
     );
 
+    const text = this.drawItemText(nextKf);
+    text.setAttributeNS(
+      null,
+      "transform",
+      `translate(225, ${4 * SuggestPanel.PADDING})`
+    );
+
     const thumbnail = this.drawItemContent(nextKf, selectedMarks, suggestPanel.kfHeight - 2 * SuggestPanel.PADDING);
     this.container.appendChild(bg);
+    this.container.appendChild(text);
     this.container.appendChild(thumbnail);
+  }
+  public drawItemText(nextKf: string[]) {
+    const text: SVGTextElement = document.createElementNS(
+      "http://www.w3.org/2000/svg",
+      "text"
+    );
+    const markType: string[] = [];
+    nextKf.forEach((nextMark: string) => {
+      const mark = chartManager.marks.get(nextMark);
+      markType.push(...mark.get('_MARKID').split(','));
+    })
+    const markTypeSet = new Set(markType);
+    const markTypeRes = Array.from(markTypeSet);
+    let resuAtt: string[] = [];
+    if (markTypeRes.length > 1) {
+      const markAttr: string[] = [];
+      nextKf.forEach((nextMark: string) => {
+        const mark = chartManager.marks.get(nextMark);
+        mark.forEach((value: string, key: string) => {
+          if (key !== '_MARKID' && (TIME.includes(key) || parseFloat(value) != Number(value))) {
+            markAttr.push(key);
+          }
+        });
+      });
+      const markAttrSet = new Set(markAttr);
+      const markAttrRes = Array.from(markAttrSet);
+      resuAtt = markAttrRes.filter((item: string) => {
+        let count = 0;
+        markAttr.forEach((markAttrItem: string) => {
+          if (item === markAttrItem) {
+            count++;
+          }
+        });
+        return count > 1;
+      });
+
+
+    } else if (markTypeRes.length === 1) {
+      nextKf.forEach((nextMark: string) => {
+        const mark = chartManager.marks.get(nextMark);
+        mark.forEach((value: string, key: string) => {
+          if (key !== '_MARKID' && (TIME.includes(key) || parseFloat(value) != Number(value))) {
+            resuAtt.push(key);
+          }
+        });
+      })
+    }
+    const resuAttSet = new Set(resuAtt);
+    const resuAttRes = Array.from(resuAttSet);
+    resuAtt = resuAttRes;
+    const resuAttObj = {};
+    const resuAttObj2 = {};
+    resuAtt.forEach((item: string) => {
+      resuAttObj[item] = '';
+    });
+    nextKf.forEach((nextMark: string) => {
+      const mark = chartManager.marks.get(nextMark);
+      resuAtt.forEach((item: string) => {
+        if (mark.has(item)) {
+          resuAttObj[item] += mark.get(item);
+          resuAttObj[item] += ',';
+        }
+      });
+    });
+    for (let key in resuAttObj) {
+      let str = resuAttObj[key];
+      let strArr = str.split(',');
+      let strSet = new Set(strArr);
+      let strRes = Array.from(strSet);
+      resuAttObj2[key] = strRes;
+    }
+    for (let key in resuAttObj2) {
+      let str = resuAttObj2[key];
+      let strRes = '';
+      str.forEach((item: string) => {
+        strRes += item;
+        strRes += ',';
+      });
+      while (strRes[strRes.length - 1] === ',') {
+        strRes = strRes.slice(0, strRes.length - 1);
+      }
+      resuAttObj[key] = strRes;
+    }
+    for (let key in resuAttObj2) {
+      let tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+      tspan.setAttributeNS(null, "x", "5");
+      tspan.setAttributeNS(null, "dy", "1.2em");
+      tspan.setAttributeNS(null, "font-size", "15");
+      tspan.setAttributeNS(null, "font-weight", "bolder");
+      tspan.textContent = key + ':';
+      text.appendChild(tspan);
+      if (resuAttObj2[key].length > 4) {
+        for (let i = 0; i < 2; i++) {
+          let tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+          tspan.setAttributeNS(null, "x", "5");
+          tspan.setAttributeNS(null, "dy", "1.2em");
+          tspan.setAttributeNS(null, "font-size", "15");
+          if (resuAttObj2[key][i].length > 9) {
+            resuAttObj2[key][i] = resuAttObj2[key][i].slice(0, 7);
+            resuAttObj2[key][i] += '...';
+          }
+          tspan.textContent = resuAttObj2[key][i];
+          text.appendChild(tspan);
+        }
+        let tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+        tspan.setAttributeNS(null, "x", "10");
+        tspan.setAttributeNS(null, "dy", ".6em");
+        tspan.setAttributeNS(null, "font-size", "15");
+        tspan.setAttributeNS(null, "font-weight", "bolder");
+        tspan.textContent = '...';
+        text.appendChild(tspan);
+      } else {
+        resuAttObj2[key].forEach((item: string) => {
+          let tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+          tspan.setAttributeNS(null, "x", "5");
+          tspan.setAttributeNS(null, "dy", "1.2em");
+          tspan.setAttributeNS(null, "font-size", "15");
+          if (item.length > 9) {
+            item = item.slice(0, 7);
+            item += '...';
+          }
+          tspan.textContent = item;
+          text.appendChild(tspan);
+        })
+      }
+    }
+    return text;
   }
   public drawItemBg(height: number) {
     const bg: SVGRectElement = document.createElementNS(

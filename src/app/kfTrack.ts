@@ -1021,7 +1021,6 @@ export class KfDelay {
         this.length = Math.min(this.virtualLength, MAX_DELAY_LENGTH);
 
         this.length = Math.max(-this.parentLength, this.length);
-
         this.length = this.timeToLength(snap(this.lengthToTime(this.length), 50, 10));
 
         if (this.length < 0) {
@@ -1666,7 +1665,7 @@ class KfTrack {
 
         if (suggestFrames.length > 0) {
             this.timingLock = true;
-            x += 260;
+            x += 320;
         } else {
             this.timingLock = false;
         }

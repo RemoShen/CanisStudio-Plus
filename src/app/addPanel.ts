@@ -3,7 +3,7 @@ const width: number = 220;
 const foldedWidth: number = 28;
 const foldedHeight: number = 28;
 
-const recommendListWidth = 260;
+const recommendListWidth = 320;
 
 const highlightColor = "rgb(252,191,139)";
 const regularColor = "dodgerblue";
