@@ -144,7 +144,7 @@ export class SuggestPanel {
     container.appendChild(bg);
     container.appendChild(itemImg.container);
 
-    const animation = previewFrame(nextKf)
+    // const animation = previewFrame(nextKf)
     //animation list
     const videoBox = document.getElementById('videoContainer').getBoundingClientRect();
     const videoPreview = document.createElement('div');
@@ -152,13 +152,13 @@ export class SuggestPanel {
     videoPreview.style.height = `${videoBox.height}px`;
     videoPreview.style.position = 'absolute';
     document.getElementById('videoContainer').appendChild(videoPreview);
-    const videoPreviewAnimation = Lottie.loadAnimation({
-      container: videoPreview,
-      renderer: 'svg',
-      loop: true,
-      autoplay: false,
-      animationData: animation,
-    });
+    // const videoPreviewAnimation = Lottie.loadAnimation({
+    //   container: videoPreview,
+    //   renderer: 'svg',
+    //   loop: true,
+    //   autoplay: false,
+    //   animationData: animation,
+    // });
 
 
     container.onmouseout = () => {
@@ -173,7 +173,7 @@ export class SuggestPanel {
           }
         });
       });
-      videoPreviewAnimation.stop();
+      // videoPreviewAnimation.stop();
 
     };
     container.onmouseover = () => {
@@ -188,8 +188,8 @@ export class SuggestPanel {
           }
         });
       });
-      player.stopAnimation();
-      videoPreviewAnimation.goToAndPlay((player.totalTime - firstFrame.children[0][0].property.duration) / 20, true);
+      // player.stopAnimation();
+      // videoPreviewAnimation.goToAndPlay((player.totalTime - firstFrame.children[0][0].property.duration) / 20, true);
     };
     container.onclick = () => {
       setTimeout(() => {
