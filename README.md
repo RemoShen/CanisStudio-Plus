@@ -1,4 +1,4 @@
-# CAST
+# Anthoring Data-Driven Chart Animations through Direct Manipulation
 
 Build 
 ----
