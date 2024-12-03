@@ -1,4 +1,4 @@
-# Anthoring Data-Driven Chart Animations
+# Anthoring Data-Driven Chart Animations through Direct Manipulation
 
 introduction
 ----
